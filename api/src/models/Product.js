@@ -1,10 +1,11 @@
-const { Schema, model } = require('mongoose');
+const { DataTypes } = require('sequelize');
+// Exportamos una funcion que define el modelo
+// Luego le injectamos la conexion a sequelize.
+module.exports = (sequelize) => {
+  // defino el modelo
+  sequelize.define('product', {
 
-const productSchema = new Schema({
-    name: String,
-    description: String,
-    category: [String],
-    price: Number,
-});
-
-module.exports = model('Product', productSchema);
+  },{
+    timestamps: false
+  });
+};
