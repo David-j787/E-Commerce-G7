@@ -12,7 +12,6 @@ module.exports = {
         categories: product.categories?.map(category => category.name),
         rating: product.rating
     }));
-    console.log(products)
     
     let toFilter = [...products];
 
