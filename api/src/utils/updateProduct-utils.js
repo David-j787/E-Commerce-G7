@@ -6,12 +6,12 @@ module.exports = {
         const { id, name, price, description, images, stock, rating } = productObj;
         const findedProduct = await Product.findByPk(id);
 
-        name ? findedProduct.name = name : false;
-        price ? findedProduct.price = Number(price) : false;
-        description ? findedProduct.description = description : false;
-        images ? findedProduct.images = images : false;
-        stock ? findedProduct.stock = Number(stock) : false;
-        rating ? findedProduct.rating = Number(rating) : false;
+        name && (findedProduct.name = name);
+        price && (findedProduct.price = Number(price));
+        description && (findedProduct.description = description);
+        images && (findedProduct.images = images);
+        stock && (findedProduct.stock = Number(stock));
+        rating && (findedProduct.rating = Number(rating));
 
         await findedProduct.save();
 
