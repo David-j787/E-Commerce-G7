@@ -20,7 +20,7 @@ export default function SearchBar() {
 
   return (
       <div>
-        <input value={name} placeholder="Buscar…" onChange= {handleInputChange}/>
+        <input value={name} placeholder="Search…" onChange= {handleInputChange}/>
         <input type='submit' value='Search' onClick={e => handleSubmit(e)}/>
         <input type='reset' value='Clean' onClick={e => cleanState(e)}/>
       </div>
