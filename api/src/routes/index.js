@@ -6,6 +6,7 @@ const router = Router();
 const allProducts = require("./allProducts");
 const user = require('./createUser-route');
 const newCategory = require("./newCategory-route");
+const update = require('./updateProduct-route');
 const productDetail = require('./productDetail-route');
 
 // Config routers
@@ -17,6 +18,8 @@ router.use("/category", newCategory);
 router.use('/user', user);
 
 router.use('/categories', categories)
+
+router.use('/product', update)
 
 router.use('/product', productDetail)
 
