@@ -3,7 +3,7 @@ const categories = require('./category-route')
 const router = Router();
 
 // Import routers;
-const allProducts = require("./allProducts");
+const allProducts = require("./allProducts-route");
 const user = require('./createUser-route');
 const newCategory = require("./newCategory-route");
 const login = require('./userLogin-route');

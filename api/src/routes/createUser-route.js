@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Product } = require("../db");
 const user = Router();
-const { createUser }  = require('../utils/createUser');
+const { createUser }  = require('../utils/createUser-utils');
 
 user.post('/', async (req, res) => {
     try {

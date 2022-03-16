@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getProductDetail } = require('../utils/getProductDetail.js')
+const { getProductDetail } = require('../utils/getProductDetail-utils.js')
 
 const productDetailRouter = Router();
 
