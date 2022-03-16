@@ -2,7 +2,7 @@ const { Category } = require('../db.js')
 
 const getCategories = async(req, res) => {
     let db = await Category.findAll()
-    res.send(db)
+    db.length ? res.send(db) : res.status(404).send('Database empty')
 }
 
 module.exports = {
