@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Product } = require("../db");
 const user = Router();
-const createUser = require('../utils/createUser');
+const { createUser }  = require('../utils/createUser');
 
 user.post('/', async (req, res) => {
     try {
@@ -10,7 +10,7 @@ user.post('/', async (req, res) => {
         if(!createdUser) res.status(404).send('Error al agregar el usuario a base de datos');
         res.send('USUARIO CREADO CON ÉXITO! :)');
     } catch (error) {
-        res.status(500).json('No se pudo guardar el Usuario: ', error);
+        res.status(404).json('No se pudo guardar el Usuario: ' + error);
     }
 });
 
