@@ -7,8 +7,8 @@ newCategory.post("/", async (req, res) => {
   try {
     const result = await postCategory(nameCategory);
     return typeof result === "string"
-      ? res.json(result)
-      : res.status(404).send(result);
+      ? res.status(404).send(result)
+      : res.json(result);
   } catch (err) {
     res.status(404).send(err);
   }
