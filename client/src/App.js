@@ -1,10 +1,14 @@
 import CreateUser from './components/CreateUser';
+import SearchBar from './components/SearchBar';
+import Login from './components/Login/Login.jsx';
 import './styles/styles.scss';
 
 function App() {
   return (
     <div className="App">
-      <CreateUser />
+      <CreateUser/>
+      <SearchBar/>
+      <Login/>
     </div>
   );
 }
