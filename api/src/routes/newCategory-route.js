@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { postCategory } = require("../utils/newCategory-utils");
 const newCategory = Router();
 
-newCategoryRouter.post("/", async (req, res) => {
+newCategory.post("/", async (req, res) => {
   const { nameCategory } = req.body;
   try {
     const result = await postCategory(nameCategory);
