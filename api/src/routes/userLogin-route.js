@@ -6,7 +6,7 @@ login.post("/", async (req, res) => {
   try {
     const { username, password } = req.body;
     const userLogged = await userLogin(username, password);
-    res.json('Users credentials corrects');
+    res.json("User's credentials correct");
   } catch (error) {
     res.status(404).json('Ocurrió un error: '+ error);
   }
