@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//import { useHistory } from "react-router-dom";
 
 export function validate(user) {
 
@@ -14,43 +15,56 @@ export function validate(user) {
     } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.name)){
         errors.lastname = "Invalid lastname";
     }
+    if(!user.username) {
+        errors.username = "Introduce a username"
+    }else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.username)){
+        errors.name = "Invalid username";
+    }
+    if(!user.password) {
+        errors.password = "Write a password"
+    }else if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(user.password)){
+        errors.password = "Password must contain eight characters, at least one uppercase letter, one lowercase letter and one number"
+    }
     if (!user.email){
       errors.email = "Introduce your e-mail"
     }else if(!/\S+@\S+\.\S+/.test(user.email)){
         errors.email = "Invalid e-mail";
     }
-    if (!user.mobileNumber){
-      errors.mobileNumber = "Introduce your mobile number"
+    if (!user.country){
+      errors.country = "Write your country"
     }
-    if(!user.newPassword) {
-      errors.newPassword = "Write a password"
+    if (!user.city){
+      errors.city = "Write your city"
     }
-    if(!user.birthday) {
-        errors.birthday = "Select the options"
+    if (!user.address){
+      errors.address = "Write your address"
     }
-    if(!user.IdNumber) {
-        errors.IdNumber = "Write your ID number"
+    if(!user.dateOfBirth) {
+        errors.dateOfBirth = "Select your date of birth"
+    }
+    if(!user.zip_code) {
+        errors.zip_code = "Introduce the zip code"
     }
     return errors;
   }
 
 
 export default function CreateUser(){
-
-    const days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
-    const months= ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-    const years= [1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022]
+    //const history = useHistory();
 
     const [errors, setErrors] = useState({})
 
     const [user, setUser] = useState({
         name: "",
-        lastname: "",
+        lastName: "",
+        username: "",
+        password: "",
         email:"",
-        mobileNumber: "",
-        newPassword: "",
-        birthday: "",
-        IdNumber: "",
+        country: "",
+        city: "",
+        zip_code:"",
+        address: "",
+        dateOfBirth: "",
     })
 
     const handleChange = (e) => {
@@ -64,17 +78,38 @@ export default function CreateUser(){
         }))
     };
 
-    const handleSelect = (e) => {
+    // const validateUsername = (name) => {
+    //     let validate = stateUsers.map(el => el.name)
+    //     return validate.includes(name) 
+    // }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // if(validateUsername(user.username)){
+        //   alert(`${user.username} already exists`)
+        // }else{
         setUser({
-            ...user,
-            birthday: e.target.value
+            name: "",
+            lastName: "",
+            username: "",
+            password: "",
+            email:"",
+            country: "",
+            city: "",
+            zip_code:"",
+            address: "",
+            dateOfBirth: "",
         })
-    }
+        // await axios.post("http://localhost:3001/user/create", user)
+        // alert(`${user.username} was created successfully!`)
+        // history.push("/home")
+        //}
+      };
 
     return(
         <div>
             <h1>Sign Up</h1>
-            <form>
+            <form onSubmit={(e)=>{handleSubmit(e)}}>
                 <div>
                 <label>Name:</label>
                 <input name="name" value={user.name} onChange={handleChange}/>
@@ -82,38 +117,50 @@ export default function CreateUser(){
                 </div>
                 <div>
                 <label>Last name:</label>
-                <input name="lastname" value={user.lastname} onChange={handleChange}/>
-                <div>{errors.lastname}</div>
-                </div><div>
+                <input name="lastName" value={user.lastName} onChange={handleChange}/>
+                <div>{errors.lastName}</div>
+                </div>
+                <div>
+                <label>Username:</label>
+                <input name="username" value={user.username} onChange={handleChange}/>
+                <div>{errors.username}</div>
+                </div>
+                <div>
+                <label>Password:</label>
+                <input name="password" type="password" value={user.password} onChange={handleChange}/>
+                <div>{errors.password}</div>
+                </div>
+                <div>
                 <label>E-mail:</label>
                 <input name="email" value={user.email} onChange={handleChange}/>
                 <div>{errors.email}</div>
-                </div><div>
-                <label>Mobile number:</label>
-                <input name="mobileNumber" value={user.mobileNumber} onChange={handleChange}/>
-                <div>{errors.mobileNumber}</div>
-                </div><div>
-                <label>New password:</label>
-                <input name="newPassword" type="password" value={user.newPassword} onChange={handleChange}/>
-                <div>{errors.newPassword}</div>
-                </div><div>
-                <label>Birthday:</label>
-                <select aria-label="Month" name="birthday" value={user.birthday} onChange={handleSelect}>{months.map((op, i) =>{
-                     return <option value={op} key={i}>{op}</option>
-                })}</select>
-                <select aria-label="Day" name="birthday" value={user.birthday} onChange={handleSelect}>{days.map((op, i) =>{
-                     return <option value={op} key={i}>{op}</option>
-                })}</select>
-                <select aria-label="Year" name="birthday" value={user.birthday} onChange={handleSelect}>{years.map((op, i) =>{
-                     return <option value={op} key={i}>{op}</option>
-                })}</select>
-                <div>{errors.birthday}</div>
-                </div><div>
-                <label>ID Number:</label>
-                <input name="IdNumber" value={user.IdNumber} onChange={handleChange}/>
-                <div>{errors.IdNumber}</div>
                 </div>
-                <button type="submit">Sign Up</button>
+                <div>
+                <label>Country:</label>
+                <input name="country" value={user.country} onChange={handleChange}/>
+                <div>{errors.country}</div>
+                </div>
+                <div>
+                <label>City:</label>
+                <input name="city" value={user.city} onChange={handleChange}/>
+                <div>{errors.city}</div>
+                </div>
+                <div>
+                <label>Zip code:</label>
+                <input name="zip_code" value={user.zip_code} onChange={handleChange}/>
+                <div>{errors.zip_code}</div>
+                </div>
+                <div>
+                <label>Address:</label>
+                <input name="address" value={user.address} onChange={handleChange}/>
+                <div>{errors.address}</div>
+                </div>
+                <div>
+                <label>Birthday:</label>
+                <input  type='date' name="dateOfBirth" value={user.dateOfBirth} onChange={handleChange}/>
+                <div>{errors.dateOfBirth}</div>
+                </div>
+                <button type="submit" disabled={!user.name || !user.lastName || !user.username || !user.password || !user.email || !user.country || !user.city || !user.address || !user.zip_code || !user.dateOfBirth} >Sign Up</button>
             </form>
         </div>
     )
