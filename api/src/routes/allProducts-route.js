@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const allProducts = Router();
-const { getProducts } = require('../utils/getProducts');
+const { getProducts } = require('../utils/getProducts-utils');
 
 allProducts.get("/", async (req, res) => {
   try {

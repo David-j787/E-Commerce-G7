@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     description: {
@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
       defaultValue: 0
     },
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       defaultValue: 0
     }
   },{
