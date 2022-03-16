@@ -1,0 +1,36 @@
+.list {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70vw;
+  background-color: $white;
+  padding: 6rem 1.5rem;
+  transition: all 0.8s ease;
+
+  @include mq(medium) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -30vw;
+    width: 30vw;
+    min-height: 100vh;
+    background-color: rgba(black, 0.8);
+  }
+
+  & * + * {
+    margin-top: 1rem;
+  }
+
+  &__link {
+    color: $black;
+    font-weight: 700;
+  }
+}
