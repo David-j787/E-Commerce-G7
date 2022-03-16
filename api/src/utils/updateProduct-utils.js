@@ -10,7 +10,7 @@ module.exports = {
         price ? findedProduct.price = Number(price) : false;
         description ? findedProduct.description = description : false;
         images ? findedProduct.images = images : false;
-        stock ? findedProduct.stock = stock : false;
+        stock ? findedProduct.stock = Number(stock) : false;
         rating ? findedProduct.rating = Number(rating) : false;
 
         await findedProduct.save();
