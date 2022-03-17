@@ -1,4 +1,4 @@
-const { Product } = require("../db");
+const { Product, Category } = require("../db");
 
 const uid = () => {
   return Math.random().toString(36).slice(2, 12);
@@ -16,6 +16,14 @@ const postProduct = async (product) => {
     stock: product.stock,
     rating: product.rating,
   });
+
+  const category = await Promise.all(
+    product.categories.map((category) =>
+      Category.findOne({ where: { name: category } })
+    )
+  );
+
+  const addCategory = await newProduct.addCategories(category);
 
   return newProduct;
 };
