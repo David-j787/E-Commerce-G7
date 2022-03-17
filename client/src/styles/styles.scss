@@ -4,6 +4,7 @@
 // mixins
 @import './mixins/media-queries';
 // components
+<<<<<<< HEAD
 
 body {
   background-color: peru;
@@ -53,3 +54,7 @@ body {
 	  border-top-right-radius: 0;
 	}
 }
+=======
+@import './components/navbar';
+@import './components/menu';
+>>>>>>> mirror

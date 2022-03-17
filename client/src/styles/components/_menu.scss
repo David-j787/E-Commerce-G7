@@ -1,0 +1,80 @@
+.list {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70vw;
+  background-color: $white;
+  padding: 6rem 1.5rem;
+  transition: all 0.8s ease;
+
+  @include mq(medium) {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: static;
+    width: auto;
+    padding: 0;
+    padding-left: 3rem;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -30vw;
+    width: 30vw;
+    min-height: 100vh;
+    background-color: rgba(black, 0.8);
+  }
+
+  & * + * {
+    margin-top: 1rem;
+
+    @include mq(medium) {
+      margin-top: 0;
+      margin-left: 1rem;
+    }
+  }
+
+  &__link {
+    color: $black;
+    font-weight: 700;
+    transition: color 0.2s ease-in-out;
+    font-size: 0.95rem;
+    position: relative;
+    text-align: center;
+
+    &:hover {
+      color: $dark-grayish-blue;
+    }
+
+    @include mq(medium) {
+      font-weight: 400;
+      color: $dark-grayish-blue;
+
+      &:hover {
+        color: $very-dark-blue;
+      }
+    }
+
+    &.active {
+      font-weight: 700;
+      color: $very-dark-blue;
+
+      &::before {
+        @include mq(medium) {
+          content: '';
+          width: 100%;
+          height: 3px;
+          text-align: center;
+          position: absolute;
+          top: 4.4rem;
+          left: 0;
+          background-color: $orange;
+        }
+      }
+    }
+  }
+}

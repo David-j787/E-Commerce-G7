@@ -1,0 +1,74 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  background-color: $white;
+  padding: 1.5rem 0;
+
+  @include mq(medium) {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 3rem;
+    border-bottom: 3px solid $light-grayish-blue;
+  }
+  @include mq(medium) {
+    width: 80%;
+  }
+
+  &__logo {
+    order: 2;
+
+    @include mq(medium) {
+      order: 1;
+    }
+  }
+  &__navigation {
+    display: flex;
+    order: 1;
+
+    @include mq(medium) {
+      order: 2;
+    }
+
+    .icon-menu,
+    .icon-close {
+      margin-right: 0.5rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+
+      @include mq(medium) {
+        display: none !important;
+      }
+    }
+
+    .icon-close {
+      display: none;
+      position: absolute;
+      top: 2rem;
+      z-index: 10;
+      margin-right: 0;
+    }
+  }
+
+  &__cart {
+    display: flex;
+    align-items: center;
+    order: 3;
+    margin-left: auto;
+
+    figure {
+      cursor: pointer;
+    }
+
+    figure:last-of-type {
+      margin-left: 1rem;
+    }
+
+    img {
+      width: 30px;
+    }
+  }
+}

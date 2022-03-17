@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
 :root {
   box-sizing: border-box;
   font-size: 16px;
@@ -29,5 +31,9 @@ ul li {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   overflow-x: hidden;
+  font-family: $font-kumbh-sans;
 }
