@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import cart from '../../assets/images/icon-cart.svg';
 import avatar from '../../assets/images/image-avatar.png';
@@ -39,29 +39,45 @@ const Navbar = () => {
 
         <ul className="list" ref={listRef}>
           <li className="list__item" onClick={handleClose}>
-            <Link to="/collections" className="list__link">
+            <NavLink
+              to="/collections"
+              className="list__link"
+              activeClassName="active"
+            >
               Collections
-            </Link>
+            </NavLink>
           </li>
           <li className="list__item" onClick={handleClose}>
-            <Link to="/men" className="list__link">
+            <NavLink to="/men" className="list__link" activeClassName="active">
               Men
-            </Link>
+            </NavLink>
           </li>
           <li className="list__item" onClick={handleClose}>
-            <Link to="/woman" className="list__link">
+            <NavLink
+              to="/woman"
+              className="list__link"
+              activeClassName="active"
+            >
               Woman
-            </Link>
+            </NavLink>
           </li>
           <li className="list__item" onClick={handleClose}>
-            <Link to="/about" className="list__link">
+            <NavLink
+              to="/about"
+              className="list__link"
+              activeClassName="active"
+            >
               About
-            </Link>
+            </NavLink>
           </li>
           <li className="list__item" onClick={handleClose}>
-            <Link to="/contact" className="list__link">
+            <NavLink
+              to="/contact"
+              className="list__link"
+              activeClassName="active"
+            >
               Contact
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

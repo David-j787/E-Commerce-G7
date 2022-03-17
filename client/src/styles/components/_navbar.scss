@@ -7,17 +7,30 @@
   padding: 1.5rem 0;
 
   @include mq(medium) {
-    width: 80%;
+    width: 85%;
     display: flex;
     align-items: center;
+    padding-bottom: 3rem;
+    border-bottom: 3px solid $light-grayish-blue;
+  }
+  @include mq(medium) {
+    width: 80%;
   }
 
   &__logo {
     order: 2;
+
+    @include mq(medium) {
+      order: 1;
+    }
   }
   &__navigation {
     display: flex;
     order: 1;
+
+    @include mq(medium) {
+      order: 2;
+    }
 
     .icon-menu,
     .icon-close {
@@ -25,6 +38,10 @@
       border: none;
       background: transparent;
       cursor: pointer;
+
+      @include mq(medium) {
+        display: none !important;
+      }
     }
 
     .icon-close {
