@@ -31,14 +31,14 @@ module.exports = (sequelize) => {
         isAlpha: true
       }
     },
-    lastName: {
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         isAlpha: true
       }
     },
-    dateOfBirth: {
+    date_of_birth: {
       type: DataTypes.STRING,
     },
     address: {
@@ -56,7 +56,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    isAdmin: {
+    is_admin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
