@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
             autoIncrement: true,
         },
         total: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             allowNull: false
         },
         status: {
