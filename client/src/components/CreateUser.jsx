@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 export function validate(user) {
 
@@ -13,12 +14,12 @@ export function validate(user) {
     if (!user.lastname) {
         errors.lastname = "Write your last name";
     } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.name)){
-        errors.lastname = "Invalid lastname";
+        errors.lastname = "Invalid last name";
     }
     if(!user.username) {
         errors.username = "Introduce a username"
     }else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.username)){
-        errors.name = "Invalid username";
+        errors.username = "Invalid username";
     }
     if(!user.password) {
         errors.password = "Write a password"
@@ -26,15 +27,15 @@ export function validate(user) {
         errors.password = "Password must contain eight characters, at least one uppercase letter, one lowercase letter and one number"
     }
     if (!user.email){
-      errors.email = "Introduce your e-mail"
+      errors.email = "Enter your e-mail"
     }else if(!/\S+@\S+\.\S+/.test(user.email)){
         errors.email = "Invalid e-mail";
     }
     if (!user.country){
-      errors.country = "Write your country"
+      errors.country = "Introduce your country name"
     }
     if (!user.city){
-      errors.city = "Write your city"
+      errors.city = "Introduce your city name"
     }
     if (!user.address){
       errors.address = "Write your address"
@@ -44,13 +45,15 @@ export function validate(user) {
     }
     if(!user.zip_code) {
         errors.zip_code = "Introduce the zip code"
+    }else if (!/^-?\d+\.?\d*$/.test(user.zip_code)){
+        errors.zip_code = "Only numbers allowed"
     }
     return errors;
-  }
+}
 
 
-export default function CreateUser(){
-    //const history = useHistory();
+export function CreateUser(){
+    const history = useHistory();
 
     const [errors, setErrors] = useState({})
 
@@ -78,16 +81,8 @@ export default function CreateUser(){
         }))
     };
 
-    // const validateUsername = (name) => {
-    //     let validate = stateUsers.map(el => el.name)
-    //     return validate.includes(name) 
-    // }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // if(validateUsername(user.username)){
-        //   alert(`${user.username} already exists`)
-        // }else{
         setUser({
             name: "",
             lastName: "",
@@ -100,10 +95,9 @@ export default function CreateUser(){
             address: "",
             dateOfBirth: "",
         })
-        // await axios.post("http://localhost:3001/user/create", user)
-        // alert(`${user.username} was created successfully!`)
-        // history.push("/home")
-        //}
+        await axios.post("http://localhost:3001/user", user)
+        alert(`${user.username} was created successfully!`)
+        history.push("/home")
       };
 
     return(
@@ -147,7 +141,7 @@ export default function CreateUser(){
                 </div>
                 <div>
                 <label>Zip code:</label>
-                <input name="zip_code" value={user.zip_code} onChange={handleChange}/>
+                <input type="number" name="zip_code" value={user.zip_code} onChange={handleChange}/>
                 <div>{errors.zip_code}</div>
                 </div>
                 <div>
@@ -165,3 +159,5 @@ export default function CreateUser(){
         </div>
     )
 }
+
+export default CreateUser;
