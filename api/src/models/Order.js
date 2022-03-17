@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
         },
         status: {
             type: DataTypes.ENUM('pending', 'complete', 'canceled'),
+            defaultValue:'pending',
             allowNull: false
         },
         // cuando le pedimos la fecha, la entrega formateada en dia/mes/año y en hora argentina, se calcula apartir del createdAt timestamp
