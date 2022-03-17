@@ -15,6 +15,7 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM('pending', 'complete', 'canceled'),
             allowNull: false
         },
+        // cuando le pedimos la fecha, la entrega formateada en dia/mes/año y en hora argentina, se calcula apartir del createdAt timestamp
         date: {
             type: DataTypes.VIRTUAL,
             get(){
@@ -28,6 +29,6 @@ module.exports = (sequelize) => {
     },{
         timestamps: true,
         updatedAt: false,
-        // cuando le pidamos la fecha, la entrega formateada en dia/mes/año y en hora argentina
+        
     })
 }

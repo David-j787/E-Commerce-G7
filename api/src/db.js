@@ -69,6 +69,7 @@ Product.belongsToMany(Category, {through: 'product_category', timestamps: false}
 Category.belongsToMany(Product, {through: 'product_category', timestamps: false});
 Order.belongsTo(User);
 
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
