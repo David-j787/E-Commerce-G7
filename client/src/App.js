@@ -3,6 +3,7 @@ import SearchBar from './components/SearchBar';
 import Login from './components/Login/Login.jsx';
 import Navbar from './components/Navbar';
 import CreateProduct from './components/CreateProduct';
+import Home from './components/Home';
 import './styles/styles.scss';
 
 function App() {
@@ -12,7 +13,11 @@ function App() {
       {/* <SearchBar /> */}
       {/* <Login /> */}
       <Navbar />
-      <CreateProduct/>
+      <Home/>
+    {
+
+    <CreateProduct/>
+    } 
     </div>
   );
 }
