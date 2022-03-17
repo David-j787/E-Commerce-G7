@@ -8,9 +8,9 @@ import './styles/styles.scss';
 function App() {
   return (
     <div className="App">
-      <CreateUser />
-      <SearchBar />
-      <Login />
+      {/* <CreateUser /> */}
+      {/* <SearchBar /> */}
+      {/* <Login /> */}
       <Navbar />
       <CreateProduct/>
     </div>
