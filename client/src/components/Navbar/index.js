@@ -24,71 +24,81 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar">
-      <Link to="/" className="navbar__logo">
-        <img src={logo} alt="logo" />
-      </Link>
+    <div className="container">
+      <div className="navbar">
+        <Link to="/" className="navbar__logo">
+          <img src={logo} alt="logo" />
+        </Link>
 
-      <nav className="navbar__navigation">
-        <button className="icon-menu" onClick={handleMenu} ref={iconMenuRef}>
-          <img src={menu} alt="menu" />
-        </button>
-        <button className="icon-close" onClick={handleClose} ref={iconCloseRef}>
-          <img src={close} alt="close" />
-        </button>
+        <nav className="navbar__navigation">
+          <button className="icon-menu" onClick={handleMenu} ref={iconMenuRef}>
+            <img src={menu} alt="menu" />
+          </button>
+          <button
+            className="icon-close"
+            onClick={handleClose}
+            ref={iconCloseRef}
+          >
+            <img src={close} alt="close" />
+          </button>
 
-        <ul className="list" ref={listRef}>
-          <li className="list__item" onClick={handleClose}>
-            <NavLink
-              to="/collections"
-              className="list__link"
-              activeClassName="active"
-            >
-              Collections
-            </NavLink>
-          </li>
-          <li className="list__item" onClick={handleClose}>
-            <NavLink to="/men" className="list__link" activeClassName="active">
-              Men
-            </NavLink>
-          </li>
-          <li className="list__item" onClick={handleClose}>
-            <NavLink
-              to="/woman"
-              className="list__link"
-              activeClassName="active"
-            >
-              Woman
-            </NavLink>
-          </li>
-          <li className="list__item" onClick={handleClose}>
-            <NavLink
-              to="/about"
-              className="list__link"
-              activeClassName="active"
-            >
-              About
-            </NavLink>
-          </li>
-          <li className="list__item" onClick={handleClose}>
-            <NavLink
-              to="/contact"
-              className="list__link"
-              activeClassName="active"
-            >
-              Contact
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+          <ul className="list" ref={listRef}>
+            <li className="list__item" onClick={handleClose}>
+              <NavLink
+                to="/shop"
+                className="list__link"
+                activeClassName="active"
+              >
+                Shop
+              </NavLink>
+            </li>
+            <li className="list__item" onClick={handleClose}>
+              <NavLink
+                to="/men"
+                className="list__link"
+                activeClassName="active"
+              >
+                Men
+              </NavLink>
+            </li>
+            <li className="list__item" onClick={handleClose}>
+              <NavLink
+                to="/woman"
+                className="list__link"
+                activeClassName="active"
+              >
+                Woman
+              </NavLink>
+            </li>
+            <li className="list__item" onClick={handleClose}>
+              <NavLink
+                to="/about"
+                className="list__link"
+                activeClassName="active"
+              >
+                About
+              </NavLink>
+            </li>
+            <li className="list__item" onClick={handleClose}>
+              <NavLink
+                to="/contact"
+                className="list__link"
+                activeClassName="active"
+              >
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
 
-      <div className="navbar__cart">
-        <figure>
-          <img src={cart} alt="shoping cart" />
-        </figure>
-        <figure>
-          <img src={avatar} alt="avatar" />
-        </figure>
+        <div className="navbar__cart">
+          <figure>
+            <img src={cart} alt="shoping cart" />
+          </figure>
+          <figure>
+            <img src={avatar} alt="avatar" />
+          </figure>
+        </div>
       </div>
     </div>
   );
