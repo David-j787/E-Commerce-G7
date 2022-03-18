@@ -1,25 +1,21 @@
-const { Order, Product, User } = require("../db");
+const { Order, Product } = require("../db");
 
 const postOrder = async (order) => {
-  // console.log(order.products);
-  if (!order.products.length) throw Error("no hay productos en la orden");
-  if (!order.userId) throw Error("la id del usuario es obligatoria");
+  if (!order.products.length) throw Error("there are no products in the order");
+  if (!order.userId) throw Error("user id is required");
+
   const newOrder = await Order.create({
     total: order.total,
-    userId: order.userId
+    userId: order.userId,
   });
 
-  const products = await Promise.all(
-    order.products.map((product) =>
-      Product.findOne({ where: { name: product } })
-    )
+  const product_order = await Promise.all(
+    order.products.map((product) => {
+      Product.findOne({ where: { name: product.name } }).then((produc) =>
+        newOrder.addProduct(produc, { through: { amount: product.amount } })
+      );
+    })
   );
-  // const product_order = await Order.addProduct(products);
-  console.log(product)
-  const product_order = await newOrder.addProduct(products);
-  // const user = await User.findByPk(order.userId)
-  // const userFK = await newOrder.addUser(user);
-  // console.log(userFK);
 
   return newOrder;
 };

@@ -6,10 +6,9 @@ createOrder.post("/", async (req, res) => {
   const order = req.body;
   try {
     const result = await postOrder(order);
-    res.send("la orden fue creada con exito");
+    res.send("the order was created successfully");
   } catch (err) {
-    console.log(err);
-    res.status(404).send(err);
+    res.status(404).send("ocurrio un " + err);
   }
 });
 
