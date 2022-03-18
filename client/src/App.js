@@ -3,6 +3,7 @@ import SearchBar from './components/SearchBar';
 import Login from './components/Login/Login.jsx';
 import Navbar from './components/Navbar';
 import CreateProduct from './components/CreateProduct';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import './styles/styles.scss';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { UserContextProvider } from './components/Login/config/context/userContext';

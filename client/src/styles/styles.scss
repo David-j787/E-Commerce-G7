@@ -5,10 +5,6 @@
 @import './mixins/media-queries';
 // components
 
-body {
-  background-color: peru;
-}
-
 @import './components/navbar';
 @import './components/menu';
 

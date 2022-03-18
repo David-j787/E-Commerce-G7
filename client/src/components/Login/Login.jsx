@@ -46,7 +46,7 @@ export default function Login() {
         <label className="checkbox">
           <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"/> Remember me
         </label>
-        <input className="btn btn-lg btn-primary btn-block" type="submit" value='Login'/>
+        <input className="btn btn-lg btn-primary btn-block btnColors" type="submit" value='Login'/>
       </form>
 
     <GoogleLogin

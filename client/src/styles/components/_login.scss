@@ -63,10 +63,10 @@
     line-height: 1.33;
     border-radius: 6px;
 }
-.btn-primary {
-    color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd;
+.btnColors {
+    color: $white;
+    background-color: $orange;
+    border-color: #f57615;
 }
 .btn {
     display: inline-block;
