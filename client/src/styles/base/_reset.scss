@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
 
 :root {
   box-sizing: border-box;
@@ -36,16 +36,4 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-family: $font-kumbh-sans;
-}
-
-.container {
-  width: 90%;
-  margin: 0 auto;
-
-  @include mq(medium) {
-    width: 85%;
-  }
-  @include mq(large) {
-    width: 80%;
-  }
 }
