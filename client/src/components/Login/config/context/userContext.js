@@ -1,14 +1,16 @@
 import { createContext, useContext, useState } from "react";
 import { signInWithPopup, GithubAuthProvider} from 'firebase/auth';
 import { auth } from "../firebase-config";
-const userContext = createContext({});
 
-export const useUserContext = () => useContext(userContext);
+const Context = createContext({});
 
-export const UserContextProvider = ({children}) => {
+export const useUserContext = () => useContext(Context);
+
+export function UserContextProvider({children}) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState();
     const [error, setError] = useState('');
+    const [jwt, setJwt] = useState(null);
 
     const signInWithGithub = () => {
         setLoading(true);
@@ -21,8 +23,12 @@ export const UserContextProvider = ({children}) => {
         user,
         error,
         loading,
+        jwt, 
+        setJwt,
         signInWithGithub,
     };
 
-    return <userContext.Provider value={contextValue}>{children}</userContext.Provider>
+    return <Context.Provider value={contextValue}>{children}</Context.Provider>
 }
+
+export default Context
