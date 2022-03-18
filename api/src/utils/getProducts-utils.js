@@ -10,7 +10,8 @@ module.exports = {
         images: product.images,
         stock: product.stock,
         categories: product.categories?.map(category => category.name),
-        rating: product.rating
+        rating: product.rating,
+        price: product.price
     }));
     
     let toFilter = [...products];
