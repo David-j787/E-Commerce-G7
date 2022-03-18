@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
 import GoogleLogin from 'react-google-login';
 import { useUserContext } from "./config/context/userContext";
 import '../../styles/styles.scss';
@@ -7,14 +6,6 @@ import validate from './validateLogin.js';
 
 export default function Login() {
   const [errors, setErrors] = useState({})
-=======
-import '../../styles/styles.scss';
-import validate from './validateLogin.js'
-
-export default function Login() {
-  const [errors, setErrors] = useState({})
-
->>>>>>> mirror
   const [user, setUser] = useState({
       email:"",
       password: ""
