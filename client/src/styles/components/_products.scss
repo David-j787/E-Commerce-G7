@@ -15,5 +15,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: $black;
+
+    figure {
+      width: 224px;
+      height: 224px;
+      img {
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    h3 {
+      margin-top: 1rem;
+      line-height: 1.5;
+      font-weight: normal;
+      font-size: 1rem;
+    }
   }
 }

@@ -5,8 +5,9 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import CreateProduct from './components/CreateProduct';
 import './styles/styles.scss';
-import Shop from './pages/Shop';
+import Shop from './pages/Home';
 import ProductDetail from './components/ProductDetail';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -14,12 +15,12 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          {/* <CreateUser />
-          <SearchBar />
-          <Route path="/Login" component={Login} />
-          <CreateProduct /> */}
+          {/* <CreateUser /> */}
+          {/* <SearchBar /> */}
+          {/* <CreateProduct /> */}
+          {/* <Route path="/Login" component={Login} /> */}
 
-          <Route exact path="/shop" component={Shop} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </Router>
     </div>

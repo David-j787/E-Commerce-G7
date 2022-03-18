@@ -45,11 +45,11 @@ const Navbar = () => {
           <ul className="list" ref={listRef}>
             <li className="list__item" onClick={handleClose}>
               <NavLink
-                to="/shop"
+                to="/categories"
                 className="list__link"
                 activeClassName="active"
               >
-                Shop
+                Categories
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>

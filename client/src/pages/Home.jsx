@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions';
 import Products from '../components/Products';
 
-const Shop = () => {
+const Home = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state);
   console.log(products);
@@ -25,4 +25,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default Home;
