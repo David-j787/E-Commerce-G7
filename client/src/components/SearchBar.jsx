@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getSearchProducts } from "../redux/actions";
 
 export default function SearchBar() {
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
 
@@ -11,6 +14,9 @@ export default function SearchBar() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(
+      getSearchProducts(name)
+    )
   }
 
   const cleanState = e => {
