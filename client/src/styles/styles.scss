@@ -11,4 +11,7 @@ body {
 
 @import './components/navbar';
 @import './components/menu';
+
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 @import './components/login';
