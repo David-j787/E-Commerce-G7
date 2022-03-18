@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../redux/actions";
-import { Link } from "react-router-dom";
 import axios from 'axios';
-
+import Select from 'react-select'
+import CreateCategory from "./CreateCategory";
+import '../styles/styles.scss'
 
 export function validate(input) {
 
@@ -30,8 +31,8 @@ export function validate(input) {
     if(!/^-?\d+\.?\d*$/.test(input.rating)){
         errors.rating = "Only numbers allowed"
     }
-    if(!input.category.length){
-        errors.category = "Select the categories or create a new one"
+    if(!input.categories.length){
+        errors.categories = "Select the categories or create a new one"
     }
     return errors;
 }
@@ -40,6 +41,12 @@ export function validate(input) {
 export function CreateProduct(){
     const dispatch = useDispatch();
     const stateCategories = useSelector((state)=>state.categories)
+    
+    //const mockCategories = ["Computers", "Audio", "Videogames", "Tablets"]
+
+    const options = stateCategories.map((e)=> {
+        return {label: e.name, value: e.id}
+    })
 
     const [errors, setErrors] = useState({})
 
@@ -47,10 +54,10 @@ export function CreateProduct(){
         name: "",
         price: "",
         description:"",
-        image:"",
+        images:"",
         stock: 0,
         rating: 0,
-        category:[]
+        categories:[]
     })
 
     useEffect(() => {
@@ -68,64 +75,69 @@ export function CreateProduct(){
         }));
     }
 
+    const handleSelect = (e) =>{
+        setInput({
+            ...input,
+            categories: (Array.isArray(e) ? e.map(x => x.label) : [])
+        })
+    }
+
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        await axios.post("http://localhost:3001/product", input)
+        alert(`${input.name} was created successfully!`)
         setInput({
             name: "",
             price: "",
             description:"",
-            image:"",
+            images:"",
             stock: 0,
             rating: 0,
-            category:[]
+            categories:[]
         })
-        await axios.post("http://localhost:3001/product", input)
-        alert(`${input.name} was created successfully!`)
     }
-
+    
     return(
-        <div>
-            <form onSubmit={(e)=>{handleSubmit(e)}}>
-                <div>
-                <label>Name</label>
-                <input name="name" value={input.name} onChange={handleChange}/>
+        <div class="container">
+            <form onSubmit={(e)=>{handleSubmit(e)}} class="well form-horizontal" action=" " method="post"  id="contact_form">
+                <div class="form-group">
+                <label class="col-md-4 control-label">Name</label>
+                <input name="name" value={input.name} onChange={handleChange} class="col-md-4 inputGroupContainer"/>
                 <div>{errors.name}</div>
                 </div>
-                <div>
-                <label>Price</label>
-                <input name="price" value={input.price} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="col-md-4 control-label">Price</label>
+                <input name="price" value={input.price} onChange={handleChange} class="col-md-4 inputGroupContainer"/>
                 <div>{errors.price}</div>
                 </div>
-                <div>
-                <label>Description</label>
-                <input name="description" value={input.description} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="col-md-4 control-label">Description</label>
+                <input name="description" value={input.description} onChange={handleChange} class="col-md-4 inputGroupContainer"/>
                 <div>{errors.description}</div>
                 </div>
-                <div>
-                <label>Image</label>
-                <input name="image" value={input.image} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="col-md-4 control-label">Image</label>
+                <input name="images" value={input.images} onChange={handleChange} class="col-md-4 inputGroupContainer"/>
                 </div>
-                <div>
-                <label>Stock</label>
-                <input name="stock" value={input.stock} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="col-md-4 control-label">Stock</label>
+                <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} class="col-md-4 inputGroupContainer"/>
                 <div>{errors.stock}</div>
                 </div>
-                <div>
-                <label>Rating</label>
-                <input name="rating" value={input.rating} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="col-md-4 control-label">Rating</label>
+                <input type='number' min='0' max='5' name="rating" step="0.1" value={input.rating} onChange={handleChange} class="col-md-4 inputGroupContainer"/>
                 <div>{errors.rating}</div>
                 </div>
-                <div>
-                <label>Category</label>
-                <select>
-                <option disabled selected>Select categories...</option>
-                {stateCategories.map((op, i) =>{
-                    return <option value={op.id} key={i}>{op.name}</option>
-                })}</select>
-                <Link><button>Create category</button></Link>
-                <div>{errors.category}</div>
+                <div class="form-group">
+                <label class="col-md-4 control-label">Categories</label>
+                <div style={{width:'30%'}}>
+                <Select isMulti options={options} onChange={handleSelect}/>
                 </div>
-                <button type="submit">Create product</button>
+                <CreateCategory />
+                <div>{errors.categories}</div>
+                </div>
+                <input class="btn btn-primary btn-lg" type="submit" disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length} value="Create product"/>
                 </form>
         </div>
     )
