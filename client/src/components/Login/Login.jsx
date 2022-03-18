@@ -3,6 +3,7 @@ import GoogleLogin from 'react-google-login';
 import { useUserContext } from "./config/context/userContext";
 import '../../styles/styles.scss';
 import validate from './validateLogin.js';
+import useUser from "./config/hooks/useUser";
 
 export default function Login() {
   const [errors, setErrors] = useState({})
@@ -10,6 +11,7 @@ export default function Login() {
       email:"",
       password: ""
   })
+  const { login, isLogged } = useUser(); 
 
   const handleChange = e => {
     setUser({
@@ -21,6 +23,13 @@ export default function Login() {
         [e.target.name] : e.target.value
     }))
 };
+
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    login();
+  }
+
   const responseGoogle = response => {}
 
   const { signInWithGithub } = useUserContext();
@@ -28,16 +37,16 @@ export default function Login() {
 
   return (
   <div className="wrapper">
-      <form className="form-signin">       
+      <form className="form-signin" onSubmit={handleSubmit}>       
         <h2 className="form-signin-heading">Please login</h2>
-        <input value={user.email} type="email" className="form-control" name="email" placeholder="Email Address" onChange={e => handleChange(e)}/>
-        <input value={user.password} type="password" className="form-control" name="password" onChange={e => handleChange(e)} placeholder="Password"/>      
+        <input value={user.email} type="email" className="form-control" name="email" placeholder="Email Address" onChange={handleChange}/>
+        <input value={user.password} type="password" className="form-control" name="password" onChange={handleChange} placeholder="Password"/>      
           <span className="error">{errors.email}</span>
           <span className="error">{errors.password}</span>
         <label className="checkbox">
           <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"/> Remember me
         </label>
-        <input className="btn btn-lg btn-primary btn-block" type="submit" value='Login'/>
+        <input className="btn btn-lg btn-primary btn-block btnColors" type="submit" value='Login'/>
       </form>
 
     <GoogleLogin
