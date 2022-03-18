@@ -1,17 +1,17 @@
 // base
 @import './base/variables';
-@import './base/reset';
 // mixins
 @import './mixins/media-queries';
+@import './base/reset';
 // components
-
-body {
-  background-color: peru;
-}
-
 @import './components/navbar';
 @import './components/menu';
-
-
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 @import './components/login';
+@import './components/products';
+
+// pages
+@import './pages/shop';
+
+// bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
