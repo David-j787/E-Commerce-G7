@@ -1,32 +1,31 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useEffect }  from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { getProductDetail } from '../redux/actions';
 
-export function ProductDetail({ id, name, price, images }) {
-  const dispatch = useDispatch();
-  // const id = props.match.params.id;
-  const { details } = useSelector((state) => state);
+export function ProductDetail(props){
+    const dispatch = useDispatch();
+    const id = props.match.params.id;
+    const productDetails = useSelector((state)=>state.details)
 
-  useEffect(() => {
-    dispatch(getProductDetail(id));
-  }, []);
+    useEffect(() => {
+        dispatch(getProductDetail(id));
+      }, []);
 
-  return (
-    <>
-      {details ? (
-        <Link to={`/product/${id}`} className="products__item">
-          <figure>
-            <img src={images} alt="images" />
-          </figure>
-          <h3>{name}</h3>
-          <span>{price}</span>
-        </Link>
-      ) : (
-        <h2>Loading...</h2>
-      )}
-    </>
-  );
+    return(
+        <div>
+            {productDetails ?
+            <div>
+                <h1>{productDetails.name}</h1>
+                <img src={productDetails.images} alt="product"/>
+                <h3>{productDetails.stock}</h3>
+                <h3>{productDetails.description}</h3>
+                <h2>{productDetails.price}</h2>
+                <h2>{productDetails.categories}</h2>
+                <h2>{productDetails.rating}</h2>
+            </div>
+        : (<h2>Loading...</h2>)}
+        </div>
+    )
 }
 
-export default ProductDetail;
+export default ProductDetail
