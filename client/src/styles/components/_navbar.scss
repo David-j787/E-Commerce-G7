@@ -1,20 +1,14 @@
 .navbar {
   display: flex;
   align-items: center;
-  width: 90%;
-  margin: 0 auto;
   background-color: $white;
   padding: 1.5rem 0;
 
   @include mq(medium) {
-    width: 85%;
     display: flex;
     align-items: center;
     padding-bottom: 3rem;
     border-bottom: 3px solid $light-grayish-blue;
-  }
-  @include mq(medium) {
-    width: 80%;
   }
 
   &__logo {
