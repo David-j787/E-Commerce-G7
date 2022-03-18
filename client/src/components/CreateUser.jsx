@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import '../styles/styles.scss'
 
 export function validate(user) {
 
@@ -101,60 +102,60 @@ export function CreateUser(){
       };
 
     return(
-        <div>
+        <div class="container">
             <h1>Sign Up</h1>
-            <form onSubmit={(e)=>{handleSubmit(e)}}>
-                <div>
-                <label>Name:</label>
-                <input name="name" value={user.name} onChange={handleChange}/>
+            <form onSubmit={(e)=>{handleSubmit(e)}} style={{width:'30%'}}>
+                <div class="form-group">
+                <label class="form-label">Name:</label>
+                <input name="name" value={user.name} onChange={handleChange} class="form-control"/>
                 <div>{errors.name}</div>
                 </div>
-                <div>
-                <label>Last name:</label>
-                <input name="lastName" value={user.lastName} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">Last name:</label>
+                <input name="lastName" value={user.lastName} onChange={handleChange} class="form-control"/>
                 <div>{errors.lastName}</div>
                 </div>
-                <div>
-                <label>Username:</label>
-                <input name="username" value={user.username} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">Username:</label>
+                <input name="username" value={user.username} onChange={handleChange} class="form-control"/>
                 <div>{errors.username}</div>
                 </div>
-                <div>
-                <label>Password:</label>
-                <input name="password" type="password" value={user.password} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">Password:</label>
+                <input name="password" type="password" value={user.password} onChange={handleChange} class="form-control"/>
                 <div>{errors.password}</div>
                 </div>
-                <div>
-                <label>E-mail:</label>
-                <input name="email" value={user.email} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">E-mail:</label>
+                <input name="email" value={user.email} onChange={handleChange} class="form-control"/>
                 <div>{errors.email}</div>
                 </div>
-                <div>
-                <label>Country:</label>
-                <input name="country" value={user.country} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">Country:</label>
+                <input name="country" value={user.country} onChange={handleChange} class="form-control"/>
                 <div>{errors.country}</div>
                 </div>
-                <div>
-                <label>City:</label>
-                <input name="city" value={user.city} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">City:</label>
+                <input name="city" value={user.city} onChange={handleChange} class="form-control"/>
                 <div>{errors.city}</div>
                 </div>
-                <div>
-                <label>Zip code:</label>
-                <input type="number" name="zip_code" value={user.zip_code} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">Zip code:</label>
+                <input type="number" name="zip_code" value={user.zip_code} onChange={handleChange} class="form-control"/>
                 <div>{errors.zip_code}</div>
                 </div>
-                <div>
-                <label>Address:</label>
-                <input name="address" value={user.address} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">Address:</label>
+                <input name="address" value={user.address} onChange={handleChange} class="form-control"/>
                 <div>{errors.address}</div>
                 </div>
-                <div>
-                <label>Birthday:</label>
-                <input  type='date' name="dateOfBirth" value={user.dateOfBirth} onChange={handleChange}/>
+                <div class="form-group">
+                <label class="form-label">Birthday:</label>
+                <input  type='date' name="dateOfBirth" value={user.dateOfBirth} onChange={handleChange} class="form-control"/>
                 <div>{errors.dateOfBirth}</div>
                 </div>
-                <button type="submit" disabled={!user.name || !user.lastName || !user.username || !user.password || !user.email || !user.country || !user.city || !user.address || !user.zip_code || !user.dateOfBirth} >Sign Up</button>
+                <button class="btn btn-warning" type="submit" disabled={!user.name || !user.lastName || !user.username || !user.password || !user.email || !user.country || !user.city || !user.address || !user.zip_code || !user.dateOfBirth} >Sign Up</button>
             </form>
         </div>
     )

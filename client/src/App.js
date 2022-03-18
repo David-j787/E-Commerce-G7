@@ -4,14 +4,15 @@ import Login from './components/Login/Login.jsx';
 import Navbar from './components/Navbar';
 import CreateProduct from './components/CreateProduct';
 import './styles/styles.scss';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
     <div className="App">
-      {/* <CreateUser /> */}
       {/* <SearchBar /> */}
       {/* <Login /> */}
       <Navbar />
+      {/* <CreateUser /> */}
       <CreateProduct/>
     </div>
   );
