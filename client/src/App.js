@@ -1,18 +1,34 @@
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import CreateUser from './components/CreateUser';
 import SearchBar from './components/SearchBar';
 import Login from './components/Login/Login.jsx';
 import Navbar from './components/Navbar';
 import CreateProduct from './components/CreateProduct';
 import './styles/styles.scss';
+import { UserContextProvider } from './components/Login/config/context/userContext';
+
 
 function App() {
   return (
     <div className="App">
-      {/* <CreateUser /> */}
-      {/* <SearchBar /> */}
-      { /* <Login /> */}
-      <Navbar />
-      <CreateProduct/>
+      <UserContextProvider>
+      <Router>
+        <Navbar />
+        <SearchBar/>
+        <Switch>
+          {/* <Route path='/' component={Home}/> */}
+          <Route exact path='/register'>
+            <CreateUser/>
+          </Route>
+          <Route exact path='/login'>
+            <Login/>
+          </Route>
+          <Route exact path='/newProduct' >
+            <CreateProduct/>
+          </Route>
+        </Switch>
+      </Router>
+      </UserContextProvider>
     </div>
   );
 }
