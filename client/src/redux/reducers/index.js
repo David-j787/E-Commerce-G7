@@ -2,8 +2,12 @@ import {
   GET_CATEGORIES,
   GET_PRODUCT_DETAIL,
   GET_ALL_PRODUCTS,
+<<<<<<< HEAD
   USER_LOGIN,
   USER_LOGOUT,
+=======
+  GET_SEARCH_PRODUCTS,
+>>>>>>> mirror
 } from '../actions';
 
 const initialState = {
@@ -44,6 +48,20 @@ function rootReducer(state = initialState, action) {
           ...state,
           user: null
         }
+
+    case GET_SEARCH_PRODUCTS:
+      if (action.payload) {
+        return {
+          ...state,
+          products: state.products.filter( p => {
+            return p.name.toLowerCase().includes(action.payload.toLowerCase())
+          })
+        }
+      } else {
+        return {
+          ...state
+        }
+      }
 
     default:
       return state;
