@@ -8,7 +8,7 @@ import './styles/styles.scss';
 import ProductDetail from './components/ProductDetail';
 import Home from './pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { UserContextProvider } from './components/Login/config/context/userContext';
+import { UserContextProvider } from './components/Login/context/userContext';
 
 function App() {
   return (

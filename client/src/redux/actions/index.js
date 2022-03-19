@@ -3,6 +3,8 @@ import axios from 'axios';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -52,4 +54,17 @@ export function getProductDetail(idProduct) {
         console.log('NOT FOUND', error);
       });
   };
+}
+
+export function userLogin(payload){
+  return{
+    type: USER_LOGIN,
+    payload
+  }
+}
+
+export function userLogout(){
+  return{
+    type: USER_LOGOUT
+  }
 }

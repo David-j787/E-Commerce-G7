@@ -1,65 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GoogleLogin from 'react-google-login';
-import { useUserContext } from "./config/context/userContext";
 import '../../styles/styles.scss';
-import validate from './validateLogin.js';
-import useUser from "./config/hooks/useUser";
+import validate from './services/validateLogin.js';
+import useUser from "./hooks/useUser";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../redux/actions";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({})
-  const [user, setUser] = useState({
-      email:"",
+  const [input, setInput] = useState({
+      username:"",
       password: ""
   })
-  const { login, isLogged } = useUser(); 
+  const history = useHistory();
+  const { login, isLogged, isLoginLoading, hasLoginError } = useUser();
+  
+  useEffect(()=>{
+    if (isLogged) history.push('/')
+  }, [isLogged, history])
 
   const handleChange = e => {
-    setUser({
-      ...user,
+    setInput({
+      ...input,
       [e.target.name]: e.target.value,
     })
     setErrors(validate({
-        ...user,
+        ...input,
         [e.target.name] : e.target.value
     }))
 };
 
-
   const handleSubmit = event => {
     event.preventDefault();
-    login();
+    login(input);
   }
 
-  const responseGoogle = response => {}
-
-  const { signInWithGithub } = useUserContext();
-  const { loading, error } = useUserContext();
+  const responseGoogle = response => {
+    axios.post('http://localhost:3001/googleLogin', {id_token: response.tokenId})
+      .then(res => {
+        localStorage.setItem('jwt', res.data.token)
+        dispatch(userLogin(res.data.user))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   return (
   <div className="wrapper">
+    {isLoginLoading && <span>Checking credentials...</span>}
+    {!isLoginLoading &&
       <form className="form-signin" onSubmit={handleSubmit}>       
         <h2 className="form-signin-heading">Please login</h2>
-        <input value={user.email} type="email" className="form-control" name="email" placeholder="Email Address" onChange={handleChange}/>
-        <input value={user.password} type="password" className="form-control" name="password" onChange={handleChange} placeholder="Password"/>      
-          <span className="error">{errors.email}</span>
+        {hasLoginError && <span>Credentials are invalid</span>}
+        <input value={input.username} type="text" className="form-control" name="username" placeholder="Username" onChange={handleChange}/>
+        <input value={input.password} type="password" className="form-control" name="password" onChange={handleChange} placeholder="Password"/>      
+          <span className="error">{errors.username}</span>
           <span className="error">{errors.password}</span>
         <label className="checkbox">
           <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"/> Remember me
         </label>
         <input className="btn btn-lg btn-primary btn-block btnColors" type="submit" value='Login'/>
+        <GoogleLogin className="button-google"
+          clientId="827278609523-buiubpo31u43c0snvgsjhukdtces0ijo.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}/>  
       </form>
-
-    <GoogleLogin
-      clientId="827278609523-buiubpo31u43c0snvgsjhukdtces0ijo.apps.googleusercontent.com"
-      buttonText="Login"
-      onSuccess={responseGoogle}
-      onFailure={responseGoogle}
-      cookiePolicy={'single_host_origin'}/>
-
-    <button onClick={signInWithGithub}>Continue with GitHub</button>
-    {error && <p>{error}</p>}
-    {loading && <h2>Loading...</h2>}
-    <br></br> <br></br>
+    }
     </div>
   )
 }
