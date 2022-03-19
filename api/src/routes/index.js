@@ -12,15 +12,17 @@ const login = require("./userLogin-route");
 const update = require("./updateProduct-route");
 const productDetail = require("./productDetail-route");
 const googleLogin = require("../utils/googleLogin-utils");
+const createOrder = require("./createOrder-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
 
-
 // Config routers
 // Example: router.use('/users', getUsers);
 router.use("/products", allProducts);
+
+router.use("/order", createOrder);
 
 router.use("/category", newCategory);
 

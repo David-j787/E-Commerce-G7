@@ -3,6 +3,8 @@ import axios from 'axios';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
+export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -52,4 +54,11 @@ export function getProductDetail(idProduct) {
         console.log('NOT FOUND', error);
       });
   };
+}
+
+export function getSearchProducts(productName){
+  return (dispatch) => dispatch({
+    type: GET_SEARCH_PRODUCTS,
+    payload: productName
+  })
 }
