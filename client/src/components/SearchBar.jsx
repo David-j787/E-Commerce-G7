@@ -4,12 +4,10 @@ import { getCategories, getSearchProducts, } from "../redux/actions";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
-  const { categories, products } = useSelector((state) => state)
-  console.log(categories)
+  const { categories } = useSelector((state) => state)
 
   useEffect(() =>{
     dispatch(getCategories())
-    // eslint-disable-next-line
   }, [dispatch])
 
   const [name, setName] = useState('');
