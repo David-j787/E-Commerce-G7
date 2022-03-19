@@ -2,12 +2,9 @@ import {
   GET_CATEGORIES,
   GET_PRODUCT_DETAIL,
   GET_ALL_PRODUCTS,
-<<<<<<< HEAD
   USER_LOGIN,
   USER_LOGOUT,
-=======
   GET_SEARCH_PRODUCTS,
->>>>>>> mirror
 } from '../actions';
 
 const initialState = {

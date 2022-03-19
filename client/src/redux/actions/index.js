@@ -3,13 +3,10 @@ import axios from 'axios';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
-<<<<<<< HEAD
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
-=======
 export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
 export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
->>>>>>> mirror
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -61,7 +58,6 @@ export function getProductDetail(idProduct) {
   };
 }
 
-<<<<<<< HEAD
 export function userLogin(payload){
   return{
     type: USER_LOGIN,
@@ -74,11 +70,9 @@ export function userLogout(){
     type: USER_LOGOUT
   }
 }
-=======
 export function getSearchProducts(productName){
   return (dispatch) => dispatch({
     type: GET_SEARCH_PRODUCTS,
     payload: productName
   })
 }
->>>>>>> mirror
