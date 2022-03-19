@@ -10,10 +10,13 @@ const newProduct = require("./newProduct-route");
 const login = require("./userLogin-route");
 const update = require("./updateProduct-route");
 const productDetail = require("./productDetail-route");
+const createOrder = require("./createOrder-route");
 
 // Config routers
 // Example: router.use('/users', getUsers);
 router.use("/products", allProducts);
+
+router.use("/order", createOrder);
 
 router.use("/category", newCategory);
 router.use("/product", newProduct);
