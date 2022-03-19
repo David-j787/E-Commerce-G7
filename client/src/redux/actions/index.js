@@ -56,9 +56,20 @@ export function getProductDetail(idProduct) {
   };
 }
 
-export function getSearchProducts(productName){
-  return (dispatch) => dispatch({
-    type: GET_SEARCH_PRODUCTS,
-    payload: productName
-  })
+export function getSearchProducts(productName, category){
+  return function (dispatch) {
+    return axios.
+    get(`http://localhost:3001/products?name=${productName}&category=${category}`)
+    .then((response) => response.data)
+    .then((data) => {
+      dispatch({
+        type: GET_SEARCH_PRODUCTS,
+        payload: data,
+      });
+    })
+    .catch((error) => {
+      console.log("Not Found", error)
+    })
+  }
+
 }

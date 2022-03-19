@@ -32,17 +32,9 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_SEARCH_PRODUCTS:
-      if (action.payload) {
-        return {
-          ...state,
-          products: state.products.filter( p => {
-            return p.name.toLowerCase().includes(action.payload.toLowerCase())
-          })
-        }
-      } else {
-        return {
-          ...state
-        }
+      return {
+        ...state,
+        products: action.payload,
       }
 
     default:
