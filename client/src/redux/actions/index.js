@@ -3,17 +3,14 @@ import axios from 'axios';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
-<<<<<<< HEAD
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const PRODUCT_REMOVE = "PRODUCT_REMOVE";
 export const PRODUCT_AMOUNT_REST = "PRODUCT_AMOUNT_REST";
 export const PRODUCT_AMOUNT_SUM = "PRODUCT_AMOUNT_SUM";
-=======
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
 export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
->>>>>>> mirror
 
 export const getAllProducts = () => {
   return async (dispatch) => {
