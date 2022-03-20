@@ -6,18 +6,17 @@ import Products from '../components/Products';
 const Home = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state);
-  console.log(products);
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [dispatch]);
+  }, []); //eslint-disable-line
 
-  return (
+return (
     <div className="container shop">
       <h2 className="shop__title">SHOP</h2>
 
-      {products.length === 0 ? (
-        <h2>Cargando...</h2>
+      {!Array.isArray(products) ? (
+        <h2>{products}</h2>
       ) : (
         <Products products={products} />
       )}

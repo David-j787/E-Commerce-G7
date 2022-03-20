@@ -2,10 +2,16 @@ import {
   GET_CATEGORIES,
   GET_PRODUCT_DETAIL,
   GET_ALL_PRODUCTS,
+<<<<<<< HEAD
   ADD_PRODUCT,
   PRODUCT_AMOUNT_REST,
   PRODUCT_AMOUNT_SUM,
   PRODUCT_REMOVE,
+=======
+  USER_LOGIN,
+  USER_LOGOUT,
+  GET_SEARCH_PRODUCTS,
+>>>>>>> mirror
 } from '../actions';
 
 const initialState = {
@@ -13,11 +19,15 @@ const initialState = {
   filtered: [],
   categories: [],
   details: [],
+<<<<<<< HEAD
   cart: [
     { name: "iphone", amount: 1, price: 1000 },
     { name: "monitor", amount: 2, price: 300 },
     { name: "mouse", amount: 10, price: 30 },
   ]
+=======
+  user: null
+>>>>>>> mirror
 };
 
 function rootReducer(state = initialState, action) {
@@ -64,6 +74,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: [...state.cart.filter((product) => product.name !== action.payload)],
       };
+    
+    case USER_LOGIN:
+      return{
+        ...state,
+        user: action.payload
+      }
+    
+    case USER_LOGOUT:
+        return{
+          ...state,
+          user: null
+        }
+
+    case GET_SEARCH_PRODUCTS:
+      return {
+        ...state,
+        products: action.payload,
+      }
 
     default:
       return state;
