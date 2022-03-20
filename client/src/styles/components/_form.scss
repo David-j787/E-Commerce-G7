@@ -1,0 +1,46 @@
+.formWrapper{
+    background-color: #ececec;
+    padding: 20px 0;
+    width: 100%;
+}
+.addedCat{
+    width: 400px;
+    margin-top: 20px;
+    min-height: 40px;
+    height: auto;
+    border: 2px solid  #0099ff;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.catContainer{
+    margin: 5px;
+    width: auto;
+    height: 35px;
+    background-color: #c6c7c9;
+    border: none;
+    color: black;
+    border-radius: 99px;
+    display: flex;
+    align-items: baseline;
+    text-align: center;
+    padding-left: 15px;
+}
+.deleteCat{
+    background-color: darkorange;
+    font-weight: 600;
+    border-radius: 99px;
+    margin-top: 8px;
+    line-height: 1;
+    margin-right: 10px;;
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-left: 10px;
+}
+.deleteCat:hover{
+    cursor: pointer;
+}

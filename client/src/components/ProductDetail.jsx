@@ -9,18 +9,18 @@ export function ProductDetail(props){
 
     useEffect(() => {
         dispatch(getProductDetail(id));
-      }, []);
+    }, []);
 
     return(
         <div>
             {productDetails ?
             <div>
                 <h1>{productDetails.name}</h1>
-                <img src={productDetails.images} alt="product"/>
+                <img src={productDetails.images} alt="product" width='350px' height='250px'/>
                 <h3>{productDetails.stock}</h3>
                 <h3>{productDetails.description}</h3>
                 <h2>{productDetails.price}</h2>
-                <h2>{productDetails.categories}</h2>
+                <h3>{productDetails.categories?.map(el=><li>{el.name}</li>)}</h3>
                 <h2>{productDetails.rating}</h2>
             </div>
         : (<h2>Loading...</h2>)}
