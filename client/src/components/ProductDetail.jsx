@@ -1,11 +1,11 @@
-import React, { useEffect }  from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetail } from '../redux/actions';
 
-export function ProductDetail(props){
-    const dispatch = useDispatch();
-    const id = props.match.params.id;
-    const productDetails = useSelector((state)=>state.details)
+export function ProductDetail(props) {
+  const dispatch = useDispatch();
+  const id = props.match.params.id;
+  const productDetails = useSelector((state) => state.details);
 
     useEffect(() => {
         dispatch(getProductDetail(id));
@@ -28,4 +28,4 @@ export function ProductDetail(props){
     )
 }
 
-export default ProductDetail
+export default ProductDetail;
