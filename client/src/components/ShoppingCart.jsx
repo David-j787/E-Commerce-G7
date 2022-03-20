@@ -7,14 +7,18 @@ const ShoppingCart = () => {
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state)
 
-    const handleRest = (productAmount) => {
-        dispatch(productAmountRest(productAmount))
+    const handleRest = (productId) => {
+        const cartProduct = cart.filter(product => product.id === productId)
+        if (cartProduct[0].amount <= 1) return
+        dispatch(productAmountRest(productId))
     }
-    const handleSum = (productAmount) => {
-        dispatch(productAmountSum(productAmount))
+    const handleSum = (productId) => {
+        const cartProduct = cart.filter(product => product.id === productId)
+        if (cartProduct[0].stock <= cartProduct[0].amount) return
+        dispatch(productAmountSum(productId))
     }
-    const handleRemove = (product) => {
-        dispatch(productRemove(product))
+    const handleRemove = (productId) => {
+        dispatch(productRemove(productId))
     }
 
     const borrarEsto = {
@@ -36,17 +40,17 @@ const ShoppingCart = () => {
                     cart.length ? cart.map(product => {
                         return (
                             <div key={product.name}>
-                                <img src='#' alt={`${product.name}`} />
+                                <img src={product.images} alt={`${product.name}`} />
                                 <h3>{product.name}</h3>
                                 <div>
                                     <div>
-                                        <button onClick={() => handleRest(product.name)} >-</button>
+                                        <button onClick={() => handleRest(product.id)} >-</button>
                                         <p>{product.amount}</p>
-                                        <button onClick={() => handleSum(product.name)}>+</button>
+                                        <button onClick={() => handleSum(product.id)}>+</button>
                                     </div>
                                     <p>{`$${product.amount * product.price}`}</p>
                                 </div>
-                                <button onClick={() => handleRemove(product.name)}>Quitar</button>
+                                <button onClick={() => handleRemove(product.id)}>Quitar</button>
                             </div>
                         )
                     }) : <h3>El carrito esta vacio</h3>

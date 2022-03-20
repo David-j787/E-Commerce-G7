@@ -16,11 +16,7 @@ const initialState = {
   filtered: [],
   categories: [],
   details: [],
-  cart: [
-    { name: "iphone", amount: 1, price: 1000 },
-    { name: "monitor", amount: 2, price: 300 },
-    { name: "mouse", amount: 10, price: 30 },
-  ],
+  cart: [],
   user: null
 };
 
@@ -51,7 +47,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cart: [...state.cart.map((product) => {
-          return product.name === action.payload
+          return product.id === action.payload
           ? { ...product, amount: product.amount + 1 } : product;
         })]
       };
@@ -59,14 +55,14 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cart: [...state.cart.map((product) => {
-          return product.name === action.payload && product.amount > 1
+          return product.id === action.payload && product.amount > 1
           ? { ...product, amount: product.amount - 1 } : product;
         })]
       };
     case PRODUCT_REMOVE:
       return {
         ...state,
-        cart: [...state.cart.filter((product) => product.name !== action.payload)],
+        cart: [...state.cart.filter((product) => product.id !== action.payload)],
       };
     
     case USER_LOGIN:
