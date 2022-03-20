@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetail } from '../redux/actions';
 
-export function ProductDetail() {
+export function ProductDetail(props) {
   const dispatch = useDispatch();
   const id = props.match.params.id;
   const productDetails = useSelector((state) => state.details);
 
     useEffect(() => {
         dispatch(getProductDetail(id));
-    }, []);
+    }, []); //eslint-disable-line
 
     return(
         <div>
@@ -20,7 +20,7 @@ export function ProductDetail() {
                 <h3>{productDetails.stock}</h3>
                 <h3>{productDetails.description}</h3>
                 <h2>{productDetails.price}</h2>
-                <h3>{productDetails.categories?.map(el=><li>{el.name}</li>)}</h3>
+                <h3>{productDetails.categories?.map(el=><li key={el.id}>{el.name}</li>)}</h3>
                 <h2>{productDetails.rating}</h2>
             </div>
         : (<h2>Loading...</h2>)}

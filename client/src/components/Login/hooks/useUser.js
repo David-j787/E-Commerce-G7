@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 
 export default function useUser(){
     const dispatch = useDispatch();
-    const { jwt, setJwt } = useContext(Context)
+    const { jwt, setJwt } = useContext(Context);
     const [ state, setState ] = useState({
         loading: false,
         error: false
@@ -26,14 +26,14 @@ export default function useUser(){
             setState({ loading: false, error: true })
             console.error(err)
         })
-    }, [setJwt])
+    }, [setJwt]) //eslint-disable-line
 
     const logout = useCallback(() => {
         localStorage.removeItem('jwt');
         Cookies.remove('jwt', { path: '/' })
         setJwt(null);
         dispatch(userLogout());
-    }, [setJwt])
+    }, [setJwt]) //eslint-disable-line
 
     return {
         isLogged: Boolean(logged),

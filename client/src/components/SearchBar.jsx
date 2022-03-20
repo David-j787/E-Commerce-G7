@@ -40,7 +40,7 @@ export default function SearchBar() {
       <div>
         <input value={name} placeholder="Search…" onChange= {handleInputChange}/>
         <select onChange={handleSelect} value={filter}>
-          <option value={''}>Categorias...</option>
+          <option value=''>All Categories</option>
         {categories?.map((ca,i) => {
           return <option key={i} value={ca.name}>
             {ca.name}
@@ -48,7 +48,7 @@ export default function SearchBar() {
         })}
         </select>
         <input type='submit' value='Search' onClick={e => handleSubmit(e)}/>
-        <input type='reset' value='Clean' onClick={e => cleanState(e)}/>
+        <input type='reset' value='Reset Filters' onClick={e => cleanState(e)}/>
       </div>
   )
 }

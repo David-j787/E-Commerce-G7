@@ -12,26 +12,29 @@ export function validate(input) {
   
     if (!input.name) {
       errors.name = "Introduce the product name";
-    } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(input.name)){
+    } 
+    else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(input.name)){
       errors.name = "Invalid name";
     }
-    if (!input.price) {
+    else if (!input.price) {
         errors.price = "Introduce the product price"
-    } else if (!/^-?\d+\.?\d*$/.test(input.price)){
+    } 
+    else if (!/^-?\d+\.?\d*$/.test(input.price)){
         errors.price = "Only numbers allowed"
     }
-    if(!input.description){
+    else if(!input.description){
        errors.description = "Write a brief description of your product"
     }
-    if(!input.stock){
+    else if(!input.stock){
         errors.stock = "Stock number"
-    } else if (!/^-?\d+\.?\d*$/.test(input.stock)){
+    } 
+    else if (!/^-?\d+\.?\d*$/.test(input.stock)){
         errors.stock = "Only numbers allowed"
     }
-    if(!/^-?\d+\.?\d*$/.test(input.rating)){
+    else if(!/^-?\d+\.?\d*$/.test(input.rating)){
         errors.rating = "Only numbers allowed"
     }
-    if(!input.categories.length){
+    else if(!input.categories.length){
         errors.categories = "Select the categories or create a new one"
     }
     return errors;
@@ -61,7 +64,7 @@ export function CreateProduct(){
 
     useEffect(() => {
         dispatch(getCategories());
-    }, []);
+    }, []); //eslint-disable-line
 
     const handleChange = (e) =>{
         setInput({
@@ -79,6 +82,10 @@ export function CreateProduct(){
             ...input,
             categories: e?.map(x => x.label)
         })
+        setErrors(validate({
+            ...input,
+            categories: e?.map(x => x.label)
+        }));
     }
 
     const handleSubmit = async (e) =>{

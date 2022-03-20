@@ -88,9 +88,3 @@ export function userLogout(){
     type: USER_LOGOUT
   }
 }
-export function getSearchProducts(productName){
-  return (dispatch) => dispatch({
-    type: GET_SEARCH_PRODUCTS,
-    payload: productName
-  })
-}
