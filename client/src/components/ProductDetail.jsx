@@ -6,7 +6,6 @@ export function ProductDetail(props) {
     const dispatch = useDispatch();
     const id = props.match.params.id;
     const { details, cart } = useSelector((state) => state);
-    console.log(cart)
 
     useEffect(() => {
         dispatch(getProductDetail(id));
