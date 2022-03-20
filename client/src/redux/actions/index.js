@@ -3,6 +3,8 @@ import axios from 'axios';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
 export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
 
@@ -72,4 +74,23 @@ export function getSearchProducts(productName, category){
     })
   }
 
+}
+
+export function userLogin(payload){
+  return{
+    type: USER_LOGIN,
+    payload
+  }
+}
+
+export function userLogout(){
+  return{
+    type: USER_LOGOUT
+  }
+}
+export function getSearchProducts(productName){
+  return (dispatch) => dispatch({
+    type: GET_SEARCH_PRODUCTS,
+    payload: productName
+  })
 }

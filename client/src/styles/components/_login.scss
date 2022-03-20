@@ -50,6 +50,26 @@
 	}
 }
 
+
+.button-google {
+  display: block;
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  margin-top: 20px;
+  justify-content: center !important;
+  font-size: 18px !important;
+  transition: ease-in 0.3s;
+  border-radius: 6px !important;
+  div {
+    margin-right: 0px !important;
+  }
+  &:hover{
+    transition: ease-out 0.3s;
+    transform: scale(1.03);
+  }
+}
+
 .btn-block {
     display: block;
     width: 100%;
@@ -65,9 +85,14 @@
 }
 .btnColors {
     color: $white;
-    background-color: $orange;
-    border-color: #f57615;
-}
+    background-color: $orange  !important;
+    border-color: #f57615 !important;
+    transition: ease-in 0.3s;
+    &:hover{
+      transition: ease-out 0.3s;
+      transform: scale(1.03);
+    }
+} 
 .btn {
     display: inline-block;
     padding: 6px 12px;
