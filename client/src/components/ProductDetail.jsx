@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetail } from '../redux/actions';
 
-export function ProductDetail(props) {
+export function ProductDetail() {
   const dispatch = useDispatch();
   const id = props.match.params.id;
   const productDetails = useSelector((state) => state.details);
