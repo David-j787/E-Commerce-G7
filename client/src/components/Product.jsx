@@ -10,7 +10,7 @@ const Product = ({id, name, price, images}) => {
               <img src={images} alt="images" />
             </figure>
             <h3>{name}</h3>
-            <span>{price}</span>
+            <span>{price} USD</span>
           </Link>
         ) : (
           <h2>Loading...</h2>

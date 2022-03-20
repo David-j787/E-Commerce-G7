@@ -15,8 +15,8 @@ return (
     <div className="container shop">
       <h2 className="shop__title">SHOP</h2>
 
-      {products.length === 0 ? (
-        <h2>Cargando...</h2>
+      {!Array.isArray(products) ? (
+        <h2>{products}</h2>
       ) : (
         <Products products={products} />
       )}
