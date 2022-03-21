@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo from '../../assets/images/logo.svg';
@@ -58,20 +58,11 @@ const Navbar = () => {
             </li>
             <li className="list__item" onClick={handleClose}>
               <NavLink
-                to="/men"
+                to="/product/add"
                 className="list__link"
                 activeClassName="active"
               >
-                Men
-              </NavLink>
-            </li>
-            <li className="list__item" onClick={handleClose}>
-              <NavLink
-                to="/woman"
-                className="list__link"
-                activeClassName="active"
-              >
-                Woman
+                Add product
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>
@@ -90,6 +81,15 @@ const Navbar = () => {
                 activeClassName="active"
               >
                 Contact
+              </NavLink>
+              </li>
+              <li className="list__item" onClick={handleClose}>
+              <NavLink
+                to="/register"
+                className="list__link"
+                activeClassName="active"
+              >
+                Sign Up
               </NavLink>
             </li>
           </ul>

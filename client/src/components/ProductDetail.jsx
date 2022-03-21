@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetail } from '../redux/actions';
+import { Link } from 'react-router-dom';
 
 export function ProductDetail(props) {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export function ProductDetail(props) {
                 <h2>{productDetails.price}</h2>
                 <h3>{productDetails.categories?.map(el=><li key={el.id}>{el.name}</li>)}</h3>
                 <h2>{productDetails.rating}</h2>
+                <Link to={`/product/update/${id}`}><button>Edit product</button></Link>
             </div>
         : (<h2>Loading...</h2>)}
         </div>
