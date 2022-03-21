@@ -10,9 +10,12 @@
 @import './components/login';
 @import './components/products';
 @import "./components/searchBar";
+@import "./util/title";
+@import "./util/field";
 
 // pages
 @import './pages/shop';
+@import "./pages/register";
 
 // bootstrap
 // @import '../../node_modules/bootstrap/scss/bootstrap.scss';
