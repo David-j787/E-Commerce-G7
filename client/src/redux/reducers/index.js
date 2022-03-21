@@ -2,6 +2,10 @@ import {
   GET_CATEGORIES,
   GET_PRODUCT_DETAIL,
   GET_ALL_PRODUCTS,
+  ADD_PRODUCT,
+  PRODUCT_AMOUNT_REST,
+  PRODUCT_AMOUNT_SUM,
+  PRODUCT_REMOVE,
   USER_LOGIN,
   USER_LOGOUT,
   GET_SEARCH_PRODUCTS,
@@ -12,6 +16,7 @@ const initialState = {
   filtered: [],
   categories: [],
   details: [],
+  cart: [],
   user: null
 };
 
@@ -32,6 +37,32 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         products: action.payload,
+      };
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+      };
+    case PRODUCT_AMOUNT_SUM:
+      return {
+        ...state,
+        cart: [...state.cart.map((product) => {
+          return product.id === action.payload
+          ? { ...product, amount: product.amount + 1 } : product;
+        })]
+      };
+    case PRODUCT_AMOUNT_REST:
+      return {
+        ...state,
+        cart: [...state.cart.map((product) => {
+          return product.id === action.payload && product.amount > 1
+          ? { ...product, amount: product.amount - 1 } : product;
+        })]
+      };
+    case PRODUCT_REMOVE:
+      return {
+        ...state,
+        cart: [...state.cart.filter((product) => product.id !== action.payload)],
       };
     
     case USER_LOGIN:

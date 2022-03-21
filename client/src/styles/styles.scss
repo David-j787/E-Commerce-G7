@@ -3,16 +3,20 @@
 // mixins
 @import './mixins/media-queries';
 @import './base/reset';
+@import './mixins/button';
 // components
 @import './components/navbar';
 @import './components/menu';
 @import './components/login';
 @import './components/products';
+@import "./components/searchBar";
+@import "./util/title";
+@import "./util/field";
 
 // pages
 @import './pages/shop';
+@import "./pages/register";
 
 // bootstrap
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
-@import './components/login';
+// @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 @import './components/form';

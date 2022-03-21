@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo from '../../assets/images/logo.svg';
@@ -6,12 +6,14 @@ import cart from '../../assets/images/icon-cart.svg';
 import avatar from '../../assets/images/image-avatar.png';
 import menu from '../../assets/images/icon-menu.svg';
 import close from '../../assets/images/icon-close.svg';
+import ShoppingCart from '../ShoppingCart';
 import useUser from '../Login/hooks/useUser';
 
 const Navbar = () => {
   const iconMenuRef = useRef(null);
   const iconCloseRef = useRef(null);
   const listRef = useRef(null);
+  const [showCart, setShowCart] = useState(false);
   const { isLogged, logout } = useUser();
   const user = useSelector(state => state.user);
 
@@ -25,6 +27,10 @@ const Navbar = () => {
     iconCloseRef.current.style.display = 'none';
     iconMenuRef.current.style.display = 'block';
     listRef.current.style.display = 'none';
+  };
+
+  const cartShow = () => {
+    setShowCart(!showCart);
   };
 
   return (
@@ -97,7 +103,8 @@ const Navbar = () => {
 
         <div className="navbar__cart">
           <figure>
-            <img src={cart} alt="shoping cart" />
+            <img src={cart} alt="shoping cart" onClick={cartShow} />
+            {showCart && <ShoppingCart />}
           </figure>
           {isLogged 
           ? <figure>
