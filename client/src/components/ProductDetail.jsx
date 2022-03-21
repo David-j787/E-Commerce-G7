@@ -21,6 +21,8 @@ export function ProductDetail(props) {
         }
     }
 
+    const buttonDisabled = details.stock <= 0 ? true : false
+
     const borrarEsto = {
         marginLeft: "50px",
         marginBottom: "50px"
@@ -37,7 +39,7 @@ export function ProductDetail(props) {
                     <h2>{details.price}</h2>
                     <h3>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</h3>
                     <h2>{details.rating}</h2>
-                    <button onClick={() => handleAddCart(details)}>add product</button>
+                    <button disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
                 </div>
                 : (<h2>Loading...</h2>)}
         </div>

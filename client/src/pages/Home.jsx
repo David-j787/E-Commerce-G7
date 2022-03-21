@@ -11,14 +11,16 @@ const Home = () => {
     dispatch(getAllProducts());
   }, []); //eslint-disable-line
 
-return (
+  const productStock = products.filter(Products => Products.stock > 0)
+
+  return (
     <div className="container shop">
       <h2 className="shop__title">SHOP</h2>
 
       {!Array.isArray(products) ? (
         <h2>{products}</h2>
       ) : (
-        <Products products={products} />
+        <Products products={productStock} />
       )}
     </div>
   );
