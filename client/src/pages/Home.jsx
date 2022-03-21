@@ -19,7 +19,7 @@ const Home = () => {
     dispatch(getAllProducts());
   }, []); //eslint-disable-line
 
-return (
+  return (
     <div className="container shop">
       <h2 className="shop__title">SHOP</h2>
 
