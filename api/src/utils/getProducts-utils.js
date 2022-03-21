@@ -29,6 +29,6 @@ module.exports = {
         return 0;
     })
     
-    return toFilter.length ? toFilter : 'No se encontraron coincidencias en Bases de Datos';
+    return toFilter.length ? toFilter : "No results found";
     }
 }
