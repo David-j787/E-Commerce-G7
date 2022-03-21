@@ -30,9 +30,9 @@ export function CreateCategory(){
         }
     }
     return(
-        <div>
-            <input style={{width:'100%'}} placeholder="Introduce the name of the new category..." onChange={handleChange} className="form-control"/>
-            <input className="btn btn-warning" type="submit" onClick={handleAdd} disabled={!nameCategory} value="Add category"/>
+        <div style={{display: "flex", alignItems: "center"}}>
+            <input placeholder="Introduce the name of the new category..." onChange={handleChange} className="form-control"/>
+            <button style={{margin: 0, border: "2px solid transparent", height: "3.1rem"}} className="register__button" type="submit" onClick={handleAdd} disabled={!nameCategory}>Add category</button>
         </div>
     )
 }
