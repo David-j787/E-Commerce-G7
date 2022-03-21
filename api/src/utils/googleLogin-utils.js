@@ -14,7 +14,7 @@ const googleLogin = async (req, res) => {
                 password: hashPass,
                 email,
                 name,
-                last_name,
+                last_name: last_name || '',
                 date_of_birth: '',
                 address: '',
                 city: '',
