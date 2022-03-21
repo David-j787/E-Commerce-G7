@@ -7,6 +7,7 @@ import Paginado from '../components/Paginado';
 const Home = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state);
+<<<<<<< HEAD
   const [currentPage, setCurrentPage]=React.useState(1);
   const [productsPerPage,setProductsPerPage] = React.useState(1);
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -17,17 +18,19 @@ const Home = () => {
  
   
   console.log(products);
+=======
+>>>>>>> mirror
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, [dispatch]);
+  }, []); //eslint-disable-line
 
-  return (
+return (
     <div className="container shop">
       <h2 className="shop__title">SHOP</h2>
 
-      {products.length === 0 ? (
-        <h2>Cargando...</h2>
+      {!Array.isArray(products) ? (
+        <h2>{products}</h2>
       ) : (
         <div>
            <div>

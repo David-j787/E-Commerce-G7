@@ -1,70 +1,68 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getCategories } from "../redux/actions";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories, getProductDetail } from '../redux/actions';
 import axios from 'axios';
-import Select from 'react-select'
-import CreateCategory from "./CreateCategory";
-import '../styles/styles.scss'
 
 export function validate(input) {
-
     let errors = {};
   
     if (!input.name) {
       errors.name = "Introduce the product name";
-    } 
-    else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(input.name)){
+    } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(input.name)){
       errors.name = "Invalid name";
     }
-    else if (!input.price) {
+    if (!input.price) {
         errors.price = "Introduce the product price"
-    } 
-    else if (!/^-?\d+\.?\d*$/.test(input.price)){
+    } else if (!/^-?\d+\.?\d*$/.test(input.price)){
         errors.price = "Only numbers allowed"
     }
-    else if(!input.description){
+    if(!input.description){
        errors.description = "Write a brief description of your product"
     }
-    else if(!input.stock){
+    if(!input.stock){
         errors.stock = "Stock number"
-    } 
-    else if (!/^-?\d+\.?\d*$/.test(input.stock)){
+    } else if (!/^-?\d+\.?\d*$/.test(input.stock)){
         errors.stock = "Only numbers allowed"
     }
-    else if(!/^-?\d+\.?\d*$/.test(input.rating)){
+    if(!/^-?\d+\.?\d*$/.test(input.rating)){
         errors.rating = "Only numbers allowed"
     }
-    else if(!input.categories.length){
-        errors.categories = "Select the categories or create a new one"
+    if(!input.categories.length===0){
+        errors.categories = "Choose the categories"
     }
     return errors;
 }
 
 
-export function CreateProduct(){
+export function UpdateProduct(props){
     const dispatch = useDispatch();
-    const stateCategories = useSelector((state)=>state.categories)
-    
+    const id = props.match.params.id;
 
-    const options = stateCategories.map((e)=> {
-        return {label: e.name, value: e.id}
-    })
+    const productDetails = useSelector((state)=>state.details)
+    const stateCategories = useSelector((state)=>state.categories)
+
+    useEffect(()=>{
+        dispatch(getProductDetail(id))
+        dispatch(getCategories());
+        
+        
+    }, [id])
 
     const [errors, setErrors] = useState({})
 
-    const [input, setInput] = useState({
-        name: "",
-        price: "",
-        description:"",
-        images:"",
-        stock: 0,
-        rating: 0,
-        categories:[]
-    })
-
-    useEffect(() => {
-        dispatch(getCategories());
-    }, []); //eslint-disable-line
+    useEffect(()=>{
+        setInput({
+            name: productDetails.name,
+            price: productDetails.price,
+            description:productDetails.description,
+            images:productDetails.images,
+            stock: productDetails.stock,
+            rating: productDetails.rating,
+            categories: productDetails.categories?.map(e=>e.name)
+        })
+    }, [productDetails])
+    
+    const [input, setInput] = useState({})
 
     const handleChange = (e) =>{
         setInput({
@@ -78,35 +76,34 @@ export function CreateProduct(){
     }
 
     const handleSelect = (e) =>{
+        if(input.categories.includes(e.target.value)) return;
         setInput({
             ...input,
-            categories: e?.map(x => x.label)
+            categories: [...input.categories, e.target.value]
         })
-        setErrors(validate({
+        // setErrors(validate({
+        //     ...input,
+        //     categories : [...input.categories, e.target.value]
+        // }));
+    }
+    const handleDelete = event => {
+        setInput({
             ...input,
-            categories: e?.map(x => x.label)
-        }));
+            categories: input.categories?.filter(category => category !== event.target.id)
+        })
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
+        const product = {...input, id}
         e.preventDefault();
-        await axios.post("http://localhost:3001/product", input)
-        alert(`${input.name} was created successfully!`)
-        setInput({
-            name: "",
-            price: "",
-            description:"",
-            images:"",
-            stock: 0,
-            rating: 0,
-            categories:[]
-        })
+        await axios.put("http://localhost:3001/product/update", product)
+        alert(`${input.name} was updated!`)
     }
-    
-    return(
-        <div className="container">
-            <h1>New Product</h1>
-            <form onSubmit={(e)=>{handleSubmit(e)}} style={{width:'30%'}} className="well form-horizontal" action=" " method="post"  id="contact_form">
+
+    return (
+         <div className="container">
+            <h1>Update Product</h1>
+            <form onSubmit={(e)=>{handleSubmit(e)}} style={{width:'30%'}} className="well form-horizontal">
                 <div className="form-group">
                 <label className="col-md-4 control-label">Name</label>
                 <input name="name" value={input.name} onChange={handleChange} className="form-control"/>
@@ -125,6 +122,7 @@ export function CreateProduct(){
                 <div className="form-group">
                 <label className="col-md-4 control-label">Image</label>
                 <input name="images" value={input.images} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.images}</div>
                 </div>
                 <div className="form-group">
                 <label className="col-md-4 control-label">Stock</label>
@@ -139,15 +137,20 @@ export function CreateProduct(){
                 <div className="form-group">
                 <label className="col-md-4 control-label">Categories</label>
                 <div style={{width:'100%'}}>
-                <Select isMulti options={options} onChange={handleSelect}/>
+                <select className="form-control" defaultValue='none' name="categories" onChange={handleSelect} autoComplete='off'>
+                <option value="none" disabled hidden>Choose one or more</option>
+                {stateCategories?.map(category => <option key={category.id} value={category.name}>{category.name}</option>)}
+                </select>
                 </div>
-                <CreateCategory />
-                <div style={{color:'red'}}>{errors.categories}</div>
+                <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
                 </div>
-                <input className="btn btn-warning" type="submit" disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length} value="Create product"/>
-                </form>
+                <div>
+                <input className="btn btn-warning" type="submit" value="Back"/>
+                <input className="btn btn-warning" type="submit" disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length} value="Save"/>
+                </div>
+                </form> 
         </div>
     )
 }
 
-export default CreateProduct;
+export default UpdateProduct;

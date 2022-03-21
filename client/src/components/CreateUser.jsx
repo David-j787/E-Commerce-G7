@@ -12,10 +12,10 @@ export function validate(user) {
     } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.name)){
       errors.name = "Invalid name";
     }
-    if (!user.lastname) {
-        errors.lastname = "Write your last name";
-    } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.name)){
-        errors.lastname = "Invalid last name";
+    if (!user.lastName) {
+        errors.lastName = "Write your last name";
+    } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.lastName)){
+        errors.lastName = "Invalid last name";
     }
     if(!user.username) {
         errors.username = "Introduce a username"
@@ -102,60 +102,60 @@ export function CreateUser(){
       };
 
     return(
-        <div class="container">
+        <div className="container">
             <h1>Sign Up</h1>
             <form onSubmit={(e)=>{handleSubmit(e)}} style={{width:'30%'}}>
-                <div class="form-group">
-                <label class="form-label">Name:</label>
-                <input name="name" value={user.name} onChange={handleChange} class="form-control"/>
-                <div>{errors.name}</div>
+                <div className="form-group">
+                <label className="form-label">Name:</label>
+                <input name="name" value={user.name} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.name}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">Last name:</label>
-                <input name="lastName" value={user.lastName} onChange={handleChange} class="form-control"/>
-                <div>{errors.lastName}</div>
+                <div className="form-group">
+                <label className="form-label">Last name:</label>
+                <input name="lastName" value={user.lastName} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.lastName}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">Username:</label>
-                <input name="username" value={user.username} onChange={handleChange} class="form-control"/>
-                <div>{errors.username}</div>
+                <div className="form-group">
+                <label className="form-label">Username:</label>
+                <input name="username" value={user.username} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.username}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">Password:</label>
-                <input name="password" type="password" value={user.password} onChange={handleChange} class="form-control"/>
-                <div>{errors.password}</div>
+                <div className="form-group">
+                <label className="form-label">Password:</label>
+                <input name="password" type="password" value={user.password} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.password}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">E-mail:</label>
-                <input name="email" value={user.email} onChange={handleChange} class="form-control"/>
-                <div>{errors.email}</div>
+                <div className="form-group">
+                <label className="form-label">E-mail:</label>
+                <input name="email" value={user.email} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.email}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">Country:</label>
-                <input name="country" value={user.country} onChange={handleChange} class="form-control"/>
-                <div>{errors.country}</div>
+                <div className="form-group">
+                <label className="form-label">Country:</label>
+                <input name="country" value={user.country} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.country}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">City:</label>
-                <input name="city" value={user.city} onChange={handleChange} class="form-control"/>
-                <div>{errors.city}</div>
+                <div className="form-group">
+                <label className="form-label">City:</label>
+                <input name="city" value={user.city} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.city}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">Zip code:</label>
-                <input type="number" name="zip_code" value={user.zip_code} onChange={handleChange} class="form-control"/>
-                <div>{errors.zip_code}</div>
+                <div className="form-group">
+                <label className="form-label">Zip code:</label>
+                <input type="number" name="zip_code" value={user.zip_code} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.zip_code}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">Address:</label>
-                <input name="address" value={user.address} onChange={handleChange} class="form-control"/>
-                <div>{errors.address}</div>
+                <div className="form-group">
+                <label className="form-label">Address:</label>
+                <input name="address" value={user.address} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.address}</div>
                 </div>
-                <div class="form-group">
-                <label class="form-label">Birthday:</label>
-                <input  type='date' name="dateOfBirth" value={user.dateOfBirth} onChange={handleChange} class="form-control"/>
-                <div>{errors.dateOfBirth}</div>
+                <div className="form-group">
+                <label className="form-label">Birthday:</label>
+                <input  type='date' name="dateOfBirth" value={user.dateOfBirth} onChange={handleChange} className="form-control"/>
+                <div style={{color:'red'}}>{errors.dateOfBirth}</div>
                 </div>
-                <button class="btn btn-warning" type="submit" disabled={!user.name || !user.lastName || !user.username || !user.password || !user.email || !user.country || !user.city || !user.address || !user.zip_code || !user.dateOfBirth} >Sign Up</button>
+                <button className="btn btn-warning" type="submit" disabled={!user.name || !user.lastName || !user.username || !user.password || !user.email || !user.country || !user.city || !user.address || !user.zip_code || !user.dateOfBirth} >Sign Up</button>
             </form>
         </div>
     )
