@@ -142,7 +142,7 @@ export function UpdateProduct(props){
                 <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
                 </div>
                 <div>
-                <Link to='/'><Button className="btn btn-warning">Back</Button></Link>
+                <Link to='/'><button className="btn btn-warning">Back</button></Link>
                 <input className="btn btn-warning" type="submit" disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length} value="Save"/>
                 </div>
                 </form> 
