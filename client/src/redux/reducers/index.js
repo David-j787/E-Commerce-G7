@@ -81,7 +81,7 @@ function rootReducer(state = initialState, action) {
       const stock = Array.isArray(action.payload) ? action.payload.filter(product => product.stock > 0) : []
       return {
         ...state,
-        products: stock.length ? stock : "No se encontraron coincidencias en Bases de Datos"
+        products: stock.length ? stock : "No results found"
       }
 
     default:
