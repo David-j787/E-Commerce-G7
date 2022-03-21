@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import '../styles/styles.scss'
+import useUser from "./Login/hooks/useUser";
+
 
 export function validate(user) {
 
@@ -9,17 +11,17 @@ export function validate(user) {
   
     if (!user.name) {
       errors.name = "Write your name";
-    } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.name)){
+    } else if (!/^[^\W0-9_][a-zA-Z\u00f1\u00d1\s]+$/.test(user.name)){
       errors.name = "Invalid name";
     }
     if (!user.lastName) {
         errors.lastName = "Write your last name";
-    } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.lastName)){
+    } else if (!/^[^\W0-9_][a-zA-Z\u00f1\u00d1\s]+$/.test(user.lastName)){
         errors.lastName = "Invalid last name";
     }
     if(!user.username) {
         errors.username = "Introduce a username"
-    }else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(user.username)){
+    }else if (!/^[^\W0-9_][a-zA-Z0-9\u00f1\u00d1\s]+$/.test(user.username)){
         errors.username = "Invalid username";
     }
     if(!user.password) {
@@ -56,6 +58,8 @@ export function validate(user) {
 export function CreateUser(){
     const history = useHistory();
 
+    const { isLogged } = useUser();
+
     const [errors, setErrors] = useState({})
 
     const [user, setUser] = useState({
@@ -70,6 +74,10 @@ export function CreateUser(){
         address: "",
         dateOfBirth: "",
     })
+
+    useEffect(_ => {
+        if(isLogged) history.push('/');
+    },[isLogged, history])
 
     const handleChange = (e) => {
         setUser({
