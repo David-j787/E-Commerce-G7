@@ -26,17 +26,11 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isAlpha: true
-      }
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isAlpha: true
-      }
+      allowNull: false
     },
     date_of_birth: {
       type: DataTypes.STRING,
