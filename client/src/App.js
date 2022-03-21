@@ -37,9 +37,12 @@ function App() {
       <UserContextProvider>
         <Router>
           <Navbar />
-          <SearchBar />
+          
           <Switch>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/">
+              <SearchBar />
+              <Home />
+            </Route>
             <Route exact path='/register' component={CreateUser}/>
             <Route exact path='/product/add' component={CreateProduct}/>
             <Route exact path='/product/update/:id' component={UpdateProduct}/>
