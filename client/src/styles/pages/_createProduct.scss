@@ -1,0 +1,36 @@
+
+.createProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    @extend %title;
+    padding-top: 0;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .categories {
+    margin: .5rem 0;
+    width: 100%;
+    @include mq(medium) {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    label {
+      margin: .5rem 0;
+
+      + div {
+        margin: .5rem 0;
+      }
+    }
+  }
+}

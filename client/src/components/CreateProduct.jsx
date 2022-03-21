@@ -102,50 +102,54 @@ export function CreateProduct(){
             categories:[]
         })
     }
-    
+
     return(
         <div className="container">
-            <h1>New Product</h1>
-            <form onSubmit={(e)=>{handleSubmit(e)}} style={{width:'30%'}} className="well form-horizontal" action=" " method="post"  id="contact_form">
-                <div className="form-group">
-                <label className="col-md-4 control-label">Name</label>
-                <input name="name" value={input.name} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.name}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Price</label>
-                <input name="price" value={input.price} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.price}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Description</label>
-                <input name="description" value={input.description} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.description}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Image</label>
-                <input name="images" value={input.images} onChange={handleChange} className="form-control"/>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Stock</label>
-                <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.stock}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Rating</label>
-                <input type='number' min='0' max='5' name="rating" step="0.1" value={input.rating} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.rating}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Categories</label>
-                <div style={{width:'100%'}}>
-                <Select isMulti options={options} onChange={handleSelect}/>
-                </div>
-                <CreateCategory />
-                <div style={{color:'red'}}>{errors.categories}</div>
-                </div>
-                <input className="btn btn-warning" type="submit" disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length} value="Create product"/>
+            <div className="register createProduct">
+                <h1 className="register__title">New Product</h1>
+                <form onSubmit={(e)=>{handleSubmit(e)}} action="" method="post"  id="contact_form">
+                    <div className="register__group">
+                        <label className="col-md-4 control-label">Name</label>
+                        <input name="name" value={input.name} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.name}</div>
+                    </div>
+                    <div className="register__group">
+                        <label className="col-md-4 control-label">Price</label>
+                        <input name="price" value={input.price} onChange={handleChange} className="form-control"/>
+                        <div className="register__error">{errors.price}</div>
+                    </div>
+                    <div className="register__group">
+                        <label className="col-md-4 control-label">Description</label>
+                        <input name="description" value={input.description} onChange={handleChange} className="form-control"/>
+                        <div className="register__error">{errors.description}</div>
+                    </div>
+                    <div className="register__group">
+                        <label className="col-md-4 control-label">Image</label>
+                        <input name="images" value={input.images} onChange={handleChange} className="form-control"/>
+                    </div>
+                    <div className="register__group">
+                        <label className="col-md-4 control-label">Stock</label>
+                        <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} className="form-control"/>
+                        <div className="register__error">{errors.stock}</div>
+                    </div>
+                    <div className="register__group">
+                        <label className="col-md-4 control-label">Rating</label>
+                        <input type='number' min='0' max='5' name="rating" step="0.1" value={input.rating} onChange={handleChange} className="form-control"/>
+                        <div className="register__error">{errors.rating}</div>
+                    </div>
+                    <div className="register__group categories">
+                        <label className="col-md-4 control-label">Categories</label>
+                        <div style={{width:'100%'}}>
+                            <Select isMulti options={options} onChange={handleSelect}/>
+                        </div>
+                        <CreateCategory />
+                        <div className="register__error">{errors.categories}</div>
+                    </div>
+                    <button className="register__button"
+                     type="submit"
+                     disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length}>Create product</button>
                 </form>
+            </div>
         </div>
     )
 }
