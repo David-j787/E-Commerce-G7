@@ -17,7 +17,7 @@ import ProductDetail from './components/ProductDetail';
 
 // styles
 import './styles/styles.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

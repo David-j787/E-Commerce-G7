@@ -4,7 +4,7 @@ import { getCategories } from "../redux/actions";
 import axios from 'axios';
 import Select from 'react-select'
 import CreateCategory from "./CreateCategory";
-import '../styles/styles.scss'
+// import '../styles/styles.scss'
 
 export function validate(input) {
 
