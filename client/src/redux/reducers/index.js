@@ -36,7 +36,7 @@ function rootReducer(state = initialState, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload.filter(product => product.stock > 0),
       };
     case ADD_PRODUCT:
       return {
@@ -78,9 +78,10 @@ function rootReducer(state = initialState, action) {
         }
 
     case GET_SEARCH_PRODUCTS:
+      const stock = Array.isArray(action.payload) ? action.payload.filter(product => product.stock > 0) : []
       return {
         ...state,
-        products: action.payload,
+        products: stock.length ? stock : "No se encontraron coincidencias en Bases de Datos"
       }
 
     default:
