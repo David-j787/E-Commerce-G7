@@ -37,8 +37,9 @@ export default function SearchBar() {
   }
 
   return (
-      <div>
-        <input value={name} placeholder="Search…" onChange= {handleInputChange}/>
+    <div className="container">
+      <div className="searchBar">
+        <input value={name} placeholder="Search…" onChange= {handleInputChange} className="searchBar__searching"/>
         <select onChange={handleSelect} value={filter}>
           <option value=''>All Categories</option>
         {categories?.map((ca,i) => {
@@ -47,8 +48,9 @@ export default function SearchBar() {
           </option>
         })}
         </select>
-        <input type='submit' value='Search' onClick={e => handleSubmit(e)}/>
-        <input type='reset' value='Reset Filters' onClick={e => cleanState(e)}/>
+        <button type='submit' onClick={e => handleSubmit(e)} className="searchBar__btn">Search</button>
+        <button type='reset' onClick={e => cleanState(e)} className="searchBar__btn" >Reset Filters</button>
       </div>
+    </div>
   )
 }
