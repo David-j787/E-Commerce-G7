@@ -106,7 +106,7 @@ export function CreateUser(){
         })
         await axios.post("http://localhost:3001/user", user)
         alert(`${user.username} was created successfully!`)
-        history.push("/home")
+        history.push("/")
       };
 
     return(

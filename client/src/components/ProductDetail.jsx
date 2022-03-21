@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getProductDetail, addProduct, productAmountSum } from '../redux/actions';
 
 export function ProductDetail(props) {
@@ -40,6 +41,7 @@ export function ProductDetail(props) {
                     <h3>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</h3>
                     <h2>{details.rating}</h2>
                     <button disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
+                    <Link to={`/product/update/${id}`}><button>Edit product</button></Link>
                 </div>
                 : (<h2>Loading...</h2>)}
         </div>

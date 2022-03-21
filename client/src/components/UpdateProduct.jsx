@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getProductDetail } from '../redux/actions';
 import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
 
 export function validate(input) {
     let errors = {};
@@ -37,6 +38,7 @@ export function validate(input) {
 export function UpdateProduct(props){
     const dispatch = useDispatch();
     const id = props.match.params.id;
+    const history = useHistory();
 
     const productDetails = useSelector((state)=>state.details)
     const stateCategories = useSelector((state)=>state.categories)
@@ -44,8 +46,6 @@ export function UpdateProduct(props){
     useEffect(()=>{
         dispatch(getProductDetail(id))
         dispatch(getCategories());
-        
-        
     }, [id])
 
     const [errors, setErrors] = useState({})
@@ -81,10 +81,6 @@ export function UpdateProduct(props){
             ...input,
             categories: [...input.categories, e.target.value]
         })
-        // setErrors(validate({
-        //     ...input,
-        //     categories : [...input.categories, e.target.value]
-        // }));
     }
     const handleDelete = event => {
         setInput({
@@ -92,12 +88,13 @@ export function UpdateProduct(props){
             categories: input.categories?.filter(category => category !== event.target.id)
         })
     }
-
+   
     const handleSubmit = async (e) => {
         const product = {...input, id}
         e.preventDefault();
         await axios.put("http://localhost:3001/product/update", product)
         alert(`${input.name} was updated!`)
+        history.push("/")
     }
 
     return (
@@ -145,7 +142,7 @@ export function UpdateProduct(props){
                 <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
                 </div>
                 <div>
-                <input className="btn btn-warning" type="submit" value="Back"/>
+                <Link to='/'><Button className="btn btn-warning">Back</Button></Link>
                 <input className="btn btn-warning" type="submit" disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length} value="Save"/>
                 </div>
                 </form> 
