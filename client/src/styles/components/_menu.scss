@@ -8,6 +8,7 @@
   background-color: $white;
   padding: 6rem 1.5rem;
   transition: all 0.8s ease;
+  z-index: 100;
 
   @include mq(medium) {
     display: flex !important;

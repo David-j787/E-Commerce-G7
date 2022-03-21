@@ -1,0 +1,33 @@
+
+.searchBar {
+  margin: 1rem 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  @include mq(medium) {
+    margin: 2rem 0;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  * + * {
+    margin-top: .5rem;
+
+    @include mq(medium) {
+      margin-left: .5rem;
+      margin-top: 0;
+    }
+  }
+
+  &__searching,select {
+    height: 3rem;
+    padding: 0 .75rem;
+    outline: none;
+  }
+
+  &__btn {
+    @include button();
+  }
+
+}

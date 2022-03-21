@@ -2,6 +2,10 @@ import {
   GET_CATEGORIES,
   GET_PRODUCT_DETAIL,
   GET_ALL_PRODUCTS,
+  ADD_PRODUCT,
+  PRODUCT_AMOUNT_REST,
+  PRODUCT_AMOUNT_SUM,
+  PRODUCT_REMOVE,
   USER_LOGIN,
   USER_LOGOUT,
   GET_SEARCH_PRODUCTS,
@@ -12,6 +16,7 @@ const initialState = {
   filtered: [],
   categories: [],
   details: [],
+  cart: [],
   user: null
 };
 
@@ -31,7 +36,33 @@ function rootReducer(state = initialState, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload.filter(product => product.stock > 0),
+      };
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+      };
+    case PRODUCT_AMOUNT_SUM:
+      return {
+        ...state,
+        cart: [...state.cart.map((product) => {
+          return product.id === action.payload
+          ? { ...product, amount: product.amount + 1 } : product;
+        })]
+      };
+    case PRODUCT_AMOUNT_REST:
+      return {
+        ...state,
+        cart: [...state.cart.map((product) => {
+          return product.id === action.payload && product.amount > 1
+          ? { ...product, amount: product.amount - 1 } : product;
+        })]
+      };
+    case PRODUCT_REMOVE:
+      return {
+        ...state,
+        cart: [...state.cart.filter((product) => product.id !== action.payload)],
       };
     
     case USER_LOGIN:
@@ -47,9 +78,10 @@ function rootReducer(state = initialState, action) {
         }
 
     case GET_SEARCH_PRODUCTS:
+      const stock = Array.isArray(action.payload) ? action.payload.filter(product => product.stock > 0) : []
       return {
         ...state,
-        products: action.payload,
+        products: stock.length ? stock : "No se encontraron coincidencias en Bases de Datos"
       }
 
     default:
