@@ -1,29 +1,45 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductDetail } from '../redux/actions';
+import { getProductDetail, addProduct, productAmountSum } from '../redux/actions';
 
 export function ProductDetail(props) {
-  const dispatch = useDispatch();
-  const id = props.match.params.id;
-  const productDetails = useSelector((state) => state.details);
+    const dispatch = useDispatch();
+    const id = props.match.params.id;
+    const { details, cart } = useSelector((state) => state);
 
     useEffect(() => {
         dispatch(getProductDetail(id));
     }, []); //eslint-disable-line
 
-    return(
+    const handleAddCart = (product) => {
+        const cartProduct = cart.filter(Product => Product.id === product.id)
+        if (cartProduct.length && cartProduct[0].stock > cartProduct[0].amount)
+            return dispatch(productAmountSum(product.id))
+        if (!cartProduct.length) {
+            product.amount = 1
+            dispatch(addProduct(product))
+        }
+    }
+
+    const borrarEsto = {
+        marginLeft: "50px",
+        marginBottom: "50px"
+    }
+
+    return (
         <div>
-            {productDetails ?
-            <div>
-                <h1>{productDetails.name}</h1>
-                <img src={productDetails.images} alt="product" width='350px' height='250px'/>
-                <h3>{productDetails.stock}</h3>
-                <h3>{productDetails.description}</h3>
-                <h2>{productDetails.price}</h2>
-                <h3>{productDetails.categories?.map(el=><li key={el.id}>{el.name}</li>)}</h3>
-                <h2>{productDetails.rating}</h2>
-            </div>
-        : (<h2>Loading...</h2>)}
+            {details ?
+                <div style={borrarEsto}>
+                    <h1>{details.name}</h1>
+                    <img src={details.images} alt="product" width='350px' height='250px' />
+                    <h3>{details.stock}</h3>
+                    <h3>{details.description}</h3>
+                    <h2>{details.price}</h2>
+                    <h3>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</h3>
+                    <h2>{details.rating}</h2>
+                    <button onClick={() => handleAddCart(details)}>add product</button>
+                </div>
+                : (<h2>Loading...</h2>)}
         </div>
     )
 }

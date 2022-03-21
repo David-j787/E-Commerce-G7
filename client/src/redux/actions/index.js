@@ -3,6 +3,10 @@ import axios from 'axios';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const PRODUCT_REMOVE = "PRODUCT_REMOVE";
+export const PRODUCT_AMOUNT_REST = "PRODUCT_AMOUNT_REST";
+export const PRODUCT_AMOUNT_SUM = "PRODUCT_AMOUNT_SUM";
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
@@ -58,6 +62,34 @@ export function getProductDetail(idProduct) {
   };
 }
 
+//CART
+export const addProduct = (product) => {
+  return {
+    type: ADD_PRODUCT,
+    payload: product,
+  };
+};
+
+export const productAmountRest = (productAmount) => {
+  return {
+    type: PRODUCT_AMOUNT_REST,
+    payload: productAmount,
+  };
+};
+
+export const productAmountSum = (productAmount) => {
+  return {
+    type: PRODUCT_AMOUNT_SUM,
+    payload: productAmount,
+  };
+};
+
+export const productRemove = (product) => {
+  return {
+    type: PRODUCT_REMOVE,
+    payload: product,
+  };
+};
 export function getSearchProducts(productName, category){
   return function (dispatch) {
     return axios.
