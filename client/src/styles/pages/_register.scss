@@ -1,0 +1,66 @@
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    @extend %title;
+  }
+
+  &__form {
+    width: 100%;
+  }
+
+  &__group {
+    width: 100%;
+    @include mq(medium) {
+      width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  &__button {
+    @include button();
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__error {
+    color: tomato;
+    margin: .5rem 0;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  label,
+  input {
+    display: block;
+  }
+
+  label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    font-family: $font-kumbh-sans;
+  }
+
+  input {
+    @extend %field;
+    box-shadow: none;
+    color: #383838;
+    width: 100%;
+    padding-left: 1rem;
+    outline: none;
+  }
+
+  label + input {
+    margin: .5rem 0;
+  }
+}

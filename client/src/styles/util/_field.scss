@@ -1,0 +1,11 @@
+
+%field {
+  height: 50px;
+  background-color: #f6f6f6;
+  border: thin solid #ddd;
+  font-size: 14px;
+
+  &:focus {
+    border: 2px solid #ddd;
+  }
+}
