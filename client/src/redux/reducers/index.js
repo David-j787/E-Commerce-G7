@@ -3,6 +3,7 @@ import {
   GET_PRODUCT_DETAIL,
   GET_ALL_PRODUCTS,
   ADD_PRODUCT,
+  RESTORE_CART,
   PRODUCT_AMOUNT_REST,
   PRODUCT_AMOUNT_SUM,
   PRODUCT_REMOVE,
@@ -43,6 +44,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: [...state.cart, action.payload],
       };
+    case RESTORE_CART:
+      return {
+        ...state,
+        cart: action.payload
+      }
     case PRODUCT_AMOUNT_SUM:
       return {
         ...state,

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { UserContextProvider } from './components/Login/context/userContext';
-import { userLogin } from './redux/actions';
+import { userLogin, restoreCart } from './redux/actions';
 
 //components
 import Navbar from './components/Navbar';
@@ -22,7 +22,22 @@ import './styles/styles.scss';
 
 function App() {
   const dispatch = useDispatch();
+  const { cart } = useSelector(state => state)
+
+  useEffect(() => {
+    if(cart.length && localStorage.getItem("cart")){
+      localStorage.removeItem("cart")
+      return localStorage.setItem("cart", JSON.stringify(cart))
+    }
+    cart.length && localStorage.setItem('cart', JSON.stringify(cart))
+  },[cart])
+
   useEffect(()=> {
+    if(localStorage.getItem("cart")){
+      let cartStorage = localStorage.getItem('cart')
+      cartStorage = JSON.parse(cartStorage)
+      dispatch(restoreCart(cartStorage))
+    }
     if(localStorage.getItem('jwt')){
       axios.post('http://localhost:3001/authenticate', {token: localStorage.getItem('jwt')})
       .then(res => {
