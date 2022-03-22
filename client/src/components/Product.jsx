@@ -9,7 +9,7 @@ const Product = ({id, name, price, images}) => {
             <figure>
               <img src={images} alt="images" />
             </figure>
-            <h3>{name}</h3>
+            <h3>{name.slice(0, 55)}{name.length > 55 && "..."}</h3>
             <span>{price} USD</span>
           </Link>
         ) : (

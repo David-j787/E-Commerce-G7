@@ -9,6 +9,7 @@ newProduct.post("/", async (req, res) => {
     const result = await postProduct(product);
     res.json("the product was created successfully");
   } catch (err) {
+    console.log(err)
     res.status(404).send("ocurrio un " + err);
   }
 });

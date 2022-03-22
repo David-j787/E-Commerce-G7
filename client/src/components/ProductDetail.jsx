@@ -33,10 +33,10 @@ export function ProductDetail(props) {
                     </figure>
                     <div className='productDetail__description'>
                         <h2 className='name'>{details.name}</h2>
-                        <span className='price'>$/.{details.price}</span>
+                        <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
+                        <span className='price'>US$ {details.price}</span>
                         <p className='description'>{details.description}</p>
                         {details.stock ? <p className='stock'><span>In stock</span> ({details.stock} available)</p> : <p className='stock'><span>⚠️This product isn't available for shopping</span></p>}
-                        <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
                         <p className='rating'><span>Rating:</span> {details.rating}</p>
                         <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
                         <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>

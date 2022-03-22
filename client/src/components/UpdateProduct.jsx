@@ -157,7 +157,7 @@ export function UpdateProduct(props){
                         <Link to='/'><button className="register__button">Back</button></Link>
                         <button className="register__button save"
                      type="submit"
-                     disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length}>Save</button>
+                     disabled={!input.name || !input.price || !input.description || !input.stock || !input.categories.length}>Save</button>
                     </div>
                 </form>
             </div>

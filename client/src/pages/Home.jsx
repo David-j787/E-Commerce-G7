@@ -9,7 +9,7 @@ const Home = () => {
   const { products } = useSelector((state) => state);
 
   const [currentPage, setCurrentPage]= useState(1);
-  const [productsPerPage,setProductsPerPage] = useState(1);
+  const [productsPerPage,setProductsPerPage] = useState(6);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
