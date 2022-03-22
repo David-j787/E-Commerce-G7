@@ -1,0 +1,41 @@
+.updateProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    @extend %title;
+  }
+
+  form {
+    margin: .5rem 0;
+    width: 100%;
+    @include mq(medium) {
+      width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  input {
+    width: 100%;
+  }
+
+  select {
+    @extend %field;
+    width: 100%;
+    outline: none;
+  }
+
+  .wrapper-buttons {
+    display: flex;
+
+    .save {
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+
+  .formWrapper {
+    margin-top: .5rem;
+  }
+}
