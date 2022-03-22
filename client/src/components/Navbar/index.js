@@ -6,6 +6,7 @@ import cart from '../../assets/images/icon-cart.svg';
 import avatar from '../../assets/images/image-avatar.png';
 import menu from '../../assets/images/icon-menu.svg';
 import close from '../../assets/images/icon-close.svg';
+import avatar1 from '../../assets/images/avatar.png'
 import ShoppingCart from '../ShoppingCart';
 import useUser from '../Login/hooks/useUser';
 
@@ -106,14 +107,23 @@ const Navbar = () => {
             <img src={cart} alt="shoping cart" onClick={cartShow} />
             {showCart && <ShoppingCart />}
           </figure>
-          {isLogged 
-          ? <figure>
-              <img src={avatar} alt="avatar" />
-              <span>{user.name}</span>
-              <span>{user.last_name}</span> <br/>
-              <span onClick={logout}>Logout</span>
-            </figure>
-          : <a href='/login'>Login</a>}
+          {isLogged
+          ? <div className='navbarLogin'>
+              <figure className='navbarLogin__logged'>
+                <img src={avatar} alt="avatar" />
+                <div className='client'>
+                  <span className='name'>{user.name}</span>
+                  <span>{user.last_name}</span> <br/>
+                </div>
+              </figure>
+              <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
+            </div>
+          : <div className='navbarLogin'>
+              <figure>
+                <img src={avatar1} alt="avatar" />
+              </figure>
+              <Link to="/login" className='navbarLogin__button'>Login</Link>
+            </div>}
         </div>
       </div>
     </div>

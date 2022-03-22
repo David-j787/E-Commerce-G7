@@ -1,0 +1,44 @@
+.navbarLogin {
+  position: relative;
+  transition: all .2s ease;
+  height: 50px;
+  margin-top: 1.3rem;
+
+    &:hover a{
+      display: block;
+    }
+
+  &__button {
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+    padding: .5rem 1.5rem;
+    border-radius: 5px;
+    display: none;
+    background-color: $orange;
+    color: $white;
+    letter-spacing: 1px;
+    font-family: $font-kumbh-sans;
+  }
+
+  &__logged {
+    display: flex;
+    align-items: flex-start;
+
+    img {
+      margin-right: .5rem;
+    }
+
+    .client {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: .8rem;
+
+      span {
+        display: block;
+        margin: 0;
+        line-height: 1.3;
+      }
+    }
+  }
+}
