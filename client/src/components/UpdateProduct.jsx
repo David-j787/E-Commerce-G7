@@ -99,53 +99,57 @@ export function UpdateProduct(props){
 
     return (
          <div className="container">
-            <h1>Update Product</h1>
-            <form onSubmit={(e)=>{handleSubmit(e)}} style={{width:'30%'}} className="well form-horizontal">
-                <div className="form-group">
-                <label className="col-md-4 control-label">Name</label>
-                <input name="name" value={input.name} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.name}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Price</label>
-                <input name="price" value={input.price} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.price}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Description</label>
-                <input name="description" value={input.description} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.description}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Image</label>
-                <input name="images" value={input.images} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.images}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Stock</label>
-                <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.stock}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Rating</label>
-                <input type='number' min='0' max='5' name="rating" step="0.1" value={input.rating} onChange={handleChange} className="form-control"/>
-                <div style={{color:'red'}}>{errors.rating}</div>
-                </div>
-                <div className="form-group">
-                <label className="col-md-4 control-label">Categories</label>
-                <div style={{width:'100%'}}>
-                <select className="form-control" defaultValue='none' name="categories" onChange={handleSelect} autoComplete='off'>
-                <option value="none" disabled hidden>Choose one or more</option>
-                {stateCategories?.map(category => <option key={category.id} value={category.name}>{category.name}</option>)}
-                </select>
-                </div>
-                <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
-                </div>
-                <div>
-                <Link to='/'><button className="btn btn-warning">Back</button></Link>
-                <input className="btn btn-warning" type="submit" disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length} value="Save"/>
-                </div>
-                </form> 
+            <div className="updateProduct register">
+                <h1 className='updateProduct__title'>Update Product</h1>
+                <form onSubmit={(e)=>{handleSubmit(e)}} className="well form-horizontal">
+                    <div className="register-group">
+                        <label className="col-md-4 control-label">Name:</label>
+                        <input name="name" value={input.name} onChange={handleChange} />
+                        <div className='register__error'>{errors.name}</div>
+                    </div>
+                    <div className="register-group">
+                    <label className="col-md-4 control-label">Price:</label>
+                    <input name="price" value={input.price} onChange={handleChange} />
+                    <div className='register__error'>{errors.price}</div>
+                    </div>
+                    <div className="register-group">
+                    <label className="col-md-4 control-label">Description:</label>
+                    <input name="description" value={input.description} onChange={handleChange} />
+                    <div className='register__error'>{errors.description}</div>
+                    </div>
+                    <div className="register-group">
+                    <label className="col-md-4 control-label">Image:</label>
+                    <input name="images" value={input.images} onChange={handleChange} />
+                    <div className='register__error'>{errors.images}</div>
+                    </div>
+                    <div className="register-group">
+                    <label className="col-md-4 control-label">Stock:</label>
+                    <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} />
+                    <div className='register__error'>{errors.stock}</div>
+                    </div>
+                    <div className="register-group">
+                    <label className="col-md-4 control-label">Rating:</label>
+                    <input type='number' min='0' max='5' name="rating" step="0.1" value={input.rating} onChange={handleChange} />
+                    <div className='register__error'>{errors.rating}</div>
+                    </div>
+                    <div className="register-group">
+                    <label className="col-md-4 control-label">Categories:</label>
+                    <div>
+                    <select defaultValue='none' name="categories" onChange={handleSelect} autoComplete='off'>
+                    <option value="none" disabled hidden>Choose one or more</option>
+                    {stateCategories?.map(category => <option key={category.id} value={category.name}>{category.name}</option>)}
+                    </select>
+                    </div>
+                    <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
+                    </div>
+                    <div className="wrapper-buttons">
+                        <Link to='/'><button className="register__button">Back</button></Link>
+                        <button className="register__button save"
+                     type="submit"
+                     disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length}>Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
