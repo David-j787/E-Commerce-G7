@@ -39,8 +39,43 @@
     .rating span {
       font-weight: bold;
     }
+
+    .categories {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      * + * {
+        margin-left: .5rem;
+        margin-top: 0;
+      }
+
+      li {
+        border-radius: 99px;
+        padding: .1rem 1rem;
+        color: $white;
+        background: #c6c7c9;
+        line-height: 35px;
+        color: $black;
+        text-align: center;
+      }
+    }
+
+    .addBtn,
+    .updateBtn button {
+      width: 100%;
+
+      @include mq(medium) {
+        width: auto;
+      }
+    }
+
+    .updateBtn button {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
   }
-  
+
   button {
     &:first-of-type {
       margin-right: .5rem;

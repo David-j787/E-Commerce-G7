@@ -36,10 +36,10 @@ export function ProductDetail(props) {
                         <span className='price'>$/.{details.price}</span>
                         <p className='description'>{details.description}</p>
                         <p className='stock'><span>Stock:</span> {details.stock}</p>
-                        <p className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</p>
+                        <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
                         <p className='rating'><span>Rating:</span> {details.rating}</p>
-                        <button disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
-                        <Link to={`/product/update/${id}`}><button>Edit product</button></Link>
+                        <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
+                        <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>
                     </div>
                 </div>
                 : (<h2>Loading...</h2>)}
