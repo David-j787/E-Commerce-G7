@@ -10,6 +10,9 @@ export function validate(input) {
     if (!input.name) {
       errors.name = "Introduce the product name";
     } 
+    else if (input.name.length < 4) {
+        errors.name = "Product name is too short";
+    } 
     else if (!input.price) {
         errors.price = "Introduce the product price"
     } 

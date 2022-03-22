@@ -5,7 +5,7 @@ const Context = createContext({});
 export const useUserContext = () => useContext(Context);
 
 export function UserContextProvider({children}) {
-    const [jwt, setJwt] = useState(() => window.sessionStorage.getItem('jwt'));
+    const [jwt, setJwt] = useState(() => localStorage.getItem('jwt') || sessionStorage.getItem('jwt'));
 
     const contextValue = {
         jwt, 

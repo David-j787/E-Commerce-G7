@@ -38,6 +38,13 @@ function App() {
       cartStorage = JSON.parse(cartStorage)
       dispatch(restoreCart(cartStorage))
     }
+    if(sessionStorage.getItem('jwt')){
+      axios.post('http://localhost:3001/authenticate', {token: sessionStorage.getItem('jwt')})
+      .then(res => {
+        dispatch(userLogin(res.data.user))
+      })
+      .catch(res => sessionStorage.removeItem('jwt'))
+    }
     if(localStorage.getItem('jwt')){
       axios.post('http://localhost:3001/authenticate', {token: localStorage.getItem('jwt')})
       .then(res => {

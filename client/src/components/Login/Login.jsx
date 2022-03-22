@@ -13,6 +13,7 @@ export default function Login() {
   const [errors, setErrors] = useState({})
   const [input, setInput] = useState({
       username:"",
+      rememberMe: false,
       password: ""
   })
   const history = useHistory();
@@ -33,6 +34,11 @@ export default function Login() {
     }))
 };
 
+  const handleCheckbox = () => {
+    if(input.rememberMe) setInput({ ...input, rememberMe: false})
+    if(!input.rememberMe) setInput({ ...input, rememberMe: true})
+  }
+
   const handleSubmit = event => {
     event.preventDefault();
     login(input);
@@ -41,7 +47,7 @@ export default function Login() {
   const responseGoogle = response => {
     axios.post('http://localhost:3001/googleLogin', {id_token: response.tokenId})
       .then(res => {
-        localStorage.setItem('jwt', res.data.token)
+        input.rememberMe ? localStorage.setItem('jwt', res.data.token) : sessionStorage.setItem('jwt', res.data.token) 
         dispatch(userLogin(res.data.user))
       })
       .catch(err => {
@@ -61,7 +67,7 @@ export default function Login() {
           <span className="error">{errors.username}</span>
           <span className="error">{errors.password}</span>
         <label className="checkbox">
-          <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"/> Remember me
+          <input type="checkbox" onChange={handleCheckbox} id="rememberMe" name="rememberMe"/> Remember me
         </label>
         <input className="btn btn-lg btn-primary btn-block btnColors" type="submit" value='Login'/>
         <GoogleLogin className="button-google"

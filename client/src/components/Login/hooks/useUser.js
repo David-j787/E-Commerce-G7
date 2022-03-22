@@ -30,6 +30,7 @@ export default function useUser(){
 
     const logout = useCallback(() => {
         localStorage.removeItem('jwt');
+        sessionStorage.removeItem('jwt');
         Cookies.remove('jwt', { path: '/' })
         setJwt(null);
         dispatch(userLogout());

@@ -51,12 +51,13 @@
     font-family: $font-kumbh-sans;
   }
 
-  input, textarea {
+  input, textarea, select {
     @extend %field;
     box-shadow: none;
     color: #383838;
     width: 100%;
     padding-left: 1rem;
+    padding-right: 1rem;
     outline: none;
   }
 
