@@ -24,24 +24,23 @@ export function ProductDetail(props) {
 
     const buttonDisabled = details.stock <= 0 ? true : false
 
-    const borrarEsto = {
-        marginLeft: "50px",
-        marginBottom: "50px"
-    }
-
     return (
-        <div>
+        <div className='container'>
             {details ?
-                <div style={borrarEsto}>
-                    <h1>{details.name}</h1>
-                    <img src={details.images} alt="product" width='350px' height='250px' />
-                    <h3>{details.stock}</h3>
-                    <h3>{details.description}</h3>
-                    <h2>{details.price}</h2>
-                    <h3>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</h3>
-                    <h2>{details.rating}</h2>
-                    <button disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
-                    <Link to={`/product/update/${id}`}><button>Edit product</button></Link>
+                <div className='productDetail'>
+                    <figure className='productDetail__image'>
+                        <img src={details.images} alt="product" width='350px' height='250px' />
+                    </figure>
+                    <div className='productDetail__description'>
+                        <h2 className='name'>{details.name}</h2>
+                        <span className='price'>$/.{details.price}</span>
+                        <p className='description'>{details.description}</p>
+                        <p className='stock'><span>Stock:</span> {details.stock}</p>
+                        <p className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</p>
+                        <p className='rating'><span>Rating:</span> {details.rating}</p>
+                        <button disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
+                        <Link to={`/product/update/${id}`}><button>Edit product</button></Link>
+                    </div>
                 </div>
                 : (<h2>Loading...</h2>)}
         </div>
