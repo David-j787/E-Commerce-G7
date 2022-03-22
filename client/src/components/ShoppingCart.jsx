@@ -18,6 +18,7 @@ const ShoppingCart = () => {
         dispatch(productAmountSum(productId))
     }
     const handleRemove = (productId) => {
+        if (cart.length === 1) localStorage.removeItem("cart")
         dispatch(productRemove(productId))
     }
 
