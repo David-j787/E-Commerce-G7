@@ -3,7 +3,6 @@
     width: 100%;
 }
 .addedCat{
-    width: 400px;
     margin-top: 20px;
     min-height: 40px;
     height: auto;
@@ -16,11 +15,10 @@
 .catContainer{
     margin: 5px;
     width: auto;
-    height: 35px;
+    height: 25px;
     background-color: #c6c7c9;
     border: none;
     color: black;
-    border-radius: 99px;
     display: flex;
     align-items: baseline;
     text-align: center;
@@ -30,12 +28,9 @@
     background-color: $black;
     color: #ececec;
     font-weight: 600;
-    border-radius: 99px;
-    margin-top: 8px;
-    line-height: 1;
-    margin-right: 10px;;
-    width: 20px;
-    height: 20px;
+    padding-top: 1px;
+    width: 25px;
+    height: 25px;
     float: right;
     margin-left: 10px;
 }

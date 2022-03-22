@@ -120,7 +120,7 @@ export function CreateProduct(){
                     </div>
                     <div className="register__group">
                         <label className="col-md-4 control-label">Description</label>
-                        <input name="description" value={input.description} onChange={handleChange} className="form-control"/>
+                        <textarea name="description" value={input.description} onChange={handleChange} className="form-control"></textarea>
                         <div className="register__error">{errors.description}</div>
                     </div>
                     <div className="register__group">
@@ -147,7 +147,7 @@ export function CreateProduct(){
                     </div>
                     <button className="register__button"
                      type="submit"
-                     disabled={!input.name || !input.price || !input.description || !input.rating || !input.stock || !input.categories.length}>Create product</button>
+                     disabled={!input.name || !input.price || !input.description || !input.stock || !input.categories.length}>Create product</button>
                 </form>
             </div>
         </div>

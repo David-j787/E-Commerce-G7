@@ -51,13 +51,17 @@
     font-family: $font-kumbh-sans;
   }
 
-  input {
+  input, textarea {
     @extend %field;
     box-shadow: none;
     color: #383838;
     width: 100%;
     padding-left: 1rem;
     outline: none;
+  }
+
+  textarea {
+    height: 150px;
   }
 
   label + input {

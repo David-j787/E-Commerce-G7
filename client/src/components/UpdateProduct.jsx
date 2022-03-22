@@ -9,26 +9,26 @@ export function validate(input) {
   
     if (!input.name) {
       errors.name = "Introduce the product name";
-    } else if (!/^[^\W0-9_][a-zA-Z0-9\s]+$/.test(input.name)){
-      errors.name = "Invalid name";
-    }
-    if (!input.price) {
+    } 
+    else if (!input.price) {
         errors.price = "Introduce the product price"
-    } else if (!/^-?\d+\.?\d*$/.test(input.price)){
+    } 
+    else if (!/^-?\d+\.?\d*$/.test(input.price)){
         errors.price = "Only numbers allowed"
     }
-    if(!input.description){
+    else if(!input.description){
        errors.description = "Write a brief description of your product"
     }
-    if(!input.stock){
+    else if(!input.stock){
         errors.stock = "Stock number"
-    } else if (!/^-?\d+\.?\d*$/.test(input.stock)){
+    } 
+    else if (!/^-?\d+\.?\d*$/.test(input.stock)){
         errors.stock = "Only numbers allowed"
     }
-    if(!/^-?\d+\.?\d*$/.test(input.rating)){
+    else if(!/^-?\d+\.?\d*$/.test(input.rating)){
         errors.rating = "Only numbers allowed"
     }
-    if(!input.categories.length===0){
+    else if(!input.categories.length){
         errors.categories = "Choose the categories"
     }
     return errors;
@@ -71,7 +71,7 @@ export function UpdateProduct(props){
         })
         setErrors(validate({
             ...input,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         }));
     }
 
@@ -81,13 +81,20 @@ export function UpdateProduct(props){
             ...input,
             categories: [...input.categories, e.target.value]
         })
+        setErrors(validate({
+            ...input,
+            categories: [...input.categories, e.target.value]
+        }));
     }
+
+
     const handleDelete = event => {
         setInput({
             ...input,
             categories: input.categories?.filter(category => category !== event.target.id)
         })
     }
+    
    
     const handleSubmit = async (e) => {
         const product = {...input, id}
@@ -114,7 +121,7 @@ export function UpdateProduct(props){
                     </div>
                     <div className="register-group">
                     <label className="col-md-4 control-label">Description:</label>
-                    <input name="description" value={input.description} onChange={handleChange} />
+                    <textarea name="description" value={input.description} onChange={handleChange} ></textarea>
                     <div className='register__error'>{errors.description}</div>
                     </div>
                     <div className="register-group">
@@ -139,6 +146,7 @@ export function UpdateProduct(props){
                     <option value="none" disabled hidden>Choose one or more</option>
                     {stateCategories?.map(category => <option key={category.id} value={category.name}>{category.name}</option>)}
                     </select>
+                    <div className='register__error'>{errors.categories}</div>
                     </div>
                     <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
                     </div>
