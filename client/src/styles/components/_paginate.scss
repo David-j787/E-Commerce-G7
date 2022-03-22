@@ -1,0 +1,11 @@
+
+.paginate {
+  &__button {
+
+    &:first-of-type {
+      margin-right: .5rem;
+    }
+
+    @include button();
+  }
+}
