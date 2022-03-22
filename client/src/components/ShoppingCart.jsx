@@ -22,42 +22,33 @@ const ShoppingCart = () => {
         dispatch(productRemove(productId))
     }
 
-    const borrarEsto = {
-        position: "absolute",
-        width: "400px",
-        height: "200px",
-        overflow: "auto",
-        backgroundColor: "lightgray",
-        borderRadius: "20px",
-        padding: "10px",
-        cursor: "default"
-    }
 
     return (
         <>
-            <div style={borrarEsto}>
-                <h3>Cart</h3>
+            <div className='shoppingCart'>
+                <h3 className='shoppingCart__title'>Cart</h3>
+                <hr />
                 {
                     cart.length ? cart.map(product => {
                         return (
-                            <div key={product.name}>
-                                <img src={product.images} alt={`${product.name}`} />
-                                <h3>{product.name}</h3>
-                                <div>
-                                    <div>
+                            <div key={product.name} className="shoppingCart__product">
+                                <img className='image' src={product.images} alt={`${product.name}`} />
+                                <h3 className='name'>{product.name}</h3>
+                                <div className='price'>
+                                    <div className='buttons'>
                                         <button onClick={() => handleRest(product.id)} >-</button>
                                         <p>{product.amount}</p>
                                         <button onClick={() => handleSum(product.id)}>+</button>
                                     </div>
-                                    <p>{`$${product.amount * product.price}`}</p>
+                                    <p className='amount'>{`$${product.amount * product.price}`}</p>
                                 </div>
-                                <button onClick={() => handleRemove(product.id)}>Quitar</button>
+                                <button className='delete' onClick={() => handleRemove(product.id)}>🗑️</button>
                             </div>
                         )
                     }) : <h3>El carrito esta vacio</h3>
                 }
 
-                <Link to="#" >Checkout</Link>
+                <Link to="#" className='shoppingCart__button'>Checkout</Link>
             </div>
         </>
     )
