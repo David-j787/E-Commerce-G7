@@ -16,7 +16,7 @@ export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('/products');
+      const response = await axios.get('http://localhost:3001/products');
       const data = await response.data;
 
       dispatch({
@@ -32,7 +32,7 @@ export const getAllProducts = () => {
 export function getCategories() {
   return function (dispatch) {
     return axios
-      .get('/categories')
+      .get('http://localhost:3001/categories')
       .then((response) => response.data)
       .then((data) => {
         dispatch({
@@ -49,7 +49,7 @@ export function getCategories() {
 export function getProductDetail(idProduct) {
   return function (dispatch) {
     return axios
-      .get(`/product/${idProduct}`)
+      .get(`http://localhost:3001/product/${idProduct}`)
       .then((response) => response.data)
       .then((data) => {
         dispatch({
@@ -101,7 +101,7 @@ export const productRemove = (product) => {
 export function getSearchProducts(productName, category){
   return function (dispatch) {
     return axios.
-    get(`/products?name=${productName}&category=${category}`)
+    get(`http://localhost:3001/products?name=${productName}&category=${category}`)
     .then((response) => response.data)
     .then((data) => {
       dispatch({
