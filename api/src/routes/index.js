@@ -13,6 +13,7 @@ const update = require("./updateProduct-route");
 const productDetail = require("./productDetail-route");
 const googleLogin = require("../utils/googleLogin-utils");
 const createOrder = require("./createOrder-route");
+const orderRoute = require("./order-route")
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -23,6 +24,8 @@ const verifyGoogleToken = require("../utils/verifyGoogleToken");
 router.use("/products", allProducts);
 
 router.use("/order", createOrder);
+
+router.use("/order", orderRoute)
 
 router.use("/category", newCategory);
 
