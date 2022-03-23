@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         date: {
             type: DataTypes.VIRTUAL,
             get(){
-                        return this.getDataValue('createdAt').toLocaleString('en-GB', {timeZone: 'America/Buenos_Aires'})
+                return this.getDataValue('createdAt').toLocaleString('en-GB', {timeZone: 'America/Buenos_Aires'})
             },
             set(value){
                 throw new Error('Do not try to set the "date" value!');
