@@ -25,7 +25,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "pg": "^8.5.1",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "yarn.lock": "0.0.1-security"
   },
   "devDependencies": {
     "chai": "^4.2.0",
