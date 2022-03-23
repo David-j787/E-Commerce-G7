@@ -1,21 +1,23 @@
 // const {Router} = require("express")
 const jwt = require('jsonwebtoken')
-const {User} = require('../db')
+const {User, Role} = require('../db')
 
-const adminOnly = (req, res, next) => {
+const adminOnly = async (req, res, next) => {
     const {token} = req.body
     try {
-        jwt.verify(token, process.env.JWT_SECRET, async (err, result) => {
-            if(err) throw Error('el token es invalido')
-            const userId = result.id
-            const admin = await User.findByPk(userId)
-            if(admin.is_admin){
-                return next()
-            }
-            throw Error('no tienes permisos')
+        const verify = await jwt.verify(token, process.env.JWT_SECRET, (err, result) => {
+            if(err) throw Error('the token is invalid')
+            return result.id
         })
+
+        const user = await User.findByPk(verify, {include: {model: Role}})
+
+        if(user.role.name === "Admin" || user.role.name === "SuperAdmin")
+            return next()
+        throw Error('you dont have permissions')
+
     } catch (err) {
-        req.send('ocurrio un ' + err)
+        res.status(404).send('ocurrio un ' + err)
     }
 }
 

@@ -3,7 +3,7 @@ const { putDeleteUser } = require("../utils/deleteUser-utils");
 
 const deleteUser = Router();
 
-deleteUser.put("/", async (req, res) => {
+deleteUser.delete("/", async (req, res) => {
   const { userId } = req.body;
   try {
     const result = await putDeleteUser(userId);
