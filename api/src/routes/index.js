@@ -19,6 +19,7 @@ const orderRoute = require("./order-route")
 // Middlewares
 const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
+const postReview = require("./newReview-route");
 
 
 // Config routers
@@ -48,5 +49,7 @@ router.use("/product", update);
 router.use("/product", productDetail);
 
 router.use("/orders", allOrders);
+
+router.use("/review", postReview);
 
 module.exports = router;
