@@ -15,6 +15,7 @@ const googleLogin = require("../utils/googleLogin-utils");
 const createOrder = require("./createOrder-route");
 const deleteUser = require("./deleteUser-route")
 const orderRoute = require("./order-route")
+const adminOnly = require('../utils/adminOnly')
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -34,7 +35,7 @@ router.use("/product", newProduct);
 
 router.use("/user", user);
 
-router.use("/user", deleteUser)
+router.use("/user", adminOnly, deleteUser)
 
 router.use("/categories", categories);
 
