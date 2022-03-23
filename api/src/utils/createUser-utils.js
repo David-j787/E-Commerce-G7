@@ -21,8 +21,7 @@ module.exports = {
             address,
             city,
             zip_code,
-            country,
-            is_admin: false
+            country
         });
        
         return createdUser;        
