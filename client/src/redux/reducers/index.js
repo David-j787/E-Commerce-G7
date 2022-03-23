@@ -10,6 +10,7 @@ import {
   USER_LOGIN,
   USER_LOGOUT,
   GET_SEARCH_PRODUCTS,
+  GET_ORDER
 } from '../actions';
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
   categories: [],
   details: [],
   cart: [],
-  user: null
+  user: null,
+  order: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -88,6 +90,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         products: stock.length ? stock : "No results found"
+      }
+
+    case GET_ORDER:
+      return {
+        ...state,
+        order: action.payload
       }
 
     default:
