@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { Product } = require("../db");
 const user = Router();
 const { createUser }  = require('../utils/createUser-utils');
 
