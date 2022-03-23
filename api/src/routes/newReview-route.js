@@ -4,9 +4,10 @@ const postReview = Router();
 
 postReview.post('/', async (req, res) => {
     const { review, rate, userId, productId } = req.body;
-    if(!review || !userId || !productId) res.status(403).json({msg: 'Review, userId or productId missing'});
+    if(!review || !userId || !productId || !rate) return res.status(403).json({msg: 'Review, rate, userId or productId missing'});
+    if(typeof userId !== 'number' || typeof rate !== 'number') return res.status(403).json({msg: 'Check typeof "userId" and "rate" must be INTEGER'});
     try {
-        const savedReview = await newReview(review, rate, userId, productId);
+        await newReview(review, rate, userId, productId);
         res.json({msg: 'Review added correctly'});
     } catch (error) {
         res.status(403).json({msg: 'Error ocurred: '+ error})
