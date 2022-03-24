@@ -18,14 +18,17 @@ const allOrders = require("./getOrders-route");
 const orderRoute = require("./getOrder-route")
 const postReview = require("./newReview-route");
 const allUsers = require("./getUsers-route");
-
+const userRole = require("./userRole-route")
+const orderStatus = require("./orderStatus-route")
+const deleteProduct = require("./deleteProduct-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
 const { isAuthenticated } = require('../utils/isAuthenticated');
 const adminOnly = require('../utils/adminOnly');
-const deleteProduct = require("./deleteProduct-route");
+const superAdminOnly = require("../utils/superAdminOnly")
+
 
 // Config routers
 // Example: router.use('/users', getUsers);
@@ -35,13 +38,17 @@ router.use("/order", createOrder);
 
 router.use("/order", orderRoute)
 
+router.use("/order/status", adminOnly, orderStatus)
+
 router.use("/category", newCategory);
 
 router.use("/product", newProduct);
 
 router.use("/user", user);
 
-router.use("/user", editUser);
+router.use("/user/role", superAdminOnly, userRole)
+
+router.use("/user/update", adminOnly, editUser);
 
 router.use("/user", adminOnly, deleteUser)
 
