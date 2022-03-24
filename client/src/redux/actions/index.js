@@ -12,6 +12,7 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
 export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
+export const GET_ORDER = "GET_ORDER"
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -128,3 +129,19 @@ export function userLogout(){
     type: USER_LOGOUT
   }
 }
+
+export const getOrderByUserId = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/orders?userid=${userId}`);
+      const data = await response.data;
+
+      dispatch({
+        type: GET_ORDER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+};
