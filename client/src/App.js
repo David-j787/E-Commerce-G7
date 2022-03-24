@@ -14,7 +14,8 @@ import Login from './components/Login/Login.jsx';
 import CreateProduct from './components/CreateProduct';
 import UpdateProduct from './components/UpdateProduct';
 import ProductDetail from './components/ProductDetail';
-import ReviewAndRating from './components/ReviewAndRating';
+import AdminPanel from './admincp/AdminPanel';
+
 // styles
 import './styles/styles.scss';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -69,6 +70,7 @@ function App() {
             <Route exact path='/product/update/:id' component={UpdateProduct}/>
             <Route exact path='/product/:id' component={ProductDetail}/>
             <Route exact path='/login' component={Login}/>
+            <Route exact path='/admincp' component={AdminPanel}/>
           </Switch>
         </Router>
       </UserContextProvider>
