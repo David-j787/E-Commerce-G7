@@ -14,11 +14,10 @@ import Login from './components/Login/Login.jsx';
 import CreateProduct from './components/CreateProduct';
 import UpdateProduct from './components/UpdateProduct';
 import ProductDetail from './components/ProductDetail';
-
+import ReviewAndRating from './components/ReviewAndRating';
 // styles
 import './styles/styles.scss';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 function App() {
   const dispatch = useDispatch();

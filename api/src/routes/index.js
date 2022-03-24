@@ -27,6 +27,7 @@ const orderStatus = require("./orderStatus-route")
 // Middlewares
 const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
+const { createOrderMP, notificationOrder } = require("../utils/mpController");
 
 // Config routers
 // Example: router.use('/users', getUsers);
@@ -63,6 +64,10 @@ router.use("/product", update);
 router.use("/product", productDetail);
 
 router.use("/orders", allOrders);
+
+router.use('/crear-orden',  createOrderMP)
+
+router.use('/notification', notificationOrder)
 
 router.use("/users", allUsers);
 
