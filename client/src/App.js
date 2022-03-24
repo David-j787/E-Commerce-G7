@@ -20,7 +20,6 @@ import AdminPanel from './admincp/AdminPanel';
 import './styles/styles.scss';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function App() {
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state)
