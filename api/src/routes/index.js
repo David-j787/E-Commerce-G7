@@ -6,6 +6,7 @@ const { isAuthenticated } = require('../utils/isAuthenticated');
 // Import routers;
 const allProducts = require("./allProducts-route");
 const user = require("./createUser-route");
+const editUser = require("./EditUser")
 const newCategory = require("./newCategory-route");
 const newProduct = require("./newProduct-route");
 const login = require("./userLogin-route");
@@ -37,6 +38,8 @@ router.use("/category", newCategory);
 router.use("/product", newProduct);
 
 router.use("/user", user);
+
+router.use("/user", editUser);
 
 router.use("/user", adminOnly, deleteUser)
 
