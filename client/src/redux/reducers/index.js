@@ -20,7 +20,7 @@ const initialState = {
   details: [],
   cart: [],
   user: null,
-  order: []
+  user_order: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -95,7 +95,7 @@ function rootReducer(state = initialState, action) {
     case GET_ORDER:
       return {
         ...state,
-        order: action.payload
+        user_order: action.payload
       }
 
     default:

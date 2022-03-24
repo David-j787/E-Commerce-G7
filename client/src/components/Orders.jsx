@@ -1,14 +1,27 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Order from './Order';
 
 export function Orders(){
-    return (
 
+    const { user, user_order } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getOrderByUserId(user.id));
+    }, [user.id]);
+
+    return (
         <div>
-            <h1>Purchase History</h1>
-            <Order/>
+        {user_order.products?.map((order) => {
+            return (
+            <div key={user_order.id}>
+                <Order date={user_order.date} productId={order.productId} name={order.name}/>
+            </div>
+            );
+        })}
         </div>
-    )
+    );
 }
 
 export default Order;

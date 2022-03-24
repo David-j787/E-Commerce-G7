@@ -1,22 +1,13 @@
-import React from 'react';
-import { useSelector } from 'react-redux'
+import React from "react";
+import { Link } from "react-router-dom";
 
-export function Order(){
-
-    const { order, users } = useSelector((state)=> state)
-    
+export function Order({date, productId, name}) {
     return (
-
         <div>
-            <h2>{ord.product.name}</h2>
-            <h4>{order.product.price}</h4>
-            <img src={order.product.images}/>
-            <h4>{order.product.amount}</h4>
-            <h4>{order.product.total}</h4>
-            
-
+            <span>{date}</span>
+            <Link to={`/product/${productId}`}>{name}</Link>)
         </div>
-    )
+    );
 }
 
 export default Order;
