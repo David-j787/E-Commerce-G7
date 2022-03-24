@@ -19,8 +19,7 @@ const googleLogin = async (req, res) => {
                 address: '',
                 city: '',
                 zip_code: 0,
-                country: '',
-                is_admin: false
+                country: ''
             });
             findedUser = await User.findOne({ where: { email:{ [Op.substring]: email }}});
         }

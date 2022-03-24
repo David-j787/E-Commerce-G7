@@ -1,4 +1,4 @@
-const { User } = require('../db');
+const { User, Role } = require('../db');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize')
 
@@ -21,9 +21,11 @@ module.exports = {
             address,
             city,
             zip_code,
-            country,
-            is_admin: false
+            country
         });
+
+        // seteamos Rol de usuario, por defecto es el 3 en base de datos
+        createdUser.setRole(3);
        
         return createdUser;        
     }

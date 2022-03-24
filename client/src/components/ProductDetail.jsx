@@ -2,11 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getProductDetail, addProduct, productAmountSum } from '../redux/actions';
+import useUser from './Login/hooks/useUser';
+import ReviewAndRating from './ReviewAndRating';
 
 export function ProductDetail(props) {
     const dispatch = useDispatch();
     const id = props.match.params.id;
     const { details, cart } = useSelector((state) => state);
+
+    const { isLogged } = useUser();
 
     useEffect(() => {
         dispatch(getProductDetail(id));
@@ -27,6 +31,7 @@ export function ProductDetail(props) {
     return (
         <div className='container'>
             {details ?
+            <div>
                 <div className='productDetail'>
                     <figure className='productDetail__image'>
                         <img src={details.images} alt="product" width='350px' height='250px' />
@@ -41,6 +46,10 @@ export function ProductDetail(props) {
                         <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
                         <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>
                     </div>
+                </div>
+                <div>
+                    {isLogged && <ReviewAndRating productId={details.id}/>}
+                </div>
                 </div>
                 : (<h2>Loading...</h2>)}
         </div>

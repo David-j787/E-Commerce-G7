@@ -19,7 +19,6 @@ import ReviewAndRating from './components/ReviewAndRating';
 import './styles/styles.scss';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function App() {
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state)
@@ -69,7 +68,6 @@ function App() {
             <Route exact path='/product/add' component={CreateProduct}/>
             <Route exact path='/product/update/:id' component={UpdateProduct}/>
             <Route exact path='/product/:id' component={ProductDetail}/>
-            <Route exact path='/rating' component={ReviewAndRating}/>
             <Route exact path='/login' component={Login}/>
           </Switch>
         </Router>
