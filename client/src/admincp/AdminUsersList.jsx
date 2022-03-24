@@ -1,21 +1,48 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getAllUsers } from '../redux/actions';
 
-export default function AdminUsersList() {
+export default function AdminUsersList({getId, showComponent}) {
     const dispatch = useDispatch();
-    const products = useSelector(state => state.products);
+    const users = useSelector(state => state.allUsers);
     useEffect(()=>{
-        dispatch();
+        dispatch(getAllUsers());
     },[])
+
+    const forceResetPassword = (userId) => {
+        alert('Se reseteó la password del usuario');
+    }
+
+    const editUser = (userId) => {
+        getId(userId);
+        showComponent('editUser');
+    }
+
+    const deleteUser = async (userId) => {
+        let token;
+        if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
+        else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
+        const response = await axios.delete('http://localhost:3001/user', {data: {token, userId}});
+        if(response.status === 200) alert(response.data);
+    }
+
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Products List</div>
-            <div className='tableHeader'><div>Product name</div>|<div>Price</div>|<div>Stock</div>|<div>Rate</div>|<div>Action</div></div>
+            <div className='componentTitle'>Users</div>
+            <div className='tableHeader'><div>Name</div>|<div>Username</div>|<div>Email</div>|<div>Role</div>|<div>Action</div></div>
             <div className='adminTable'>
                 <ul>
-                    {products?.map(prod => <li className='itemList' key={prod.id}>
-                        <div>{prod.name.slice(0, 35)}{prod.name.length > 35 && '...'}</div><div>US$ {prod.price}</div><div>{prod.stock}</div><div>{prod.rating}</div><div>Action</div>
-                        
+                    {users?.map(user => <li className='itemList' key={user.id}>
+                        <div>{user.name} {user.last_name}</div>
+                        <div>{user.username}</div>
+                        <div>{user.email}</div>
+                        <div>{user.role.name}</div>
+                        <div>
+                            <button onClick={e => forceResetPassword(user.id)} className='adminCP__button'>Reset Password</button>
+                            <button onClick={e => editUser(user.id)} className='adminCP__button'>Edit</button>
+                            <button onClick={e => deleteUser(user.id)} className='adminCP__button'>Delete</button>
+                        </div>
                         </li>)}
                 </ul>
             </div>

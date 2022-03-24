@@ -11,6 +11,8 @@ import {
   USER_LOGOUT,
   GET_SEARCH_PRODUCTS,
   GET_ALL_ORDERS,
+  GET_ALL_USERS,
+  GET_USER_DETAIL,
 } from '../actions';
 
 const initialState = {
@@ -20,7 +22,9 @@ const initialState = {
   details: [],
   cart: [],
   user: null,
-  orders: []
+  orders: [],
+  allUsers: [],
+  userDetail: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -97,6 +101,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         orders: action.payload.length ? action.payload : "No orders found"
       }
+    
+    case GET_ALL_USERS:
+        return {
+          ...state,
+          allUsers: action.payload.length ? action.payload : "No users found"
+        }
+    
+      case GET_USER_DETAIL:
+          return {
+            ...state,
+            userDetail: action.payload.length ? action.payload[0] : "No user found"
+          }
 
     default:
       return state;
