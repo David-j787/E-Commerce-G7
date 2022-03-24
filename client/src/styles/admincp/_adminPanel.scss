@@ -1,0 +1,110 @@
+.adminCP{
+    &__button {
+        padding: .5rem 0.8rem;
+        border-radius: 5px;
+        margin: 0 5px;
+        background-color: $orange;
+        color: $white;
+        letter-spacing: 1px;
+        font-family: $font-kumbh-sans;
+        &:disabled {
+            background-color: $grayish-blue;
+          }
+      }
+}
+.adminContainer{
+    margin-left: 60px;
+    margin-top: 20px;
+}
+.adminSubComp{
+    height: 100%;
+    margin: 20px 20px 0 20px;
+}
+.componentTitle{
+    margin: 30px 0 30px;
+    width: 100%;
+    font-size: 40px;
+}
+.adminTable{
+    overflow-y: scroll;
+    height: 650px;
+}
+.editForms{
+    overflow-y: scroll;
+    height: 800px;
+}
+.noDataFound{
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+}
+.tableHeader, .userHeader{
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0;
+    padding-right: 20px;
+    :nth-child(odd){
+        width: 20%;
+        text-align: center;
+    }
+    :nth-child(even){
+        width: 20%;
+        text-align: center;
+    }
+}
+.userHeader{
+    :nth-child(odd){
+        width: 20%;
+        text-align: center;
+    }
+    :nth-child(even){
+        width: 20%;
+        text-align: center;
+    }
+    div:nth-child(4){
+        width: 40%;
+        text-align: center;
+    }
+}
+
+.prodList, .itemList {
+    display: flex;
+    flex-direction: row;
+    border-radius: 6px;
+    padding: 15px 0;
+    align-items: center;
+    margin: 10px 0;
+    border: 1px solid $grayish-blue;
+    background-color: $light-grayish-blue;
+}
+.prodList{
+    div:nth-child(odd){
+        width: 20%;
+        text-align: center;
+    }
+    div:nth-child(1){
+        width: 20%;
+        text-align: left;
+        padding-left: 20px;
+    }
+    div:nth-child(even){
+        width: 20%;
+        text-align: center;
+    }
+    div:nth-child(2){
+        padding-left: 150px;
+        text-align: left;
+    }
+}
+
+.itemList{
+    div:nth-child(odd){
+        width: 20%;
+        text-align: center;
+    }
+    div:nth-child(even){
+        width: 20%;
+        text-align: center;
+    }
+}
