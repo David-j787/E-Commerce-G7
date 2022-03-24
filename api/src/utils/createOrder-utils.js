@@ -11,7 +11,7 @@ const postOrder = async (order) => {
 
   const product_order = await Promise.all(
     order.products.map((product) => {
-      Product.findOne({ where: { name: product.name } }).then((produc) =>
+      Product.findOne({ where: { id: product.id } }).then((produc) =>
         newOrder.addProduct(produc, { through: { amount: product.amount } })
       );
     })
