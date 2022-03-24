@@ -22,6 +22,7 @@ const allUsers = require("./getUsers-route");
 const adminOnly = require('../utils/adminOnly')
 const superAdminOnly = require("../utils/superAdminOnly")
 const userRole = require("./userRole-route")
+const orderStatus = require("./orderStatus-route")
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -34,6 +35,8 @@ router.use("/products", allProducts);
 router.use("/order", createOrder);
 
 router.use("/order", orderRoute)
+
+router.use("/order/status", adminOnly, orderStatus)
 
 router.use("/category", newCategory);
 
