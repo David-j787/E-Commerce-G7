@@ -1,10 +1,9 @@
 const { Router } = require("express");
-const categories = require("./category-route");
 const router = Router();
-const { isAuthenticated } = require('../utils/isAuthenticated');
 
 // Import routers;
 const allProducts = require("./allProducts-route");
+const categories = require("./getCategory-route");
 const user = require("./createUser-route");
 const editUser = require("./EditUser")
 const newCategory = require("./newCategory-route");
@@ -15,19 +14,23 @@ const productDetail = require("./productDetail-route");
 const googleLogin = require("../utils/googleLogin-utils");
 const createOrder = require("./createOrder-route");
 const deleteUser = require("./deleteUser-route")
-const allOrders = require("../routes/getOrders-route");
-const orderRoute = require("./order-route")
+const allOrders = require("./getOrders-route");
+const orderRoute = require("./getOrder-route")
 const postReview = require("./newReview-route");
 const allUsers = require("./getUsers-route");
-const adminOnly = require('../utils/adminOnly')
-const superAdminOnly = require("../utils/superAdminOnly")
 const userRole = require("./userRole-route")
 const orderStatus = require("./orderStatus-route")
+const deleteProduct = require("./deleteProduct-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
+const { isAuthenticated } = require('../utils/isAuthenticated');
+const adminOnly = require('../utils/adminOnly');
+const superAdminOnly = require("../utils/superAdminOnly")
+
 const { createOrderMP, notificationOrder } = require("../utils/mpController");
+
 
 // Config routers
 // Example: router.use('/users', getUsers);
@@ -72,5 +75,9 @@ router.use('/notification', notificationOrder)
 router.use("/users", allUsers);
 
 router.use("/review", postReview);
+
+router.use("/product", adminOnly, deleteProduct)
+
+router.use("/admin/authenticate", adminOnly, auth)
 
 module.exports = router;
