@@ -1,13 +1,27 @@
-const { fn,col } = require("sequelize");
-const { Review, User, Product, conn } = require("../db.js");
+const { Review, User, Product } = require("../db.js");
 
 module.exports = {
     newReview: async (review, rate, userId, productId) => {
+        // Verificar que el usuario no tenga ya un review para este producto.
+
+        const previousReview = await Review.findAll({
+            where:{
+                productId: productId,
+                userId: userId
+            },
+            include: Product, User
+        })
+
+        if (previousReview.length > 0) throw Error ('The user had already reviewed the product')
+
+        // Si no hay reviews previos, lo guardamos
+
         const saveReview = await Review.create({
             comment: review,
             rate
         });
         if (!saveReview) throw Error ('The review cant be saved');
+        
         await saveReview.setUser(userId);
         await saveReview.setProduct(productId);
 
@@ -30,8 +44,6 @@ module.exports = {
         })
 
         product = await product.save()
-
-        console.log(product.rating)
 
         return saveReview;
     }
