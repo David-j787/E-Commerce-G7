@@ -6,6 +6,7 @@ const { isAuthenticated } = require('../utils/isAuthenticated');
 // Import routers;
 const allProducts = require("./allProducts-route");
 const user = require("./createUser-route");
+const editUser = require("./EditUser")
 const newCategory = require("./newCategory-route");
 const newProduct = require("./newProduct-route");
 const login = require("./userLogin-route");
@@ -13,11 +14,16 @@ const update = require("./updateProduct-route");
 const productDetail = require("./productDetail-route");
 const googleLogin = require("../utils/googleLogin-utils");
 const createOrder = require("./createOrder-route");
+const deleteUser = require("./deleteUser-route")
+const allOrders = require("../routes/getOrders-route");
 const orderRoute = require("./order-route")
+const adminOnly = require('../utils/adminOnly')
 
 // Middlewares
 const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
+const postReview = require("./newReview-route");
+
 
 // Config routers
 // Example: router.use('/users', getUsers);
@@ -33,6 +39,10 @@ router.use("/product", newProduct);
 
 router.use("/user", user);
 
+router.use("/user", editUser);
+
+router.use("/user", adminOnly, deleteUser)
+
 router.use("/categories", categories);
 
 router.use("/login", login);
@@ -44,5 +54,9 @@ router.use("/authenticate", isAuthenticated, auth);
 router.use("/product", update);
 
 router.use("/product", productDetail);
+
+router.use("/orders", allOrders);
+
+router.use("/review", postReview);
 
 module.exports = router;
