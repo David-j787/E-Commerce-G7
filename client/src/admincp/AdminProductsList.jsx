@@ -20,7 +20,7 @@ export default function AdminProductsList({showComponent, getId}) {
         let token;
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.delete('http://localhost:3001/product', {data: {token, productId}});
+        const response = await axios.delete('/product', {data: {token, productId}});
         if(response.status === 200){
             dispatch(getAllProducts());
             alert(response.data);

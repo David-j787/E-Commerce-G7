@@ -24,7 +24,7 @@ export default function AdminPanel() {
 
     useEffect(() => {
         if(sessionStorage.getItem('jwt')){
-            axios.post('http://localhost:3001/admin/authenticate', {token: sessionStorage.getItem('jwt')})
+            axios.post('/admin/authenticate', {token: sessionStorage.getItem('jwt')})
             .then(res => {
                 console.log(res)
               if(res.data.user.roleId === 1 || res.data.user.roleId === 2) sessionStorage.setItem('session', "authenticated")
@@ -36,7 +36,7 @@ export default function AdminPanel() {
             })
           }
         else if(localStorage.getItem('jwt')){
-            axios.post('http://localhost:3001/admin/authenticate', {token: localStorage.getItem('jwt')})
+            axios.post('/admin/authenticate', {token: localStorage.getItem('jwt')})
             .then(res => {
                 console.log(res)
                 if(res.data.user.roleId === 1 || res.data.user.roleId === 2) localStorage.setItem('session', "authenticated")

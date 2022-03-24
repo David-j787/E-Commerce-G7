@@ -23,7 +23,7 @@ export default function AdminUsersList({getId, showComponent}) {
         let token;
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.delete('http://localhost:3001/user', {data: {token, userId}});
+        const response = await axios.delete('/user', {data: {token, userId}});
         if(response.status === 200) alert(response.data);
     }
 

@@ -103,7 +103,7 @@ export function UpdateProduct(props){
     const handleSubmit = async (e) => {
         const product = {...input, id}
         e.preventDefault();
-        await axios.put("http://localhost:3001/product/update", product)
+        await axios.put("/product/update", product)
         alert(`${input.name} was updated!`)
         if(history.location.pathname === '/admincp') props.showComponent('products')
         else history.push("/")

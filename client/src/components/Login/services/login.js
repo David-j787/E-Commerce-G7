@@ -1,5 +1,5 @@
 import axios from "axios";
-const ENDPOINT = 'http://localhost:3001';
+const ENDPOINT = '';
 
 export default async function login(user) {
     const response = await axios.post(`${ENDPOINT}/login`, user, {withCredentials: true, credentials: 'include'});

@@ -24,7 +24,7 @@ export function CreateCategory(){
             alert('This category already exists')
             
         }else{
-            await axios.post("http://localhost:3001/category", {nameCategory: nameCategory})
+            await axios.post("/category", {nameCategory: nameCategory})
             alert('Category added successfully!')
             dispatch(getCategories())
         }

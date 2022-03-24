@@ -131,7 +131,7 @@ export function CreateUser(){
             address: "",
             dateOfBirth: "",
         })
-        await axios.post("http://localhost:3001/user", user)
+        await axios.post("/user", user)
         alert(`${user.username} was created successfully!`)
         history.push("/")
       };

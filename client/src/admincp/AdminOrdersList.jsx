@@ -15,7 +15,7 @@ export default function AdminOrdersList() {
         let token;
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.put('http://localhost:3001/order/status', { orderId, status: event.target.value, token });
+        const response = await axios.put('/order/status', { orderId, status: event.target.value, token });
         alert(`Order status changed: ${orderId} ${response.data}`)
         dispatch(getAllOrders());
     }
