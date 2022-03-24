@@ -20,6 +20,8 @@ const orderRoute = require("./order-route")
 const postReview = require("./newReview-route");
 const allUsers = require("./getUsers-route");
 const adminOnly = require('../utils/adminOnly')
+const superAdminOnly = require("../utils/superAdminOnly")
+const userRole = require("./userRole-route")
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -38,6 +40,8 @@ router.use("/category", newCategory);
 router.use("/product", newProduct);
 
 router.use("/user", user);
+
+router.use("/user/role", superAdminOnly, userRole)
 
 router.use("/user", editUser);
 
