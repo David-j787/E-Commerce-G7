@@ -3,8 +3,8 @@ const { conn } = require("./src/db.js");
 require("dotenv").config();
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT, () => {
+conn.sync({ force: false }).then(() => {
+  server.listen(process.env.PORT || 3001, () => {
     console.log("API listening at 3001"); // eslint-disable-line no-console
   });
 });
