@@ -43,7 +43,7 @@ router.use("/user", user);
 
 router.use("/user/role", superAdminOnly, userRole)
 
-router.use("/user", editUser);
+router.use("/user/update", adminOnly, editUser);
 
 router.use("/user", adminOnly, deleteUser)
 
