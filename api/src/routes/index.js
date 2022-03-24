@@ -19,6 +19,7 @@ const orderRoute = require("./order-route")
 // Middlewares
 const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
+const { createOrderMP, notificationOrder } = require("../utils/mpController");
 
 
 // Config routers
@@ -49,4 +50,7 @@ router.use("/product", productDetail);
 
 router.use("/orders", allOrders);
 
+router.use('/crear-orden',  createOrderMP)
+
+router.use('/notification', notificationOrder)
 module.exports = router;
