@@ -40,7 +40,8 @@ export function validate(input) {
 
 export function UpdateProduct(props){
     const dispatch = useDispatch();
-    const id = props.match.params.id;
+    //const id = props.match.params.id;
+    const id = props.id;
     const history = useHistory();
 
     const productDetails = useSelector((state)=>state.details)
@@ -49,7 +50,7 @@ export function UpdateProduct(props){
     useEffect(()=>{
         dispatch(getProductDetail(id))
         dispatch(getCategories());
-    }, [id])
+    }, [id]) //eslint-disable-line
 
     const [errors, setErrors] = useState({})
 
@@ -104,11 +105,12 @@ export function UpdateProduct(props){
         e.preventDefault();
         await axios.put("http://localhost:3001/product/update", product)
         alert(`${input.name} was updated!`)
-        history.push("/")
+        if(history.location.pathname === '/admincp') props.showComponent('products')
+        else history.push("/")
     }
 
     return (
-         <div className="container">
+         <div className={history.location.pathname === '/admincp' ? "adminContainer editForms" : "container"}>
             <div className="updateProduct register">
                 <h1 className='updateProduct__title'>Update Product</h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} className="well form-horizontal">
@@ -154,8 +156,8 @@ export function UpdateProduct(props){
                     <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
                     </div>
                     <div className="wrapper-buttons">
-                        <Link to='/'><button className="register__button">Back</button></Link>
-                        <button className="register__button save"
+                    {history.location.pathname === '/admincp' ? false : <Link to='/'><button className="register__button">Back</button></Link>}
+                        <button className={history.location.pathname === '/admincp' ? 'register__button' : "register__button save" }
                      type="submit"
                      disabled={!input.name || !input.price || !input.description || !input.stock || !input.categories.length}>Save</button>
                     </div>

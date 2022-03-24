@@ -17,6 +17,10 @@
 @import "./components/shoppingCart";
 @import "./components/navbarLogin";
 
+//admincp
+@import "./admincp/adminPanel";
+@import "./admincp/adminSideBar";
+
 // pages
 @import './pages/shop';
 @import "./pages/register";

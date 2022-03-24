@@ -8,6 +8,7 @@ module.exports = {
     
         // Crea un objeto de preferencia
         let preference = {
+            purpose: "wallet_purchase",
             items: [
             {
                 title: "compu gamer",
@@ -15,7 +16,19 @@ module.exports = {
                 quantity: 1,
             },
             ],
-            notification_url:'https://c245-2803-9800-b010-81fa-dd99-3280-8a2e-df46.ngrok.io/notification'
+                              //localhost:3001/notification
+            notification_url:'https://cdbf-2803-9800-b010-81fa-41e6-4e96-f859-2d5b.ngrok.io/notification',
+            back_urls: {
+                success: "https://4746-2803-9800-b010-81fa-41e6-4e96-f859-2d5b.ngrok.io",
+            },
+            payment_methods: {
+                excluded_payment_types: [
+                    {
+                        id: "ticket"
+                    }
+                ],
+                installments: 16
+            },
         };
       
         mercadopago.preferences.create(preference)
