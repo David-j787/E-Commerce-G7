@@ -15,8 +15,12 @@ export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_DETAIL = 'GET_USER_DETAIL';
+<<<<<<< HEAD
 export const GET_SEARCH_USERS = 'GET_SEARCH_USERS';
 export const GET_ROLES = 'GET_ROLES';
+=======
+export const GET_ORDER = "GET_ORDER"
+>>>>>>> origin
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -190,3 +194,19 @@ export function getUserDetail(id){
     }
   }
 }
+
+export const getOrderByUserId = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/orders?userid=${userId}`);
+      const data = await response.data;
+      dispatch({
+        type: GET_ORDER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+};
+

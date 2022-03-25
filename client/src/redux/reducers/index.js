@@ -14,8 +14,8 @@ import {
   GET_ALL_USERS,
   GET_USER_DETAIL,
   GET_SEARCH_USERS,
-  GET_SEARCH_ORDERS,
   GET_ROLES,
+  GET_ORDER
 } from '../actions';
 
 const initialState = {
@@ -28,7 +28,8 @@ const initialState = {
   orders: [],
   allUsers: [],
   userDetail: {},
-  allRoles: []
+  allRoles: [],
+  user_order: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -125,11 +126,17 @@ function rootReducer(state = initialState, action) {
           allUsers: orders.length ? action.payload : "No users found"
         }
     
-      case GET_USER_DETAIL:
+    case GET_USER_DETAIL:
           return {
             ...state,
             userDetail: action.payload.length ? action.payload[0] : "No user found"
           }
+      
+    case GET_ORDER:
+      return {
+        ...state,
+        user_order: action.payload
+      }
 
     default:
       return state;

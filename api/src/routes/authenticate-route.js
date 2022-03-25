@@ -12,7 +12,6 @@ auth.post("/", async (req, res) => {
       res.json({user})
     }else res.status(403).json({msg: "Invalid User"});;
   } catch (error) {
-
     res.status(403).json('Ocurrió un error: '+ error);
   }
 });
