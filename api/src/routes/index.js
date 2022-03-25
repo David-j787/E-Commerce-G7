@@ -24,6 +24,7 @@ const deleteProduct = require("./deleteProduct-route");
 const { createOrderMP, notificationOrder } = require("../utils/mpController");
 const allRoles = require("./getRoles-route");
 const setNewPass = require("./setNewPassword-route");
+const allReviews = require("./getReviews-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -76,6 +77,8 @@ router.use('/notification', notificationOrder)
 router.use("/users", allUsers);
 
 router.use("/review", postReview);
+
+router.use('/reviews', allReviews);
 
 router.use("/product", adminOnly, deleteProduct)
 
