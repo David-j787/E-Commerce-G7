@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrders } from '../redux/actions';
 import AdminSearchBar from './AdminSearchBar';
+import swal from 'sweetalert';
 
 export default function AdminOrdersList() {
     const dispatch = useDispatch();
@@ -15,8 +16,27 @@ export default function AdminOrdersList() {
         let token;
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.put('http://localhost:3001/order/status', { orderId, status: event.target.value, token });
-        alert(`Order status changed: ${orderId} ${response.data}`)
+        try {
+            await axios.put('http://localhost:3001/order/status', { orderId, status: event.target.value, token });
+            swal({
+                title: 'Order status changed',
+                text: 'The status of order ID: ' + orderId + ' change to: ' + event.target.value,
+                icon: 'success',
+                timer: 3000,
+                button: null
+            })
+            dispatch(getAllOrders());
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
+        
         dispatch(getAllOrders());
     }
 

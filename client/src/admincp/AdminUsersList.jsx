@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../redux/actions';
 import AdminSearchBar from './AdminSearchBar';
+import swal from 'sweetalert';
 
 export default function AdminUsersList({getId, showComponent}) {
     const dispatch = useDispatch();
@@ -13,7 +14,34 @@ export default function AdminUsersList({getId, showComponent}) {
     },[])
 
     const forceResetPassword = (userId) => {
-        alert('Se reseteó la password del usuario');
+        try {
+            swal({
+                title: 'Do you want reset user password?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                buttons: ['No','Yes']
+            }).then(async (result) => {
+                if (result) {
+                await axios.put('http://localhost:3001/password/reset', {userId});
+                swal({
+                        title: 'You forced password reset',
+                        text: ' ',
+                        icon: 'success',
+                        timer: 2000,
+                        button: null
+                    })
+                }
+            })
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
     }
 
     const editUser = (userId) => {
@@ -23,12 +51,37 @@ export default function AdminUsersList({getId, showComponent}) {
 
     const deleteUser = async (userId) => {
         let token;
-        console.log(userId);
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.delete('http://localhost:3001/user', {data: {token, userId}});
-        if(response.status === 200) alert(response.data);
-        dispatch(getAllUsers());
+        try {
+            swal({
+                title: 'Do you want delete the user?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                buttons: ['No','Yes']
+            }).then(async (result) => {
+                if (result) {
+                    await axios.delete('http://localhost:3001/user', {data: {token, userId}});
+                    swal({
+                        title: 'You deleted the user with ID: ' + userId,
+                        text: ' ',
+                        icon: 'success',
+                        timer: 2000,
+                        button: null
+                    })
+                    dispatch(getAllUsers());
+                }
+            })
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
     }
 
     return(
