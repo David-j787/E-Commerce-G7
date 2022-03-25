@@ -48,7 +48,7 @@ function rootReducer(state = initialState, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        products: action.payload.filter(product => product.stock > 0),
+        products: action.payload
       };
     case ADD_PRODUCT:
       return {
@@ -101,10 +101,9 @@ function rootReducer(state = initialState, action) {
         }
 
     case GET_SEARCH_PRODUCTS:
-      const stock = Array.isArray(action.payload) ? action.payload.filter(product => product.stock > 0) : []
       return {
         ...state,
-        products: stock.length ? stock : "No results found"
+        products: action.payload.length ? action.payload : "No results found"
       }
 
     case GET_SEARCH_USERS:
