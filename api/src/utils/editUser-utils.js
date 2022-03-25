@@ -2,9 +2,9 @@ const { User } = require('../db.js');
 const bcrypt = require('bcrypt');
 
 const putEditUser = async (userData) => {
-    const user = await User.findByPk(userData.id)
+    const user = await User.findOne({where: {username: userData.username}})
 
-    if(!user) throw Error("Username does not exist")
+    if(!user) throw Error("User doesn't exist")
 
     const { username, password, email, name, last_name, date_of_birth, address, city, zip_code, country} = userData;
 

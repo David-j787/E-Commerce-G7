@@ -12,12 +12,15 @@ const adminOnly = async (req, res, next) => {
 
         const user = await User.findByPk(verify, {include: {model: Role}})
 
-        if(user.role.name === "Admin" || user.role.name === "SuperAdmin")
-            return next()
-        throw Error('you dont have permissions')
+        if(user.role.name === "Admin" || user.role.name === "SuperAdmin"){
+            req.body.user_id = verify;
+            return next();
+        }else {
+            throw Error('you dont have permissions')
+        }        
 
     } catch (err) {
-        res.status(404).send('ocurrio un ' + err)
+        res.status(403).send('ocurrio un ' + err)
     }
 }
 
