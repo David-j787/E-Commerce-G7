@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router, useHistory, Redirect } from 'react-router-dom';
 import { UserContextProvider } from './components/Login/context/userContext';
 import { userLogin, restoreCart } from './redux/actions';
+import swal from 'sweetalert';
 
 //components
 import Navbar from './components/Navbar';
@@ -15,14 +16,24 @@ import CreateProduct from './components/CreateProduct';
 import UpdateProduct from './components/UpdateProduct';
 import ProductDetail from './components/ProductDetail';
 import AdminPanel from './admincp/AdminPanel';
+import ResetPassword from './components/ResetPassword';
 
 // styles
 import './styles/styles.scss';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state)
+  const userLogged = useSelector(state => state.user);
+
+  const resetPasswordAlert = () => {
+    swal({
+      title: "Password Reset",
+      text: "Your password have been force to reset, please proceed",
+      icon: "warning",
+      buttons: "Ok"
+    })
+  }
 
   useEffect(() => {
     if(cart.length && localStorage.getItem("cart")){
@@ -54,6 +65,10 @@ function App() {
     }
   }, []) // eslint-disable-line
 
+  useEffect(() => {
+    if(userLogged?.reset_password) resetPasswordAlert()
+  }, [userLogged])
+
   return (
     <div className="App">
       <UserContextProvider>
@@ -61,10 +76,16 @@ function App() {
           <Navbar />
           
           <Switch>
-            <Route exact path="/">
-              <SearchBar />
-              <Home />
-            </Route>
+            <Route exact path="/" render={() => {
+              if(userLogged?.reset_password){
+                return <ResetPassword />
+              }else{
+                return <>
+                <SearchBar />
+                <Home />
+                </>
+              }
+            }}/>
             <Route exact path='/register' component={CreateUser}/>
             <Route exact path='/product/add' component={CreateProduct}/>
             <Route exact path='/product/update/:id' component={UpdateProduct}/>

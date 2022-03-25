@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetail } from '../redux/actions';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export function validate(input) {
     let errors = {};
@@ -83,9 +84,35 @@ export function AdminEditUser(props){
         let token;
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.put("http://localhost:3001/user/update", {...user, token});
-        if(response.status === 200) alert(`${user.username} was edited successfully!`)        
-        props.showComponent('users')
+        try {
+            swal({
+                title: 'Do you want save changes?',
+                text: " ",
+                icon: 'warning',
+                buttons: ['No','Yes']
+            }).then(async (result) => {
+                if (result) {
+                    await axios.put("http://localhost:3001/user/update", {...user, token});
+                    swal({
+                        title: 'User changes saved',
+                        text: ' ',
+                        icon: 'success',
+                        timer: 2000,
+                        button: null
+                    })
+                }
+                props.showComponent('users');
+            })
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
       };
 
     return (

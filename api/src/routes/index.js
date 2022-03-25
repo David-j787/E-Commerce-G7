@@ -21,6 +21,9 @@ const allUsers = require("./getUsers-route");
 const userRole = require("./userRole-route")
 const orderStatus = require("./orderStatus-route")
 const deleteProduct = require("./deleteProduct-route");
+const { createOrderMP, notificationOrder } = require("../utils/mpController");
+const allRoles = require("./getRoles-route");
+const setNewPass = require("./setNewPassword-route");
 const allReviews = require("./getReviews-route");
 
 // Middlewares
@@ -29,9 +32,6 @@ const verifyGoogleToken = require("../utils/verifyGoogleToken");
 const { isAuthenticated } = require('../utils/isAuthenticated');
 const adminOnly = require('../utils/adminOnly');
 const superAdminOnly = require("../utils/superAdminOnly");
-const allRoles = require("./getRoles-route");
-
-const { createOrderMP, notificationOrder } = require("../utils/mpController");
 
 
 // Config routers
@@ -85,5 +85,7 @@ router.use("/product", adminOnly, deleteProduct)
 router.use("/admin/authenticate", adminOnly, auth)
 
 router.use("/roles", allRoles);
+
+router.use("/password", setNewPass);
 
 module.exports = router;

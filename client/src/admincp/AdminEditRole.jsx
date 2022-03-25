@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRoles, getAllUsers} from '../redux/actions';
 import AdminSearchBar from './AdminSearchBar';
+import swal from 'sweetalert';
 
 export default function AdminEditRole({showComponent}) {
     const dispatch = useDispatch();
@@ -21,9 +22,28 @@ export default function AdminEditRole({showComponent}) {
         let token;
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.put('http://localhost:3001/user/role', {userId, role: role[Object.keys(role)[0]], token});
-        if(response.data) alert(response.data);
-        showComponent('editRole');
+        try {
+            await axios.put('http://localhost:3001/user/role', {userId, role: role[Object.keys(role)[0]], token});
+            swal({
+                title: 'User role changed successfully',
+                text: ' ',
+                icon: 'success',
+                timer: 3000,
+                button: null
+            })
+            showComponent('editRole');
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
+
+
     }
 
     const handleSelect = (e) => {

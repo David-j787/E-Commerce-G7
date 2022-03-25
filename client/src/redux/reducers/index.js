@@ -113,16 +113,16 @@ function rootReducer(state = initialState, action) {
       }
     
     case GET_ALL_ORDERS:
+      const orders = action.payload.sort((orderA, orderB) => orderA.id > orderB.id ? 1 : -1);
       return {
         ...state,
-        orders: action.payload.length ? action.payload : "No orders found"
+        orders: orders.length ? orders : "No orders found"
       }
     
     case GET_ALL_USERS:
-      const orders = action.payload.sort((orderA, orderB) => orderA.id > orderB.id ? 1 : -1);
         return {
           ...state,
-          allUsers: orders.length ? action.payload : "No users found"
+          allUsers: action.payload.length ? action.payload : "No users found"
         }
     
     case GET_USER_DETAIL:

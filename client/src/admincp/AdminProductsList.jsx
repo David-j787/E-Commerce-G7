@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions';
 import AdminSearchBar from './AdminSearchBar';
+import swal from 'sweetalert';
 
 export default function AdminProductsList({showComponent, getId}) {
     const dispatch = useDispatch();
@@ -21,11 +22,35 @@ export default function AdminProductsList({showComponent, getId}) {
         let token;
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
-        const response = await axios.delete('http://localhost:3001/product', {data: {token, productId}});
-        if(response.status === 200){
-            dispatch(getAllProducts());
-            alert(response.data);
-        } 
+        try {
+            swal({
+                title: 'Do you want delete the user?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                buttons: ['No','Yes']
+            }).then(async (result) => {
+                if (result) {
+                    await axios.delete('http://localhost:3001/product', {data: {token, productId}});
+                    swal({
+                        title: 'You deleted the product with ID: ' + productId,
+                        text: ' ',
+                        icon: 'success',
+                        timer: 2000,
+                        button: null
+                    })
+                    dispatch(getAllProducts());
+                }
+            })
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
     }
 
     return(
