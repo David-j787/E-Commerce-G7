@@ -27,7 +27,8 @@ const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
 const { isAuthenticated } = require('../utils/isAuthenticated');
 const adminOnly = require('../utils/adminOnly');
-const superAdminOnly = require("../utils/superAdminOnly")
+const superAdminOnly = require("../utils/superAdminOnly");
+const allRoles = require("./getRoles-route");
 
 
 // Config routers
@@ -73,5 +74,7 @@ router.use("/review", postReview);
 router.use("/product", adminOnly, deleteProduct)
 
 router.use("/admin/authenticate", adminOnly, auth)
+
+router.use("/roles", allRoles);
 
 module.exports = router;

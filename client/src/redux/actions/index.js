@@ -15,7 +15,8 @@ export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_DETAIL = 'GET_USER_DETAIL';
-
+export const GET_SEARCH_USERS = 'GET_SEARCH_USERS';
+export const GET_ROLES = 'GET_ROLES';
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -115,7 +116,22 @@ export function getSearchProducts(productName, category){
       console.log("Not Found", error)
     })
   }
+}
 
+export function getSearchUsers(user){
+  return function (dispatch) {
+    return axios.get(`http://localhost:3001/users?username=${user.username}&email=${user.email}&name=${user.name}&lastName=${user.lastName}`)
+    .then((response) => response.data)
+    .then((data) => {
+      dispatch({
+        type: GET_SEARCH_USERS,
+        payload: data,
+      });
+    })
+    .catch((error) => {
+      console.log("Not Found", error)
+    })
+  }
 }
 
 export function userLogin(payload){
@@ -131,11 +147,22 @@ export function userLogout(){
   }
 }
 
-export function getAllOrders(){
+export function getAllOrders(id = '', status = ''){
   return async function (dispatch){
     try {
-      const orders = await axios.get('http://localhost:3001/orders');
+      const orders = await axios.get(`http://localhost:3001/orders?orderId=${id}&status=${status}`);
       dispatch({type: GET_ALL_ORDERS, payload: orders.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
+export function getAllRoles(token){
+  return async function (dispatch){
+    try {
+      const orders = await axios.get(`http://localhost:3001/roles`, {token});
+      dispatch({type: GET_ROLES, payload: orders.data})
     } catch (error) {
       console.log('Error: ' + error);
     }
