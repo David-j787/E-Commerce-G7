@@ -13,7 +13,7 @@ const adminOnly = async (req, res, next) => {
         const user = await User.findByPk(verify, {include: {model: Role}})
 
         if(user.role.name === "Admin" || user.role.name === "SuperAdmin"){
-            req.body.userId = verify;
+            req.body.user_id = verify;
             return next();
         }else {
             throw Error('you dont have permissions')

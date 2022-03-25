@@ -8,6 +8,7 @@ import AdminOrdersList from './AdminOrdersList';
 import AdminProductsList from './AdminProductsList';
 import AdminSideBar from './AdminSideBar';
 import AdminUsersList from './AdminUsersList';
+import AdminEditRole from './AdminEditRole';
 
 export default function AdminPanel() {
     const history = useHistory();
@@ -59,7 +60,8 @@ export default function AdminPanel() {
                 {show === 'orders' && <AdminOrdersList />}
                 {show === 'products' && <AdminProductsList getId={getId} showComponent={showComponent} />}
                 {show === 'updateProduct' && <UpdateProduct id={id} showComponent={showComponent}/>}
-                {show === 'editUser' && <AdminEditUser id={id}/>}
+                {show === 'editUser' && <AdminEditUser id={id} showComponent={showComponent}/>}
+                {show === 'editRole' && <AdminEditRole showComponent={showComponent}/>}
             </div>
         </div>
     )

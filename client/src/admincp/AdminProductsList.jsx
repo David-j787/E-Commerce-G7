@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions';
+import AdminSearchBar from './AdminSearchBar';
 
 export default function AdminProductsList({showComponent, getId}) {
     const dispatch = useDispatch();
@@ -29,11 +30,12 @@ export default function AdminProductsList({showComponent, getId}) {
 
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Products</div>
+            <div className='componentTitle'>Products Management</div>
+            <AdminSearchBar search='products' />
             <div className='tableHeader'><div>Product name</div>|<div>Price</div>|<div>Stock</div>|<div>Rate</div>|<div>Action</div></div>
             <div className='adminTable'>
                 <ul>
-                    {products?.map(prod => <li className='prodList' key={prod.id}>
+                    {Array.isArray(products) ? products?.map(prod => <li className='prodList' key={prod.id}>
                         <div>{prod.name.slice(0, 35)}{prod.name.length > 35 && '...'}</div>
                         <div>US$ {prod.price}</div>
                         <div>{prod.stock}</div>
@@ -43,7 +45,7 @@ export default function AdminProductsList({showComponent, getId}) {
                             <button onClick={e => deleteProduct(prod.id)}className='adminCP__button'>Delete</button>
                         </div>
                         
-                        </li>)}
+                        </li>) : <div className='noDataFound'>{products}</div>}
                 </ul>
             </div>
         </div>

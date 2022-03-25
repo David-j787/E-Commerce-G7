@@ -80,9 +80,12 @@ export function AdminEditUser(props){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //await axios.post("http://localhost:3001/user", user)
-        alert(`${user.username} was edited successfully!`)
-        props.showComponent('dashboard')
+        let token;
+        if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
+        else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
+        const response = await axios.put("http://localhost:3001/user/update", {...user, token});
+        if(response.status === 200) alert(`${user.username} was edited successfully!`)        
+        props.showComponent('users')
       };
 
     return (
