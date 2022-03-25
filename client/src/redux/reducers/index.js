@@ -10,6 +10,12 @@ import {
   USER_LOGIN,
   USER_LOGOUT,
   GET_SEARCH_PRODUCTS,
+  GET_ALL_ORDERS,
+  GET_ALL_USERS,
+  GET_USER_DETAIL,
+  GET_SEARCH_USERS,
+  GET_ROLES,
+  GET_ORDER
 } from '../actions';
 
 const initialState = {
@@ -18,7 +24,12 @@ const initialState = {
   categories: [],
   details: [],
   cart: [],
-  user: null
+  user: null,
+  orders: [],
+  allUsers: [],
+  userDetail: {},
+  allRoles: [],
+  user_order: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -37,7 +48,7 @@ function rootReducer(state = initialState, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        products: action.payload.filter(product => product.stock > 0),
+        products: action.payload
       };
     case ADD_PRODUCT:
       return {
@@ -83,11 +94,47 @@ function rootReducer(state = initialState, action) {
           user: null
         }
 
+    case GET_ROLES:
+        return{
+          ...state,
+          allRoles: action.payload.filter(role => role.id > 1)
+        }
+
     case GET_SEARCH_PRODUCTS:
-      const stock = Array.isArray(action.payload) ? action.payload.filter(product => product.stock > 0) : []
       return {
         ...state,
-        products: stock.length ? stock : "No results found"
+        products: action.payload.length ? action.payload : "No results found"
+      }
+
+    case GET_SEARCH_USERS:
+      return {
+        ...state,
+        allUsers: action.payload.length ? action.payload : "No results found"
+      }
+    
+    case GET_ALL_ORDERS:
+      const orders = action.payload.sort((orderA, orderB) => orderA.id > orderB.id ? 1 : -1);
+      return {
+        ...state,
+        orders: orders.length ? orders : "No orders found"
+      }
+    
+    case GET_ALL_USERS:
+        return {
+          ...state,
+          allUsers: action.payload.length ? action.payload : "No users found"
+        }
+    
+    case GET_USER_DETAIL:
+          return {
+            ...state,
+            userDetail: action.payload.length ? action.payload[0] : "No user found"
+          }
+      
+    case GET_ORDER:
+      return {
+        ...state,
+        user_order: action.payload
       }
 
     default:

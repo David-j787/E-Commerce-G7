@@ -50,7 +50,7 @@ const ShoppingCart = () => {
                     }) : <h3>El carrito esta vacio</h3>
                 }
                 {total ? <h2>Total: ${total}</h2> : null}
-                <Link to="#" className='shoppingCart__button'>Checkout</Link>
+                <Link to="/checkout" className='shoppingCart__button'>Checkout</Link>
             </div>
         </>
     )

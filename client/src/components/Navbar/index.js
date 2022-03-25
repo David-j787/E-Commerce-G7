@@ -65,15 +65,6 @@ const Navbar = () => {
             </li>
             <li className="list__item" onClick={handleClose}>
               <NavLink
-                to="/product/add"
-                className="list__link"
-                activeClassName="active"
-              >
-                Add product
-              </NavLink>
-            </li>
-            <li className="list__item" onClick={handleClose}>
-              <NavLink
                 to="/about"
                 className="list__link"
                 activeClassName="active"
