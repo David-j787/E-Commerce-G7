@@ -21,6 +21,7 @@ const allUsers = require("./getUsers-route");
 const userRole = require("./userRole-route")
 const orderStatus = require("./orderStatus-route")
 const deleteProduct = require("./deleteProduct-route");
+const allReviews = require("./getReviews-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -75,6 +76,8 @@ router.use('/notification', notificationOrder)
 router.use("/users", allUsers);
 
 router.use("/review", postReview);
+
+router.use('/reviews', allReviews);
 
 router.use("/product", adminOnly, deleteProduct)
 
