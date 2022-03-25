@@ -15,6 +15,7 @@ import Login from './components/Login/Login.jsx';
 import CreateProduct from './components/CreateProduct';
 import UpdateProduct from './components/UpdateProduct';
 import ProductDetail from './components/ProductDetail';
+import OrderCheckout from './components/OrderCheckout';
 import AdminPanel from './admincp/AdminPanel';
 import ResetPassword from './components/ResetPassword';
 
@@ -91,6 +92,7 @@ function App() {
             <Route exact path='/product/update/:id' component={UpdateProduct}/>
             <Route exact path='/product/:id' component={ProductDetail}/>
             <Route exact path='/login' component={Login}/>
+            <Route exact path='/checkout' component={OrderCheckout}/>
             <Route exact path='/admincp' component={AdminPanel}/>
           </Switch>
         </Router>
