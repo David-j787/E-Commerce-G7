@@ -1,20 +1,27 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getProductDetail, addProduct, productAmountSum } from '../redux/actions';
+import { getProductDetail, addProduct, productAmountSum, getReviews, userLogin } from '../redux/actions';
 import useUser from './Login/hooks/useUser';
 import ReviewAndRating from './ReviewAndRating';
+import Reviews from './Reviews';
 
 export function ProductDetail(props) {
     const dispatch = useDispatch();
     const id = props.match.params.id;
-    const { details, cart } = useSelector((state) => state);
+    const { details, cart ,reviews,user} = useSelector((state) => state);
 
     const { isLogged } = useUser();
 
     useEffect(() => {
         dispatch(getProductDetail(id));
     }, []); //eslint-disable-line
+
+    useEffect(() => {
+        dispatch(getReviews(id));
+    }, []); //eslint-disable-line
+    console.log(details.id);
+
 
     const handleAddCart = (product) => {
         const cartProduct = cart.filter(Product => Product.id === product.id)
@@ -48,8 +55,9 @@ export function ProductDetail(props) {
                     </div>
                 </div>
                 <div>
-                    {isLogged && <ReviewAndRating productId={details.id}/>}
-                </div>
+                    {isLogged && <ReviewAndRating  productId={details.id}/>}
+                              </div>
+                              <Reviews  className='reviews'/>
                 </div>
                 : (<h2>Loading...</h2>)}
         </div>
