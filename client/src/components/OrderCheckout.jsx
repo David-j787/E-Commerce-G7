@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from "react-redux";
+import Payments from "./Payments";
 
 
 export function OrderCheckout(){
-
-    const history = useHistory()
-    const { cart, user } = useSelector(state => state)
+    const { cart, user } = useSelector(state => state);
+    const [url, setUrl] = useState('');
 
     const [order, setOrder] = useState({
         total: null,
@@ -19,38 +18,40 @@ export function OrderCheckout(){
         setOrder({
             total: setTotal(),
             products: setProducts(),
-            //products: [{id: '1pi9b2lcsr',amount: 1}],
-            userId: user.id
+            userId: user?.id
         })
     }, [cart, user]) //eslint-disable-line
 
     console.log(order)
 
-    const setTotal = () => {
-        let subtotal = [];
-        let total = 0
-        cart?.map(el => subtotal.push(el.amount * el.price)) 
-        subtotal.map(p => total += p )
-        return total
+    const setTotal = _ => {
+        const subtotal = cart?.map(el => el.amount * el.price)
+        const total = subtotal?.reduce((acumulator, current) => acumulator + current);
+        return total;
     }
 
-    const setProducts = () => {
-        let productData = [];
-        cart?.map(prod => {
-        productData.push(
-            {
+
+    const setProducts = _ => {
+        const productData = cart?.map(prod => {
+            return {
                 id: prod.id, 
                 amount: prod.amount
             })
         })
-    return productData;
+        return productData;
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        await axios.post("http://localhost:3001/order", order)
-        alert('Thanks for your order!')
-        history.push("/")
+        const products = cart?.map(product => ({
+            name: product.name,
+            price: product.price,
+            amount: product.amount
+        }));
+        await axios.post("http://localhost:3001/order", order);
+        const response = await axios.post("http://localhost:3001/createPayment", {products, orderId: });
+        if(response.status === 200) setUrl(response.data.sandbox_init_point);
+        alert('Thanks for your order!');
     }
 
     console.log(cart)
@@ -75,8 +76,9 @@ export function OrderCheckout(){
             }
             <hr></hr>
             <label> TOTAL: </label>
-            <span>{setTotal()}</span>
+            <span>{setTotal()} USD</span>
             <button onClick={(e)=>handleSubmit(e)}>CONFIRM ORDER</button>
+            <Payments url={url}/>
         </div>
     )
 }

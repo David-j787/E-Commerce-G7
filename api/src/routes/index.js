@@ -21,7 +21,7 @@ const allUsers = require("./getUsers-route");
 const userRole = require("./userRole-route")
 const orderStatus = require("./orderStatus-route")
 const deleteProduct = require("./deleteProduct-route");
-const { createOrderMP, notificationOrder } = require("../utils/mpController");
+const { createOrderMP, notificationOrder, savePayment } = require("../utils/mpController");
 const allRoles = require("./getRoles-route");
 const setNewPass = require("./setNewPassword-route");
 const allReviews = require("./getReviews-route");
@@ -70,7 +70,7 @@ router.use("/product", productDetail);
 
 router.use("/orders", allOrders);
 
-router.use('/crear-orden',  createOrderMP)
+router.use('/createPayment',  createOrderMP)
 
 router.use('/notification', notificationOrder)
 
