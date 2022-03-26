@@ -11,18 +11,23 @@ export default function ReviewAndRating({productId}) {
 
   const handleInput = e => {
     setInput(e.target.value)
+   
   }
 
   const handleSubmit = async e => {
     e.preventDefault();
+    console.log(user.id);
     const response = await axios.post('http://localhost:3001/review', {
       review: input,
       rate: rating,
       userId: user.id,
       productId: productId
     });
-    if(response.data) alert('Se agregó el comment')
-    else alert('Surgio un error')
+   
+  
+    if(response.data) {
+      alert('Review added successfully')
+    }
   }
 
 
