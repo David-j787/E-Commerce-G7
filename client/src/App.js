@@ -24,6 +24,7 @@ import Orders from './components/Orders';
 
 // styles
 import './styles/styles.scss';
+import Payment from './components/Payment';
 
 function App() {
   const dispatch = useDispatch();
@@ -100,6 +101,7 @@ function App() {
             <Route exact path='/user/account' component={DashboardUser}/>
             <Route exact path='/account' component={UserAccount}/>
             <Route exact path='/orders' component={Orders}/>
+            <Route exact path='/payment/:paymentStatus' component={Payment}/>
           </Switch>
         </Router>
       </UserContextProvider>

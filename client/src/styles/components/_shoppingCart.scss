@@ -7,11 +7,39 @@
   border-radius: 5px;
   box-shadow: 1px 1px 5px $black;
   background-color: $white;
-  width: 300px;
+  width: 400px;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+  }
+  &__close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-weight: bolder;
+    background-color: $orange;
+    width: 25px;
+    height: 25px;
+    padding: 2px 6px;
+    color: $white;
+    border-radius: 99px;
+  }
 
   &__title {
     padding: 1rem 0;
     text-indent: 20px;
+  }
+
+  &__empty {
+    padding: 20px;
+    text-align: center;
+  }
+
+  &__total {
+    padding-top: 20px;
+    padding-right: 20px;
+    text-align: right;
   }
 
   &__button {

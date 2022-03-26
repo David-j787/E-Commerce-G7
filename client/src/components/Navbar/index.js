@@ -96,7 +96,7 @@ const Navbar = () => {
         <div className="navbar__cart">
           <figure>
             <img src={cart} alt="shoping cart" onClick={cartShow} />
-            {showCart && <ShoppingCart />}
+            {showCart && <ShoppingCart cartShow={cartShow} />}
           </figure>
           {isLogged
           ? <div className='navbarLogin'>

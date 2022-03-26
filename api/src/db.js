@@ -99,8 +99,9 @@ Review.belongsTo(User);
 Role.hasMany(User);
 User.belongsTo(Role);
 
-Order.hasOne(Payment);
+Order.hasMany(Payment);
 Payment.belongsTo(Order);
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -17,9 +17,11 @@ export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_DETAIL = 'GET_USER_DETAIL';
 export const GET_SEARCH_USERS = 'GET_SEARCH_USERS';
 export const GET_ROLES = 'GET_ROLES';
-export const GET_ORDER = "GET_ORDER"
-export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL"
-export const GET_REVIEWS = "GET_REVIEWS"
+export const GET_ORDER = "GET_ORDER";
+export const CLEAR_CART = "CLEAR_CART";
+export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL";
+export const GET_REVIEWS = "GET_REVIEWS";
+export const CLEAR_REVIEWS = "CLEAR_REVIEWS"
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -36,7 +38,6 @@ export const getAllProducts = () => {
     }
   };
 };
-
 
 export function getCategories() {
   return function (dispatch) {
@@ -85,6 +86,13 @@ export function getReviews(idProduct) {
     }
   };
 };
+
+export function clearReviews() {
+  return{
+    type: CLEAR_REVIEWS
+  }
+}
+
 //CART
 export const addProduct = (product) => {
   return {
@@ -97,6 +105,12 @@ export const restoreCart = (cart) => {
   return {
     type: RESTORE_CART,
     payload: cart
+  }
+}
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
   }
 }
 

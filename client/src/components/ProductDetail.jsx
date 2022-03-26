@@ -9,7 +9,7 @@ import Reviews from './Reviews';
 export function ProductDetail(props) {
     const dispatch = useDispatch();
     const id = props.match.params.id;
-    const { details, cart ,reviews,user} = useSelector((state) => state);
+    const { details, cart, user } = useSelector((state) => state);
 
     const { isLogged } = useUser();
 
@@ -49,15 +49,15 @@ export function ProductDetail(props) {
                         <span className='price'>US$ {details.price}</span>
                         <p className='description'>{details.description}</p>
                         {details.stock ? <p className='stock'><span>In stock</span> ({details.stock} available)</p> : <p className='stock'><span>⚠️This product isn't available for shopping</span></p>}
-                        <p className='rating'><span>Rating:</span> {details.rating}</p>
+                        <p className='rating'><span>Rating:</span> {details.rating?.toString().slice(0,3)}</p>
                         <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
-                        <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>
+                        {user?.roleId < 3 && <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>}
                     </div>
                 </div>
                 <div>
+                    <Reviews user={user} className='reviews'/>
                     {isLogged && <ReviewAndRating  productId={details.id}/>}
-                              </div>
-                              <Reviews  className='reviews'/>
+                </div>                              
                 </div>
                 : (<h2>Loading...</h2>)}
         </div>
