@@ -15,7 +15,8 @@ import {
   GET_USER_DETAIL,
   GET_SEARCH_USERS,
   GET_ROLES,
-  GET_ORDER
+  GET_ORDER,
+  GET_REVIEWS,
 } from '../actions';
 
 const initialState = {
@@ -29,7 +30,8 @@ const initialState = {
   allUsers: [],
   userDetail: {},
   allRoles: [],
-  user_order: []
+  user_order: [],
+  reviews: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -44,7 +46,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         details: action.payload,
       };
-
+      case GET_REVIEWS:
+        return {
+          ...state,
+          reviews: action.payload,
+        };
+  
     case GET_ALL_PRODUCTS:
       return {
         ...state,
