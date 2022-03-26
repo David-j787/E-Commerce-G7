@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom';
 
 export default function Payments({ url }){
     return(
-        <>
-        {url.length && <Link to={url}>
-            <button>Pay order</button>
-        </Link>}
-        </>
+        <div>
+        {url.length && <Link to={url}><button>Pay order</button></Link>}
+        </div>
     )
 }

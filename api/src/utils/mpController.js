@@ -1,17 +1,12 @@
 const mercadopago = require("mercadopago");
 const { Payment, Order } = require('../db')
 const axios = require('axios');
-let orderID;
-
-const token = "TEST-6508683784266795-032614-c5ed10e47bd215455fd52c34b5f9ff16-56958058";
 
 module.exports = {
     createOrderMP: async (req, res) => {
         const { products, orderId } = req.body
-        console.log(products)
-        orderID = orderId
         mercadopago.configure({
-        access_token: token,
+        access_token: process.env.MP_ACCESS_TOKEN,
         });
     
         // Crea un objeto de preferencia
@@ -22,10 +17,11 @@ module.exports = {
                 quantity: product.amount
             })),
             back_urls:{
-                failure: "http://localhost:3000/order/failure",
-                pending: "http://localhost:3000/order/pending",
-                success: "http://localhost:3000/order/success"
+                failure: "http://localhost:3000/payment/failure",
+                pending: "http://localhost:3000/payment/pending",
+                success: "http://localhost:3000/payment/success"
             },
+            external_reference: orderId.toString(),
             auto_return: 'approved',
                               //localhost:3001/notification
             notification_url:'https://c604-181-31-154-43.ngrok.io/notification',
@@ -38,10 +34,8 @@ module.exports = {
     notificationOrder: async (req, res) => {
         const data = req.query;
         const config = {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}` }
         };
-        console.log(data['data.id']);
-        console.log(orderID);
         res.status(200);       
         if(data['data.id']){
             const infoPayment = await axios.get(`https://api.mercadopago.com/v1/payments/${data['data.id']}`, config)
@@ -63,18 +57,20 @@ module.exports = {
                         status: infoPayment.data.status,
                         installment_amount: infoPayment.data.transaction_details.installment_amount,
                         net_received_amount: infoPayment.data.transaction_details.net_received_amount,
-                        total_paid_amount: infoPayment.data.transaction_details.total_paid_amount
+                        total_paid_amount: infoPayment.data.transaction_details.total_paid_amount,
+                        orderId: infoPayment.data.external_reference
                     }})
                     if(newPayment){
-                        /* const order = await Order.findByPk(orderID);
+                        const order = await Order.findByPk(infoPayment.data.external_reference);
                         if(!order) throw Error('Order not found');
-                        order.addPayment(newPayment); */
+                        order.status = 'processing';
+                        order.save();
                     }
                 }             
-                res.status(200);
+                res.sendStatus(201);
             } catch (err) {
                 console.log(err);
             }
-    }
+        }
     }
 } 

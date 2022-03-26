@@ -54,7 +54,6 @@ export function OrderCheckout(){
         }
     }
 
-
     const setProducts = _ => {
         const productData = cart?.map(prod => {
             return {
@@ -74,7 +73,6 @@ export function OrderCheckout(){
             amount: product.amount
         }));
 
-
         try {
             const response = await axios.post("http://localhost:3001/order", order);
             if(response.status === 200) {
@@ -90,14 +88,18 @@ export function OrderCheckout(){
                 // PARA LA ORDEN DE PAGO(NO BORRAR)
                 const res = await axios.post("http://localhost:3001/createPayment", {products, orderId});
                 if(res.status === 200) setUrl(res.data.response.sandbox_init_point);
-                console.log(res);
 
                 localStorage.removeItem('cart')
                 dispatch(clearCart());
-                //history.push('/');
             }
         } catch (error) {
-            
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 3000,
+                button: null
+            })
         }
     }
 
