@@ -99,7 +99,7 @@ Review.belongsTo(User);
 Role.hasMany(User);
 User.belongsTo(Role);
 
-Order.hasMany(Payment);
+Order.hasOne(Payment);
 Payment.belongsTo(Order);
 
 module.exports = {

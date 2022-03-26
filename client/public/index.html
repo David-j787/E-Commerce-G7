@@ -37,20 +37,20 @@
       });
     
       // Inicializa el checkout
-      // mp.checkout({
-      //   preference: {
-      //     id: "1247060110",
-      //   },
-      //   autoOpen: true, // Habilita la apertura automática del Checkout Pro
-      //   render: {
-      //     type: 'billetera',
-      //     container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
-      //     label: "Pagar",
-      //   },
-      // });
+      mp.checkout({
+        preference: {
+          id: "1095956071-087f2084-e831-4f13-a799-86f07a5b3e69",
+        },
+        autoOpen: true, // Habilita la apertura automática del Checkout Pro
+        render: {
+          type: 'billetera',
+          container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
+          label: "Pagar",
+        },
+      });
     </script>
     <!-- Llama a la función ‘open’ desde el elemento de tu página que desees -->
-    <!-- <input type="radio" id="checkout-open-radio" onclick="checkout.open()"/> -->
+    <input type="radio" id="checkout-open-radio" onclick="checkout.open()"/>
 
     <a href="https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1095956071-35b5f3c4-5602-4753-873e-762538d5b227" target="_blank">Pagar</a>
     <!--Donde el valor que debe tomar href es el init_point de la preferencia creada en el Server-Side -->

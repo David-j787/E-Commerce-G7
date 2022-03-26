@@ -48,7 +48,7 @@ export function OrderCheckout(){
             amount: product.amount
         }));
         await axios.post("http://localhost:3001/order", order);
-        const response = await axios.post("http://localhost:3001/createPayment", products);
+        const response = await axios.post("http://localhost:3001/createPayment", {products, orderId: });
         if(response.status === 200) setUrl(response.data.sandbox_init_point);
         alert('Thanks for your order!');
     }

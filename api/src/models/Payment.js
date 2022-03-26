@@ -13,16 +13,16 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(),
         },
         card_expiration_month: {
-            type: DataTypes.INTEGER(2),
+            type: DataTypes.INTEGER(),
         },
         card_expiration_year: {
-            type: DataTypes.INTEGER(4),
+            type: DataTypes.INTEGER(),
         },
         card_first_six_digits: {
-            type: DataTypes.INTEGER(6)
+            type: DataTypes.INTEGER()
         },
         card_last_four_digits: {
-            type: DataTypes.INTEGER(4)
+            type: DataTypes.INTEGER()
         },
         description: {
             // descripción del cargo eg, "computadora gamer"
