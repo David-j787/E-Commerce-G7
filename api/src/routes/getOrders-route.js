@@ -4,8 +4,8 @@ const { getOrders } = require('../utils/getOrders-utils');
 
 allOrders.get("/", async (req, res) => {
   try {
-    const { userid = '', orderId = '', status = '' } = req.query;
-    const getOrdersBy = await getOrders(userid, orderId, status);
+    const { userId = '', orderId = '', status = '' } = req.query;
+    const getOrdersBy = await getOrders(userId, orderId, status);
     res.json(getOrdersBy);
   } catch (err) {
     res.status(404).send(err);

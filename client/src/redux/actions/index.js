@@ -227,7 +227,7 @@ export function getUserDetail(id){
 export const getOrderByUserId = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3001/orders?userid=${userId}`);
+      const response = await axios.get(`http://localhost:3001/orders?userId=${userId}`);
       const data = await response.data;
       dispatch({
         type: GET_ORDER,
