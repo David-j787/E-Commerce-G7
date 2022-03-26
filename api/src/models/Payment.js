@@ -6,6 +6,11 @@ module.exports = (sequelize) => {
             // id del pago
             type: DataTypes.INTEGER(),
             primaryKey: true,
+            autoIncrement: true,
+        },
+        id_meli: {
+            // id de la transacción en mercado pago
+            type: DataTypes.INTEGER(),
         },
         card_expiration_month: {
             type: DataTypes.INTEGER(2),
