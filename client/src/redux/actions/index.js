@@ -17,7 +17,8 @@ export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_DETAIL = 'GET_USER_DETAIL';
 export const GET_SEARCH_USERS = 'GET_SEARCH_USERS';
 export const GET_ROLES = 'GET_ROLES';
-export const GET_ORDER = "GET_ORDER"
+export const GET_ORDER = "GET_ORDER";
+export const CLEAR_CART = "CLEAR_CART"
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -79,6 +80,12 @@ export const restoreCart = (cart) => {
   return {
     type: RESTORE_CART,
     payload: cart
+  }
+}
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
   }
 }
 

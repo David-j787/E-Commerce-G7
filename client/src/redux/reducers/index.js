@@ -15,7 +15,8 @@ import {
   GET_USER_DETAIL,
   GET_SEARCH_USERS,
   GET_ROLES,
-  GET_ORDER
+  GET_ORDER,
+  CLEAR_CART
 } from '../actions';
 
 const initialState = {
@@ -136,6 +137,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         user_order: action.payload
       }
+    
+    case CLEAR_CART:
+        return {
+          ...state,
+          cart: []
+        }
 
     default:
       return state;
