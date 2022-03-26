@@ -1,27 +1,35 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Order from './Order';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Order from "./Order";
+import { getOrderByUserId } from "../redux/actions";
+import { Link } from "react-router-dom";
 
-export function Orders(){
+export function Orders() {
+  const orders = useSelector((state) => state.user_order);
+  const { id } = useSelector((state) => state.user);
 
-    const { user, user_order } = useSelector((state) => state);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getOrderByUserId(user.id));
-    }, [user.id]);
+  useEffect(() => {
+    dispatch(getOrderByUserId(id));
+  }, [id]);
 
-    return (
-        <div>
-        {user_order.products?.map((order) => {
-            return (
-            <div key={user_order.id}>
-                <Order date={user_order.date} productId={order.productId} name={order.name}/>
-            </div>
-            );
-        })}
-        </div>
-    );
+  return (
+    <div>
+      <h2>MY ORDERS</h2>
+      <br></br>
+      {orders?.map((el) => {
+        return (
+          <div key={el.id}>
+            <Order date={el.date} products={el.products} />
+          </div>
+        );
+      })}
+      <Link to="/user/account">
+        <button>BACK</button>
+      </Link>
+    </div>
+  );
 }
 
-export default Order;
+export default Orders;

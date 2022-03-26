@@ -10,7 +10,7 @@ export function OrderCheckout(){
 
     const [order, setOrder] = useState({
         total: null,
-        products: [],
+        products: null,
         userId: null
     })
 
@@ -30,12 +30,13 @@ export function OrderCheckout(){
         return total;
     }
 
+
     const setProducts = _ => {
         const productData = cart?.map(prod => {
             return {
                 id: prod.id, 
                 amount: prod.amount
-            }
+            })
         })
         return productData;
     }

@@ -18,6 +18,9 @@ import ProductDetail from './components/ProductDetail';
 import OrderCheckout from './components/OrderCheckout';
 import AdminPanel from './admincp/AdminPanel';
 import ResetPassword from './components/ResetPassword';
+import DashboardUser from './components/DashboardUser';
+import UserAccount from './components/UserAccount';
+import Orders from './components/Orders';
 
 // styles
 import './styles/styles.scss';
@@ -94,6 +97,9 @@ function App() {
             <Route exact path='/login' component={Login}/>
             <Route exact path='/checkout' component={OrderCheckout}/>
             <Route exact path='/admincp' component={AdminPanel}/>
+            <Route exact path='/user/account' component={DashboardUser}/>
+            <Route exact path='/account' component={UserAccount}/>
+            <Route exact path='/orders' component={Orders}/>
           </Switch>
         </Router>
       </UserContextProvider>
