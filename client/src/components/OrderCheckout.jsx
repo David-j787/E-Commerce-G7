@@ -11,7 +11,7 @@ export function OrderCheckout(){
 
     const [order, setOrder] = useState({
         total: null,
-        products: [],
+        products: null,
         userId: null
     })
 
@@ -19,6 +19,7 @@ export function OrderCheckout(){
         setOrder({
             total: setTotal(),
             products: setProducts(),
+            //products: [{id: '1pi9b2lcsr',amount: 1}],
             userId: user.id
         })
     }, [cart, user]) //eslint-disable-line
@@ -35,14 +36,14 @@ export function OrderCheckout(){
 
     const setProducts = () => {
         let productData = [];
-        productData.push(cart?.map(prod => {
-            return {
+        cart?.map(prod => {
+        productData.push(
+            {
                 id: prod.id, 
                 amount: prod.amount
-            }
+            })
         })
-        )
-        return productData;
+    return productData;
     }
 
     const handleSubmit = async (e) => {
