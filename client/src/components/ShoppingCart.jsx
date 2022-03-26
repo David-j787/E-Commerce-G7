@@ -7,6 +7,8 @@ const ShoppingCart = () => {
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state)
 
+    const total = cart.length && cart.map(a => a.amount * a.price).reduce((a, b) => a + b)
+
     const handleRest = (productId) => {
         const cartProduct = cart.filter(product => product.id === productId)
         if (cartProduct[0].amount <= 1) return
@@ -47,7 +49,7 @@ const ShoppingCart = () => {
                         )
                     }) : <h3>El carrito esta vacio</h3>
                 }
-
+                {total ? <h2>Total: ${total}</h2> : null}
                 <Link to="/checkout" className='shoppingCart__button'>Checkout</Link>
             </div>
         </>
