@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import useUser from "./Login/hooks/useUser";
 import swal from 'sweetalert';
 import { clearCart } from "../redux/actions";
+import OrderShipping from "./OrderShipping";
 
 
 export function OrderCheckout(){
@@ -21,6 +22,12 @@ export function OrderCheckout(){
         products: null,
         userId: null
     })
+
+    const [notification, setNotification] = useState({});
+
+    const setShipping = (data) => {
+        setNotification(data);
+    }
 
     useEffect(() => {
         if(!isLogged){
@@ -43,8 +50,6 @@ export function OrderCheckout(){
             userId: user?.id
         })
     }, [cart, user]) //eslint-disable-line
-
-    console.log(order)
 
     const setTotal = _ => {
         if(cart?.length){
@@ -74,7 +79,7 @@ export function OrderCheckout(){
         }));
 
         try {
-            const response = await axios.post("http://localhost:3001/order", order);
+            const response = await axios.post("http://localhost:3001/order", {...order, ...notification});
             if(response.status === 200) {
                 orderId = response.data.id;
                 swal({
@@ -106,10 +111,10 @@ export function OrderCheckout(){
     return (
         <div>
             {isLogged ? 
+            cart?.length ?
             <div>
             <h2>Order summary</h2>
-            {cart?.length ?
-                cart?.map(product => 
+                {cart?.map(product => 
                        <div key={product.id}>
                             <label> Product: </label>
                             <span>{product.name}</span>
@@ -118,15 +123,15 @@ export function OrderCheckout(){
                             <span>{product.amount}</span>
                             <label> Price: </label>
                             <span>{product.price} USD</span>
-                       </div>) : <div>Your cart is empty</div>
-            }
+                       </div>)}             
             <hr></hr>
             <div>TOTAL: <span>{setTotal()} USD</span>
-            <button onClick={(e)=>handleSubmit(e)}>CONFIRM ORDER</button>
+            <OrderShipping setShipping={setShipping}/>
+            <button onClick={(e)=>handleSubmit(e)} disabled={!Object.keys(notification).length}>CONFIRM ORDER</button>
             </div>
-            {/* // PARA LA ORDEN DE PAGO(NO BORRAR) */}
-            <Payments url={url}/>
-            </div> : <div>Please Login to finish your Purchase</div>}
+            </div> : <><div>Your cart is empty</div> 
+            <Payments url={url}/></>
+            : <div>Please Login to finish your Purchase</div>}
         </div>
     )
 }

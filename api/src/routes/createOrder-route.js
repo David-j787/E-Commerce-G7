@@ -4,6 +4,7 @@ const createOrder = Router();
 
 createOrder.post("/", async (req, res) => {
   const order = req.body;
+  console.log(order);
   try {
     const result = await postOrder(order);
     res.send(result);
