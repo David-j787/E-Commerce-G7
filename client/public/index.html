@@ -29,33 +29,30 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
-      // Agrega credenciales de SDK
-      const mp = new MercadoPago("APP_USR-672fc478-6c7b-4618-a2ae-cc5792d4ab81", {
+      // Agrega credenciales de SDK(Kit de desarrollo de software)
+      const mp = new MercadoPago("TEST-61750678-c02d-45ad-a0f7-ebacfa49fb06", {
         locale: "es-AR",
       });
     
       // Inicializa el checkout
-      mp.checkout({
-        preference: {
-          id: "1247060110",
-        },
-        render: {
-          container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
-          label: "Pagar", // Cambia el texto del botón de pago (opcional)
-        },
-      });
+      // mp.checkout({
+      //   preference: {
+      //     id: "1247060110",
+      //   },
+      //   autoOpen: true, // Habilita la apertura automática del Checkout Pro
+      //   render: {
+      //     type: 'billetera',
+      //     container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
+      //     label: "Pagar",
+      //   },
+      // });
     </script>
+    <!-- Llama a la función ‘open’ desde el elemento de tu página que desees -->
+    <!-- <input type="radio" id="checkout-open-radio" onclick="checkout.open()"/> -->
+
+    <a href="https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1095956071-35b5f3c4-5602-4753-873e-762538d5b227" target="_blank">Pagar</a>
+    <!--Donde el valor que debe tomar href es el init_point de la preferencia creada en el Server-Side -->
   </body>
 </html>

@@ -49,7 +49,12 @@ module.exports = (sequelize) => {
     country: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    reset_password: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
   },{
     timestamps: false
   });

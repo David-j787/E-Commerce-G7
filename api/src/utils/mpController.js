@@ -2,44 +2,29 @@ const mercadopago = require("mercadopago");
 
 module.exports = {
     createOrderMP: async (req, res) => {
+        const { products } = req.body
         mercadopago.configure({
-        access_token: "TEST-6596838768942079-032414-6ec152147c9a25af6bb30998590e9de6-1095275156",
+        access_token: "TEST-8559540551319909-032518-d17fb570f620b231bb0f76aaca5c690c-1095956071",
         });
     
         // Crea un objeto de preferencia
         let preference = {
-            purpose: "wallet_purchase",
-            items: [
-            {
-                title: "compu gamer",
-                unit_price: 1.5,
-                quantity: 1,
-            },
-            ],
+            items: products?.map(product => ({
+                title: product.name,
+                unit_price: product.price,
+                quantity: product.amount
+            })),
                               //localhost:3001/notification
-            notification_url:'https://cdbf-2803-9800-b010-81fa-41e6-4e96-f859-2d5b.ngrok.io/notification',
-            back_urls: {
-                success: "https://4746-2803-9800-b010-81fa-41e6-4e96-f859-2d5b.ngrok.io",
-            },
-            payment_methods: {
-                excluded_payment_types: [
-                    {
-                        id: "ticket"
-                    }
-                ],
-                installments: 16
-            },
+            notification_url:'https://196f-2803-9800-b010-81fa-4427-ef40-f46c-5348.ngrok.io/notification',
         };
-      
         mercadopago.preferences.create(preference)
         .then(response => {
-            id: response.body.id
             res.json(response)
         }, err => console.log(err))
     },
     notificationOrder: async (req, res) => {
-        const data = req.query;
-        console.log(data)
+        const { data } = req.query;
+        const infoPayment = await axios.get(`https://api.mercadopago.com/v1/payments/${data.id}`)
         res.status(200)
     }
 } 

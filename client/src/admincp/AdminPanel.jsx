@@ -8,6 +8,7 @@ import AdminOrdersList from './AdminOrdersList';
 import AdminProductsList from './AdminProductsList';
 import AdminSideBar from './AdminSideBar';
 import AdminUsersList from './AdminUsersList';
+import AdminEditRole from './AdminEditRole';
 
 export default function AdminPanel() {
     const history = useHistory();
@@ -38,7 +39,6 @@ export default function AdminPanel() {
         else if(localStorage.getItem('jwt')){
             axios.post('http://localhost:3001/admin/authenticate', {token: localStorage.getItem('jwt')})
             .then(res => {
-                console.log(res)
                 if(res.data.user.roleId === 1 || res.data.user.roleId === 2) localStorage.setItem('session', "authenticated")
                 else history.push('/')
             })
@@ -59,7 +59,8 @@ export default function AdminPanel() {
                 {show === 'orders' && <AdminOrdersList />}
                 {show === 'products' && <AdminProductsList getId={getId} showComponent={showComponent} />}
                 {show === 'updateProduct' && <UpdateProduct id={id} showComponent={showComponent}/>}
-                {show === 'editUser' && <AdminEditUser id={id}/>}
+                {show === 'editUser' && <AdminEditUser id={id} showComponent={showComponent}/>}
+                {show === 'editRole' && <AdminEditRole showComponent={showComponent}/>}
             </div>
         </div>
     )
