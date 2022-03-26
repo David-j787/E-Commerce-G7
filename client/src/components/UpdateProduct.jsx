@@ -140,11 +140,6 @@ export function UpdateProduct(props){
                     <div className='register__error'>{errors.stock}</div>
                     </div>
                     <div className="register-group">
-                    <label className="col-md-4 control-label">Rating:</label>
-                    <input type='number' min='0' max='5' name="rating" step="0.1" value={input.rating} onChange={handleChange} />
-                    <div className='register__error'>{errors.rating}</div>
-                    </div>
-                    <div className="register-group">
                     <label className="col-md-4 control-label">Categories:</label>
                     <div>
                     <select defaultValue='none' name="categories" onChange={handleSelect} autoComplete='off'>

@@ -1,15 +1,15 @@
 import React from 'react';
-import Orders from './Orders';
+import { Link } from 'react-router-dom';
 
 export function DashboardUser(){
+
     return (
         <div>
-            <h2>My Account</h2>
-            <h2>Edit Account</h2>
-            <h2>Orders</h2>
-            <Orders />
-            <span>Order details</span>
-            <span>Wishlist</span>
+            <Link to="/account"><h2>My Account</h2></Link>
+            <Link to="/orders"><h2>Orders</h2></Link>
+            <h2>Order details</h2>
+            <h2>Wishlist</h2>
+            <Link to="/"><button>Go back</button></Link>
         </div>
     )
 }

@@ -18,7 +18,10 @@ export const GET_USER_DETAIL = 'GET_USER_DETAIL';
 export const GET_SEARCH_USERS = 'GET_SEARCH_USERS';
 export const GET_ROLES = 'GET_ROLES';
 export const GET_ORDER = "GET_ORDER";
-export const CLEAR_CART = "CLEAR_CART"
+export const CLEAR_CART = "CLEAR_CART";
+export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL";
+export const GET_REVIEWS = "GET_REVIEWS";
+export const CLEAR_REVIEWS = "CLEAR_REVIEWS"
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -39,33 +42,55 @@ export const getAllProducts = () => {
 export function getCategories() {
   return function (dispatch) {
     return axios.get('http://localhost:3001/categories')
-      .then((response) => response.data)
-      .then((data) => {
-        dispatch({
-          type: GET_CATEGORIES,
-          payload: data,
-        });
-      })
-      .catch((error) => {
-        console.log('NOT FOUND', error);
+    .then((response) => response.data)
+    .then((data) => {
+      dispatch({
+        type: GET_CATEGORIES,
+        payload: data,
       });
+    })
+    .catch((error) => {
+      console.log('NOT FOUND', error);
+    });
   };
 }
 
 export function getProductDetail(idProduct) {
   return function (dispatch) {
     return axios.get(`http://localhost:3001/product/${idProduct}`)
-      .then((response) => response.data)
-      .then((data) => {
-        dispatch({
-          type: GET_PRODUCT_DETAIL,
-          payload: data,
-        });
-      })
-      .catch((error) => {
-        console.log('NOT FOUND', error);
+    .then((response) => response.data)
+    .then((data) => {
+      dispatch({
+        type: GET_PRODUCT_DETAIL,
+        payload: data,
       });
+    })
+    .catch((error) => {
+      console.log('NOT FOUND', error);
+    });
   };
+}
+
+export function getReviews(idProduct) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/reviews/?productId=${idProduct}`);
+      const data = await response.data;
+
+      dispatch({
+        type: GET_REVIEWS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log('REVIEW NOT FOUND', error);
+    }
+  };
+};
+
+export function clearReviews() {
+  return{
+    type: CLEAR_REVIEWS
+  }
 }
 
 //CART

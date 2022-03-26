@@ -101,7 +101,7 @@ const Navbar = () => {
           {isLogged
           ? <div className='navbarLogin'>
               <figure className='navbarLogin__logged'>
-                <img src={avatar} alt="avatar" />
+                <Link to='/user/account'><img src={avatar} alt="avatar" /></Link>
                 <div className='client'>
                   <span className='name'>{user.name}</span>
                   <span>{user.last_name}</span> <br/>

@@ -18,7 +18,7 @@ export function OrderCheckout(){
 
     const [order, setOrder] = useState({
         total: null,
-        products: [],
+        products: null,
         userId: null
     })
 
@@ -54,6 +54,7 @@ export function OrderCheckout(){
         }
     }
 
+
     const setProducts = _ => {
         const productData = cart?.map(prod => {
             return {
@@ -67,21 +68,17 @@ export function OrderCheckout(){
     const handleSubmit = async e => {
         e.preventDefault();
         // PARA LA ORDEN DE PAGO (NO BORRAR)
-/*         const products = cart?.map(product => ({
+        const products = cart?.map(product => ({
             name: product.name,
             price: product.price,
             amount: product.amount
-        })); */
-        // PARA LA ORDEN DE PAGO(NO BORRAR)
-/*      const res = await axios.post("http://localhost:3001/createPayment", {products, orderId});
-        if(res.status === 200) setUrl(res.data.response.sandbox_init_point);
-        console.log(response)
-        console.log(res); */
+        }));
+
 
         try {
             const response = await axios.post("http://localhost:3001/order", order);
             if(response.status === 200) {
-                /* orderId = response.data.id; */
+                orderId = response.data.id;
                 swal({
                     title: 'Your order has been confirmed',
                     text: 'Thanks for your purchase',
@@ -89,14 +86,19 @@ export function OrderCheckout(){
                     timer: 3000,
                     button: null
                 })
+            
+                // PARA LA ORDEN DE PAGO(NO BORRAR)
+                const res = await axios.post("http://localhost:3001/createPayment", {products, orderId});
+                if(res.status === 200) setUrl(res.data.response.sandbox_init_point);
+                console.log(res);
+
                 localStorage.removeItem('cart')
                 dispatch(clearCart());
-                history.push('/');
+                //history.push('/');
             }
         } catch (error) {
             
         }
-
     }
 
     return (
@@ -114,15 +116,15 @@ export function OrderCheckout(){
                             <span>{product.amount}</span>
                             <label> Price: </label>
                             <span>{product.price} USD</span>
-                       </div>) : 'Your Cart is empty'
+                       </div>) : <div>Your cart is empty</div>
             }
             <hr></hr>
             <div>TOTAL: <span>{setTotal()} USD</span>
             <button onClick={(e)=>handleSubmit(e)}>CONFIRM ORDER</button>
             </div>
             {/* // PARA LA ORDEN DE PAGO(NO BORRAR) */}
-            {/* <Payments url={url}/> */}
-            </div> : "Please Login to finish your Purchase"}
+            <Payments url={url}/>
+            </div> : <div>Please Login to finish your Purchase</div>}
         </div>
     )
 }

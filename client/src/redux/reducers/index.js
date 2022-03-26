@@ -16,7 +16,10 @@ import {
   GET_SEARCH_USERS,
   GET_ROLES,
   GET_ORDER,
-  CLEAR_CART
+  CLEAR_CART,
+  GET_REVIEWS,
+  CLEAR_REVIEWS
+
 } from '../actions';
 
 const initialState = {
@@ -30,37 +33,55 @@ const initialState = {
   allUsers: [],
   userDetail: {},
   allRoles: [],
-  user_order: []
+  user_order: [],
+  reviews: []
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+
     case GET_CATEGORIES:
       return {
         ...state,
         categories: action.payload,
       };
+
     case GET_PRODUCT_DETAIL:
       return {
         ...state,
         details: action.payload,
       };
 
+    case GET_REVIEWS:
+        return {
+          ...state,
+          reviews: action.payload,
+        };
+    
+    case CLEAR_REVIEWS:
+          return {
+            ...state,
+            reviews: [],
+          };
+  
     case GET_ALL_PRODUCTS:
       return {
         ...state,
         products: action.payload
       };
+
     case ADD_PRODUCT:
       return {
         ...state,
         cart: [...state.cart, action.payload],
       };
+
     case RESTORE_CART:
       return {
         ...state,
         cart: action.payload
       }
+
     case PRODUCT_AMOUNT_SUM:
       return {
         ...state,
@@ -69,6 +90,7 @@ function rootReducer(state = initialState, action) {
           ? { ...product, amount: product.amount + 1 } : product;
         })]
       };
+
     case PRODUCT_AMOUNT_REST:
       return {
         ...state,
@@ -77,6 +99,7 @@ function rootReducer(state = initialState, action) {
           ? { ...product, amount: product.amount - 1 } : product;
         })]
       };
+
     case PRODUCT_REMOVE:
       return {
         ...state,
