@@ -18,11 +18,13 @@ export function Orders() {
     <div>
       <h2>MY ORDERS</h2>
       <br></br>
-      {orders?.map((order) => 
+      {orders?.length ?
+      orders?.map((order) => 
           <div key={order.id}>
             <Order order={order} />
           </div>
-        )}
+        ) : <div>You don't have orders to show</div>
+      }
     </div>
   );
 }
