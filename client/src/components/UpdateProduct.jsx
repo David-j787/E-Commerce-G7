@@ -40,8 +40,7 @@ export function validate(input) {
 
 export function UpdateProduct(props){
     const dispatch = useDispatch();
-    //const id = props.match.params.id;
-    const id = props.id;
+    const id = props.id || props.match.params.id;
     const history = useHistory();
 
     const productDetails = useSelector((state)=>state.details)

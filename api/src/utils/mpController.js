@@ -40,7 +40,7 @@ module.exports = {
         if(data['data.id']){
             const infoPayment = await axios.get(`https://api.mercadopago.com/v1/payments/${data['data.id']}`, config)
             try {
-                if(infoPayment.data.status === 'approved'){
+                if(infoPayment.data.status === 'approved' && infoPayment.data.external_reference){
                     const [payment, newPayment] = await Payment.findOrCreate({
                         where: { id_meli: infoPayment.data.id },
                         defaults: {
