@@ -21,6 +21,7 @@ import ResetPassword from './components/ResetPassword';
 import DashboardUser from './components/DashboardUser';
 import UserAccount from './components/UserAccount';
 import Orders from './components/Orders';
+import OrderClient from './components/OrderClient';
 
 // styles
 import './styles/styles.scss';
@@ -102,6 +103,7 @@ function App() {
             <Route exact path='/account' component={UserAccount}/>
             <Route exact path='/orders' component={Orders}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
+            <Route exact path='/orderClient' component={OrderClient}/>
           </Switch>
         </Router>
       </UserContextProvider>
