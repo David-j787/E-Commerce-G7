@@ -15,6 +15,7 @@ export function OrderCheckout(){
     const { isLogged } = useUser();
     const { cart, user } = useSelector(state => state);
     const [url, setUrl] = useState('');
+    const [confirmed, setConfirmed] = useState(false);
     let orderId;
 
     const [order, setOrder] = useState({
@@ -69,8 +70,14 @@ export function OrderCheckout(){
         return productData;
     }
 
+    const clearShopCart = () => {
+        localStorage.removeItem('cart')
+        dispatch(clearCart());
+    }
+
     const handleSubmit = async e => {
         e.preventDefault();
+        setConfirmed(!confirmed);
         // PARA LA ORDEN DE PAGO (NO BORRAR)
         const products = cart?.map(product => ({
             name: product.name,
@@ -94,8 +101,6 @@ export function OrderCheckout(){
                 const res = await axios.post("http://localhost:3001/createPayment", {products, orderId});
                 if(res.status === 200) setUrl(res.data.response.sandbox_init_point);
 
-                localStorage.removeItem('cart')
-                dispatch(clearCart());
             }
         } catch (error) {
             swal({
@@ -147,10 +152,10 @@ export function OrderCheckout(){
                 </div>
 
                 <OrderShipping setShipping={setShipping}/>
-                <button className="confirmOrder" onClick={(e)=>handleSubmit(e)} disabled={!Object.keys(notification).length}>CONFIRM ORDER</button>
-
+                <button className="confirmOrder" onClick={(e)=>handleSubmit(e)} disabled={!Object.keys(notification).length || confirmed}>CONFIRM ORDER</button>
+                <Payments clearCart={clearShopCart} url={url}/>
             </div> : <><div>Your cart is empty</div> 
-            <Payments url={url}/></>
+            </>
             : <div>Please Login to finish your Purchase</div>}
         </div>
     )
