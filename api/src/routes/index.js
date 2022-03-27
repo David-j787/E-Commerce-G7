@@ -21,6 +21,7 @@ const allUsers = require("./getUsers-route");
 const userRole = require("./userRole-route")
 const orderStatus = require("./orderStatus-route")
 const deleteProduct = require("./deleteProduct-route");
+const roles = require('./roles.js');
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -34,6 +35,8 @@ const { createOrderMP, notificationOrder } = require("../utils/mpController");
 
 // Config routers
 // Example: router.use('/users', getUsers);
+router.use('/roles', roles);
+
 router.use("/products", allProducts);
 
 router.use("/order", createOrder);
