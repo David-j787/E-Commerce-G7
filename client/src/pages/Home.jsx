@@ -7,13 +7,13 @@ import Paginate from '../components/Paginate';
 const Home = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state);
-  const stock = products?.filter(product => product.stock > 0)
+  const stock = Array.isArray(products) && products?.filter(product => product.stock > 0)
 
   const [currentPage, setCurrentPage]= useState(1);
   const [productsPerPage, setProductsPerPage] = useState(6);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = stock.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = Array.isArray(products) && stock.slice(indexOfFirstProduct, indexOfLastProduct);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
  
   useEffect(() => {
@@ -27,7 +27,7 @@ const Home = () => {
       <h2 className="shop__title">SHOP</h2>
 
       {!Array.isArray(stock) ? (
-        <h2>{stock}</h2>
+        <h2>No results found</h2>
       ) : (
         <div>
           <Products products={currentProducts} />
