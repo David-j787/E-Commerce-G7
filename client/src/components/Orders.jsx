@@ -15,16 +15,19 @@ export function Orders() {
   }, [id]);
 
   return (
-    <div>
-      <h2>MY ORDERS</h2>
-      <br></br>
-      {orders?.length ?
-      orders?.map((order) => 
-          <div key={order.id}>
-            <Order order={order} />
-          </div>
-        ) : <div>You don't have orders to show</div>
-      }
+    <div className="orders">
+      <div className="container">
+        <h2 className="orders__title">MY ORDERS</h2>
+        <div className="orders__wrapper">
+          {orders?.length ?
+          orders?.map((order) =>
+             
+                <Order order={order} key={order.id} />
+            
+            ) : <div>You don't have orders to show</div>
+          }
+        </div>
+      </div>
     </div>
   );
 }
