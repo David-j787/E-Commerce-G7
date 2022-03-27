@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import swal from 'sweetalert';
+import { getAllUsers } from '../redux/actions';
 
 export function validate(user, users) {
     const emails = users.map(user => user.email)
@@ -74,6 +75,10 @@ export function UpdateAccount(props){
             dateOfBirth: userDetails?.dateOfBirth,
         })
     },[userDetails])
+
+    useEffect(() => {
+        dispatch(getAllUsers());
+    },[])
         
 
     const handleChange = (e) => {
@@ -106,7 +111,6 @@ export function UpdateAccount(props){
                         button: null
                     })
                 }
-                props.showComponent('users');
             })
         } catch (error) {
             swal({

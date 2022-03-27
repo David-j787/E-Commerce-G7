@@ -1,6 +1,7 @@
 const mercadopago = require("mercadopago");
 const { Payment, Order } = require('../db')
 const axios = require('axios');
+const { orderStatusChange } = require('./emailSender');
 
 module.exports = {
     createOrderMP: async (req, res) => {
@@ -65,6 +66,7 @@ module.exports = {
                         if(!order) throw Error('Order not found');
                         order.status = 'processing';
                         order.save();
+                        orderStatusChange("processing", order)
                     }
                 }             
                 res.sendStatus(201);

@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {updateAccount} = require("../utils/editUser-utils")
+const {updateAccount} = require("../utils/updateAccount-utils")
 
 const updateUser = Router();
 
