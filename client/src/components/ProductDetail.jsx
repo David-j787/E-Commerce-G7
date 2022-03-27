@@ -9,7 +9,8 @@ import Reviews from './Reviews';
 export function ProductDetail(props) {
     const dispatch = useDispatch();
     const id = props.match.params.id;
-    const { details, cart, user } = useSelector((state) => state);
+    const { details, cart, user, reviews } = useSelector((state) => state);
+    const alreadyCommented = reviews.find(review => user?.id === review?.userId);
     
     const { isLogged } = useUser();
     
@@ -52,8 +53,10 @@ export function ProductDetail(props) {
                     </div>
                 </div>
                 <div>
-                    <Reviews user={user} className='reviews'/>
-                    {isLogged && <ReviewAndRating  productId={details.id}/>}      
+                    <Reviews id={id} className='reviews'/>
+                    {isLogged && !alreadyCommented ? 
+                    <ReviewAndRating  productId={details.id}/> : 
+                    <div>You already review this product. Thanks for your feedback</div>}      
                 </div>               
                 </div>
                 : (<h2>Loading...</h2>)}

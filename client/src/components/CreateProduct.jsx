@@ -100,7 +100,7 @@ export function CreateProduct(){
     }
 
     return(
-        <div className="container">
+        <div className="adminContainer editForms">
             <div className="register createProduct">
                 <h1 className="register__title">New Product</h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} action="" method="post"  id="contact_form">

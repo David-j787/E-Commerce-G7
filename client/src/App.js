@@ -83,6 +83,7 @@ function App() {
         <Router>
           <Navbar />
           <Route path='/user/account' component={DashboardUser}/>
+          <Route path='/admincp' component={AdminPanel}/>
           
           <Switch>
             <Route exact path="/" render={() => {
@@ -96,12 +97,11 @@ function App() {
               }
             }}/>
             <Route exact path='/register' component={CreateUser}/>
-            <Route exact path='/product/add' component={CreateProduct}/>
+            <Route exact path='/admincp/product/add' component={CreateProduct}/>
             <Route exact path='/product/update/:id' component={UpdateProduct}/>
             <Route exact path='/product/:id' component={ProductDetail}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/checkout' component={OrderCheckout}/>
-            <Route exact path='/admincp' component={AdminPanel}/>
             <Route exact path='/user/account/profile' component={UserAccount}/>
             <Route exact path='/user/account/reset-password' component={ResetPassword}/>
             <Route exact path='/user/account/edit' component={UpdateAccount}/>

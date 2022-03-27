@@ -1,8 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import useUser from '../components/Login/hooks/useUser';
 
 export default function AdminSideBar({showComponent}){
     const user = useSelector(state => state.user);
+    const { logout } = useUser();
     return(
         <div><div className="area"></div><nav className="main-menu">
         <ul>
@@ -27,7 +29,7 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-bar-chart-o fa-2x"></i>
                 <span className="nav-text">Edit roles</span>
             </li>}
-            <li>
+           {/*  <li>
                 <i className="fa fa-font fa-2x"></i>
                 <span className="nav-text">Newsletter</span>
             </li>
@@ -42,11 +44,11 @@ export default function AdminSideBar({showComponent}){
             <li>
                 <i className="fa fa-info fa-2x"></i>
                 <span className="nav-text">Documentation</span>
-            </li>
+            </li> */}
         </ul>
 
         <ul className="logout">
-            <li>
+            <li onClick={logout}>
                      <i className="fa fa-power-off fa-2x"></i>
                     <span className="nav-text">
                         Logout

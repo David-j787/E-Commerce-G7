@@ -24,10 +24,16 @@
     margin: 30px 0 30px;
     width: 100%;
     font-size: 40px;
+
+    &__button {
+        float: right;
+        margin-right: 2rem;
+        @include button();
+    }
 }
 .adminTable{
     overflow-y: scroll;
-    height: 650px;
+    height: 550px;
 }
 .editForms{
     overflow-y: scroll;

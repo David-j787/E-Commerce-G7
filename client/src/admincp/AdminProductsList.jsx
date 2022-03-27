@@ -13,6 +13,10 @@ export default function AdminProductsList({showComponent, getId}) {
         dispatch(getAllProducts());
     },[])
 
+    const addProduct = () => {
+        showComponent('addProduct')
+    }
+
     const editProduct = (productId) => {
         getId(productId);
         showComponent('updateProduct')
@@ -55,7 +59,7 @@ export default function AdminProductsList({showComponent, getId}) {
 
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Products Management</div>
+            <div className='componentTitle'>Products Management <button onClick={addProduct} className='componentTitle__button'>Add new Product</button></div>
             <AdminSearchBar search='products' />
             <div className='tableHeader'><div>Product name</div>|<div>Price</div>|<div>Stock</div>|<div>Rate</div>|<div>Action</div></div>
             <div className='adminTable'>
