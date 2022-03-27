@@ -1,0 +1,80 @@
+.orderDetails {
+  max-width: 800px;
+  min-height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -200px;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 3rem;
+
+  &.shadow {
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  }
+
+  &__item {
+    .item__details {
+      padding: 30px;
+    }
+    .item__title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .details__user {
+      background: #f6f9fc;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #dadada;
+    }
+    
+    .item__quantity {
+      position: absolute;
+      right: 50px;
+      top: 30px;
+      font-size: 20px;
+    }
+    
+    .item__image .iphone {
+      margin-top: -50px;
+      margin-left: -100px;
+      width: 200px;
+    }
+    
+    .item__price {
+      font-size: 22px;
+      color: #bec3cb;
+    }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+    ul {
+      padding-left: 20px;
+
+      * + *{
+        margin-top: .5rem;
+      }
+
+      li {
+        list-style-type: disc;
+
+        span:first-of-type {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
