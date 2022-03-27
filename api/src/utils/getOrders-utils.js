@@ -2,7 +2,7 @@ const { Order, Product, User, product_order } = require('../db.js');
 
 module.exports = {
     getOrders : async (userId, orderId, status) => {
-        let findedOrders = await Order.findAll({include: [Product, product_order, User]});
+        let findedOrders = await Order.findAll({include: [Product, product_order]});
 
         let filteredOrders = findedOrders;
 
