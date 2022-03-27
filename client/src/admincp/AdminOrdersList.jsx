@@ -5,12 +5,17 @@ import { getAllOrders } from '../redux/actions';
 import AdminSearchBar from './AdminSearchBar';
 import swal from 'sweetalert';
 
-export default function AdminOrdersList() {
+export default function AdminOrdersList({getId, showComponent}) {
     const dispatch = useDispatch();
     let orders = useSelector(state => state.orders);
     useEffect(()=>{
         dispatch(getAllOrders());
     },[])
+
+    const seeOrderDetails = (id) => {
+        getId(id);
+        showComponent('details')
+    }
 
     const changeStatus = async (event, orderId) => {
         let token;
@@ -48,7 +53,7 @@ export default function AdminOrdersList() {
             <div className='adminTable'>
                 <ul>
                     {Array.isArray(orders) ? (orders?.map(order => <li className='itemList' key={order.id}>
-                        <div>{order.id}</div>
+                        <div>{order.id}<button onClick={e => seeOrderDetails(order.id)}>Details</button></div>
                         <div>US$ {order.total}</div>
                         <div>{order.date}</div>
                         <div>{order.status}</div>

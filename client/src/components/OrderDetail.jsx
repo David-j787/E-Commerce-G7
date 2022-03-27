@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getOrderDetail } from "../redux/actions";
-import { useEffect } from "react";
 
 export default function OrderDetail(props) {
     const dispatch = useDispatch();
-    const orderId = props.match.params.id;
-    const { orderDetail } = useSelector((state) => state);
+    const orderId = props.id || props.match.params.id ;
+    const orderDetail = useSelector((state) => state.orderDetail);
 
     useEffect(() => {
         dispatch(getOrderDetail(orderId));
@@ -16,6 +15,7 @@ export default function OrderDetail(props) {
     return (
         <div className='container'>
                 <div className='order'>
+                    <div><button onClick={e => props.showComponent('orders')}>Back</button></div>
                     <div className='order__id'>
                         <span>Order ID: </span>
                         <span>{orderDetail?.id}</span>
@@ -41,7 +41,7 @@ export default function OrderDetail(props) {
                         <ul>
                             {orderDetail.products?.map(product=>(
                                 <li key={product.id}>
-                                    <span>{product.product_order.amount}</span> - <span>{product.name}</span>                  
+                                    <span>{product.product_order.amount}</span> - <Link to={`/product/detail/${product.id}`}><span>{product.name}</span></Link>                  
                                 </li>
                             ))}
                         </ul>
