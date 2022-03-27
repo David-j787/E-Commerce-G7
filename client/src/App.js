@@ -21,11 +21,12 @@ import ResetPassword from './components/ResetPassword';
 import DashboardUser from './components/DashboardUser';
 import UserAccount from './components/UserAccount';
 import Orders from './components/Orders';
-import OrderClient from './components/OrderClient';
+import Payment from './components/Payment';
+import OrderDetail from './components/OrderDetail.jsx';
 
 // styles
 import './styles/styles.scss';
-import Payment from './components/Payment';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -100,10 +101,10 @@ function App() {
             <Route exact path='/checkout' component={OrderCheckout}/>
             <Route exact path='/admincp' component={AdminPanel}/>
             <Route exact path='/user/account' component={DashboardUser}/>
-            <Route exact path='/account' component={UserAccount}/>
-            <Route exact path='/orders' component={Orders}/>
+            <Route exact path='/user/account/profile' component={UserAccount}/>
+            <Route exact path='/user/account/orders' component={Orders}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
-            <Route exact path='/orderClient' component={OrderClient}/>
+            <Route exact path='/order/detail/:id' component={OrderDetail}/>
           </Switch>
         </Router>
       </UserContextProvider>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export function Orders() {
   const orders = useSelector((state) => state.user_order);
-  const { id } = useSelector((state) => state.user);
+  const id = useSelector((state) => state.user?.id);
 
   const dispatch = useDispatch();
 
@@ -18,13 +18,11 @@ export function Orders() {
     <div>
       <h2>MY ORDERS</h2>
       <br></br>
-      {orders?.map((el) => {
-        return (
-          <div key={el.id}>
-            <Order date={el.date} products={el.products} />
+      {orders?.map((order) => 
+          <div key={order.id}>
+            <Order order={order} />
           </div>
-        );
-      })}
+        )}
       <Link to="/user/account">
         <button>BACK</button>
       </Link>

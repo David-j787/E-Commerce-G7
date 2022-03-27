@@ -13,7 +13,6 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
 export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
-export const GET_ALL_ORDERS2 = 'GET_ALL_ORDERS2';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_DETAIL = 'GET_USER_DETAIL';
 export const GET_SEARCH_USERS = 'GET_SEARCH_USERS';
@@ -181,10 +180,10 @@ export function userLogout(){
   }
 }
 
-export function getAllOrders2(){
+export function getAllOrders(id = '', status = ''){
   return async function (dispatch){
     try {
-      const orders = await axios.get(`http://localhost:3001/orders`);
+      const orders = await axios.get(`http://localhost:3001/orders?orderId=${id}&status=${status}`);
       dispatch({type: GET_ALL_ORDERS, payload: orders.data})
     } catch (error) {
       console.log('Error: ' + error);
@@ -192,12 +191,11 @@ export function getAllOrders2(){
   }
 }
 
-
-export function getAllOrders(id = '', status = ''){
+export function getOrderDetail(id = '', status = ''){
   return async function (dispatch){
     try {
-      const orders = await axios.get(`http://localhost:3001/orders?orderId=${id}&status=${status}`);
-      dispatch({type: GET_ALL_ORDERS, payload: orders.data})
+      const order = await axios.get(`http://localhost:3001/orders?orderId=${id}&status=${status}`);
+      dispatch({type: GET_ORDER_DETAIL, payload: order.data})
     } catch (error) {
       console.log('Error: ' + error);
     }

@@ -1,20 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export function Order({ date, products }) {
+export function Order({ order }) {
   return (
-    <div>
-      {products.map((e) => {
-        return (
-          <div key={e.id}>
-            <span>Date: {date}</span>
-            <br />
-            <Link to={`/product/${e.id}`}>{e.name}</Link>
-            <hr />
-          </div>
-        );
-      })}
-    </div>
+    <Link to={`/order/detail/${order.id}`}>
+      <div>
+        <span>Order N°: {order.id}</span><br />
+        <span>Date: {order.date}</span><br />
+        <span>Order Status: {order.status}</span><br />
+        <span>Total: {order.total}</span><br /><br />
+        <hr /><br />
+      </div>
+    </Link>
   );
 }
 

@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getProductDetail, addProduct, productAmountSum, getReviews, userLogin, getAllUsers, getAllOrders,getAllOrders2 } from '../redux/actions';
+import { getProductDetail, addProduct, productAmountSum, getReviews } from '../redux/actions';
 import useUser from './Login/hooks/useUser';
-import OrderClient from './OrderClient';
 import ReviewAndRating from './ReviewAndRating';
 import Reviews from './Reviews';
 
 export function ProductDetail(props) {
     const dispatch = useDispatch();
     const id = props.match.params.id;
-    const { details, cart, user,orders } = useSelector((state) => state);
-    
+    const { details, cart, user } = useSelector((state) => state);
     
     const { isLogged } = useUser();
     
@@ -22,19 +20,7 @@ export function ProductDetail(props) {
     useEffect(() => {
         dispatch(getReviews(id));
     }, []); //eslint-disable-line
-    console.log(details.id);
     
-    useEffect(() => {
-        dispatch(getAllUsers());
-    }, []); //eslint-disable-line
-    
-    useEffect(() => {
-        dispatch(getAllOrders2());
-    }, []); //eslint-disable-line
-    console.log(orders)
-
-
-
     const handleAddCart = (product) => {
         const cartProduct = cart.filter(Product => Product.id === product.id)
         if (cartProduct.length && cartProduct[0].stock > cartProduct[0].amount)
@@ -67,9 +53,7 @@ export function ProductDetail(props) {
                 </div>
                 <div>
                     <Reviews user={user} className='reviews'/>
-                    {isLogged && <ReviewAndRating  productId={details.id}/>}
-                    <OrderClient />
-                             
+                    {isLogged && <ReviewAndRating  productId={details.id}/>}      
                 </div>               
                 </div>
                 : (<h2>Loading...</h2>)}

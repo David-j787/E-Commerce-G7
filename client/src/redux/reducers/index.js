@@ -18,7 +18,8 @@ import {
   GET_ORDER,
   CLEAR_CART,
   GET_REVIEWS,
-  CLEAR_REVIEWS
+  CLEAR_REVIEWS,
+  GET_ORDER_DETAIL
 
 } from '../actions';
 
@@ -34,7 +35,8 @@ const initialState = {
   userDetail: {},
   allRoles: [],
   user_order: [],
-  reviews: []
+  reviews: [],
+  orderDetail: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -142,6 +144,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         orders: orders.length ? orders : "No orders found"
       }
+    
+    case GET_ORDER_DETAIL:
+        return {
+          ...state,
+          orderDetail: action.payload.length ? action.payload[0] : "No order found"
+        }
     
     case GET_ALL_USERS:
         return {
