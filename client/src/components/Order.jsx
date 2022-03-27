@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function Order({ order }) {
   return (
-    <Link to={`/order/detail/${order.id}`}>
+    <Link to={`/user/account/order/detail/${order.id}`}>
       <div>
         <span>Order N°: {order.id}</span><br />
         <span>Date: {order.date}</span><br />

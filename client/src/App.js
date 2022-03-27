@@ -26,6 +26,7 @@ import OrderDetail from './components/OrderDetail.jsx';
 
 // styles
 import './styles/styles.scss';
+import UpdateAccount from './components/UpdateAccount';
 
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
       <UserContextProvider>
         <Router>
           <Navbar />
+          <Route path='/user/account' component={DashboardUser}/>
           
           <Switch>
             <Route exact path="/" render={() => {
@@ -100,11 +102,12 @@ function App() {
             <Route exact path='/login' component={Login}/>
             <Route exact path='/checkout' component={OrderCheckout}/>
             <Route exact path='/admincp' component={AdminPanel}/>
-            <Route exact path='/user/account' component={DashboardUser}/>
             <Route exact path='/user/account/profile' component={UserAccount}/>
+            <Route exact path='/user/account/reset-password' component={ResetPassword}/>
+            <Route exact path='/user/account/edit' component={UpdateAccount}/>
             <Route exact path='/user/account/orders' component={Orders}/>
+            <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
-            <Route exact path='/order/detail/:id' component={OrderDetail}/>
           </Switch>
         </Router>
       </UserContextProvider>

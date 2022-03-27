@@ -5,11 +5,10 @@ export function DashboardUser(){
 
     return (
         <div>
-            <Link to="/account"><h2>My Account</h2></Link>
-            <Link to="/orders"><h2>Orders</h2></Link>
-            <h2>Order details</h2>
-            <h2>Wishlist</h2>
-            <Link to="/"><button>Go back</button></Link>
+            <Link to="/user/account/profile"><h2>Profile</h2></Link>
+            <Link to="/user/account/orders"><h2>View Orders</h2></Link>
+            <Link to='/user/account/reset-password'><h2>Change Password</h2></Link>
+            <h2>My Wishlist</h2>
         </div>
     )
 }

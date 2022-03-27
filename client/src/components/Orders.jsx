@@ -23,9 +23,6 @@ export function Orders() {
             <Order order={order} />
           </div>
         )}
-      <Link to="/user/account">
-        <button>BACK</button>
-      </Link>
     </div>
   );
 }

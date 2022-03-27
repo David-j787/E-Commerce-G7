@@ -25,6 +25,7 @@ const { createOrderMP, notificationOrder, savePayment } = require("../utils/mpCo
 const allRoles = require("./getRoles-route");
 const setNewPass = require("./setNewPassword-route");
 const allReviews = require("./getReviews-route");
+const updateUser = require("./updateAccount-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -32,7 +33,6 @@ const verifyGoogleToken = require("../utils/verifyGoogleToken");
 const { isAuthenticated } = require('../utils/isAuthenticated');
 const adminOnly = require('../utils/adminOnly');
 const superAdminOnly = require("../utils/superAdminOnly");
-
 
 // Config routers
 // Example: router.use('/users', getUsers);
@@ -52,7 +52,9 @@ router.use("/user", user);
 
 router.use("/user/role", superAdminOnly, userRole)
 
-router.use("/user/update", adminOnly, editUser);
+router.use("/user/edit", adminOnly, editUser);
+
+router.use("/user/update", updateUser);
 
 router.use("/user", adminOnly, deleteUser)
 
