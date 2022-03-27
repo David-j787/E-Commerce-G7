@@ -109,26 +109,46 @@ export function OrderCheckout(){
     }
 
     return (
-        <div>
+        <div className="orderCheckout">
             {isLogged ? 
             cart?.length ?
-            <div>
-            <h2>Order summary</h2>
-                {cart?.map(product => 
-                       <div key={product.id}>
-                            <label> Product: </label>
-                            <span>{product.name}</span>
-                            <img src={product.images} width="200px" height="200px" alt="product ph"/>
-                            <label> Amount: </label>
-                            <span>{product.amount}</span>
-                            <label> Price: </label>
-                            <span>{product.price} USD</span>
-                       </div>)}             
-            <hr></hr>
-            <div>TOTAL: <span>{setTotal()} USD</span>
-            <OrderShipping setShipping={setShipping}/>
-            <button onClick={(e)=>handleSubmit(e)} disabled={!Object.keys(notification).length}>CONFIRM ORDER</button>
-            </div>
+            <div className="container">
+                <h2 className="orderCheckout__title">Order summary</h2>
+                    {cart?.map(product => 
+                        <div key={product.id} className="orderCheckout__content">
+                            <table className="order-table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={product.images} alt="product ph" />
+                                        </td>
+                                        <td>
+                                            <br /> <span className='thin'>{product.name}</span>
+                                            <br /> Amount: {product.amount}<br />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div className='price'>${product.price}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className="line"></div>
+                        </div>)}
+
+                <div className="total">
+                    <span style={{float: "left"}}>
+                        TOTAL:
+                        </span>
+                        <span style={{float: "right", textAlign: "right", fontWeight: "bold"}}>
+                        {setTotal()} USD
+                    </span>
+                </div>
+
+                <OrderShipping setShipping={setShipping}/>
+                <button className="confirmOrder" onClick={(e)=>handleSubmit(e)} disabled={!Object.keys(notification).length}>CONFIRM ORDER</button>
+
             </div> : <><div>Your cart is empty</div> 
             <Payments url={url}/></>
             : <div>Please Login to finish your Purchase</div>}

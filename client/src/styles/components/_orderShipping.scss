@@ -1,0 +1,50 @@
+.order_shipping {
+  margin-top: 5rem;
+  
+  &__title {
+    text-transform: uppercase;
+    border-bottom: thin solid #b6bcc8;
+    padding-bottom: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__form {
+    margin-top: 2rem;
+
+    > div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      label {
+        flex-basis: 20%;
+        font-size: 0.95rem;
+        font-weight: 500;
+        line-height: 1.5;
+        cursor: pointer;
+        font-family: "Kumbh Sans", sans-serif;
+      }
+
+      input {
+        flex-basis: 80%;
+        box-shadow: none;
+        color: #383838;
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        outline: none;
+        height: 50px;
+        background-color: #f6f6f6;
+        border: thin solid #ddd;
+        font-size: 14px;
+      }
+    }
+  }
+
+  button {
+    @include button();
+    margin-top: 1rem;
+    text-align: center;
+  }
+}

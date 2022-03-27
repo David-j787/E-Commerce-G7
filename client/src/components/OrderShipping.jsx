@@ -29,18 +29,26 @@ export function OrderShipping ({setShipping}){
     }
 
     return (
-        <div>
-            <div>Confirm Shipping Address & Email Notification</div>
-            <form onSubmit={handleSubmit}>
-                <label>E-mail</label>
-                <input name='email' value={field.email} onChange={handleChange}/>
-                <label>City</label>
-                <input name='city' value={field.city} onChange={handleChange}/>
-                <label>Address</label>
-                <input name='address' value={field.address} onChange={handleChange}/>
-                <label>Zip Code</label>
-                <input name='zip_code' value={field.zip_code} onChange={handleChange}/>
-                <input type="submit" value="Confirm data"/>
+        <div className="order_shipping">
+            <h4 className="order_shipping__title">Confirm Shipping Address & Email Notification</h4>
+            <form onSubmit={handleSubmit} className="order_shipping__form">
+                <div>
+                    <label>E-mail: </label>
+                    <input name='email' value={field.email} onChange={handleChange}/>
+                </div>
+                <div>
+                    <label>City: </label>
+                    <input name='city' value={field.city} onChange={handleChange}/>
+                </div>
+                <div>
+                    <label>Address: </label>
+                    <input name='address' value={field.address} onChange={handleChange}/>
+                </div>
+                <div>
+                    <label>Zip Code: </label>
+                    <input name='zip_code' value={field.zip_code} onChange={handleChange}/>
+                </div>
+                <button type="submit">Confirm data</button>
             </form>
         </div>
     )
