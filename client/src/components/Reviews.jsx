@@ -22,9 +22,9 @@ export default function Reviews({id}) {
         <div className='reviews'>
             <div>
             <p>Reviews :</p> 
-            {reviews.length > 0 ? reviews.map((review) => {
-                const user = users.find(user => user.id === review.userId);
-                return <p key={review.id}><br/>{user.name } {user.last_name} ({user.username}) Rating: {[...Array(review?.rate)].map(star =>{return <FaStar color="orange" size={15}/>}) }<br/> 
+            {reviews?.length > 0 ? reviews?.map((review) => {
+                const user = users.find(user => user?.id === review?.userId);
+                return <p key={review.id}><br/>{user?.name } {user?.last_name} ({user?.username}) Rating: {[...Array(review?.rate)].map(star =>{return <FaStar color="orange" size={15}/>}) }<br/> 
                 {review?.comment} </p>}) : <p>No reviews yet</p>}
             </div>
         </div>
