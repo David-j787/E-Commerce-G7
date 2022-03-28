@@ -95,11 +95,11 @@ export default function AdminUsersList({getId, showComponent}) {
                         <div>{user.name} {user.last_name}</div>
                         <div>{user.username}</div>
                         <div>{user.email}</div>
-                        <div>{user.role.name}</div>
+                        <div>{user.role?.name}</div>
                         <div>
-                            <button onClick={e => forceResetPassword(user.id)} disabled={loggedUser?.roleId === 2 && user.roleId === 1} className='adminCP__button'>Reset Password</button>
-                            <button onClick={e => editUser(user.id)} disabled={(loggedUser?.roleId === 2 && user.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Edit</button>
-                            <button onClick={e => deleteUser(user.id)} disabled={(loggedUser?.roleId === 2 && user.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Delete</button>
+                            <button onClick={e => forceResetPassword(user.id)} disabled={loggedUser?.roleId === 2 && user?.roleId === 1} className='adminCP__button'>Reset Password</button>
+                            <button onClick={e => editUser(user.id)} disabled={(loggedUser?.roleId === 2 && user?.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Edit</button>
+                            <button onClick={e => deleteUser(user.id)} disabled={(loggedUser?.roleId === 2 && user?.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Delete</button>
                         </div>
                         </li>) : <div className='noDataFound'>{users}</div>}
                 </ul>
