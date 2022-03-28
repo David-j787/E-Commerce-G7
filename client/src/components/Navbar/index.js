@@ -108,7 +108,7 @@ const Navbar = () => {
                 </div>
               </figure>
               <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
-              {user?.roleId < 3 && <Link to="/admincp" className='userButton'>AdminCP</Link>}
+              {user?.roleId < 3 && <Link to="/admincp" className='admButton'>AdminCP</Link>}
             </div>
           : <div className='navbarLogin'>
               <figure>
