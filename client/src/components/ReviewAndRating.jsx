@@ -35,7 +35,7 @@ export default function ReviewAndRating({productId}) {
         button: null
       })
     }
-    dispatch(getReviews());
+    dispatch(getReviews(productId));
   }
 
 

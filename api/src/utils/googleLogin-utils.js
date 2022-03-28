@@ -21,6 +21,7 @@ const googleLogin = async (req, res) => {
                 zip_code: 0,
                 country: ''
             });
+            googleUser.setRole(3);
             findedUser = await User.findOne({ where: { email:{ [Op.substring]: email }}});
         }
         
