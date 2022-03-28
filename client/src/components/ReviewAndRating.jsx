@@ -40,9 +40,10 @@ export default function ReviewAndRating({productId}) {
 
 
   return (
-    <div>
+    <div className="reviewAndRating">
       <textarea value={input} onChange={handleInput} cols="30" rows="10"></textarea>
-      <button onClick={handleSubmit}>Submit Review</button>
+      <div className="reviewAndRating__rating">
+
         <Rating
           name="Rating Label"
           value={rating}
@@ -50,7 +51,9 @@ export default function ReviewAndRating({productId}) {
             setRating(newValue);
           }}
         />
-      {rating}
+      <span className="rating-number">{rating}</span>
+      </div>
+          <button onClick={handleSubmit}>Submit Review</button>
     </div>
   )
 }
