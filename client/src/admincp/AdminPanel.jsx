@@ -25,7 +25,7 @@ export default function AdminPanel() {
         setId(id);
     }
 
-    useEffect(() => {
+  /*   useEffect(() => {
         if(sessionStorage.getItem('jwt')){
             axios.post('/admin/authenticate', {token: sessionStorage.getItem('jwt')})
             .then(res => {
@@ -50,7 +50,7 @@ export default function AdminPanel() {
             })
           }
         else history.push('/');
-    }, [])
+    }, []) */
     
     return(
         <div>
