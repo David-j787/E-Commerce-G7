@@ -13,13 +13,26 @@ server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
-server.use((req, res, next) => {
+
+server.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://electroshop-ecommerce.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  // handle OPTIONS method
+  if ('OPTIONS' == req.method) {
+      return res.sendStatus(200);
+  } else {
+      next();
+  }
+});
+/* server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://electroshop-ecommerce.vercel.app'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
-});
+}); */
 
 server.use('/', routes);
 
