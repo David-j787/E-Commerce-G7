@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../redux/actions";
 
 export function validate(user, users) {
-    const emails = users.map(user => user.email)
-    const usernames = users.map(user => user.username)
+    const emails = users?.map(user => user.email)
+    const usernames = users?.map(user => user.username)
     let errors = {};
   
     if (!user.name) {
