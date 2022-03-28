@@ -1,13 +1,13 @@
 
 .orderCheckout {
-
+  
   & .container {
     position: relative;
   }
   
   max-width: 700px;
   margin: 0 auto;
-  margin-bottom: 3rem;
+  margin-bottom: 6rem;
 
   &__title {
     margin-top: 1rem;
@@ -75,11 +75,30 @@
     @include button();
     position: absolute;
     left: 0;
-    bottom: -4rem;
+    bottom: -7.5rem;
+    left: 50%;
+    transform: translateX(-50%);
 
     @include mq(medium) {
-      bottom: 0;
-      left: 13rem;
+      bottom: -4rem;
+      transform: translateX(0%);
+      left: 12.5rem;
+    }
+  }
+
+  .payments {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -11rem;
+    
+    @include mq(medium) {
+      bottom: -4rem;
+      transform: translateX(0%);
+      left: 26rem;
+    }
+    &__button {
+      @include button();
     }
   }
 }
