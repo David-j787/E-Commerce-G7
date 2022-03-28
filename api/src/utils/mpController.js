@@ -25,7 +25,7 @@ module.exports = {
             external_reference: orderId.toString(),
             auto_return: 'approved',
                               //localhost:3001/notification
-            notification_url:'https://c604-181-31-154-43.ngrok.io/notification',
+            notification_url:'https://e-commerce-henry.herokuapp.com/notification',
         };
         mercadopago.preferences.create(preference)
         .then(response => {
