@@ -70,12 +70,12 @@ export default function Login() {
           <input type="checkbox" onChange={handleCheckbox} id="rememberMe" name="rememberMe"/> Remember me
         </label>
         <input className="btn btn-lg btn-primary btn-block btnColors" type="submit" value='Login'/>
-        <GoogleLogin className="button-google"
+{/*         <GoogleLogin className="button-google"
           clientId="827278609523-buiubpo31u43c0snvgsjhukdtces0ijo.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}/>  
+          cookiePolicy={'single_host_origin'}/>   */}
       </form>
     }
     </div>
