@@ -4,6 +4,7 @@ import { getCategories } from "../redux/actions";
 import axios from 'axios';
 import Select from 'react-select'
 import CreateCategory from "./CreateCategory";
+import swal from 'sweetalert';
 
 export function validate(input) {
 
@@ -86,17 +87,34 @@ export function CreateProduct(){
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        await axios.post("/product", input)
-        alert(`${input.name} was created successfully!`)
-        setInput({
-            name: "",
-            price: "",
-            description:"",
-            images:"",
-            stock: 0,
-            rating: 0,
-            categories:[]
-        })
+        const response = await axios.post("/product", input)
+        if(response.status === 200){
+            swal({
+                title: 'Product was created successfully!',
+                text: ' ',
+                icon: 'success',
+                timer: 3000,
+                button: null
+            })
+            setInput({
+                name: "",
+                price: "",
+                description:"",
+                images:"",
+                stock: 0,
+                rating: 0,
+                categories:[]
+            })
+        }else {
+            swal({
+                title: 'Something went wrong',
+                text: ' ',
+                icon: 'error',
+                timer: 3000,
+                button: null
+            })
+        }
+
     }
 
     return(

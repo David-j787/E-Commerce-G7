@@ -28,9 +28,6 @@ export function validate(input) {
     else if (!/^-?\d+\.?\d*$/.test(input.stock)){
         errors.stock = "Only numbers allowed"
     }
-    else if(!/^-?\d+\.?\d*$/.test(input.rating)){
-        errors.rating = "Only numbers allowed"
-    }
     else if(!input.categories.length){
         errors.categories = "Choose the categories"
     }

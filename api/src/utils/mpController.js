@@ -18,9 +18,9 @@ module.exports = {
                 quantity: product.amount
             })),
             back_urls:{
-                failure: "http://localhost:3000/payment/failure",
-                pending: "http://localhost:3000/payment/pending",
-                success: "http://localhost:3000/payment/success"
+                failure: "https://electroshop-ecommerce.vercel.app/payment/failure",
+                pending: "https://electroshop-ecommerce.vercel.app/payment/pending",
+                success: "https://electroshop-ecommerce.vercel.app/payment/success"
             },
             external_reference: orderId.toString(),
             auto_return: 'approved',

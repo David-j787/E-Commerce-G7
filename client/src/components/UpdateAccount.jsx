@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import { getAllUsers } from '../redux/actions';
 
 export function validate(user, users) {
-    const emails = users.map(user => user.email)
+    const emails = users?.map(user => user.email)
     let errors = {};
   
     if (!user.name) {

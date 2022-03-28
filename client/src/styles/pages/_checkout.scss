@@ -70,6 +70,11 @@
     margin-top: 1rem;
     font-weight: bold;
   }
+  .message {
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 3rem 0;
+  }
 
   .confirmOrder {
     @include button();

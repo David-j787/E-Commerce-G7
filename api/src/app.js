@@ -13,7 +13,6 @@ server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
-
 server.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://electroshop-ecommerce.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

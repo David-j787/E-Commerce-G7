@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import swal from 'sweetalert';
 
 export function OrderShipping ({setShipping}){
 
@@ -25,6 +26,13 @@ export function OrderShipping ({setShipping}){
 
     const handleSubmit = event => {
         event.preventDefault();
+        swal({
+            title: 'Your Shipping information was updated!',
+            text: ' ',
+            icon: 'success',
+            timer: 2000,
+            button: null
+        })
         setShipping(field)
     }
 

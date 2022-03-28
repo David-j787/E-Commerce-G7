@@ -47,7 +47,7 @@ const ShoppingCart = ({cartShow}) => {
                                 <button className='delete' onClick={() => handleRemove(product.id)}>🗑️</button>
                             </div>
                         )
-                    }) : <h3 className='shoppingCart__empty'>El carrito esta vacio</h3>
+                    }) : <h3 className='shoppingCart__empty'>Cart is empty</h3>
                 }
                 {total ? <h3 className='shoppingCart__total'>Total: ${total}</h3> : null}
                 <Link to="/checkout" onClick={cartShow} className='shoppingCart__button'>Checkout</Link>

@@ -154,9 +154,9 @@ export function OrderCheckout(){
                 <OrderShipping setShipping={setShipping}/>
                 <button className="confirmOrder" onClick={(e)=>handleSubmit(e)} disabled={!Object.keys(notification).length || confirmed}>CONFIRM ORDER</button>
                 <Payments clearCart={clearShopCart} url={url}/>
-            </div> : <><div>Your cart is empty</div> 
+            </div> : <><div className="message">Your cart is empty</div> 
             </>
-            : <div>Please Login to finish your Purchase</div>}
+            : <div className="message">Please Login to finish your Purchase</div>}
         </div>
     )
 }
