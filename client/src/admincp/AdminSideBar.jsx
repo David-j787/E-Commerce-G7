@@ -24,10 +24,11 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-folder-open fa-2x"></i>
                 <span className="nav-text">Orders</span>               
             </li>
+            {user?.roleId === 1 && 
             <li onClick={e => showComponent('editRole')}>
                 <i className="fa fa-bar-chart-o fa-2x"></i>
                 <span className="nav-text">Edit roles</span>
-            </li>
+            </li>}
            {/*  <li>
                 <i className="fa fa-font fa-2x"></i>
                 <span className="nav-text">Newsletter</span>

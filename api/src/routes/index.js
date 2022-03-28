@@ -26,7 +26,6 @@ const allRoles = require("./getRoles-route");
 const setNewPass = require("./setNewPassword-route");
 const allReviews = require("./getReviews-route");
 const updateUser = require("./updateAccount-route");
-const setRoles = require("./setRolesDB-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -51,7 +50,7 @@ router.use("/product", newProduct);
 
 router.use("/user", user);
 
-router.use("/user/role", userRole)
+router.use("/user/role", superAdminOnly, userRole)
 
 router.use("/user/edit", adminOnly, editUser);
 
@@ -90,7 +89,5 @@ router.use("/admin/authenticate", adminOnly, auth)
 router.use("/roles", allRoles);
 
 router.use("/password", setNewPass);
-
-router.use("/set/role", setRoles);
 
 module.exports = router;
