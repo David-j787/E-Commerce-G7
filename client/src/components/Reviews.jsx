@@ -16,7 +16,7 @@ export default function Reviews({id}) {
        return () => {
            dispatch(clearReviews());
         }
-    },[])
+    },[id, reviews])
  
     return (
         <div className='reviews'>
