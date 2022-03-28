@@ -52,12 +52,12 @@ export function ProductDetail(props) {
                         {user?.roleId < 3 && <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>}
                     </div>
                 </div>
-                <div>
+                <div className='wrapper-reviews'>
                     <Reviews id={id} className='reviews'/>
                     {isLogged && !alreadyCommented ? 
                     <ReviewAndRating  productId={details.id}/> : 
-                    <div>You already review this product. Thanks for your feedback</div>}      
-                </div>               
+                    <p style={{fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem"}}>You already review this product. Thanks for your feedback</p>}      
+                </div>
                 </div>
                 : (<h2>Loading...</h2>)}
         </div>
