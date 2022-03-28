@@ -16,6 +16,14 @@
 @import "./components/paginate";
 @import "./components/shoppingCart";
 @import "./components/navbarLogin";
+@import "./components/orderShipping";
+@import "./components/orderDetails";
+@import "./components/orders";
+@import "./components/order";
+@import "./components/dashboardUser";
+@import "./components/userAccount";
+@import "./components/resetPassword";
+//@import "./components/reviews";
 
 //admincp
 @import "./admincp/adminPanel";
@@ -26,6 +34,8 @@
 @import "./pages/register";
 @import "./pages/createProduct";
 @import "./pages/updateProduct";
+@import "./pages/checkout";
+
 
 // bootstrap
 // @import '../../node_modules/bootstrap/scss/bootstrap.scss';

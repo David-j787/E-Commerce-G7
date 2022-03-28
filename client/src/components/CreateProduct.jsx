@@ -30,9 +30,6 @@ export function validate(input) {
     else if (!/^-?\d+\.?\d*$/.test(input.stock)){
         errors.stock = "Only numbers allowed"
     }
-    else if(!/^-?\d+\.?\d*$/.test(input.rating)){
-        errors.rating = "Only numbers allowed"
-    }
     else if(!input.categories.length){
         errors.categories = "Select the categories or create a new one"
     }
@@ -103,7 +100,7 @@ export function CreateProduct(){
     }
 
     return(
-        <div className="container">
+        <div className="adminContainer editForms">
             <div className="register createProduct">
                 <h1 className="register__title">New Product</h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} action="" method="post"  id="contact_form">
@@ -130,11 +127,6 @@ export function CreateProduct(){
                         <label className="col-md-4 control-label">Stock</label>
                         <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} className="form-control"/>
                         <div className="register__error">{errors.stock}</div>
-                    </div>
-                    <div className="register__group">
-                        <label className="col-md-4 control-label">Rating</label>
-                        <input type='number' min='0' max='5' name="rating" step="0.1" value={input.rating} onChange={handleChange} className="form-control"/>
-                        <div className="register__error">{errors.rating}</div>
                     </div>
                     <div className="register__group categories">
                         <label className="col-md-4 control-label">Categories</label>

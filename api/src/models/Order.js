@@ -16,6 +16,22 @@ module.exports = (sequelize) => {
             defaultValue:'pending',
             allowNull: false
         },
+        notification_email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        shipping_address: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        shipping_city: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        shipping_zip_code: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         // cuando le pedimos la fecha, la entrega formateada en dia/mes/año y en hora argentina, se calcula apartir del createdAt timestamp
         date: {
             type: DataTypes.VIRTUAL,

@@ -4,10 +4,10 @@ import Product from './Product';
 const Products = ({ products }) => {
   return (
     <div className="products">
-      {products.length === 0 ? (
+      {Array.isArray(products) && products.length === 0 ? (
         <h2>No hay productos</h2>
       ) : (
-        products.map((product) => (
+        products?.map((product) => (
           <Product key={product.id} {...product} />
         ))
       )}

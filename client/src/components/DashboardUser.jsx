@@ -1,16 +1,33 @@
 import React from 'react';
-import Orders from './Orders';
+import { Link, NavLink, useHistory } from 'react-router-dom';
+import UserAccount from './UserAccount';
 
 export function DashboardUser(){
+
+    const {location} = useHistory()
+
     return (
-        <div>
-            <h2>My Account</h2>
-            <h2>Edit Account</h2>
-            <h2>Orders</h2>
-            <Orders />
-            <span>Order details</span>
-            <span>Wishlist</span>
-        </div>
+        <>
+        <nav className='dashboardUser'>
+            <div className='container'>
+                <li className='dashboardUser__item'>
+                    <NavLink to="/user/account/profile"
+                        activeClassName='active'
+                        className="dashboardUser__link">Profile</NavLink>
+                </li>
+                <li className='dashboardUser__item'>
+                    <NavLink to="/user/account/orders"
+                        activeClassName='active' className="dashboardUser__link">View Orders</NavLink>
+                </li>
+                <li className='dashboardUser__item'>
+                    <NavLink to='/user/account/reset-password'
+                        activeClassName='active' className="dashboardUser__link">Change Password</NavLink>
+                </li>
+            </div>
+            {/* <h2>My Wishlist</h2> */}
+        </nav>
+        {location.pathname === "/user/account" && <UserAccount />}
+        </>
     )
 }
 export default DashboardUser;

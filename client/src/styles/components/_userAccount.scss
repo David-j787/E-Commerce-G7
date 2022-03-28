@@ -1,0 +1,28 @@
+
+.userAccount {
+  > .container {
+    max-width: 500px;
+    margin: 3rem auto;
+
+    * + * {
+      margin-top: .5rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+  &__title:last-of-type {
+    margin-top: 1rem;
+  }
+
+  &__button {
+    @include button();
+    display: block;
+    width: fit-content;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem !important;
+  }
+}

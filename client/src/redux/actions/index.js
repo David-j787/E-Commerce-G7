@@ -15,7 +15,13 @@ export const GET_SEARCH_PRODUCTS = 'GET_SEARCH_PRODUCTS';
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const GET_USER_DETAIL = 'GET_USER_DETAIL';
-export const GET_ORDER = "GET_ORDER"
+export const GET_SEARCH_USERS = 'GET_SEARCH_USERS';
+export const GET_ROLES = 'GET_ROLES';
+export const GET_ORDER = "GET_ORDER";
+export const CLEAR_CART = "CLEAR_CART";
+export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL";
+export const GET_REVIEWS = "GET_REVIEWS";
+export const CLEAR_REVIEWS = "CLEAR_REVIEWS"
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -36,33 +42,55 @@ export const getAllProducts = () => {
 export function getCategories() {
   return function (dispatch) {
     return axios.get('/categories')
-      .then((response) => response.data)
-      .then((data) => {
-        dispatch({
-          type: GET_CATEGORIES,
-          payload: data,
-        });
-      })
-      .catch((error) => {
-        console.log('NOT FOUND', error);
+    .then((response) => response.data)
+    .then((data) => {
+      dispatch({
+        type: GET_CATEGORIES,
+        payload: data,
       });
+    })
+    .catch((error) => {
+      console.log('NOT FOUND', error);
+    });
   };
 }
 
 export function getProductDetail(idProduct) {
   return function (dispatch) {
     return axios.get(`/product/${idProduct}`)
-      .then((response) => response.data)
-      .then((data) => {
-        dispatch({
-          type: GET_PRODUCT_DETAIL,
-          payload: data,
-        });
-      })
-      .catch((error) => {
-        console.log('NOT FOUND', error);
+    .then((response) => response.data)
+    .then((data) => {
+      dispatch({
+        type: GET_PRODUCT_DETAIL,
+        payload: data,
       });
+    })
+    .catch((error) => {
+      console.log('NOT FOUND', error);
+    });
   };
+}
+
+export function getReviews(idProduct) {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/reviews/?productId=${idProduct}`);
+      const data = await response.data;
+
+      dispatch({
+        type: GET_REVIEWS,
+        payload: data,
+      });
+    } catch (error) {
+      console.log('REVIEW NOT FOUND', error);
+    }
+  };
+};
+
+export function clearReviews() {
+  return{
+    type: CLEAR_REVIEWS
+  }
 }
 
 //CART
@@ -77,6 +105,12 @@ export const restoreCart = (cart) => {
   return {
     type: RESTORE_CART,
     payload: cart
+  }
+}
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
   }
 }
 
@@ -115,7 +149,22 @@ export function getSearchProducts(productName, category){
       console.log("Not Found", error)
     })
   }
+}
 
+export function getSearchUsers(user){
+  return function (dispatch) {
+    return axios.get(`/users?username=${user.username}&email=${user.email}&name=${user.name}&lastName=${user.lastName}`)
+    .then((response) => response.data)
+    .then((data) => {
+      dispatch({
+        type: GET_SEARCH_USERS,
+        payload: data,
+      });
+    })
+    .catch((error) => {
+      console.log("Not Found", error)
+    })
+  }
 }
 
 export function userLogin(payload){
@@ -131,11 +180,33 @@ export function userLogout(){
   }
 }
 
-export function getAllOrders(){
+export function getAllOrders(id = '', status = ''){
   return async function (dispatch){
     try {
-      const orders = await axios.get('/orders');
+      const orders = await axios.get(`/orders?orderId=${id}&status=${status}`);
       dispatch({type: GET_ALL_ORDERS, payload: orders.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
+export function getOrderDetail(id = '', status = ''){
+  return async function (dispatch){
+    try {
+      const order = await axios.get(`/orders?orderId=${id}&status=${status}`);
+      dispatch({type: GET_ORDER_DETAIL, payload: order.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
+export function getAllRoles(token){
+  return async function (dispatch){
+    try {
+      const orders = await axios.get(`/roles`, {token});
+      dispatch({type: GET_ROLES, payload: orders.data})
     } catch (error) {
       console.log('Error: ' + error);
     }
@@ -167,7 +238,7 @@ export function getUserDetail(id){
 export const getOrderByUserId = (userId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/orders?userid=${userId}`);
+      const response = await axios.get(`/orders?userId=${userId}`);
       const data = await response.data;
       dispatch({
         type: GET_ORDER,

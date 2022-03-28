@@ -13,7 +13,14 @@ import {
   GET_ALL_ORDERS,
   GET_ALL_USERS,
   GET_USER_DETAIL,
-  GET_ORDER
+  GET_SEARCH_USERS,
+  GET_ROLES,
+  GET_ORDER,
+  CLEAR_CART,
+  GET_REVIEWS,
+  CLEAR_REVIEWS,
+  GET_ORDER_DETAIL
+
 } from '../actions';
 
 const initialState = {
@@ -26,37 +33,57 @@ const initialState = {
   orders: [],
   allUsers: [],
   userDetail: {},
-  user_order: []
+  allRoles: [],
+  user_order: [],
+  reviews: [],
+  orderDetail: []
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+
     case GET_CATEGORIES:
       return {
         ...state,
         categories: action.payload,
       };
+
     case GET_PRODUCT_DETAIL:
       return {
         ...state,
         details: action.payload,
       };
 
+    case GET_REVIEWS:
+        return {
+          ...state,
+          reviews: action.payload,
+        };
+    
+    case CLEAR_REVIEWS:
+          return {
+            ...state,
+            reviews: [],
+          };
+  
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        products: action.payload.filter(product => product.stock > 0),
+        products: action.payload
       };
+
     case ADD_PRODUCT:
       return {
         ...state,
         cart: [...state.cart, action.payload],
       };
+
     case RESTORE_CART:
       return {
         ...state,
         cart: action.payload
       }
+
     case PRODUCT_AMOUNT_SUM:
       return {
         ...state,
@@ -65,6 +92,7 @@ function rootReducer(state = initialState, action) {
           ? { ...product, amount: product.amount + 1 } : product;
         })]
       };
+
     case PRODUCT_AMOUNT_REST:
       return {
         ...state,
@@ -73,6 +101,7 @@ function rootReducer(state = initialState, action) {
           ? { ...product, amount: product.amount - 1 } : product;
         })]
       };
+
     case PRODUCT_REMOVE:
       return {
         ...state,
@@ -91,18 +120,36 @@ function rootReducer(state = initialState, action) {
           user: null
         }
 
+    case GET_ROLES:
+        return{
+          ...state,
+          allRoles: action.payload.filter(role => role.id > 1)
+        }
+
     case GET_SEARCH_PRODUCTS:
-      const stock = Array.isArray(action.payload) ? action.payload.filter(product => product.stock > 0) : []
       return {
         ...state,
-        products: stock.length ? stock : "No results found"
+        products: action.payload.length ? action.payload : "No results found"
       }
 
-    case GET_ALL_ORDERS:
+    case GET_SEARCH_USERS:
       return {
         ...state,
-        orders: action.payload.length ? action.payload : "No orders found"
+        allUsers: action.payload.length ? action.payload : "No results found"
       }
+    
+    case GET_ALL_ORDERS:
+      const orders = action.payload.sort((orderA, orderB) => orderA.id > orderB.id ? 1 : -1);
+      return {
+        ...state,
+        orders: orders.length ? orders : "No orders found"
+      }
+    
+    case GET_ORDER_DETAIL:
+        return {
+          ...state,
+          orderDetail: action.payload.length ? action.payload[0] : "No order found"
+        }
     
     case GET_ALL_USERS:
         return {
@@ -121,6 +168,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         user_order: action.payload
       }
+    
+    case CLEAR_CART:
+        return {
+          ...state,
+          cart: []
+        }
 
     default:
       return state;

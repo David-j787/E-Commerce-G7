@@ -65,15 +65,6 @@ const Navbar = () => {
             </li>
             <li className="list__item" onClick={handleClose}>
               <NavLink
-                to="/product/add"
-                className="list__link"
-                activeClassName="active"
-              >
-                Add product
-              </NavLink>
-            </li>
-            <li className="list__item" onClick={handleClose}>
-              <NavLink
                 to="/about"
                 className="list__link"
                 activeClassName="active"
@@ -105,12 +96,12 @@ const Navbar = () => {
         <div className="navbar__cart">
           <figure>
             <img src={cart} alt="shoping cart" onClick={cartShow} />
-            {showCart && <ShoppingCart />}
+            {showCart && <ShoppingCart cartShow={cartShow} />}
           </figure>
           {isLogged
           ? <div className='navbarLogin'>
               <figure className='navbarLogin__logged'>
-                <img src={avatar} alt="avatar" />
+                <Link to='/user/account'><img src={avatar} alt="avatar" /></Link>
                 <div className='client'>
                   <span className='name'>{user.name}</span>
                   <span>{user.last_name}</span> <br/>

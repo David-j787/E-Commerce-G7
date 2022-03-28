@@ -8,7 +8,7 @@ module.exports = {
         try {
             jwt.verify(token, process.env.JWT_SECRET, (err, result) => {
             if(err) throw Error('Invalid Token')
-            req.body.userId = result.id;
+            req.body.user_id = result.id;
             });                
             return next();
         } catch (error) {

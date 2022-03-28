@@ -7,6 +7,10 @@ const postOrder = async (order) => {
   const newOrder = await Order.create({
     total: order.total,
     userId: order.userId,
+    notification_email: order.email,
+    shipping_address: order.address,
+    shipping_city: order.city,
+    shipping_zip_code: order.zip_code
   });
 
   const product_order = await Promise.all(

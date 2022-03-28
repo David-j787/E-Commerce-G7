@@ -21,6 +21,11 @@ const allUsers = require("./getUsers-route");
 const userRole = require("./userRole-route")
 const orderStatus = require("./orderStatus-route")
 const deleteProduct = require("./deleteProduct-route");
+const { createOrderMP, notificationOrder, savePayment } = require("../utils/mpController");
+const allRoles = require("./getRoles-route");
+const setNewPass = require("./setNewPassword-route");
+const allReviews = require("./getReviews-route");
+const updateUser = require("./updateAccount-route");
 const roles = require('./roles.js');
 
 // Middlewares
@@ -28,15 +33,10 @@ const auth = require("./authenticate-route");
 const verifyGoogleToken = require("../utils/verifyGoogleToken");
 const { isAuthenticated } = require('../utils/isAuthenticated');
 const adminOnly = require('../utils/adminOnly');
-const superAdminOnly = require("../utils/superAdminOnly")
-
-const { createOrderMP, notificationOrder } = require("../utils/mpController");
-
+const superAdminOnly = require("../utils/superAdminOnly");
 
 // Config routers
 // Example: router.use('/users', getUsers);
-router.use('/roles', roles);
-
 router.use("/products", allProducts);
 
 router.use("/order", createOrder);
@@ -53,7 +53,9 @@ router.use("/user", user);
 
 router.use("/user/role", superAdminOnly, userRole)
 
-router.use("/user/update", adminOnly, editUser);
+router.use("/user/edit", adminOnly, editUser);
+
+router.use("/user/update", updateUser);
 
 router.use("/user", adminOnly, deleteUser)
 
@@ -71,7 +73,7 @@ router.use("/product", productDetail);
 
 router.use("/orders", allOrders);
 
-router.use('/crear-orden',  createOrderMP)
+router.use('/createPayment',  createOrderMP)
 
 router.use('/notification', notificationOrder)
 
@@ -79,8 +81,16 @@ router.use("/users", allUsers);
 
 router.use("/review", postReview);
 
+router.use('/reviews', allReviews);
+
 router.use("/product", adminOnly, deleteProduct)
 
 router.use("/admin/authenticate", adminOnly, auth)
+
+router.use("/roles", allRoles);
+
+router.use("/password", setNewPass);
+
+router.use('/rol', roles);
 
 module.exports = router;
