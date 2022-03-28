@@ -86,7 +86,7 @@ export function CreateProduct(){
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        await axios.post("http://localhost:3001/product", input)
+        await axios.post("/product", input)
         alert(`${input.name} was created successfully!`)
         setInput({
             name: "",

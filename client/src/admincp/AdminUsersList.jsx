@@ -22,7 +22,7 @@ export default function AdminUsersList({getId, showComponent}) {
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                await axios.put('http://localhost:3001/password/reset', {userId});
+                await axios.put('/password/reset', {userId});
                 swal({
                         title: 'You forced password reset',
                         text: ' ',
@@ -61,7 +61,7 @@ export default function AdminUsersList({getId, showComponent}) {
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.delete('http://localhost:3001/user', {data: {token, userId}});
+                    await axios.delete('/user', {data: {token, userId}});
                     swal({
                         title: 'You deleted the user with ID: ' + userId,
                         text: ' ',

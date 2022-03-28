@@ -102,7 +102,7 @@ export function UpdateAccount(props){
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.put("http://localhost:3001/user/update", user);
+                    await axios.put("/user/update", user);
                     swal({
                         title: 'User changes saved',
                         text: ' ',

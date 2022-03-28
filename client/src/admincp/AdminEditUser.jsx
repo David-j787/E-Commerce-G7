@@ -92,7 +92,7 @@ export function AdminEditUser(props){
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.put("http://localhost:3001/user/edit", {...user, token});
+                    await axios.put("/user/edit", {...user, token});
                     swal({
                         title: 'User changes saved',
                         text: ' ',

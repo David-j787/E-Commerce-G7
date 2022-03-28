@@ -23,7 +23,7 @@ export default function AdminEditRole({showComponent}) {
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
         try {
-            await axios.put('http://localhost:3001/user/role', {userId, role: role[Object.keys(role)[0]], token});
+            await axios.put('/user/role', {userId, role: role[Object.keys(role)[0]], token});
             swal({
                 title: 'User role changed successfully',
                 text: ' ',
