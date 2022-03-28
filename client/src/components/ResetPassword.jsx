@@ -74,16 +74,16 @@ export default function ResetPassword() {
   }
 
   return (
-  <div className="wrapper">
-      <form className="form-signin" onSubmit={handleSubmit}>       
-        <h2 className="form-signin-heading">Reset Password</h2>
-        <input value={inputs.currentPassword} type="password" className="form-control" name="currentPassword" placeholder="Current Password..." onChange={handleChange}/>
+  <div className="resetPassword">
+      <form className="resetPassword__form" onSubmit={handleSubmit}>       
+        <h2 className="resetPassword__title">Reset Password</h2>
+        <input value={inputs.currentPassword} type="password" name="currentPassword" placeholder="Current Password..." onChange={handleChange}/>
         <span className="error">{errors.currentPassword}</span>
-        <input value={inputs.newPassword} type="password" className="form-control" name="newPassword" onChange={handleChange} placeholder="New Password..."/>
+        <input value={inputs.newPassword} type="password" name="newPassword" onChange={handleChange} placeholder="New Password..."/>
         <span className="error">{errors.newPassword}</span>
-        <input value={inputs.repeatPassword} type="password" className="form-control" name="repeatPassword" onChange={handleChange} placeholder="Repeat Password..."/>        
+        <input value={inputs.repeatPassword} type="password" name="repeatPassword" onChange={handleChange} placeholder="Repeat Password..."/>        
         <span className="error">{errors.repeatPassword}</span>
-        <input className="btn btn-lg btn-primary btn-block btnColors" type="submit" value='Set New Password'/>
+        <button type="submit">Set New Password</button>
       </form>
     </div>
   )

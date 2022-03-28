@@ -1,0 +1,31 @@
+
+.dashboardUser {
+  > .container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+
+    @include mq(medium) {
+      margin-top: 2.5rem;
+    }
+
+    * + * {
+      margin-left: 1rem;
+    }
+  }
+
+  &__item {
+    list-style-type: none;
+    text-align: center;
+  }
+
+  &__link {
+     color: #68707d;
+
+     &.active {
+      border-bottom: 2px solid $orange;
+      padding-bottom: .5rem;
+      color: $very-dark-blue
+    }
+  }
+}

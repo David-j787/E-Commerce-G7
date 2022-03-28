@@ -1,15 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export function DashboardUser(){
 
     return (
-        <div>
-            <Link to="/user/account/profile"><h2>Profile</h2></Link>
-            <Link to="/user/account/orders"><h2>View Orders</h2></Link>
-            <Link to='/user/account/reset-password'><h2>Change Password</h2></Link>
-            <h2>My Wishlist</h2>
-        </div>
+        <nav className='dashboardUser'>
+            <div className='container'>
+                <li className='dashboardUser__item'>
+                    <NavLink to="/user/account/profile"
+                        activeClassName='active'
+                        className="dashboardUser__link">Profile</NavLink>
+                </li>
+                <li className='dashboardUser__item'>
+                    <NavLink to="/user/account/orders"
+                        activeClassName='active' className="dashboardUser__link">View Orders</NavLink>
+                </li>
+                <li className='dashboardUser__item'>
+                    <NavLink to='/user/account/reset-password'
+                        activeClassName='active' className="dashboardUser__link">Change Password</NavLink>
+                </li>
+            </div>
+            {/* <h2>My Wishlist</h2> */}
+        </nav>
     )
 }
 export default DashboardUser;
