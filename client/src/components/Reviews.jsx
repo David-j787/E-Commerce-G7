@@ -12,11 +12,14 @@ export default function Reviews({id}) {
    
    useEffect(() => {
        dispatch(getAllUsers());
-       dispatch(getReviews(id));
        return () => {
            dispatch(clearReviews());
         }
     },[])
+
+    useEffect(()=> {
+        dispatch(getReviews(id));
+    },[dispatch])
  
     return (
         <div className='reviews'>

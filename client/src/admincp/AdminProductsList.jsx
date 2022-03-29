@@ -34,7 +34,7 @@ export default function AdminProductsList({showComponent, getId}) {
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.delete('http://localhost:3001/product', {data: {token, productId}});
+                    await axios.delete('/product', {data: {token, productId}});
                     swal({
                         title: 'You deleted the product with ID: ' + productId,
                         text: ' ',

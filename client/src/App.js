@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, BrowserRouter as Router, useHistory, Redirect } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { UserContextProvider } from './components/Login/context/userContext';
 import { userLogin, restoreCart } from './redux/actions';
 import swal from 'sweetalert';
@@ -58,14 +58,14 @@ function App() {
       dispatch(restoreCart(cartStorage))
     }
     if(sessionStorage.getItem('jwt')){
-      axios.post('http://localhost:3001/authenticate', {token: sessionStorage.getItem('jwt')})
+      axios.post('/authenticate', {token: sessionStorage.getItem('jwt')})
       .then(res => {
         dispatch(userLogin(res.data.user))
       })
       .catch(res => sessionStorage.removeItem('jwt'))
     }
     if(localStorage.getItem('jwt')){
-      axios.post('http://localhost:3001/authenticate', {token: localStorage.getItem('jwt')})
+      axios.post('/authenticate', {token: localStorage.getItem('jwt')})
       .then(res => {
         dispatch(userLogin(res.data.user))
       })

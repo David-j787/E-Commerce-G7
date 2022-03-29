@@ -28,9 +28,6 @@ export function validate(input) {
     else if (!/^-?\d+\.?\d*$/.test(input.stock)){
         errors.stock = "Only numbers allowed"
     }
-    else if(!/^-?\d+\.?\d*$/.test(input.rating)){
-        errors.rating = "Only numbers allowed"
-    }
     else if(!input.categories.length){
         errors.categories = "Choose the categories"
     }
@@ -102,7 +99,7 @@ export function UpdateProduct(props){
     const handleSubmit = async (e) => {
         const product = {...input, id}
         e.preventDefault();
-        await axios.put("http://localhost:3001/product/update", product)
+        await axios.put("/product/update", product)
         alert(`${input.name} was updated!`)
         if(history.location.pathname === '/admincp') props.showComponent('products')
         else history.push("/")

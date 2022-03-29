@@ -5,10 +5,11 @@ import '../styles/styles.scss'
 import useUser from "./Login/hooks/useUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../redux/actions";
+import swal from 'sweetalert';
 
 export function validate(user, users) {
-    const emails = users.map(user => user.email)
-    const usernames = users.map(user => user.username)
+    const emails = users?.map(user => user.email)
+    const usernames = users?.map(user => user.username)
     let errors = {};
   
     if (!user.name) {
@@ -131,9 +132,27 @@ export function CreateUser(){
             address: "",
             dateOfBirth: "",
         })
-        await axios.post("http://localhost:3001/user", user)
-        alert(`${user.username} was created successfully!`)
-        history.push("/")
+        const response = await axios.post("/user", user)
+        if(response.status === 200){
+            swal({
+                title: 'User was created successfully',
+                text: ' ',
+                icon: 'success',
+                timer: 3000,
+                button: null
+            })
+            history.push("/")
+        }else{
+            swal({
+                title: 'Something went wrong',
+                text: ' ',
+                icon: 'error',
+                timer: 3000,
+                button: null
+            })
+            history.push("/")
+        }
+
       };
 
     return(

@@ -22,7 +22,7 @@ export default function AdminUsersList({getId, showComponent}) {
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                await axios.put('http://localhost:3001/password/reset', {userId});
+                await axios.put('/password/reset', {userId});
                 swal({
                         title: 'You forced password reset',
                         text: ' ',
@@ -61,7 +61,7 @@ export default function AdminUsersList({getId, showComponent}) {
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.delete('http://localhost:3001/user', {data: {token, userId}});
+                    await axios.delete('/user', {data: {token, userId}});
                     swal({
                         title: 'You deleted the user with ID: ' + userId,
                         text: ' ',
@@ -95,11 +95,11 @@ export default function AdminUsersList({getId, showComponent}) {
                         <div>{user.name} {user.last_name}</div>
                         <div>{user.username}</div>
                         <div>{user.email}</div>
-                        <div>{user.role.name}</div>
+                        <div>{user.role?.name}</div>
                         <div>
-                            <button onClick={e => forceResetPassword(user.id)} disabled={loggedUser?.roleId === 2 && user.roleId === 1} className='adminCP__button'>Reset Password</button>
-                            <button onClick={e => editUser(user.id)} disabled={(loggedUser?.roleId === 2 && user.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Edit</button>
-                            <button onClick={e => deleteUser(user.id)} disabled={(loggedUser?.roleId === 2 && user.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Delete</button>
+                            <button onClick={e => forceResetPassword(user.id)} disabled={loggedUser?.roleId === 2 && user?.roleId === 1} className='adminCP__button'>Reset Password</button>
+                            <button onClick={e => editUser(user.id)} disabled={(loggedUser?.roleId === 2 && user?.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Edit</button>
+                            <button onClick={e => deleteUser(user.id)} disabled={(loggedUser?.roleId === 2 && user?.roleId === 1) || (loggedUser?.roleId === 2 && user.roleId === 2)} className='adminCP__button'>Delete</button>
                         </div>
                         </li>) : <div className='noDataFound'>{users}</div>}
                 </ul>

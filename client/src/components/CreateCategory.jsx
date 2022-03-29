@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../redux/actions";
-import '../styles/styles.scss'
+import '../styles/styles.scss';
+import swal from 'sweetalert';
 
 export function CreateCategory(){
     const categories = useSelector((state)=>state.categories)
@@ -21,11 +22,25 @@ export function CreateCategory(){
     const handleAdd = async (e) =>{
         e.preventDefault();
         if(validateCategory(nameCategory)){
-            alert('This category already exists')
+            swal({
+                title: 'This category already exists',
+                text: ' ',
+                icon: 'error',
+                timer: 3000,
+                button: null
+            })
             
         }else{
-            await axios.post("http://localhost:3001/category", {nameCategory: nameCategory})
-            alert('Category added successfully!')
+            const response = await axios.post("/category", {nameCategory: nameCategory})
+            if(response.status === 200){
+                swal({
+                    title: 'Category was created successfully!',
+                    text: ' ',
+                    icon: 'success',
+                    timer: 3000,
+                    button: null
+                })
+            }
             dispatch(getCategories())
         }
     }

@@ -77,6 +77,9 @@
       grid-row: 1 / 2;
       font-size: .95rem;
       font-weight: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .price {
       grid-column: 2 / 3;

@@ -45,7 +45,7 @@ export default function Login() {
   }
 
   const responseGoogle = response => {
-    axios.post('http://localhost:3001/googleLogin', {id_token: response.tokenId})
+    axios.post('/googleLogin', {id_token: response.tokenId})
       .then(res => {
         input.rememberMe ? localStorage.setItem('jwt', res.data.token) : sessionStorage.setItem('jwt', res.data.token) 
         dispatch(userLogin(res.data.user))

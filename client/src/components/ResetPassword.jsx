@@ -50,7 +50,7 @@ export default function ResetPassword() {
   const handleSubmit = async event => {
     event.preventDefault();
     try{
-      const response = await axios.put('http://localhost:3001/password/set', {userId: user.id, inputs});
+      const response = await axios.put('/password/set', {userId: user.id, inputs});
       console.log(response)
       if(response.status === 200) {
         swal({

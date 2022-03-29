@@ -1,51 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetail } from '../redux/actions';
+import { getAllUsers, getUserDetail } from '../redux/actions';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-export function validate(input) {
+export function validate(user, users) {
+    const usernames = users?.map(user => user.username);
+    const emails = users?.map(user => user.email);
     let errors = {};
   
-    if (!input.name) {
-      errors.name = "Introduce the product name";
+    if (!user.name) {
+        errors.name = "Write a name";
     } 
-    else if (input.name.length < 4) {
-        errors.name = "Product name is too short.";
+    else if (!/^[^\W0-9_][a-zA-Z\u00f1\u00d1\s]+$/.test(user.name)){
+      errors.name = "Invalid name";
+    }
+    else if (!user.lastName) {
+        errors.lastName = "Write user last name";
     } 
-    else if (!input.price) {
-        errors.price = "Introduce the product price"
-    } 
-    else if (!/^-?\d+\.?\d*$/.test(input.price)){
-        errors.price = "Only numbers allowed"
+    else if (!/^[^\W0-9_][a-zA-Z\u00f1\u00d1\s]+$/.test(user.lastName)){
+        errors.lastName = "Invalid last name";
     }
-    else if(!input.description){
-       errors.description = "Write a brief description of your product"
+    else if(!user.username) {
+        errors.username = "Introduce a username"
     }
-    else if(!input.stock){
-        errors.stock = "Stock number"
-    } 
-    else if (!/^-?\d+\.?\d*$/.test(input.stock)){
-        errors.stock = "Only numbers allowed"
+    else if (!/^[^\W0-9_][a-zA-Z0-9\u00f1\u00d1\s]+$/.test(user.username)){
+        errors.username = "Invalid username";
     }
-    else if(!/^-?\d+\.?\d*$/.test(input.rating)){
-        errors.rating = "Only numbers allowed"
+    else if (usernames.includes(user.username)){
+        errors.username = "Username already in use";
     }
-    else if(!input.categories.length){
-        errors.categories = "Choose the categories"
+    else if (!user.email){
+      errors.email = "Enter an e-mail"
+    }
+    else if(!/\S+@\S+\.\S+/.test(user.email)){
+        errors.email = "Invalid e-mail";
+    }
+    else if (emails.includes(user.email)){
+        errors.email = "Email already in use";
+    }
+    else if (!user.country){
+      errors.country = "Introduce user country name"
+    }
+    else if (!user.city){
+      errors.city = "Introduce user city name"
+    }
+    else if (!user.address){
+      errors.address = "Write user address"
+    }
+    else if(!user.dateOfBirth) {
+        errors.dateOfBirth = "Select user date of birth"
+    }
+    else if(!user.zip_code) {
+        errors.zip_code = "Introduce user zip code"
+    }
+    else if (!/^-?\d+\.?\d*$/.test(user.zip_code)){
+        errors.zip_code = "Only numbers allowed"
     }
     return errors;
 }
 
-
 export function AdminEditUser(props){
     const dispatch = useDispatch();
+    const users = useSelector(state => state.allUsers);
 
     const id = props.id;
 
     useEffect(()=>{
         dispatch(getUserDetail(id))
     }, [id])
+
+    useEffect(() => {
+        dispatch(getAllUsers());
+    },[])
 
     const userDetails = useSelector((state) => state.userDetail)
 
@@ -76,7 +103,7 @@ export function AdminEditUser(props){
         setErrors(validate({
             ...user,
             [e.target.name] : e.target.value
-        }))
+        }, users))
     };
 
     const handleSubmit = async (e) => {
@@ -92,7 +119,7 @@ export function AdminEditUser(props){
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.put("http://localhost:3001/user/edit", {...user, token});
+                    await axios.put("/user/edit", {...user, token});
                     swal({
                         title: 'User changes saved',
                         text: ' ',
@@ -134,11 +161,6 @@ export function AdminEditUser(props){
                 <label>Username:</label>
                 <input name="username" value={user.username} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.username}</div>
-                </div>
-                <div className="register__group">
-                <label>Password:</label>
-                <input name="password" type="password" value={user.password} onChange={handleChange} className="form-control"/>
-                <div className="register__error">{errors.password}</div>
                 </div>
                 <div className="register__group">
                 <label>E-mail:</label>

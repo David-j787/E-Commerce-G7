@@ -19,7 +19,7 @@ export default function ReviewAndRating({productId}) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = await axios.post('http://localhost:3001/review', {
+    const response = await axios.post('/review', {
       review: input,
       rate: rating,
       userId: user.id,
@@ -35,7 +35,7 @@ export default function ReviewAndRating({productId}) {
         button: null
       })
     }
-    dispatch(getReviews());
+    dispatch(getReviews(productId));
   }
 
 

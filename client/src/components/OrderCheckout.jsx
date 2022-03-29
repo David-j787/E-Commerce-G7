@@ -86,7 +86,7 @@ export function OrderCheckout(){
         }));
 
         try {
-            const response = await axios.post("http://localhost:3001/order", {...order, ...notification});
+            const response = await axios.post("/order", {...order, ...notification});
             if(response.status === 200) {
                 orderId = response.data.id;
                 swal({
@@ -98,7 +98,7 @@ export function OrderCheckout(){
                 })
             
                 // PARA LA ORDEN DE PAGO(NO BORRAR)
-                const res = await axios.post("http://localhost:3001/createPayment", {products, orderId});
+                const res = await axios.post("/createPayment", {products, orderId});
                 if(res.status === 200) setUrl(res.data.response.sandbox_init_point);
 
             }
@@ -154,9 +154,9 @@ export function OrderCheckout(){
                 <OrderShipping setShipping={setShipping}/>
                 <button className="confirmOrder" onClick={(e)=>handleSubmit(e)} disabled={!Object.keys(notification).length || confirmed}>CONFIRM ORDER</button>
                 <Payments clearCart={clearShopCart} url={url}/>
-            </div> : <><div>Your cart is empty</div> 
+            </div> : <><div className="message">Your cart is empty</div> 
             </>
-            : <div>Please Login to finish your Purchase</div>}
+            : <div className="message">Please Login to finish your Purchase</div>}
         </div>
     )
 }

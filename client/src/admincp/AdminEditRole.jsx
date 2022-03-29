@@ -23,7 +23,7 @@ export default function AdminEditRole({showComponent}) {
         if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
         else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
         try {
-            await axios.put('http://localhost:3001/user/role', {userId, role: role[Object.keys(role)[0]], token});
+            await axios.put('/user/role', {userId, role: role[Object.keys(role)[0]], token});
             swal({
                 title: 'User role changed successfully',
                 text: ' ',
@@ -65,7 +65,7 @@ export default function AdminEditRole({showComponent}) {
                         <div>{user.email}</div>
                         <div>
                             <select disabled={loggedUser?.roleId !== 1} name={user.id} onChange={handleSelect} value={role[user.id]}>
-                                <option value={user.role.name} hidden>{user.role.name}</option>
+                                <option value={user.role?.name} hidden>{user.role?.name}</option>
                                 {roles?.map(role => <option disabled={role.id === 1} key={role.id} value={role.id}>{role.name}</option>)}
                             </select>
                         </div>
