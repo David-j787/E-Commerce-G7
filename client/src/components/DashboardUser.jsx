@@ -1,10 +1,17 @@
-import React from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import useUser from './Login/hooks/useUser';
 import UserAccount from './UserAccount';
 
 export function DashboardUser(){
 
-    const {location} = useHistory()
+    const history = useHistory()
+
+    const { isLogged } = useUser();
+
+    useEffect(() => {
+        if(!isLogged) history.push('/')
+    },[])
 
     return (
         <>
@@ -26,7 +33,7 @@ export function DashboardUser(){
             </div>
             {/* <h2>My Wishlist</h2> */}
         </nav>
-        {location.pathname === "/user/account" && <UserAccount />}
+        {history.location.pathname === "/user/account" && <UserAccount />}
         </>
     )
 }
