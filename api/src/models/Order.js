@@ -16,6 +16,11 @@ module.exports = (sequelize) => {
             defaultValue:'pending',
             allowNull: false
         },
+        payment_status: {
+            type: DataTypes.ENUM('pending', 'approved', 'rejected', 'canceled'),
+            defaultValue:'pending',
+            allowNull: false
+        },
         notification_email: {
             type: DataTypes.STRING,
             allowNull: false
