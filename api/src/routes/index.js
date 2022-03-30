@@ -26,6 +26,7 @@ const allRoles = require("./getRoles-route");
 const setNewPass = require("./setNewPassword-route");
 const allReviews = require("./getReviews-route");
 const updateUser = require("./updateAccount-route");
+const TwoFA = require("./set2FA");
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -89,5 +90,7 @@ router.use("/admin/authenticate", adminOnly, auth)
 router.use("/roles", allRoles);
 
 router.use("/password", setNewPass);
+
+router.use("/twofa", TwoFA);
 
 module.exports = router;

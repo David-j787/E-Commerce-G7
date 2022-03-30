@@ -23,11 +23,11 @@ import UserAccount from './components/UserAccount';
 import Orders from './components/Orders';
 import Payment from './components/Payment';
 import OrderDetail from './components/OrderDetail.jsx';
+import UpdateAccount from './components/UpdateAccount';
+import TwoFaVerify from './components/TwoFaVerify';
 
 // styles
 import './styles/styles.scss';
-import UpdateAccount from './components/UpdateAccount';
-
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +38,15 @@ function App() {
     swal({
       title: "Password Reset",
       text: "Your password have been force to reset, please proceed",
+      icon: "warning",
+      buttons: "Ok"
+    })
+  }
+
+  const alert2FA = () => {
+    swal({
+      title: "2FA Verification",
+      text: "We sent to your email 2FA Code",
       icon: "warning",
       buttons: "Ok"
     })
@@ -89,7 +98,10 @@ function App() {
             <Route exact path="/" render={() => {
               if(userLogged?.reset_password){
                 return <ResetPassword />
-              }else{
+              }else if(userLogged?.is_two_fa && !userLogged?.two_fa_verified){
+                return <TwoFaVerify />
+              }
+              else{
                 return <>
                 <SearchBar />
                 <Home />
@@ -104,6 +116,7 @@ function App() {
             <Route exact path='/checkout' component={OrderCheckout}/>
             <Route exact path='/user/account/profile' component={UserAccount}/>
             <Route exact path='/user/account/reset-password' component={ResetPassword}/>
+            <Route exact path='/user/account/twofa' component={TwoFaVerify}/>
             <Route exact path='/user/account/edit' component={UpdateAccount}/>
             <Route exact path='/user/account/orders' component={Orders}/>
             <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
