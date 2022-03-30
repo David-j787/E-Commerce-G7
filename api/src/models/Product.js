@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
     discounted_price: {
       type: DataTypes.VIRTUAL,
       get(){
-        return this.getDatavalue('price') * ( 100 - this.getDatavalue('discount')) / 100 
+        return this.getDataValue('price') * ( 100 - this.getDataValue('discount')) / 100 
       },
       set(){
         throw new Error ("Don't try to set this field");
