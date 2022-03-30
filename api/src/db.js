@@ -118,7 +118,7 @@ const Two_fa = sequelize.define("two_fa", {
 const Visited_product = sequelize.define("visited_product", {
   userId: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
+    foreignKey: true,
     allowNull: false,
     references: {
       model: User,
@@ -127,6 +127,7 @@ const Visited_product = sequelize.define("visited_product", {
   },
   productId: {
     type: DataTypes.STRING,
+    foreignKey: true,
     allowNull: false,
     references: {
       model: Product,

@@ -27,6 +27,7 @@ const setNewPass = require("./setNewPassword-route");
 const allReviews = require("./getReviews-route");
 const updateUser = require("./updateAccount-route");
 const TwoFA = require("./set2FA");
+const visitedProducts = require("./getProductsVisited-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -92,5 +93,7 @@ router.use("/roles", allRoles);
 router.use("/password", setNewPass);
 
 router.use("/twofa", TwoFA);
+
+router.use("/visited", visitedProducts);
 
 module.exports = router;

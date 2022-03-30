@@ -23,6 +23,7 @@ export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const CLEAR_REVIEWS = "CLEAR_REVIEWS";
 export const VERIFY_TWO_FA = "VERIFY_TWO_FA";
+export const GET_VISITED_PRODUCTS = "GET_VISITED_PRODUCTS";
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -249,6 +250,22 @@ export const getOrderByUserId = (userId) => {
       const data = await response.data;
       dispatch({
         type: GET_ORDER,
+        payload: data,
+      });
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+};
+
+export const getVisitedProducts = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/visited?userId=${userId}`);
+      console.log(response)
+      const data = await response.data;
+      dispatch({
+        type: GET_VISITED_PRODUCTS,
         payload: data,
       });
     } catch (error) {

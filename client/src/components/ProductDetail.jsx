@@ -5,6 +5,7 @@ import { getProductDetail, addProduct, productAmountSum, getReviews } from '../r
 import useUser from './Login/hooks/useUser';
 import ReviewAndRating from './ReviewAndRating';
 import Reviews from './Reviews';
+import axios from 'axios';
 
 export function ProductDetail(props) {
     const dispatch = useDispatch();
@@ -21,6 +22,16 @@ export function ProductDetail(props) {
     useEffect(() => {
         dispatch(getReviews(id));
     }, []); //eslint-disable-line
+
+    async function saveVisitedProducts(){
+        await axios.post(`/visited`, {userId: user?.id, productId: id});
+    }
+
+    useEffect(() => {
+        if(isLogged) {
+            saveVisitedProducts();
+        }       
+    }, [])
     
     const handleAddCart = (product) => {
         const cartProduct = cart.filter(Product => Product.id === product.id)

@@ -1,0 +1,41 @@
+.visited {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-top: 2px solid $dark-grayish-blue;
+    border-bottom: 2px solid $dark-grayish-blue;
+
+
+    &__title {
+        font-weight: 900;
+        font-size: 1.6rem;
+        padding: 2rem 0;
+        font-family: $font-kumbh-sans;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    &__item {
+        padding: 1rem 0.75rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $black;
+    
+        figure {
+          width: 224px;
+          height: 224px;
+          img {
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+    
+        h3 {
+          line-height: 1.5;
+          font-weight: normal;
+          font-size: 1rem;
+        }
+      }
+
+  }
