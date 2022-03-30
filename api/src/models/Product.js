@@ -36,6 +36,19 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.FLOAT,
       defaultValue: 0
+    },
+    discount: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+    },
+    discounted_price: {
+      type: DataTypes.VIRTUAL,
+      get(){
+        return this.getDatavalue('price') * ( 100 - this.getDatavalue('discount')) / 100 
+      },
+      set(){
+        throw new Error ("Don't try to set this field");
+      }
     }
   },{
     timestamps: false
