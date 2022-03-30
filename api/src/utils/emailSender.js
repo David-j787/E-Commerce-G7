@@ -60,7 +60,6 @@ module.exports = {
             })
     },
     orderStatusChange: (status, order) => {
-        console.log(order);
         const message = {
             to: order.dataValues?.notification_email, // Change to your recipient
             from: 'noreply.ecommerce.g7@gmail.com', // Change to your verified sender
@@ -81,5 +80,22 @@ module.exports = {
         .catch((error) => {
             console.error(error)
         })
+    },
+    TwoFaVerificationCode: (user, code) => {
+        const message = {
+            to: user.dataValues.email, // Change to your recipient
+            from: 'noreply.ecommerce.g7@gmail.com', // Change to your verified sender
+            subject: '2FA Authentication Code',
+            text: `Hi ${user.dataValues.name}, please use next code to authenticate in our system CODE: ${code}`,
+            html: `Hi ${user.dataValues.name}, please use next code to authenticate in our system <h2><strong>CODE: ${code}</strong><h2>`,
+            }
+            sgMail
+            .send(message)
+            .then(() => {
+                console.log('2FA Code email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }
 }

@@ -19,7 +19,8 @@ import {
   CLEAR_CART,
   GET_REVIEWS,
   CLEAR_REVIEWS,
-  GET_ORDER_DETAIL
+  GET_ORDER_DETAIL,
+  VERIFY_TWO_FA
 
 } from '../actions';
 
@@ -118,6 +119,15 @@ function rootReducer(state = initialState, action) {
         return{
           ...state,
           user: null
+        }
+    
+    case VERIFY_TWO_FA:
+        return{
+          ...state,
+          user: {
+            ...state.user,
+            two_fa_verified: true
+          }
         }
 
     case GET_ROLES:
