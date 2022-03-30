@@ -21,7 +21,8 @@ export const GET_ORDER = "GET_ORDER";
 export const CLEAR_CART = "CLEAR_CART";
 export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL";
 export const GET_REVIEWS = "GET_REVIEWS";
-export const CLEAR_REVIEWS = "CLEAR_REVIEWS"
+export const CLEAR_REVIEWS = "CLEAR_REVIEWS";
+export const VERIFY_TWO_FA = "VERIFY_TWO_FA";
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -177,6 +178,12 @@ export function userLogin(payload){
 export function userLogout(){
   return{
     type: USER_LOGOUT
+  }
+}
+
+export function verifyTwoFA(){
+  return{
+    type: VERIFY_TWO_FA
   }
 }
 
