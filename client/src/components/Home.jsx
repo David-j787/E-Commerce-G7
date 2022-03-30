@@ -10,21 +10,15 @@ const Home = () => {
   const { isLogged } = useUser();
  
   useEffect(() => {
-    dispatch(getVisitedProducts(user?.id));
+    if(isLogged) dispatch(getVisitedProducts(user?.id));
   }, []); //eslint-disable-line
-
-  console.log(user?.id)
 
   return (
     <div className="container shop">
 
-      {!isLogged ? (
-        false
-      ) : (
-        <div>
+      {isLogged && <div>
           <FrecuentlyVisited />
-        </div>
-      )}
+        </div>}
       </div>)
 }
 
