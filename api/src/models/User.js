@@ -55,7 +55,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: false
     },
-    two_fa:{
+    is_two_fa:{
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false

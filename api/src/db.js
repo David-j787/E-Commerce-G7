@@ -61,19 +61,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Product, User, Category, Order, Review, Role, Payment, Store, Wishlist, Visited_product, Two_fa } = sequelize.models;
+const { Product, User, Category, Order, Review, Role, Payment, Store  } = sequelize.models;
 
-// Aca vendrian las relaciones. Reemplazar xxx
-
-Product.belongsToMany(Category, {
-  through: 'product_category',
-  timestamps: false,
-});
-Category.belongsToMany(Product, {
-  through: 'product_category',
-  timestamps: false,
-});
-Order.belongsTo(User);
 
 // Creamos relación uno a muchos entre la tabla Product_Order, Order y Product (Super Many-to-Many relationship según la documentacion de sequelize)
 const Product_Order = sequelize.define(
@@ -83,6 +72,103 @@ const Product_Order = sequelize.define(
   },
   { timestamps: false }
 );
+
+
+// Modelos con relaciones especiales (Super). Deben crearse en el mismo archivo donde se las relaciona (más abajo)
+const Discount_category = sequelize.define("discount_category", {
+  categoryId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    references: {
+      model: Category,
+      key: 'id'
+    }
+  },
+  discount: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+},
+{
+  timestamps: false,
+}
+);
+
+const Two_fa = sequelize.define("two_fa", {
+  userId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    references: {
+      model: User,
+      key: 'id'
+    }
+  },
+  code: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  },
+  {
+    timestamps: false,
+  }
+);
+
+const Visited_product = sequelize.define("visited_product", {
+  userId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    references: {
+      model: User,
+      key: 'id'
+    }
+  },
+  productId: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    references: {
+      model: Product,
+      key: 'id'
+    }
+  }
+  },
+  {
+    timestamps: false,
+  }
+);
+
+const Wishlist = sequelize.define("wishlist", {
+  userId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    references: {
+      model: User,
+      key: 'id'
+    }
+  },
+  productId: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    references: {
+      model: Product,
+      key: 'id'
+    }
+  }
+  },
+  {
+    timestamps: false,
+  }
+);
+
+
+// Relaciones entra los Modelos.
+
+Product.belongsToMany(Category, { through: 'product_category', timestamps: false });
+Category.belongsToMany(Product, { through: 'product_category', timestamps: false });
+Order.belongsTo(User);
 
 Order.belongsToMany(Product, { through: Product_Order });
 Product.belongsToMany(Order, { through: Product_Order });
@@ -111,9 +197,12 @@ Product.belongsToMany(User, { through: Visited_product });
 User.hasOne(Two_fa);
 Two_fa.belongsTo(User);
 
+Category.hasOne(Discount_category);
+Discount_category.belongsTo(Category);
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  Product_Order,
+  Product_Order, Visited_product, Wishlist, Two_fa, Discount_category,
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
