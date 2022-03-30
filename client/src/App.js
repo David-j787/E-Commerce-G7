@@ -6,10 +6,14 @@ import { UserContextProvider } from './components/Login/context/userContext';
 import { userLogin, restoreCart } from './redux/actions';
 import swal from 'sweetalert';
 
+// styles
+import './styles/styles.scss';
+
 //components
 import Navbar from './components/Navbar';
 import SearchBar from './components/SearchBar';
-import Home from './pages/Home';
+import Home from './components/Home';
+import Shop from './components/Shop';
 import CreateUser from './components/CreateUser';
 import Login from './components/Login/Login.jsx';
 import CreateProduct from './components/CreateProduct';
@@ -26,8 +30,6 @@ import OrderDetail from './components/OrderDetail.jsx';
 import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
 
-// styles
-import './styles/styles.scss';
 
 function App() {
   const dispatch = useDispatch();
@@ -102,12 +104,13 @@ function App() {
                 return <TwoFaVerify />
               }
               else{
-                return <>
-                <SearchBar />
-                <Home />
-                </>
+                return <Home />
               }
             }}/>
+            <Route exact path='/shop'>
+              <SearchBar />
+              <Shop />
+            </Route>
             <Route exact path='/register' component={CreateUser}/>
             <Route exact path='/admincp/product/add' component={CreateProduct}/>
             <Route exact path='/product/update/:id' component={UpdateProduct}/>

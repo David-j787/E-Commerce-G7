@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import logo from '../../assets/images/logo.svg';
-import cart from '../../assets/images/icon-cart.svg';
-import avatar from '../../assets/images/image-avatar.png';
-import menu from '../../assets/images/icon-menu.svg';
-import close from '../../assets/images/icon-close.svg';
-import avatar1 from '../../assets/images/avatar.png'
-import ShoppingCart from '../ShoppingCart';
-import useUser from '../Login/hooks/useUser';
+import logo from '../assets/images/logo.svg';
+import cart from '../assets/images/icon-cart.svg';
+import avatar from '../assets/images/image-avatar.png';
+import menu from '../assets/images/icon-menu.svg';
+import close from '../assets/images/icon-close.svg';
+import avatar1 from '../assets/images/avatar.png'
+import ShoppingCart from './ShoppingCart';
+import useUser from './Login/hooks/useUser';
 
 const Navbar = () => {
   const iconMenuRef = useRef(null);
@@ -56,11 +56,11 @@ const Navbar = () => {
           <ul className="list" ref={listRef}>
             <li className="list__item" onClick={handleClose}>
               <NavLink
-                to="/categories"
+                to="/shop"
                 className="list__link"
                 activeClassName="active"
               >
-                Categories
+                Shop
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>

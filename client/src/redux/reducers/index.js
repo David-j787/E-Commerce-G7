@@ -20,7 +20,8 @@ import {
   GET_REVIEWS,
   CLEAR_REVIEWS,
   GET_ORDER_DETAIL,
-  VERIFY_TWO_FA
+  VERIFY_TWO_FA,
+  GET_VISITED_PRODUCTS
 
 } from '../actions';
 
@@ -37,7 +38,8 @@ const initialState = {
   allRoles: [],
   user_order: [],
   reviews: [],
-  orderDetail: []
+  orderDetail: [],
+  visitedProducts: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -178,6 +180,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         user_order: action.payload
       }
+    
+    case GET_VISITED_PRODUCTS:
+        return {
+          ...state,
+          visitedProducts: action.payload
+        }
     
     case CLEAR_CART:
         return {

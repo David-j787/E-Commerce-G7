@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions';
-import Products from '../components/Products';
-import Paginate from '../components/Paginate';
+import Products from './Products';
+import Paginate from './Paginate';
 
-const Home = () => {
+const Shop = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state);
   const stock = Array.isArray(products) && products?.filter(product => product.stock > 0)
@@ -39,4 +39,4 @@ const Home = () => {
       </div>)
 }
 
-export default Home;
+export default Shop;
