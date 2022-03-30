@@ -10,7 +10,7 @@ const Home = () => {
   const { isLogged } = useUser();
  
   useEffect(() => {
-    if(isLogged) dispatch(getVisitedProducts(user?.id));
+     dispatch(getVisitedProducts(user?.id));
   }, []); //eslint-disable-line
 
   return (
