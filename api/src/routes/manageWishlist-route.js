@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getWishlist, setWishlist } = require("../utils/wishlist-utils");
+const { getWishlist, setWishlist, removeFromWishlist } = require("../utils/wishlist-utils");
 const wishlist = Router();
 
 wishlist.get("/", async (req, res) => {
@@ -10,7 +10,7 @@ wishlist.get("/", async (req, res) => {
         console.log(wishlist);
         res.json(wishlist);
     } catch(err) {
-        res.status(404).send(err);
+        res.status(404).json("Error ocurred: " + err);
     }
 });
 
@@ -21,7 +21,18 @@ wishlist.post("/", async (req, res) => {
         if(!userWishlist) return res.status(403).json("The relation already exists");
         res.json(userWishlist);
     } catch(err) {
-        res.status(404).send(err);
+        res.status(404).json("Error ocurred: " + err);
+    }
+});
+
+wishlist.delete("/", async (req, res) => {
+    try {
+        const { userId, productId } = req.body;
+        const deleteProduct = await removeFromWishlist(userId, productId);
+        if(!deleteProduct) return res.status(403).json("The relation doesn't exist in User's Wishlist");
+        res.json(deleteProduct);
+    } catch(err) {
+        res.status(404).json("Error ocurred: " + err);
     }
 });
 

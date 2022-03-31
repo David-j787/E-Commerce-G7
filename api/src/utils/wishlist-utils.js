@@ -23,5 +23,17 @@ module.exports = {
         });
         if(added) return "Relation added";
         else return
+    },
+    removeFromWishlist: async (userId, productId) => {
+        if(!userId || !productId) throw Error ('Missing userId or productId');
+        const productDeleted = await Wishlist.destroy({
+            where:{
+                userId,
+                productId
+            }
+        })
+        console.log(productDeleted);
+        if(!productDeleted) throw Error ("Product can't be deleted from Wishlist")
+        return "Product deleted from User Wishlist successfully";
     }
 }
