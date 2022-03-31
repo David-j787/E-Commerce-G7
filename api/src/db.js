@@ -143,7 +143,7 @@ const Visited_product = sequelize.define("visited_product", {
 const Wishlist = sequelize.define("wishlist", {
   userId: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
+    foreignKey: true,
     allowNull: false,
     references: {
       model: User,
@@ -152,6 +152,7 @@ const Wishlist = sequelize.define("wishlist", {
   },
   productId: {
     type: DataTypes.STRING,
+    foreignKey: true,
     allowNull: false,
     references: {
       model: Product,
