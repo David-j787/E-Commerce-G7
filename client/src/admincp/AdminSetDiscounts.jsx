@@ -3,14 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../redux/actions";
 import axios from 'axios';
 import Select from 'react-select'
-import CreateCategory from "./CreateCategory";
+import CreateCategory from "../components/CreateCategory";
 import swal from 'sweetalert';
 
 export function validate(discount) {
     let errors = {};
 
-    if(!discount.category.length){
-        errors.category = "Select a categoriy or create a new one"
+    if(!discount.categoryId){
+        errors.categoryId = "Select a category or create a new one"
     }
     else if(!discount.discount){
         errors.discount = "Set a Discount"
@@ -22,7 +22,7 @@ export function validate(discount) {
 }
 
 
-export function AdminSetDiscounts(){
+export function AdminSetDiscounts({showComponent}){
     const dispatch = useDispatch();
     const stateCategories = useSelector((state)=>state.categories)
     
@@ -33,7 +33,7 @@ export function AdminSetDiscounts(){
     const [errors, setErrors] = useState({})
 
     const [discount, setDiscount] = useState({
-        category: '',
+        categoryId: '',
         discount: 0
     })
 
@@ -55,11 +55,11 @@ export function AdminSetDiscounts(){
     const handleSelect = (e) =>{
         setDiscount({
             ...discount,
-            categories: e?.map(x => x.label)
+            categoryId: e.value
         })
         setErrors(validate({
             ...discount,
-            categories: e?.map(x => x.label)
+            categoryId: e.value
         }));
     }
 
@@ -75,8 +75,10 @@ export function AdminSetDiscounts(){
                 button: null
             })
             setDiscount({
-                categories:''
+                categoryId:'',
+                discount: 0
             })
+            showComponent('discounts')
         }else {
             swal({
                 title: 'Something went wrong',
@@ -97,19 +99,19 @@ export function AdminSetDiscounts(){
                     <div className="register__group categories">
                         <label className="col-md-4 control-label">Categories</label>
                         <div style={{width:'100%'}}>
-                            <Select options={options} onChange={handleSelect}/>
+                            <Select options={options} name="category" onChange={handleSelect}/>
                         </div>
                         <div className="register__error">{errors.categories}</div>
                         <CreateCategory />
                     </div>
                     <div className="register__group">
-                        <label className="col-md-4 control-label">Discount</label>
+                        <label className="col-md-4 control-label">Discount Percentage</label>
                         <input type='number' min='0' max='100' name="discount" value={discount.discount} onChange={handleChange} className="form-control"/>
                         <div className="register__error">{errors.discount}</div>                     
                     </div>
                     <button className="register__button"
                      type="submit"
-                     disabled={!discount.discount || !discount.category.length}>Create Discount</button>
+                     disabled={!discount.discount || !discount.categoryId}>Create Discount</button>
                 </form>
             </div>
         </div>

@@ -15,6 +15,7 @@ import AdminStoresList from './AdminStoresList';
 import AdminCreateStore from './AdminCreateStore';
 import AdminEditStore from './AdminEditStore';
 import AdminSetDiscounts from './AdminSetDiscounts';
+import AdminDiscountsList from './AdminDiscountsList';
 
 export default function AdminPanel() {
     const history = useHistory();
@@ -69,9 +70,10 @@ export default function AdminPanel() {
                 {show === 'updateProduct' && <UpdateProduct id={id} showComponent={showComponent}/>}
                 {show === 'editUser' && <AdminEditUser id={id} showComponent={showComponent}/>}
                 {show === 'editRole' && <AdminEditRole showComponent={showComponent}/>}
-                {show === 'stores' && <AdminStoresList showComponent={showComponent}/>}
+                {show === 'stores' && <AdminStoresList getId={getId} showComponent={showComponent}/>}
                 {show === 'createStore' && <AdminCreateStore showComponent={showComponent}/>}
-                {show === 'editStore' && <AdminEditStore showComponent={showComponent}/>}
+                {show === 'updateStore' && <AdminEditStore id={id} showComponent={showComponent}/>}
+                {show === 'discounts' && <AdminDiscountsList showComponent={showComponent}/>}
                 {show === 'setDiscounts' && <AdminSetDiscounts showComponent={showComponent}/>}
             </div>
         </div>
