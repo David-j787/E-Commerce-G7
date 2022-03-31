@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import '../styles/styles.scss'
-import useUser from "./Login/hooks/useUser";
+import useUser from "../components/Login/hooks/useUser";
 import { useDispatch } from "react-redux";
-import { getAllStores } from "../redux/actions";
+//import { getAllStores } from "../redux/actions";
 import swal from 'sweetalert';
 
 export function validate(store) {
@@ -53,7 +53,7 @@ export function AdminCreateStore(){
     })
 
     useEffect(() => {
-        dispatch(getAllStores());
+   //     dispatch(getAllStores());
     },[]);
 
     useEffect(_ => {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../redux/actions";
 import axios from 'axios';
 import Select from 'react-select'
-import CreateCategory from "./CreateCategory";
+import CreateCategory from "../components/CreateCategory";
 import swal from 'sweetalert';
 
 export function validate(discount) {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllStores } from '../redux/actions';
+//import { getAllStores } from '../redux/actions';
 import AdminSearchBar from './AdminSearchBar';
 import swal from 'sweetalert';
 
@@ -10,7 +10,7 @@ export default function AdminStoresList({showComponent, getId}) {
     const stores = useSelector(state => state.stores);
 
     useEffect(()=>{
-        dispatch(getAllStores());
+ //       dispatch(getAllStores());
     },[])
 
     const addProduct = () => {
@@ -42,7 +42,7 @@ export default function AdminStoresList({showComponent, getId}) {
                         timer: 2000,
                         button: null
                     })
-                    dispatch(getAllStores());
+                    //dispatch(getAllStores());
                 }
             })
         } catch (error) {
