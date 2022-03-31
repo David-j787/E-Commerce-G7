@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVisitedProducts } from '../redux/actions';
 import FrecuentlyVisited from './FrecuentlyVisited';
+import ChatBot from './Chatbot/ChatBot';
 import useUser from './Login/hooks/useUser';
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,7 +20,11 @@ const Home = () => {
 
       {isLogged && <div>
           <FrecuentlyVisited />
+          
+
         </div>}
+          <ChatBot />
+          
       </div>)
 }
 
