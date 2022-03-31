@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { postDiscount } = require("../utils/createDiscount-utils");
+const { postDiscount, deleteDiscount } = require("../utils/createDiscount-utils");
 const createDiscount = Router();
 
 createDiscount.post('/', async (req, res) =>{
@@ -10,6 +10,16 @@ createDiscount.post('/', async (req, res) =>{
         res.send('Descuento creado con exitosamente');
     } catch (err) {
         res.status(404).json("No se pudo crear el descuento: " + err)
+    }
+})
+
+createDiscount.delete('/', async (req, res) => {
+    try {
+        const { categoryId } = req.body;
+        const deletedDiscount = await deleteDiscount(categoryId)
+        res.send('Descuento eliminado exitosamente');
+    } catch(err) {
+        res.status(404).json("No se pudo eliminar el descuento: " + err)
     }
 })
 
