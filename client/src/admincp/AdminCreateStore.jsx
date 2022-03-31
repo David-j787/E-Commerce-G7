@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../styles/styles.scss'
 import useUser from "../components/Login/hooks/useUser";
 import { useDispatch } from "react-redux";
-// import { getAllStores } from "../redux/actions";
 import swal from 'sweetalert';
 
 export function validate(store) {
@@ -51,10 +50,6 @@ export function AdminCreateStore({showComponent}){
         address: "",
         state: "",
     })
-
-    useEffect(() => {
-        //dispatch(getAllStores());
-    },[]);
 
     const handleChange = (e) => {
         setStore({
