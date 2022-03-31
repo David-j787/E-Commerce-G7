@@ -29,6 +29,7 @@ import Payment from './components/Payment';
 import OrderDetail from './components/OrderDetail.jsx';
 import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
+import Wishlist from './components/Wishlist';
 
 
 function App() {
@@ -119,6 +120,7 @@ function App() {
             <Route exact path='/checkout' component={OrderCheckout}/>
             <Route exact path='/user/account/profile' component={UserAccount}/>
             <Route exact path='/user/account/reset-password' component={ResetPassword}/>
+            <Route exact path='/user/account/my-wishlist' component={Wishlist}/>
             <Route exact path='/user/account/twofa' component={TwoFaVerify}/>
             <Route exact path='/user/account/edit' component={UpdateAccount}/>
             <Route exact path='/user/account/orders' component={Orders}/>

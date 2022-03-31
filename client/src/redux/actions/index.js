@@ -24,6 +24,7 @@ export const GET_REVIEWS = "GET_REVIEWS";
 export const CLEAR_REVIEWS = "CLEAR_REVIEWS";
 export const VERIFY_TWO_FA = "VERIFY_TWO_FA";
 export const GET_VISITED_PRODUCTS = "GET_VISITED_PRODUCTS";
+export const GET_WISHLIST = "GET_WISHLIST";
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -274,3 +275,18 @@ export const getVisitedProducts = (userId) => {
   };
 };
 
+export const getUserWishlist = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/wishlist?userId=${userId}`);
+      console.log(response)
+      const data = await response.data;
+      dispatch({
+        type: GET_WISHLIST,
+        payload: data,
+      });
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+};

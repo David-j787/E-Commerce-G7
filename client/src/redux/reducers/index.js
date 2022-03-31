@@ -21,7 +21,8 @@ import {
   CLEAR_REVIEWS,
   GET_ORDER_DETAIL,
   VERIFY_TWO_FA,
-  GET_VISITED_PRODUCTS
+  GET_VISITED_PRODUCTS,
+  GET_WISHLIST
 
 } from '../actions';
 
@@ -39,7 +40,8 @@ const initialState = {
   user_order: [],
   reviews: [],
   orderDetail: [],
-  visitedProducts: []
+  visitedProducts: [],
+  wishlist: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -192,6 +194,12 @@ function rootReducer(state = initialState, action) {
           ...state,
           cart: []
         }
+
+    case GET_WISHLIST:
+        return {
+          ...state,
+          wishlist: [...state.wishlist, action.payload]
+      }
 
     default:
       return state;
