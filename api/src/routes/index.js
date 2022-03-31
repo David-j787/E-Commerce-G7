@@ -28,8 +28,8 @@ const allReviews = require("./getReviews-route");
 const updateUser = require("./updateAccount-route");
 const TwoFA = require("./set2FA");
 const visitedProducts = require("./getProductsVisited-route");
-const wishlist = require("./getWishlist-route");
 const discount = require("./createDiscount-route");
+const wishlist = require("./manageWishlist-route");
 
 // Middlewares
 const auth = require("./authenticate-route");
