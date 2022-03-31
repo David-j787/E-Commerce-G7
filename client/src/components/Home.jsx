@@ -4,6 +4,7 @@ import { getVisitedProducts } from '../redux/actions';
 import Slider from './Slider/Slider';
 import FrecuentlyVisited from './FrecuentlyVisited';
 import useUser from './Login/hooks/useUser';
+import WhatsApp from './WhatsApp';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,14 +18,13 @@ const Home = () => {
   return (
     <div className="shop">
       <Slider />
-
-      {isLogged && (
+      {!isLogged ? false : 
         <div>
           <FrecuentlyVisited />
-        </div>
-      )}
+        </div> }
+      <WhatsApp />
     </div>
-  );
+  )
 };
 
 export default Home;
