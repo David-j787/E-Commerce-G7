@@ -6,10 +6,10 @@ createDiscount.post('/', async (req, res) =>{
     try {
         const { categoryId, discount } = req.body
         const createdDiscount = await postDiscount(discount, categoryId) 
-        if(!createDiscount) res.status(404).send('Error al crear el descuento');
-        res.send('Descuento creado exitosamente');
+        if(!createDiscount) res.status(404).send("Could not create discount");
+        res.send('Succesfully created discount');
     } catch (err) {
-        res.status(404).json("No se pudo crear el descuento: " + err)
+        res.status(404).json("Could not create discount: " + err)
     }
 })
 
@@ -17,9 +17,9 @@ createDiscount.delete('/', async (req, res) => {
     try {
         const { categoryId } = req.body;
         const deletedDiscount = await deleteDiscount(categoryId)
-        res.send('Descuento eliminado exitosamente');
+        res.send('Successfully deleted discount');
     } catch(err) {
-        res.status(404).json("No se pudo eliminar el descuento: " + err)
+        res.status(404).json("Couldn't remove discount: " + err)
     }
 })
 
@@ -28,7 +28,7 @@ createDiscount.get('/', async (req, res) => {
         const discounts = await getDiscounts()
         res.send(discounts)
     } catch(err) {
-        res.status(404).json("No se pudieron obtener los descuentos")
+        res.status(404).json("Unable to get Discounts")
     }
 })
 
