@@ -4,7 +4,6 @@ const { Op } = require('sequelize');
 
 const postDiscount = async (discount, categoryId) => {
     discount = parseInt(discount)
-    console.log(categoryId, discount)
     if (!discount || !categoryId) throw Error('A valid category and a discount are required')
 
     const checkDiscount = await Discount_category.findByPk(categoryId)
