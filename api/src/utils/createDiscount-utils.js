@@ -7,6 +7,10 @@ const postDiscount = async (discount, categoryId) => {
     console.log(categoryId, discount)
     if (!discount || !categoryId) throw Error('A valid category and a discount are required')
 
+    const checkDiscount = await Discount_category.findByPk(categoryId)
+
+    if (checkDiscount) throw Error('Category already has a discount')
+
     const newDiscount = await Discount_category.findOrCreate({
         where: {
             categoryId: categoryId,
@@ -65,4 +69,13 @@ const deleteDiscount = async categoryId => {
     }
 }
 
-module.exports = { postDiscount, deleteDiscount }
+const getDiscounts = async () => {
+    try {
+        let allDiscounts = await Discount_category.findAll({include: Category});
+        return allDiscounts
+    } catch(err) {
+        console.error('No discounts on the DB', err)
+    }
+}
+
+module.exports = { postDiscount, deleteDiscount, getDiscounts }
