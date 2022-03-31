@@ -1,31 +1,70 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, getSearchProducts, } from "../redux/actions";
+import { getAllProducts, getCategories, getSearchProducts } from "../redux/actions";
 
 export default function SearchBar() {
+  const [display, setDisplay] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('');
+
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state)
+  const wrapperRef = useRef(null);
+
+  const { categories } = useSelector(state => state);
+
+  useEffect(async _ => {
+    const product = [];
+    const promises = await axios(`http://localhost:3001/products`);
+    promises.data.forEach(p => {
+      const { name, images } = p;
+      product.push({ name, images })
+    });
+    setOptions(product);
+  }, []);
 
   useEffect(() =>{
     dispatch(getCategories())
   }, [dispatch])
 
-  const [name, setName] = useState('');
-  const [filter, setFilter] = useState('');
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []); //eslint-disable-line
 
-  const handleInputChange = e => {
-    e.preventDefault();
-    setName(e.target.value);
-  }
+  const updateProduct = prod => {
+    setSearch(prod);
+    setDisplay(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = event => {
+    const { current: wrap } = wrapperRef;
+    if (wrap && !wrap.contains(event.target)) {
+      setDisplay(false);
+    }
+  };
+
+  // const handleInputChange = e => {
+
+  //   e.preventDefault();
+  //   setSearch(e.target.value);
+  // }
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(getSearchProducts(name, filter))
+    dispatch(getSearchProducts(search, filter))
   }
 
   const cleanState = e => {
     e.preventDefault();
-    setName('');
+    setSearch('');
     setFilter('');
     dispatch(getSearchProducts('', ''))
   }
@@ -33,13 +72,31 @@ export default function SearchBar() {
   const handleSelect = e => {
     e.preventDefault();
     setFilter(e.target.value);
-    dispatch(getSearchProducts(name, e.target.value))
+    dispatch(getSearchProducts(search, e.target.value))
   }
 
   return (
     <div className="container">
-      <div className="searchBar">
-        <input value={name} placeholder="Search…" onChange= {handleInputChange} className="searchBar__searching"/>
+      <div ref={wrapperRef} className="searchBar">
+        <input value={search} placeholder="Type to search" onClick={() => setDisplay(!display)} onChange={e => setSearch(e.target.value)} className="searchBar__searching"/>
+        {display && (
+          <div className="autoContainer">
+            {options.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()))
+            .map((value, i) => {
+                return (
+                  <div
+                    onClick={() => updateProduct(value.name)}
+                    className="option"
+                    key={i}
+                    tabIndex="0"
+                  >
+                    <span>{value.name}</span>
+                    <img src={value.images} alt="product" />
+                  </div>
+                );
+              })}
+          </div>
+        )}
         <select onChange={handleSelect} value={filter}>
           <option value=''>All Categories</option>
         {categories?.map((ca,i) => {

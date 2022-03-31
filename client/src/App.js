@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 import './styles/styles.scss';
 
 //components
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.jsx';
 import SearchBar from './components/SearchBar';
 import Home from './components/Home';
 import Shop from './components/Shop';
