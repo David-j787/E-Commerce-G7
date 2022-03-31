@@ -16,7 +16,7 @@ export default function SearchBar() {
 
   useEffect(async _ => {
     const product = [];
-    const promises = await axios(`http://localhost:3001/products`);
+    const promises = await axios(`/products`);
     promises.data.forEach(p => {
       const { name, images } = p;
       product.push({ name, images })
