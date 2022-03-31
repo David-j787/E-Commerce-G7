@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVisitedProducts } from '../redux/actions';
+import Slider from './Slider/Slider';
 import FrecuentlyVisited from './FrecuentlyVisited';
 import useUser from './Login/hooks/useUser';
 import WhatsApp from './WhatsApp';
@@ -11,24 +12,19 @@ const Home = () => {
   const { isLogged } = useUser();
 
   useEffect(() => {
-    if(isLogged) dispatch(getVisitedProducts(user?.id));
+    if (isLogged) dispatch(getVisitedProducts(user?.id));
   }, []); //eslint-disable-line
 
   return (
-    <>
-      <div className="container shop">
-
-        {!isLogged ? (
-          false
-        ) : (
-          <div>
-            <FrecuentlyVisited />
-          </div>
-        )}
-      </div>
+    <div className="shop">
+      <Slider />
+      {!isLogged ? false : 
+        <div>
+          <FrecuentlyVisited />
+        </div> }
       <WhatsApp />
-    </>
+    </div>
   )
-}
+};
 
 export default Home;
