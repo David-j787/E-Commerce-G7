@@ -21,13 +21,55 @@
   }
 
   &__searching,select {
+    width: 18rem;
     height: 3rem;
     padding: 0 .75rem;
     outline: none;
+    font-size: 1rem;
+    &:focus{
+      border: 1px solid $black;
+      border-bottom: none;
+    }
   }
 
   &__btn {
     @include button();
   }
 
+}
+
+.autoContainer {
+  width: 18rem;
+  float: right;
+  position: absolute;
+  left: 474px;
+  top: 208px;
+  background-color: $white;
+  border: 1px solid $dark-grayish-blue;
+  border-top: none;
+}
+.option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+  margin: 0;
+  &:hover {
+    background-color: $grayish-blue;
+    cursor: pointer;
+  }
+  span {
+    width: 250px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  img{
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    filter: brightness(1.1);
+    mix-blend-mode: multiply;
+  }
 }
