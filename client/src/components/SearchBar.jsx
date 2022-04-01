@@ -12,17 +12,20 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const wrapperRef = useRef(null);
 
-  const { categories } = useSelector(state => state);
+  const { categories, products } = useSelector(state => state);
 
-  useEffect(async _ => {
-    const product = [];
-    const promises = await axios(`/products`);
-    promises.data.forEach(p => {
-      const { name, images } = p;
-      product.push({ name, images })
-    });
+  const mapProducts = async () => {
+    const product = products?.map(product => ({
+      name: product.name,
+      images: product.images
+    })
+    );
     setOptions(product);
-  }, []);
+  }
+
+  useEffect(() => {
+    mapProducts()
+  }, [display]); //eslint-disable-line
 
   useEffect(() =>{
     dispatch(getCategories())
@@ -35,6 +38,7 @@ export default function SearchBar() {
   const updateProduct = prod => {
     setSearch(prod);
     setDisplay(false);
+    dispatch(getSearchProducts(prod, filter))
   };
 
   useEffect(() => {
@@ -51,12 +55,6 @@ export default function SearchBar() {
     }
   };
 
-  // const handleInputChange = e => {
-
-  //   e.preventDefault();
-  //   setSearch(e.target.value);
-  // }
-
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(getSearchProducts(search, filter))
@@ -66,6 +64,7 @@ export default function SearchBar() {
     e.preventDefault();
     setSearch('');
     setFilter('');
+    setDisplay(false);
     dispatch(getSearchProducts('', ''))
   }
 
@@ -78,23 +77,20 @@ export default function SearchBar() {
   return (
     <div className="container">
       <div ref={wrapperRef} className="searchBar">
-        <input value={search} placeholder="Type to search" onClick={() => setDisplay(!display)} onChange={e => setSearch(e.target.value)} className="searchBar__searching"/>
+        <input value={search} placeholder="Search" onClick={() => setDisplay(!display)} onChange={e => setSearch(e.target.value)} className="searchBar__searching"/>
         {display && (
           <div className="autoContainer">
-            {options.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()))
-            .map((value, i) => {
-                return (
+            {options.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase())).slice(0,5).map((value, i) => 
                   <div
                     onClick={() => updateProduct(value.name)}
                     className="option"
                     key={i}
                     tabIndex="0"
                   >
-                    <span>{value.name}</span>
                     <img src={value.images} alt="product" />
+                    <span>{value.name}</span>   
                   </div>
-                );
-              })}
+              )}
           </div>
         )}
         <select onChange={handleSelect} value={filter}>

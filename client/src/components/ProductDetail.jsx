@@ -69,7 +69,8 @@ export function ProductDetail(props) {
                             <Reviews id={id} className='reviews' />
                             {isLogged && !alreadyCommented ?
                                 <ReviewAndRating productId={details.id} /> :
-                                <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You already review this product. Thanks for your feedback</p>}
+                                isLogged ? <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You already review this product. Thanks for your feedback</p> 
+                                : <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You must be logged to add a review. </p>}
                         </div>
                     </div>
                     : (<h2>Loading...</h2>)}
