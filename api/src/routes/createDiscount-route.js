@@ -6,8 +6,8 @@ const adminOnly = require('../utils/adminOnly');
 
 createDiscount.post('/', async (req, res) =>{
     try {
-        const { categoryId, discount } = req.body
-        const createdDiscount = await postDiscount(discount, categoryId) 
+        const { categoryId, discount, weekday } = req.body
+        const createdDiscount = await postDiscount(discount, categoryId, weekday) 
         if(!createdDiscount) res.status(404).send("Could not create discount");
         res.send('Succesfully created discount');
     } catch (err) {

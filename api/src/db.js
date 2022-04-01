@@ -89,6 +89,10 @@ const Discount_category = sequelize.define("discount_category", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  weekday: {
+    type: DataTypes.ENUM("sunday","monday","tuesday","wednesday ","thursday","friday","saturday"),
+    allowNull: false
+  }
 },
 {
   timestamps: false,
