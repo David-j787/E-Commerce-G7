@@ -263,7 +263,7 @@ export const getVisitedProducts = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/visited?userId=${userId}`);
-      console.log(response)
+      //console.log(response)
       const data = await response.data;
       dispatch({
         type: GET_VISITED_PRODUCTS,
@@ -275,11 +275,12 @@ export const getVisitedProducts = (userId) => {
   };
 };
 
+// WISHLIST
+
 export const getUserWishlist = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/wishlist?userId=${userId}`);
-      console.log(response)
       const data = await response.data;
       dispatch({
         type: GET_WISHLIST,

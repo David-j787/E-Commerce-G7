@@ -22,7 +22,7 @@ import {
   GET_ORDER_DETAIL,
   VERIFY_TWO_FA,
   GET_VISITED_PRODUCTS,
-  GET_WISHLIST
+  GET_WISHLIST,
 
 } from '../actions';
 
@@ -198,9 +198,8 @@ function rootReducer(state = initialState, action) {
     case GET_WISHLIST:
         return {
           ...state,
-          wishlist: [...state.wishlist, action.payload]
-      }
-
+          wishlist: action.payload
+        }
     default:
       return state;
   }
