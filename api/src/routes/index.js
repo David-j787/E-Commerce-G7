@@ -28,7 +28,9 @@ const allReviews = require("./getReviews-route");
 const updateUser = require("./updateAccount-route");
 const TwoFA = require("./set2FA");
 const visitedProducts = require("./getProductsVisited-route");
+const discount = require("./createDiscount-route");
 const wishlist = require("./manageWishlist-route");
+const store = require('./store')
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -97,6 +99,11 @@ router.use("/twofa", TwoFA);
 
 router.use("/visited", visitedProducts);
 
+router.use("/discount", discount);
+
 router.use("/wishlist", wishlist);
+
+router.use("/stores", store);
+
 
 module.exports = router;

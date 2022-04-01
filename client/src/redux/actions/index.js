@@ -25,6 +25,10 @@ export const CLEAR_REVIEWS = "CLEAR_REVIEWS";
 export const VERIFY_TWO_FA = "VERIFY_TWO_FA";
 export const GET_VISITED_PRODUCTS = "GET_VISITED_PRODUCTS";
 export const GET_WISHLIST = "GET_WISHLIST";
+export const GET_ALL_STORES = "GET_ALL_STORES";
+export const GET_STORE_DETAIL = "GET_STORE_DETAIL";
+export const GET_ALL_DISCOUNTS = "GET_ALL_DISCOUNTS";
+
 
 export const getAllProducts = () => {
   return async (dispatch) => {
@@ -227,6 +231,39 @@ export function getAllUsers(){
     try {
       const users = await axios.get('/users');
       dispatch({type: GET_ALL_USERS, payload: users.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
+export function getAllStores(){
+  return async function (dispatch){
+    try {
+      const stores = await axios.get('/stores');
+      dispatch({type: GET_ALL_STORES, payload: stores.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
+export function getStoreDetail(id){
+  return async function (dispatch){
+    try {
+      const store = await axios.get(`/stores?storeId=${id}`);
+      dispatch({type: GET_STORE_DETAIL, payload: store.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
+export function getAllDiscounts(){
+  return async function (dispatch){
+    try {
+      const discounts = await axios.get('/discount');
+      dispatch({type: GET_ALL_DISCOUNTS, payload: discounts.data})
     } catch (error) {
       console.log('Error: ' + error);
     }

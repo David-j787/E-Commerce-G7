@@ -23,6 +23,9 @@ import {
   VERIFY_TWO_FA,
   GET_VISITED_PRODUCTS,
   GET_WISHLIST,
+  GET_ALL_STORES,
+  GET_STORE_DETAIL,
+  GET_ALL_DISCOUNTS
 
 } from '../actions';
 
@@ -41,7 +44,10 @@ const initialState = {
   reviews: [],
   orderDetail: [],
   visitedProducts: [],
-  wishlist: []
+  wishlist: [],
+  stores: [],
+  storeDetail: {},
+  discounts: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -170,6 +176,24 @@ function rootReducer(state = initialState, action) {
           ...state,
           allUsers: action.payload.length ? action.payload : "No users found"
         }
+
+    case GET_ALL_DISCOUNTS:
+        return {
+          ...state,
+          discounts: action.payload.length ? action.payload : "No discounts found"
+        }
+
+    case GET_ALL_STORES:
+        return {
+          ...state,
+          stores: action.payload.length ? action.payload : "No stores found"
+        }
+
+    case GET_STORE_DETAIL:
+          return {
+            ...state,
+            storeDetail: action.payload ? action.payload : "No store found"
+          }
     
     case GET_USER_DETAIL:
           return {
