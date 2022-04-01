@@ -4,6 +4,7 @@ import { createChatBotMessage } from "react-chatbot-kit";
 import Options  from "./Options";
 import IconBotAvatar from "./IconBotAvatar";
 import CustomChatMessage from "./CustomChatMessage";
+import Offers from "./Offers";
 
 
 
@@ -25,6 +26,11 @@ const config = {
             widgetName: "options",
             widgetFunc:(props) => <Options {...props} />,
         },
+        {
+                widgetName: 'offers',
+                widgetFunc: (props) => <Offers {...props} /> ,
+                mapStateToProps: ["offers"],
+        },
 
 
     ],
@@ -33,7 +39,25 @@ const config = {
         botAvatar: (props) => <IconBotAvatar  {...props} />,
         customChatMessage: (props) => <CustomChatMessage {...props} />,
         
-}
+},
+customStyles: {
+    botMessageBox: {
+        backgroundColor: "grey",
+        borderRadius: "10px",
+    },
+    chatButton: {
+        backgroundColor: "grey",
+        borderRadius: "10px",
+    },
+
+
+    
+},
+state: {
+    offers: []
+},
+
+
 };
 
 export default config
