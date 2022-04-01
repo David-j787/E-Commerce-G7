@@ -54,13 +54,13 @@ export default function AdminDiscountsList({showComponent, getId}) {
     return(
         <div className='adminSubComp'>
             <div className='componentTitle'>Discount Management<button onClick={setDiscount} className='componentTitle__button'>Set new Discount</button></div>
-            <div className='tableHeader'><div>Category</div>|<div>Discount</div>|<div>Start Date</div>|<div>End Date</div>|<div>Action</div></div>
+            <div className='tableHeader'><div>Category</div>|<div>Discount</div>|<div>Weekday</div>|<div>End Date</div>|<div>Action</div></div>
             <div className='adminTable'>
                 <ul>
                     {Array.isArray(discounts) ? discounts?.map(discount => <li className='itemList' key={discount?.categoryId}>
                         <div>{discount?.category?.name}</div>
                         <div>{discount?.discount} %</div>
-                        <div>N/A</div>
+                        <div>{discount?.weekday}</div>
                         <div>N/A</div>
                         <div>
                             <button onClick={e => deleteDiscount(discount.categoryId)}className='adminCP__button'>Delete</button>

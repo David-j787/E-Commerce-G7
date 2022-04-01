@@ -35,7 +35,7 @@ export function ProductDetail(props) {
     }, [])
 
     const handleAddCart = (product) => {
-        const cartProduct = cart.filter(Product => Product.id === product.id)
+        const cartProduct = cart?.filter(Product => Product.id === product.id)
         if (cartProduct.length && cartProduct[0].stock > cartProduct[0].amount)
             return dispatch(productAmountSum(product.id))
         if (!cartProduct.length) {

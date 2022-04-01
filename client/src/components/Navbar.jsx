@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo from '../assets/images/logo.svg';
@@ -16,7 +16,8 @@ const Navbar = () => {
   const listRef = useRef(null);
   const [showCart, setShowCart] = useState(false);
   const { isLogged, logout } = useUser();
-  const user = useSelector(state => state.user);
+  const user = useSelector(state => state?.user);
+  const shopCart = useSelector(state => state?.cart);
 
   const handleMenu = () => {
     iconCloseRef.current.style.display = 'block';
@@ -29,6 +30,10 @@ const Navbar = () => {
     iconMenuRef.current.style.display = 'block';
     listRef.current.style.display = 'none';
   };
+  
+  useEffect(() => {
+    if(!showCart) cartShow()
+  },[shopCart])
 
   const cartShow = () => {
     setShowCart(!showCart);
