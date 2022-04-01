@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../styles/styles.scss'
 import useUser from "../components/Login/hooks/useUser";
 import { useDispatch } from "react-redux";
-//import { getAllStores } from "../redux/actions";
 import swal from 'sweetalert';
 
 export function validate(store) {
@@ -35,7 +34,7 @@ export function validate(store) {
 }
 
 
-export function AdminCreateStore(){
+export function AdminCreateStore({showComponent}){
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -51,14 +50,6 @@ export function AdminCreateStore(){
         address: "",
         state: "",
     })
-
-    useEffect(() => {
-   //     dispatch(getAllStores());
-    },[]);
-
-    useEffect(_ => {
-        if(isLogged) history.push('/');
-    },[isLogged, history])
 
     const handleChange = (e) => {
         setStore({
@@ -81,7 +72,7 @@ export function AdminCreateStore(){
             address: "",
             state: "",
         })
-        const response = await axios.post("/store", store)
+        const response = await axios.post("/stores", store)
         if(response.status === 200){
             swal({
                 title: 'Store was created successfully',
@@ -90,7 +81,7 @@ export function AdminCreateStore(){
                 timer: 3000,
                 button: null
             })
-            history.push("/admincp")
+            showComponent('stores');
         }else{
             swal({
                 title: 'Something went wrong',
@@ -106,7 +97,7 @@ export function AdminCreateStore(){
     return(
         <div className="container">
             <div className="register">
-                <h1 className="register__title">Sign Up</h1>
+                <h1 className="register__title">Create a New Store</h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} className="register__form">
                     <div className="register__group">
                     <label>Name:</label>
@@ -136,7 +127,7 @@ export function AdminCreateStore(){
                     <div className="register__group">
                     <label>State:</label>
                     <input  type='input' name="state" value={store.state} onChange={handleChange} className="form-control"/>
-                    <div className="register__error">{errors.dateOfBirth}</div>
+                    <div className="register__error">{errors.state}</div>
                     </div>
                     <button className="register__button" type="submit" disabled={!store.name || !store.country || !store.city || !store.address || !store.zip_code || !store.state || Object.keys(errors).length} >Create Store</button>
                 </form>

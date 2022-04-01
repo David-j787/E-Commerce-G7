@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-//import { getAllStores } from '../redux/actions';
-import AdminSearchBar from './AdminSearchBar';
+import { getAllStores } from '../redux/actions';
 import swal from 'sweetalert';
 
 export default function AdminStoresList({showComponent, getId}) {
@@ -13,8 +12,8 @@ export default function AdminStoresList({showComponent, getId}) {
  //       dispatch(getAllStores());
     },[])
 
-    const addProduct = () => {
-        showComponent('addStore')
+    const addNewStore = () => {
+        showComponent('createStore')
     }
 
     const editStore = (storeId) => {
@@ -34,7 +33,7 @@ export default function AdminStoresList({showComponent, getId}) {
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.delete('/store', {data: {token, storeId}});
+                    await axios.delete('/stores', {data: {token, storeId}});
                     swal({
                         title: 'You deleted the store with Number: ' + storeId,
                         text: ' ',
@@ -59,19 +58,18 @@ export default function AdminStoresList({showComponent, getId}) {
 
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Stores Management <button onClick={addProduct} className='componentTitle__button'>Add new Store</button></div>
-            <AdminSearchBar search='stores' />
+            <div className='componentTitle'>Stores Management<button onClick={addNewStore} className='componentTitle__button'>Add new Store</button></div>
             <div className='tableHeader'><div>Store name</div>|<div>Address</div>|<div>City</div>|<div>State</div>|<div>Action</div></div>
             <div className='adminTable'>
                 <ul>
-                    {Array.isArray(stores) ? stores?.map(prod => <li className='prodList' key={prod.id}>
-                        <div>{prod.name.slice(0, 35)}{prod.name.length > 35 && '...'}</div>
-                        <div>US$ {prod.price}</div>
-                        <div>{prod.stock}</div>
-                        <div>{prod.rating}</div>
+                    {Array.isArray(stores) ? stores?.map(store => <li className='itemList' key={store.id}>
+                        <div>{store.name}</div>
+                        <div>{store.address}</div>
+                        <div>{store.city}</div>
+                        <div>{store.state}</div>
                         <div>
-                            <button onClick={e => editStore(prod.id)} className='adminCP__button'>Edit</button>
-                            <button onClick={e => deleteStore(prod.id)}className='adminCP__button'>Delete</button>
+                            <button onClick={e => editStore(store.id)} className='adminCP__button'>Edit</button>
+                            <button onClick={e => deleteStore(store.id)}className='adminCP__button'>Delete</button>
                         </div>
                         
                         </li>) : <div className='noDataFound'>{stores}</div>}

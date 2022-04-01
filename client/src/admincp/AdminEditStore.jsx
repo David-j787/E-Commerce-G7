@@ -52,12 +52,13 @@ export function AdminEditStore(props){
 
     useEffect(() => {
         setStore({
-            name: storeDetail.name,
-            country: storeDetail.country,
-            city: storeDetail.city,
-            zip_code: storeDetail.zip_code,
-            address: storeDetail.address,
-            state: storeDetail.state,
+            id: storeDetail?.id,
+            name: storeDetail?.name,
+            country: storeDetail?.country,
+            city: storeDetail?.city,
+            zip_code: storeDetail?.zip_code,
+            address: storeDetail?.address,
+            state: storeDetail?.state,
         })
     },[storeDetail])
         
@@ -86,7 +87,7 @@ export function AdminEditStore(props){
                 buttons: ['No','Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.put("/store/edit", {...store, token});
+                    await axios.put("/stores", {...store, token});
                     swal({
                         title: 'Store changes saved',
                         text: ' ',
@@ -95,7 +96,7 @@ export function AdminEditStore(props){
                         button: null
                     })
                 }
-                props.showComponent('store');
+                props.showComponent('stores');
             })
         } catch (error) {
             swal({
@@ -116,32 +117,32 @@ export function AdminEditStore(props){
             <form onSubmit={(e)=>{handleSubmit(e)}} className="register__form">
                 <div className="register__group">
                 <label>Name:</label>
-                <input name="name" value={store.name} onChange={handleChange} className="form-control"/>
+                <input name="name" value={store?.name} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.name}</div>
                 </div>
                 <div className="register__group">
                 <label>Country:</label>
-                <input name="country" value={store.country} onChange={handleChange} className="form-control"/>
+                <input name="country" value={store?.country} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.country}</div>
                 </div>
                 <div className="register__group">
                 <label>City:</label>
-                <input name="city" value={store.city} onChange={handleChange} className="form-control"/>
+                <input name="city" value={store?.city} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.city}</div>
                 </div>
                 <div className="register__group">
                 <label>Zip code:</label>
-                <input type="number" name="zip_code" value={store.zip_code} onChange={handleChange} className="form-control"/>
+                <input type="number" name="zip_code" value={store?.zip_code} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.zip_code}</div>
                 </div>
                 <div className="register__group">
                 <label>Address:</label>
-                <input name="address" value={store.address} onChange={handleChange} className="form-control"/>
+                <input name="address" value={store?.address} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.address}</div>
                 </div>
                 <div className="register__group">
                 <label>State:</label>
-                <input  type='text' name="state" value={store.state} onChange={handleChange} className="form-control"/>
+                <input  type='text' name="state" value={store?.state} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.state}</div>
                 </div>
                 <button className="register__button" type="submit" >Edit</button>
