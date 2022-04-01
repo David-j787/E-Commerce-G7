@@ -4,9 +4,11 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   @include mq(medium) {
     margin: 2rem 0;
+    margin-bottom: 0;
     flex-direction: row;
     justify-content: center;
   }
@@ -20,6 +22,8 @@
     }
   }
 
+  
+
   &__searching,select {
     width: 18rem;
     height: 3rem;
@@ -32,6 +36,15 @@
     }
   }
 
+  &__searching {
+    width: 100%;
+    position: relative;
+  }
+
+  select {
+    width: 100%;
+  }
+
   &__btn {
     @include button();
   }
@@ -39,14 +52,19 @@
 }
 
 .autoContainer {
-  width: 18rem;
-  float: right;
-  position: absolute;
-  left: 474px;
-  top: 208px;
   background-color: $white;
   border: 1px solid $dark-grayish-blue;
-  border-top: none;
+  // padding: 0 .3rem;
+  margin-top: 0;
+  margin-left: 0;
+  border-top: transparent;
+  
+  @include mq(medium) {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 3rem;
+  }
 }
 .option {
   display: flex;
