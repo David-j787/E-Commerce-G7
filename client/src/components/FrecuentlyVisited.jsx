@@ -13,7 +13,9 @@ export default function FrecuentlyVisited(){
 
     return(
         <>
-        <h2 className="visited__title">Based on your last visit</h2>
+        <div className="container">
+            <h2 className="visited__title">Based on your last visit</h2>
+        </div>
         <div className="visited-wrapper">
             
             <div className="visited">
