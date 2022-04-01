@@ -30,7 +30,6 @@ export default function useUser(){
     }, [setJwt]) //eslint-disable-line
 
     const logout = async () => {
-        console.log(logged?.id)
         await axios.put('/twofa', {action: 'logout', userId: logged?.id, two_fa: false})
         localStorage.removeItem('jwt');
         sessionStorage.removeItem('jwt');
