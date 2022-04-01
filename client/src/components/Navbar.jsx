@@ -107,14 +107,19 @@ const Navbar = () => {
                   <span>{user.last_name}</span> <br/>
                 </div>
               </figure>
-              <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
-              {user?.roleId < 3 && <Link to="/admincp" className='admButton'>AdminCP</Link>}
+              <div className='wrapper-isLogged'>
+                <h3>Signed in as <span>{user.name} {user.last_name}</span></h3>
+                <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
+                {user?.roleId < 3 && <Link to="/admincp" className='admButton'>AdminCP</Link>}
+              </div>
             </div>
           : <div className='navbarLogin'>
               <figure>
                 <img src={avatar1} alt="avatar" />
               </figure>
-              <Link to="/login" className='navbarLogin__button'>Login</Link>
+              <div className='wrapper-isLogged login'>
+                <Link to="/login" className='navbarLogin__button'>Login</Link>
+              </div>
             </div>}
         </div>
       </div>
