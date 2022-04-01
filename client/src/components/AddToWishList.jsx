@@ -7,25 +7,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserWishlist } from "../redux/actions";
 
 export function AddToWishList({ userId, productId }) {
-
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.user);
-  const  stateWishlist  = useSelector((state)=> state.wishlist)
-  const  stateDetail  = useSelector((state)=> state.details)
+  const stateWishlist = useSelector((state) => state.wishlist);
+  const stateDetail = useSelector((state) => state.details);
 
   const [adding, setAdding] = useState(false);
 
   const [wishlist, setWishlist] = useState();
 
-  useEffect(()=>{
-      setButton()
-    }, [])
+  useEffect(() => {
+    setButton();
+  }, []);
 
   const setButton = () => {
-    const resultSearch = stateWishlist?.map(el=> el.id).includes(stateDetail.id)
-    if(resultSearch) setAdding(true)
-    else return setAdding(false)
-  }
+    const resultSearch = stateWishlist?.map((el) => el.id).includes(stateDetail?.id);
+    if (resultSearch) setAdding(true);
+    else return setAdding(false);
+  };
 
   useEffect(() => {
     setWishlist({
@@ -35,10 +34,10 @@ export function AddToWishList({ userId, productId }) {
   }, [stateWishlist]); // eslint-disable-next-line
 
   const handleSubmit = async () => {
-    setAdding(true);
-    const response = await axios.post('/wishlist', wishlist)
-    dispatch(getUserWishlist(id))
+    const response = await axios.post("/wishlist", wishlist);
     if (response.status === 200) {
+      dispatch(getUserWishlist(id));
+      setAdding(true);
       swal({
         title: "Added to wishlist!",
         text: " ",
@@ -58,10 +57,10 @@ export function AddToWishList({ userId, productId }) {
   };
 
   const handleRemove = async () => {
-    setAdding(false);
-    const response = await axios.delete("/wishlist", {data: wishlist});
-    dispatch(getUserWishlist(id))
+    const response = await axios.delete("/wishlist", { data: wishlist });
     if (response.status === 200) {
+      dispatch(getUserWishlist(id));
+      setAdding(false);
       swal({
         title: "Removed from wishlist!",
         text: " ",

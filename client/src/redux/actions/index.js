@@ -300,7 +300,6 @@ export const getVisitedProducts = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/visited?userId=${userId}`);
-      //console.log(response)
       const data = await response.data;
       dispatch({
         type: GET_VISITED_PRODUCTS,

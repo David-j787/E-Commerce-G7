@@ -15,7 +15,7 @@ export function Wishlist() {
   }, [user]);
 
   const deleteProduct = async (productId) => {
-      let userId = user.id
+      let userId = user?.id
     try {
         swal({
             title: 'Do you want to remove this product?',

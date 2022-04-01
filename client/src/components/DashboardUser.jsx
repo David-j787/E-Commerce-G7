@@ -32,7 +32,7 @@ export function DashboardUser(){
                         activeClassName='active' className="dashboardUser__link">Change Password</NavLink>
                 </li>
                 <li className='dashboardUser__item'>
-                    <NavLink to='/user/account/my-wishlist'
+                    <NavLink to='/user/account/wishlist'
                         activeClassName='active' className="dashboardUser__link">My Wishlist</NavLink>
                 </li>
             </div>

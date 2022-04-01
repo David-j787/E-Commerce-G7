@@ -18,15 +18,13 @@ const Home = () => {
     dispatch(getUserWishlist(user?.id))
   }, []); //eslint-disable-line
 
-  //console.log(wishlist)
-
   return (
     <div className="shop">
       <Slider />
       {!isLogged ? false : 
         <div>
           <FrecuentlyVisited />
-          {wishlist.length > 0 ? <WishlistView /> : false}
+          {wishlist?.length ? <WishlistView /> : false}
           <WhatsApp />
         </div>}
       </div>)
