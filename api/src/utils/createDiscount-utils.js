@@ -1,8 +1,7 @@
 const { Product, Category, Discount_category, product_category } = require('../db');
-const { productDelete } = require('./deleteProduct-utils');
 const { Op } = require('sequelize');
 
-const postDiscount = async (discount, categoryId) => {
+const postDiscount = async (discount, categoryId, weekday) => {
     discount = parseInt(discount)
     if (!discount || !categoryId) throw Error('A valid category and a discount are required')
 
@@ -12,14 +11,15 @@ const postDiscount = async (discount, categoryId) => {
 
     const newDiscount = await Discount_category.findOrCreate({
         where: {
-            categoryId: categoryId,
-            discount: discount
+            categoryId,
+            discount,
+            weekday
         }
     })
 
     const productsToDiscount = await product_category.findAll({
         where: {
-            categoryId: categoryId
+            categoryId
         }
     })
 
@@ -28,7 +28,7 @@ const postDiscount = async (discount, categoryId) => {
             Product.findByPk(p.productId)
             .then(
                 prod => prod.update({
-                    discount: discount
+                    discount : `discount_${weekday} ${discount}`
                 })
             )
         })
@@ -39,15 +39,18 @@ const postDiscount = async (discount, categoryId) => {
 };
 
 const deleteDiscount = async categoryId => {
+    let discountToDelete = await Discount_category.findOne(
+        {where: { categoryId }}
+    )
     try{
-        let discountToDelete = await Discount_category.destroy({where: { categoryId }})
+        let deletedDiscount= await Discount_category.destroy({where: { categoryId }})
 
-        if (!discountToDelete) throw Error('Discount does not exist in the DB')
+        if (!deletedDiscount) throw Error('Discount does not exist in the DB')
 
         const productsToRestore = await product_category.findAll({
             where: {
-                categoryId: categoryId
-            }
+                categoryId
+            },
         })
         
         const restoredProducts = await Promise.all(
@@ -55,7 +58,7 @@ const deleteDiscount = async categoryId => {
                 Product.findByPk(p.productId)
                 .then(
                     prod => prod.update({
-                        discount: 0
+                        discount : `discount_${discountToDelete.weekday} 0`
                     })
                 )
             })
@@ -65,7 +68,7 @@ const deleteDiscount = async categoryId => {
 
     } catch(err) {
         throw Error("Couldn't delete discount... " + err)
-    }
+    } 
 }
 
 const getDiscounts = async () => {
@@ -74,7 +77,7 @@ const getDiscounts = async () => {
         return allDiscounts
     } catch(err) {
         console.error('No discounts on the DB', err)
-    }
+    } 
 }
 
 module.exports = { postDiscount, deleteDiscount, getDiscounts }
