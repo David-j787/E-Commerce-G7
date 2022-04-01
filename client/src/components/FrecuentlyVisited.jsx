@@ -12,11 +12,14 @@ export default function FrecuentlyVisited(){
     },[])
 
     return(
-        <div className="container">
-            <h2 className="visited__title">Based on your last visit</h2>
+        <>
+        <h2 className="visited__title">Based on your last visit</h2>
+        <div className="visited-wrapper">
+            
             <div className="visited">
                 {visitedProducts?.slice(0,6).map(product => <Visited key={product.id} {...product} />)}
             </div>
         </div>
+        </>
     )
 }
