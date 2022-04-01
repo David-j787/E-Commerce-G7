@@ -12,6 +12,9 @@ export function validate(discount) {
     if(!discount.categoryId){
         errors.categoryId = "Select a category or create a new one"
     }
+    else if(!discount.weekday){
+        errors.weekday = "Set a Weekday"
+    } 
     else if(!discount.discount){
         errors.discount = "Set a Discount"
     } 
@@ -27,14 +30,24 @@ export function AdminSetDiscounts({showComponent}){
     const stateCategories = useSelector((state)=>state.categories)
     
     const options = stateCategories.map((e)=> {
-        return {label: e.name, value: e.id}
+        return {name: "categoryId", label: e.name, value: e.id}
     })
+    const weekdays = [
+        {name: "weekday", label: "Sunday", value: "sunday"},
+        {name: "weekday", label: "Monday", value: "monday"},
+        {name: "weekday", label: "Tuesday", value: "tuesday"},
+        {name: "weekday", label: "Wednesday", value: "wednesday"},
+        {name: "weekday", label: "Thursday", value: "thursday"},
+        {name: "weekday", label: "Friday", value: "friday"},
+        {name: "weekday", label: "Saturday", value: "saturday"},
+    ]
 
     const [errors, setErrors] = useState({})
 
     const [discount, setDiscount] = useState({
-        categoryId: '',
-        discount: 0
+        categoryId: 0,
+        discount: 0,
+        weekday: ''
     })
 
     useEffect(() => {
@@ -44,22 +57,23 @@ export function AdminSetDiscounts({showComponent}){
     const handleChange = (e) =>{
         setDiscount({
             ...discount,
-            [e.target.name]: e.target.value,
+            [e.target.name]: Number(e.target.value),
         })
         setErrors(validate({
             ...discount,
-            [e.target.name] : e.target.value
+            [e.target.name] : Number(e.target.value)
         }));
     }
 
     const handleSelect = (e) =>{
+        console.log(e);
         setDiscount({
             ...discount,
-            categoryId: e.value
+            [e.name]: e.value
         })
         setErrors(validate({
             ...discount,
-            categoryId: e.value
+            [e.name]: e.value
         }));
     }
 
@@ -75,8 +89,9 @@ export function AdminSetDiscounts({showComponent}){
                 button: null
             })
             setDiscount({
-                categoryId:'',
-                discount: 0
+                categoryId: 0,
+                discount: 0,
+                weekday: ''
             })
             showComponent('discounts')
         }else {
@@ -97,18 +112,24 @@ export function AdminSetDiscounts({showComponent}){
                 <h1 className="register__title">New Discount</h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} action="" method="post"  id="contact_form">
                     <div className="register__group categories">
-                        <label className="col-md-4 control-label">Categories</label>
+                        <label className="">Categories</label>
                         <div style={{width:'100%'}}>
                             <Select options={options} name="category" onChange={handleSelect}/>
                         </div>
-                        <div className="register__error">{errors.categories}</div>
+                        <div className="register__error">{errors.categoryId}</div>
                         <CreateCategory />
+                        <label className="">Weekday</label>
+                        <div style={{width:'100%'}}>
+                            <Select options={weekdays} name="weekday" onChange={handleSelect}/>
+                        </div>
+                        <div className="register__error">{errors.weekday}</div>
                     </div>
                     <div className="register__group">
-                        <label className="col-md-4 control-label">Discount Percentage</label>
+                        <label className="">Discount Percentage</label>
                         <input type='number' min='0' max='100' name="discount" value={discount.discount} onChange={handleChange} className="form-control"/>
                         <div className="register__error">{errors.discount}</div>                     
                     </div>
+                    
                     <button className="register__button"
                      type="submit"
                      disabled={!discount.discount || !discount.categoryId}>Create Discount</button>
