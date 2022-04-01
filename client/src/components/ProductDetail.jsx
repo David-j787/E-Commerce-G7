@@ -6,6 +6,7 @@ import useUser from './Login/hooks/useUser';
 import ReviewAndRating from './ReviewAndRating';
 import Reviews from './Reviews';
 import axios from 'axios';
+import AddToWishList from './AddToWishList';
 import WhatsApp from './WhatsApp';
 
 export function ProductDetail(props) {
@@ -55,7 +56,7 @@ export function ProductDetail(props) {
                                 <img src={details.images} alt="product" width='350px' height='250px' />
                             </figure>
                             <div className='productDetail__description'>
-                                <h2 className='name'>{details.name}</h2>
+                                <h2 className='name'>{details.name}</h2> <AddToWishList userId={user?.id} productId={id}/>
                                 <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
                                 <span className='price'>US$ {details.price}</span>
                                 <p className='description'>{details.description}</p>

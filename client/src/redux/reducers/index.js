@@ -22,6 +22,7 @@ import {
   GET_ORDER_DETAIL,
   VERIFY_TWO_FA,
   GET_VISITED_PRODUCTS,
+  GET_WISHLIST,
   GET_ALL_STORES,
   GET_STORE_DETAIL,
   GET_ALL_DISCOUNTS
@@ -43,6 +44,7 @@ const initialState = {
   reviews: [],
   orderDetail: [],
   visitedProducts: [],
+  wishlist: [],
   stores: [],
   storeDetail: {},
   discounts: []
@@ -217,6 +219,11 @@ function rootReducer(state = initialState, action) {
           cart: []
         }
 
+    case GET_WISHLIST:
+        return {
+          ...state,
+          wishlist: action.payload
+        }
     default:
       return state;
   }
