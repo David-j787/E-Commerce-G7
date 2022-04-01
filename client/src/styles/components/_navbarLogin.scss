@@ -15,10 +15,10 @@
     letter-spacing: 1px;
     font-family: $font-kumbh-sans;
     border-top: 1px solid $light-grayish-blue;
-    border-bottom: 1px solid $light-grayish-blue;
     padding: .75rem 0;
     background-color: #505254;
     transition: all .3s ease;
+    border-radius: 0 0 5px 5px;
 
     &:hover {
       background-color: $black;
@@ -32,12 +32,12 @@
     right: 5px;
     width: 150px;
     z-index: 30;
-    border: 1px solid $white;
     background-color: #505254;
     color: $white;
     text-align: center;
     border-radius: 5px;
     font-size: .9rem;
+    margin-top: 1.2rem;
     
     h3 {
       font-size: .9rem;
@@ -53,11 +53,12 @@
   }
 
   .wrapper-isLogged.login {
-    top: 2.5rem;
+    top: 1.5rem;
     border: none;
+    width: 120px;
     
     a {
-      border-radius: 3px;
+      border-radius: 5px;
       border-bottom: none;
     }
   }
@@ -85,6 +86,7 @@
     }
 
     .client {
+      display: none;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-size: .8rem;
