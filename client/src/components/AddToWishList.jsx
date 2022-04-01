@@ -17,14 +17,10 @@ export function AddToWishList({ userId, productId }) {
   const [wishlist, setWishlist] = useState();
 
   useEffect(() => {
-    setButton();
-  }, []);
-
-  const setButton = () => {
     const resultSearch = stateWishlist?.map((el) => el.id).includes(stateDetail?.id);
     if (resultSearch) setAdding(true);
     else return setAdding(false);
-  };
+  }, [stateWishlist, stateDetail]);
 
   useEffect(() => {
     setWishlist({
