@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-// import { getAllStores, getStoreDetail } from '../redux/actions';
+import { getStoreDetail } from '../redux/actions';
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -37,12 +37,8 @@ export function AdminEditStore(props){
     const id = props.id;
 
     useEffect(()=>{
- //       dispatch(getStoreDetail(id))
+        dispatch(getStoreDetail(id))
     }, [id])
-
-    useEffect(() => {
- //       dispatch(getAllStores());
-    },[])
 
     const storeDetail = useSelector((state) => state.storeDetail)
 

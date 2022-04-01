@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import axios from 'axios';
 import '../styles/styles.scss'
-import useUser from "../components/Login/hooks/useUser";
-import { useDispatch } from "react-redux";
 import swal from 'sweetalert';
 
 export function validate(store) {
@@ -35,11 +32,6 @@ export function validate(store) {
 
 
 export function AdminCreateStore({showComponent}){
-    const history = useHistory();
-    const dispatch = useDispatch();
-
-    const { isLogged } = useUser();
-
     const [errors, setErrors] = useState({})
 
     const [store, setStore] = useState({

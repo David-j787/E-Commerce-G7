@@ -9,7 +9,7 @@ export default function AdminStoresList({showComponent, getId}) {
     const stores = useSelector(state => state.stores);
 
     useEffect(()=>{
- //       dispatch(getAllStores());
+        dispatch(getAllStores());
     },[])
 
     const addNewStore = () => {
@@ -41,7 +41,7 @@ export default function AdminStoresList({showComponent, getId}) {
                         timer: 2000,
                         button: null
                     })
-                    //dispatch(getAllStores());
+                    dispatch(getAllStores());
                 }
             })
         } catch (error) {
