@@ -25,7 +25,8 @@ import {
   GET_WISHLIST,
   GET_ALL_STORES,
   GET_STORE_DETAIL,
-  GET_ALL_DISCOUNTS
+  GET_ALL_DISCOUNTS,
+  GET_PAYMENT_DETAIL
 
 } from '../actions';
 
@@ -47,7 +48,8 @@ const initialState = {
   wishlist: [],
   stores: [],
   storeDetail: {},
-  discounts: []
+  discounts: [],
+  paymentDetail: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -170,6 +172,12 @@ function rootReducer(state = initialState, action) {
           ...state,
           orderDetail: action.payload.length ? action.payload[0] : "No order found"
         }
+
+    case GET_PAYMENT_DETAIL:
+          return {
+            ...state,
+            paymentDetail: action.payload ? action.payload : "No payment found"
+          }
     
     case GET_ALL_USERS:
         return {

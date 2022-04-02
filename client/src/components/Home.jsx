@@ -24,7 +24,7 @@ const Home = () => {
       {!isLogged ? false : 
         <div>
           <FrecuentlyVisited />
-          {wishlist?.length ? <WishlistView /> : false}
+          <WishlistView />
           <WhatsApp />
         </div>}
       </div>)

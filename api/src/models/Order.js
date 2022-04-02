@@ -40,6 +40,9 @@ module.exports = (sequelize) => {
         payment_link: {
             type: DataTypes.TEXT,
         },
+        payment_meli_id: {
+            type: DataTypes.INTEGER,
+        },
         // cuando le pedimos la fecha, la entrega formateada en dia/mes/año y en hora argentina, se calcula apartir del createdAt timestamp
         date: {
             type: DataTypes.VIRTUAL,
