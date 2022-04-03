@@ -29,9 +29,7 @@ import Payment from './components/Payment';
 import OrderDetail from './components/OrderDetail.jsx';
 import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
-<<<<<<< HEAD
 import Sucursales from './components/Sucursales';
-=======
 import Wishlist from './components/Wishlist';
 import PaymentDetail from './components/PaymentDetail';
 
@@ -43,7 +41,6 @@ export const alert2FA = () => {
     buttons: "Ok"
   })
 }
->>>>>>> development
 
 
 function App() {
@@ -139,15 +136,10 @@ function App() {
             <Route exact path='/user/account/orders' component={Orders}/>
             <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
-<<<<<<< HEAD
             <Route exact path='/stores' component={Sucursales}/>
-          </Switch>
-        </Router>
-=======
             <Route exact path='/user/account/order/payment/:id' component={PaymentDetail}/>
           </Switch> 
         </Router>}
->>>>>>> development
       </UserContextProvider>
     </div>
   );
