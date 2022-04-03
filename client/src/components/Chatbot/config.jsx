@@ -5,6 +5,8 @@ import Options  from "./Options";
 import IconBotAvatar from "./IconBotAvatar";
 import CustomChatMessage from "./CustomChatMessage";
 import Offers from "./Offers";
+import Register from "./Register";
+import Product from "./Product";
 
 
 
@@ -31,7 +33,15 @@ const config = {
                 widgetFunc: (props) => <Offers {...props} /> ,
                 mapStateToProps: ["offers"],
         },
-
+        {
+            widgetName: 'register',
+            widgetFunc: (props) => <Register {...props} /> ,
+        },
+        {
+            widgetName: 'products',
+            widgetFunc: (props) => <Product {...props} /> ,
+            mapStateToProps: ["products"],
+        },
 
     ],
     customComponents: {

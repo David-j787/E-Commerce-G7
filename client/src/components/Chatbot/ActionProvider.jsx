@@ -22,6 +22,23 @@ greet = () => {
     this.addMessageToState(message);
     };
 
+register = () => {
+    const message = this.createChatBotMessage("You can register here", {
+      widget: "register",
+      delay: 1000,
+      });
+    this.addMessageToState(message);
+    };
+
+    buyProduct = () => {
+        const message = this.createChatBotMessage("You can buy a product here", {
+          widget: "products",
+          delay: 1000,
+          });
+        this.addMessageToState(message);
+        };
+
+
 
   addMessageToState = (message) => {
     this.setState((prevState) => ({

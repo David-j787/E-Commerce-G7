@@ -29,6 +29,12 @@ class MessageParser {
         else if (lowerCaseMessage.includes("i'm sorry")) {
             return this.actionProvider.createChatBotMessage("It's alright, never mind!");
             }
+        else if (lowerCaseMessage.includes("register")) {
+            return this.actionProvider.register();
+            }
+        else if (lowerCaseMessage.includes("buy")) {
+            return this.actionProvider.buyProduct();
+            }
         
             
     }

@@ -1,12 +1,14 @@
+import React from 'react';
+
 const Options = (props) => {
     const options= [
+        {text:'I want to register.',
+        handler:props.actionProvider.register,id:1},
         {text:'I want to buy a product.',
         handler:props.actionProvider.buyProduct,
-         id:1},
+         id:2},
         {text:'I want to see my orders.',
-        handler:props.actionProvider.showOrders,id:2},
-        {text:'I want to register.',
-        handler:props.actionProvider.register,id:3},
+        handler:props.actionProvider.showOrders,id:3},
       
 
     ]

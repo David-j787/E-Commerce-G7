@@ -23,20 +23,17 @@ const Home = () => {
       {!isLogged ? false : 
         <div>
           <FrecuentlyVisited />
-<<<<<<< HEAD
           
 
         </div>}
           <ChatBot />
           
-      </div>)
+<WhatsApp />
+      </div>
+      );
 }
-=======
-        </div> }
-      <WhatsApp />
-    </div>
-  )
-};
->>>>>>> development
+
+  
+;
 
 export default Home;

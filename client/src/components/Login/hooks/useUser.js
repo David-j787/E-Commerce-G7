@@ -47,3 +47,4 @@ export default function useUser(){
         logout
     }
 }
+export { useUser };
