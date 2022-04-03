@@ -64,5 +64,14 @@ align-items: flex-start;
       color: #000;
     }
     
+    .chatIcon{
+      height: 150px;
+      width:150px;
+      border-radius: 25px;
+      background-color: transparent;
+      display: flex-inline;
+      justify-content: center;
+      align-items: flex-end;
+    }
     
     
