@@ -2,7 +2,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-export default function Visited({id, name, images, price, rating}){
+export default function Visited({id, name, images, price, rating, discount, discounted_price}){
 
     return(
         <div className="">
@@ -13,8 +13,13 @@ export default function Visited({id, name, images, price, rating}){
                 <img src={images} alt="images" />
                 </figure>
                 <h3>{name.slice(0, 30)}{name.length > 30 && "..."}</h3>
-                <span>{price} USD</span>
-                <span>{!rating ? <span>No rated yet</span> : [...Array(rating)].map(star =>{return <FaStar color="orange" size={16}/>})}</span>
+                <span className="price">{discount ? 
+                <> 
+                    <span className="full-price" >$ {Number(price?.toFixed(2))}</span>
+                    <span>$ {Number(discounted_price?.toFixed(2))}</span>
+                </>
+                : <span>$ {Number(price?.toFixed(2))}</span> }</span>
+                <span>{!rating ? <span>No rated</span> : [...Array(rating)].map(star =>{return <FaStar key={Math.random().toString(16).slice(2)} color="orange" size={16}/>})}</span>
             </Link>
             ) : (
             <h2>Loading...</h2>

@@ -8,7 +8,7 @@ import { getUserWishlist } from "../redux/actions";
 
 export function AddToWishList({ userId, productId }) {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.user);
+  const id = useSelector((state) => state?.user?.id);
   const stateWishlist = useSelector((state) => state.wishlist);
   const stateDetail = useSelector((state) => state.details);
 

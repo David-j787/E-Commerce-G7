@@ -38,6 +38,7 @@ const verifyGoogleToken = require("../utils/verifyGoogleToken");
 const { isAuthenticated } = require('../utils/isAuthenticated');
 const adminOnly = require('../utils/adminOnly');
 const superAdminOnly = require("../utils/superAdminOnly");
+const payment = require("./getPayment-route");
 
 // Config routers
 // Example: router.use('/users', getUsers);
@@ -104,6 +105,8 @@ router.use("/discount", discount);
 router.use("/wishlist", wishlist);
 
 router.use("/stores", store);
+
+router.use("/payment", payment);
 
 
 module.exports = router;

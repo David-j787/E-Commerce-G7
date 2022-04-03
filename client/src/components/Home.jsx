@@ -29,6 +29,8 @@ const Home = () => {
           <FrecuentlyVisited />
           {wishlist?.length ? <WishlistView /> : false}
           <WhatsApp /><ChatBot />
+          <WishlistView />
+          <WhatsApp />
         </div>}
       </div>)
 };

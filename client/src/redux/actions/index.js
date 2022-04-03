@@ -28,6 +28,7 @@ export const GET_WISHLIST = "GET_WISHLIST";
 export const GET_ALL_STORES = "GET_ALL_STORES";
 export const GET_STORE_DETAIL = "GET_STORE_DETAIL";
 export const GET_ALL_DISCOUNTS = "GET_ALL_DISCOUNTS";
+export const GET_PAYMENT_DETAIL = "GET_PAYMENT_DETAIL";
 
 
 export const getAllProducts = () => {
@@ -209,6 +210,17 @@ export function getOrderDetail(id = '', status = ''){
     try {
       const order = await axios.get(`/orders?orderId=${id}&status=${status}`);
       dispatch({type: GET_ORDER_DETAIL, payload: order.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
+export function getPaymentDetail(id){
+  return async function (dispatch){
+    try {
+      const payment = await axios.get(`/payment/${id}`);
+      dispatch({type: GET_PAYMENT_DETAIL, payload: payment.data})
     } catch (error) {
       console.log('Error: ' + error);
     }
