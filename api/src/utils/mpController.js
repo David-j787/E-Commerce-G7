@@ -41,8 +41,7 @@ module.exports = {
         const data = req.query;
         const config = {
             headers: { Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}` }
-        };
-        res.status(200);       
+        };    
         if(data['data.id']){
             const infoPayment = await axios.get(`https://api.mercadopago.com/v1/payments/${data['data.id']}`, config)
             try {
@@ -71,6 +70,7 @@ module.exports = {
                         if(!order) throw Error('Order not found');
                         order.status = 'processing';
                         order.payment_status = 'approved';
+                        order.payment_meli_id = infoPayment.data.id;
                         order.save();
                         orderStatusChange("processing", order)
                         PaymentStatusApproved("approved", order)

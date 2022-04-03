@@ -8,7 +8,7 @@ const ShoppingCart = ({cartShow}) => {
     const { cart } = useSelector(state => state)
     const cartRef = useRef();
 
-    const total = cart.length && cart.map(a => (a.amount * 100 * a.price)/100).reduce((a, b) => a + b)
+    const total = cart.length && cart.map(a => (a.amount * 100 * (a.discounted_price ? a.discounted_price : a.price))/100).reduce((a, b) => a + b)
 
     const handleRest = (productId) => {
         const cartProduct = cart.filter(product => product.id === productId)
@@ -57,7 +57,7 @@ const ShoppingCart = ({cartShow}) => {
                                         <p>{product.amount}</p>
                                         <button onClick={() => handleSum(product.id)}>+</button>
                                     </div>
-                                    <p className='amount'>{`$${(product.amount * 100 * product.price) / 100}`}</p>
+                                    <p className='amount'>{`$${(product.amount * 100 * (product.discounted_price ? product.discounted_price : product.price)) / 100}`}</p>
                                 </div>
                                 <button className='delete' onClick={() => handleRemove(product.id)}>🗑️</button>
                             </div>

@@ -32,7 +32,7 @@ const Navbar = () => {
   };
   
   useEffect(() => {
-    if(!showCart) cartShow()
+    if(shopCart?.length) cartShow()
   },[shopCart])
 
   const cartShow = () => {

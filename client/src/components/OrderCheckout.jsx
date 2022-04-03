@@ -55,7 +55,7 @@ export function OrderCheckout() {
 
     const setTotal = _ => {
         if (cart?.length) {
-            const subtotal = cart?.map(el => el.amount * el.price)
+            const subtotal = cart?.map(el => el.amount * (el.discounted_price ? el.discounted_price : el.price))
             const total = subtotal?.reduce((acumulator, current) => acumulator + current);
             return total;
         }
@@ -82,7 +82,7 @@ export function OrderCheckout() {
         // PARA LA ORDEN DE PAGO (NO BORRAR)
         const products = cart?.map(product => ({
             name: product.name,
-            price: product.price,
+            price: product.discounted_price ? product.discounted_price : product.price,
             amount: product.amount
         }));
 
@@ -136,7 +136,7 @@ export function OrderCheckout() {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div className='price'>${product.price}</div>
+                                                    <div className='price'>${product.discounted_price ? product.discounted_price : product.price}</div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -153,7 +153,7 @@ export function OrderCheckout() {
                                 </span>
                             </div>
 
-                            <OrderShipping setShipping={setShipping} />
+                            <OrderShipping confirmed={confirmed} setShipping={setShipping} />
                             <button className="confirmOrder" onClick={(e) => handleSubmit(e)} disabled={!Object.keys(notification).length || confirmed}>CONFIRM ORDER</button>
                             <Payments clearCart={clearShopCart} url={url} />
                         </div> : <><div className="message">Your cart is empty</div>

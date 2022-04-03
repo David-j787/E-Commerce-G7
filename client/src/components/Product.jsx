@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Product = ({id, name, price, images}) => {
+const Product = ({id, name, price, discount, discounted_price, images}) => {
     return(
         <>
         {id ? (
@@ -10,7 +10,12 @@ const Product = ({id, name, price, images}) => {
               <img src={images} alt="images" />
             </figure>
             <h3>{name.slice(0, 55)}{name.length > 55 && "..."}</h3>
-            <span>{price} USD</span>
+            <span className="price">{discount ? 
+            <> 
+              <span className="full-price" >$ {price}</span>
+              <span>$ {discounted_price}</span>
+            </>
+             : <span>$ {price}</span> }</span>
           </Link>
         ) : (
           <h2>Loading...</h2>

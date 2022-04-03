@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getOrderDetail } from "../redux/actions";
+import PaymentDetail from "./PaymentDetail";
 import Payments from "./Payments";
 
 export default function OrderDetail(props) {
@@ -39,6 +40,7 @@ export default function OrderDetail(props) {
                                     <span>{orderDetail?.payment_status}</span>
                                     
                                 </li>
+                                {orderDetail?.payment_status === 'approved' && <Link to={`/user/account/order/payment/${orderDetail?.payment_meli_id}`}><button className="orderDetails__btn">Payment Details</button></Link>}
                                 {(history.location.pathname !== '/admincp' && orderDetail?.payment_status !== 'approved') && <Payments className="orderCheckout" url={orderDetail?.payment_link}/>}
                                 <li>
                                     <span>Notification-Email: </span>
