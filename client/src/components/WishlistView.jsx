@@ -15,7 +15,7 @@ export default function WishlistView(){
         <div className="container">
             <h2 className="visited__title">Inspired by you</h2>
             <div className="visited">
-                {wishlist?.slice(0,6).map(product => <ProductFav key={product.id} {...product} />)}
+                {wishlist?.slice(0,6).map(product => <ProductFav key={'Fav'+product.id} {...product} />)}
             </div>
         </div>
     )

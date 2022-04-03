@@ -55,9 +55,9 @@ export function OrderCheckout() {
 
     const setTotal = _ => {
         if (cart?.length) {
-            const subtotal = cart?.map(el => el.amount * (el.discounted_price ? el.discounted_price : el.price))
+            const subtotal = cart?.map(el => el.amount * (el.discount ? Number(el.discounted_price?.toFixed(2)) : Number(el.price?.toFixed(2))))
             const total = subtotal?.reduce((acumulator, current) => acumulator + current);
-            return total;
+            return Number(total.toFixed(2));
         }
     }
 
@@ -82,7 +82,7 @@ export function OrderCheckout() {
         // PARA LA ORDEN DE PAGO (NO BORRAR)
         const products = cart?.map(product => ({
             name: product.name,
-            price: product.discounted_price ? product.discounted_price : product.price,
+            price: product.discount ? Number(product.discounted_price?.toFixed(2)) : Number(product.price?.toFixed(2)),
             amount: product.amount
         }));
 
@@ -136,7 +136,7 @@ export function OrderCheckout() {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div className='price'>${product.discounted_price ? product.discounted_price : product.price}</div>
+                                                    <div className='price'>$ {product.discount ? Number(product.discounted_price?.toFixed(2)) : Number(product.price?.toFixed(2))}</div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -149,7 +149,7 @@ export function OrderCheckout() {
                                     TOTAL:
                                 </span>
                                 <span style={{ float: "right", textAlign: "right", fontWeight: "bold" }}>
-                                    {setTotal()} USD
+                                    $ {setTotal()}
                                 </span>
                             </div>
 

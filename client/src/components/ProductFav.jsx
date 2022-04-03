@@ -15,11 +15,11 @@ export default function ProductFav({id, name, images, price, rating, discount, d
                 <h3>{name.slice(0, 30)}{name.length > 30 && "..."}</h3>
                 <span className="price">{discount ? 
                 <> 
-                    <span className="full-price" >$ {price}</span>
-                    <span>$ {discounted_price}</span>
+                    <span className="full-price" >$ {Number(price?.toFixed(2))}</span>
+                    <span>$ {Number(discounted_price?.toFixed(2))}</span>
                 </>
-                : <span>$ {price}</span> }</span>
-                <span>{!rating ? <span>No rated yet</span> : [...Array(rating)].map(star =>{return <FaStar color="orange" size={16}/>})}</span>
+                : <span>$ {Number(price?.toFixed(2))}</span> }</span>
+                <span>{!rating ? <span>No rated yet</span> : [...Array(rating)].map(star =>{return <FaStar key={Math.random().toString(16).slice(2)} color="orange" size={16}/>})}</span>
             </Link>
             ) : (
             <h2>Loading...</h2>

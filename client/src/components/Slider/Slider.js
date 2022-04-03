@@ -50,6 +50,7 @@ const Slider = () => {
           <div
             onClick={() => moveDot(index + 1)}
             className={slideIndex === index + 1 ? 'dot active' : 'dot'}
+            key={Math.random().toString(16).slice(2)}
           ></div>
         ))}
       </div>

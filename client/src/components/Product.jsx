@@ -12,10 +12,10 @@ const Product = ({id, name, price, discount, discounted_price, images}) => {
             <h3>{name.slice(0, 55)}{name.length > 55 && "..."}</h3>
             <span className="price">{discount ? 
             <> 
-              <span className="full-price" >$ {price}</span>
-              <span>$ {discounted_price}</span>
+              <span className="full-price" >$ {Number(price?.toFixed(2))}</span>
+              <span>$ {Number(discounted_price?.toFixed(2))}</span>
             </>
-             : <span>$ {price}</span> }</span>
+             : <span>$ {Number(price.toFixed(2))}</span> }</span>
           </Link>
         ) : (
           <h2>Loading...</h2>

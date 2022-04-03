@@ -60,9 +60,9 @@ export function ProductDetail(props) {
                                 <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
                                 {details.discount > 0 ? 
                                     <>
-                                        <span className='price-discount'>US${details.price}</span>
-                                        <span className='price'>US$ {details.discounted_price}</span> <span className='discount'>-{details.discount}% OFF</span>
-                                    </> : <span className='price'>US$ {details.price}</span>
+                                        <span className='price-discount'>US${Number(details.price?.toFixed(2))}</span>
+                                        <span className='price'>US$ {Number(details.discounted_price?.toFixed(2))}</span> <span className='discount'>-{details.discount}% OFF</span>
+                                    </> : <span className='price'>US$ {Number(details.price?.toFixed(2))}</span>
                                     }
                                 <p className='description'>{details.description}</p>
                                 {details.stock ? <p className='stock'><span>In stock</span> ({details.stock} available)</p> : <p className='stock'><span>⚠️This product isn't available for shopping</span></p>}
