@@ -38,6 +38,15 @@ register = () => {
         this.addMessageToState(message);
         };
 
+        showOrders = () => {
+            const message = this.createChatBotMessage("You can see your orders here", {
+              widget: "ordersBot",
+              delay: 1000,
+              });
+            this.addMessageToState(message);
+            };
+
+
 
 
   addMessageToState = (message) => {

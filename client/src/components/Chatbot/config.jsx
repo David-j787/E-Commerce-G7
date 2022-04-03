@@ -7,6 +7,7 @@ import CustomChatMessage from "./CustomChatMessage";
 import Offers from "./Offers";
 import Register from "./Register";
 import Product from "./Product";
+import OrdersBot from "./OrdersBot";
 
 
 
@@ -41,6 +42,11 @@ const config = {
             widgetName: 'products',
             widgetFunc: (props) => <Product {...props} /> ,
             mapStateToProps: ["products"],
+        },
+        {
+            widgetName: 'ordersBot',
+            widgetFunc: (props) => <OrdersBot {...props} /> ,
+            
         },
 
     ],

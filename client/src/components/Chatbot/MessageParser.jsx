@@ -20,6 +20,9 @@ class MessageParser {
         else if (lowerCaseMessage.includes("bye")) {
             return this.actionProvider.createChatBotMessage("Goodbye!");
             }
+            else if (lowerCaseMessage.includes("by")) {
+                return this.actionProvider.createChatBotMessage("Goodbye!");
+                }
         else if (lowerCaseMessage.includes("goodbye")) {
             return this.actionProvider.createChatBotMessage("Goodbye!");
             }
@@ -35,8 +38,15 @@ class MessageParser {
         else if (lowerCaseMessage.includes("buy")) {
             return this.actionProvider.buyProduct();
             }
-        
-            
+            else if (lowerCaseMessage.includes("product")) {
+                return this.actionProvider.buyProduct();
+                }
+                else if (lowerCaseMessage.includes("products")) {
+                    return this.actionProvider.buyProduct();
+                    }
+                    else if (lowerCaseMessage.includes("by")) {
+                        return this.actionProvider.createChatBotMessage("Goodbye!");
+                        }
     }
   }
   
