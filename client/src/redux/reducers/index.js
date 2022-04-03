@@ -22,9 +22,11 @@ import {
   GET_ORDER_DETAIL,
   VERIFY_TWO_FA,
   GET_VISITED_PRODUCTS,
+  GET_WISHLIST,
   GET_ALL_STORES,
   GET_STORE_DETAIL,
-  GET_ALL_DISCOUNTS
+  GET_ALL_DISCOUNTS,
+  GET_PAYMENT_DETAIL
 
 } from '../actions';
 
@@ -43,9 +45,11 @@ const initialState = {
   reviews: [],
   orderDetail: [],
   visitedProducts: [],
+  wishlist: [],
   stores: [],
   storeDetail: {},
-  discounts: []
+  discounts: [],
+  paymentDetail: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -168,6 +172,12 @@ function rootReducer(state = initialState, action) {
           ...state,
           orderDetail: action.payload.length ? action.payload[0] : "No order found"
         }
+
+    case GET_PAYMENT_DETAIL:
+          return {
+            ...state,
+            paymentDetail: action.payload ? action.payload : "No payment found"
+          }
     
     case GET_ALL_USERS:
         return {
@@ -217,6 +227,11 @@ function rootReducer(state = initialState, action) {
           cart: []
         }
 
+    case GET_WISHLIST:
+        return {
+          ...state,
+          wishlist: action.payload
+        }
     default:
       return state;
   }

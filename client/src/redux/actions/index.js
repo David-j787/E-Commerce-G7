@@ -24,9 +24,11 @@ export const GET_REVIEWS = "GET_REVIEWS";
 export const CLEAR_REVIEWS = "CLEAR_REVIEWS";
 export const VERIFY_TWO_FA = "VERIFY_TWO_FA";
 export const GET_VISITED_PRODUCTS = "GET_VISITED_PRODUCTS";
+export const GET_WISHLIST = "GET_WISHLIST";
 export const GET_ALL_STORES = "GET_ALL_STORES";
 export const GET_STORE_DETAIL = "GET_STORE_DETAIL";
 export const GET_ALL_DISCOUNTS = "GET_ALL_DISCOUNTS";
+export const GET_PAYMENT_DETAIL = "GET_PAYMENT_DETAIL";
 
 
 export const getAllProducts = () => {
@@ -214,6 +216,17 @@ export function getOrderDetail(id = '', status = ''){
   }
 }
 
+export function getPaymentDetail(id){
+  return async function (dispatch){
+    try {
+      const payment = await axios.get(`/payment/${id}`);
+      dispatch({type: GET_PAYMENT_DETAIL, payload: payment.data})
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+  }
+}
+
 export function getAllRoles(token){
   return async function (dispatch){
     try {
@@ -299,7 +312,6 @@ export const getVisitedProducts = (userId) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/visited?userId=${userId}`);
-      console.log(response)
       const data = await response.data;
       dispatch({
         type: GET_VISITED_PRODUCTS,
@@ -311,3 +323,19 @@ export const getVisitedProducts = (userId) => {
   };
 };
 
+// WISHLIST
+
+export const getUserWishlist = (userId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/wishlist?userId=${userId}`);
+      const data = await response.data;
+      dispatch({
+        type: GET_WISHLIST,
+        payload: data,
+      });
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+};

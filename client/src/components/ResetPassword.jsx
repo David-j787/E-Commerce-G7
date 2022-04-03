@@ -55,7 +55,6 @@ export default function ResetPassword() {
         userId: user.id,
         inputs,
       });
-      console.log(response);
       if (response.status === 200) {
         swal({
           title: 'Password Reset Successfully!',

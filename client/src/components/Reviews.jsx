@@ -29,7 +29,7 @@ export default function Reviews({id}) {
                 return <div key={review.id}>
                             <p className="reviews__name"><span>User: </span> {user?.name} {user?.last_name} ({user?.username})</p>
                             <span>Rating: </span> {[...Array(review?.rate)].map(star =>{return <FaStar color="orange" size={15}/>}) }
-                            <p><span>Comment: </span>{review?.comment}</p>
+                            <p className="reviews__comment"><span>Comment: </span><div>{review?.comment}</div></p>
                         </div>}) : <p>No reviews yet</p>}
         </div>
     )

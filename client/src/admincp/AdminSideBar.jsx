@@ -29,10 +29,10 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-bar-chart-o fa-2x"></i>
                 <span className="nav-text">Edit roles</span>
             </li>}
-            <li onClick={e => showComponent('setDiscounts')}>
+            {/* <li onClick={e => showComponent('viewEmails')}>
                 <i className="fa fa-font fa-2x"></i>
                 <span className="nav-text">Email</span>
-            </li>
+            </li> */}
             <li onClick={e => showComponent('discounts')}>
                 <i className="fa fa-table fa-2x"></i>
                 <span className="nav-text">Discounts</span>
