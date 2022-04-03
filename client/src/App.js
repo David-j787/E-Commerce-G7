@@ -29,6 +29,7 @@ import Payment from './components/Payment';
 import OrderDetail from './components/OrderDetail.jsx';
 import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
+import Sucursales from './components/Sucursales';
 
 
 function App() {
@@ -124,6 +125,7 @@ function App() {
             <Route exact path='/user/account/orders' component={Orders}/>
             <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
+            <Route exact path='/stores' component={Sucursales}/>
           </Switch>
         </Router>
       </UserContextProvider>

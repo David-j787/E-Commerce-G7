@@ -65,6 +65,15 @@ const Navbar = () => {
             </li>
             <li className="list__item" onClick={handleClose}>
               <NavLink
+                to="/stores"
+                className="list__link"
+                activeClassName="active"
+              >
+                Stores
+              </NavLink>
+            </li>
+            <li className="list__item" onClick={handleClose}>
+              <NavLink
                 to="/about"
                 className="list__link"
                 activeClassName="active"
@@ -80,8 +89,8 @@ const Navbar = () => {
               >
                 Contact
               </NavLink>
-              </li>
-              <li className="list__item" onClick={handleClose}>
+            </li>
+            <li className="list__item" onClick={handleClose}>
               <NavLink
                 to="/register"
                 className="list__link"
@@ -99,18 +108,18 @@ const Navbar = () => {
             {showCart && <ShoppingCart cartShow={cartShow} />}
           </figure>
           {isLogged
-          ? <div className='navbarLogin'>
+            ? <div className='navbarLogin'>
               <figure className='navbarLogin__logged'>
                 <Link to='/user/account/profile'><img src={avatar} alt="avatar" /></Link>
                 <div className='client'>
                   <span className='name'>{user.name}</span>
-                  <span>{user.last_name}</span> <br/>
+                  <span>{user.last_name}</span> <br />
                 </div>
               </figure>
               <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
               {user?.roleId < 3 && <Link to="/admincp" className='admButton'>AdminCP</Link>}
             </div>
-          : <div className='navbarLogin'>
+            : <div className='navbarLogin'>
               <figure>
                 <img src={avatar1} alt="avatar" />
               </figure>
