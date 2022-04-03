@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router, useHistory, useParams } from 'react-router-dom';
 import { UserContextProvider } from './components/Login/context/userContext';
 import { userLogin, restoreCart } from './redux/actions';
 import swal from 'sweetalert';
@@ -29,26 +29,28 @@ import Payment from './components/Payment';
 import OrderDetail from './components/OrderDetail.jsx';
 import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
+import Wishlist from './components/Wishlist';
+
+export const alert2FA = () => {
+  swal({
+    title: "2FA Verification",
+    text: "We sent to your email 2FA Code",
+    icon: "warning",
+    buttons: "Ok"
+  })
+}
 
 
 function App() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { cart } = useSelector(state => state)
-  const userLogged = useSelector(state => state.user);
+  const userLogged = useSelector(state => state?.user);
 
   const resetPasswordAlert = () => {
     swal({
       title: "Password Reset",
       text: "Your password have been force to reset, please proceed",
-      icon: "warning",
-      buttons: "Ok"
-    })
-  }
-
-  const alert2FA = () => {
-    swal({
-      title: "2FA Verification",
-      text: "We sent to your email 2FA Code",
       icon: "warning",
       buttons: "Ok"
     })
@@ -88,25 +90,32 @@ function App() {
     if(userLogged?.reset_password) resetPasswordAlert()
   }, [userLogged])
 
+  useEffect(() => {
+    if(userLogged?.is_two_fa && !userLogged?.two_fa_verified){
+      alert2FA();
+      history.push('/')
+    }
+  },[history, userLogged])
+
   return (
     <div className="App">
       <UserContextProvider>
+      {userLogged?.is_two_fa && !userLogged?.two_fa_verified ? 
+      <>
+        <Navbar />
+        <TwoFaVerify /> 
+      </> : userLogged?.reset_password ? 
+      <>
+      <Navbar />
+      <ResetPassword />
+      </> :
         <Router>
           <Navbar />
           <Route path='/user/account' component={DashboardUser}/>
           <Route path='/admincp' component={AdminPanel}/>
           
           <Switch>
-            <Route exact path="/" render={() => {
-              if(userLogged?.reset_password){
-                return <ResetPassword />
-              }else if(userLogged?.is_two_fa && !userLogged?.two_fa_verified){
-                return <TwoFaVerify />
-              }
-              else{
-                return <Home />
-              }
-            }}/>
+            <Route exact path='/' component={Home}/>
             <Route exact path='/shop'>
               <SearchBar />
               <Shop />
@@ -119,13 +128,14 @@ function App() {
             <Route exact path='/checkout' component={OrderCheckout}/>
             <Route exact path='/user/account/profile' component={UserAccount}/>
             <Route exact path='/user/account/reset-password' component={ResetPassword}/>
+            <Route exact path='/user/account/wishlist' component={Wishlist}/>
             <Route exact path='/user/account/twofa' component={TwoFaVerify}/>
             <Route exact path='/user/account/edit' component={UpdateAccount}/>
             <Route exact path='/user/account/orders' component={Orders}/>
             <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
-          </Switch>
-        </Router>
+          </Switch> 
+        </Router>}
       </UserContextProvider>
     </div>
   );

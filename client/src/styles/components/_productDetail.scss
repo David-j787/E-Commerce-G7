@@ -102,5 +102,17 @@
 
 .wrapper-reviews {
   margin: 1rem 0;
-  max-width: 670px;
+  // max-width: 670px;
+
+  @include mq(medium) {
+    width: 65.5%;
+    margin-left: auto;
+    margin-top: 2rem;
+  }
+
+  @include mq(large) {
+    width: 67%;
+    margin-left: auto;
+    margin-top: 2rem;
+  }
 }

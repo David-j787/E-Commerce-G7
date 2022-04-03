@@ -9,23 +9,6 @@
 @import './components/menu';
 @import './components/login';
 @import './components/products';
-@import "./components/searchBar";
-@import "./components/productDetail";
-@import "./util/title";
-@import "./util/field";
-@import "./components/paginate";
-@import "./components/shoppingCart";
-@import "./components/navbarLogin";
-@import "./components/orderShipping";
-@import "./components/orderDetails";
-@import "./components/orders";
-@import "./components/order";
-@import "./components/dashboardUser";
-@import "./components/userAccount";
-@import "./components/resetPassword";
-@import "./components/reviews";
-@import "./components/frecuentlyVisited";
-@import "./components/chatbot";
 @import './components/searchBar';
 @import './components/productDetail';
 @import './util/title';
@@ -44,6 +27,7 @@
 @import './components/frecuentlyVisited';
 @import './components/slider';
 @import './components/payments';
+@import './components/chatbot';
 
 //admincp
 @import './admincp/adminPanel';

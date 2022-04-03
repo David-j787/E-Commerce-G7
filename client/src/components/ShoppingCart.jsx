@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { productAmountRest, productAmountSum, productRemove } from "../redux/actions"
@@ -6,6 +6,7 @@ import { productAmountRest, productAmountSum, productRemove } from "../redux/act
 const ShoppingCart = ({cartShow}) => {
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state)
+    const cartRef = useRef();
 
     const total = cart.length && cart.map(a => (a.amount * 100 * a.price)/100).reduce((a, b) => a + b)
 
@@ -24,10 +25,24 @@ const ShoppingCart = ({cartShow}) => {
         dispatch(productRemove(productId))
     }
 
+    useEffect(() => {
+        window.addEventListener("mousedown", handleClickOutside);
+        return () => {
+          window.removeEventListener("mousedown", handleClickOutside);
+        };
+      }, []);
+    
+      const handleClickOutside = event => {
+        const { current: cart } = cartRef;
+        if (cart && !cart.contains(event.target)) {
+          cartShow(false);
+        }
+      };
+
 
     return (
         <>
-            <div className='shoppingCart'>
+            <div ref={cartRef} className='shoppingCart'>
                 <div className='shoppingCart__header'><h3 className='shoppingCart__title'>Cart</h3><div onClick={cartShow} className='shoppingCart__close'>X</div></div>
                 <hr />
                 {
