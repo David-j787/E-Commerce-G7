@@ -13,7 +13,9 @@
 
   &__logo {
     order: 2;
-
+    img {
+      max-width: 125px;
+    }
     @include mq(medium) {
       order: 1;
     }
