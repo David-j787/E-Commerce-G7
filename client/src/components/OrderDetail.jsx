@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getOrderDetail } from "../redux/actions";
-import PaymentDetail from "./PaymentDetail";
 import Payments from "./Payments";
 
 export default function OrderDetail(props) {

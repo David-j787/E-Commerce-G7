@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PaymentDetail from "./PaymentDetail";
 
 export function Payment(props) {
   const url = window.location.href;
