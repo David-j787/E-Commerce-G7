@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import logo from '../assets/images/logo.svg';
+import logo from '../assets/images/logo.jpg';
 import cart from '../assets/images/icon-cart.svg';
 import avatar from '../assets/images/image-avatar.png';
 import menu from '../assets/images/icon-menu.svg';
@@ -32,7 +32,7 @@ const Navbar = () => {
   };
   
   useEffect(() => {
-    if(shopCart?.length) cartShow()
+    if(!showCart && shopCart?.length) cartShow()
   },[shopCart])
 
   const cartShow = () => {
@@ -70,6 +70,15 @@ const Navbar = () => {
             </li>
             <li className="list__item" onClick={handleClose}>
               <NavLink
+                to="/stores"
+                className="list__link"
+                activeClassName="active"
+              >
+                Stores
+              </NavLink>
+            </li>
+            <li className="list__item" onClick={handleClose}>
+              <NavLink
                 to="/about"
                 className="list__link"
                 activeClassName="active"
@@ -85,8 +94,8 @@ const Navbar = () => {
               >
                 Contact
               </NavLink>
-              </li>
-              <li className="list__item" onClick={handleClose}>
+            </li>
+            <li className="list__item" onClick={handleClose}>
               <NavLink
                 to="/register"
                 className="list__link"
@@ -104,12 +113,12 @@ const Navbar = () => {
             {showCart && <ShoppingCart cartShow={cartShow} />}
           </figure>
           {isLogged
-          ? <div className='navbarLogin'>
+            ? <div className='navbarLogin'>
               <figure className='navbarLogin__logged'>
                 <Link to='/user/account/profile'><img src={avatar} alt="avatar" /></Link>
                 <div className='client'>
                   <span className='name'>{user.name}</span>
-                  <span>{user.last_name}</span> <br/>
+                  <span>{user.last_name}</span> <br />
                 </div>
               </figure>
               <div className='wrapper-isLogged'>
@@ -118,7 +127,7 @@ const Navbar = () => {
                 {user?.roleId < 3 && <Link to="/admincp" className='admButton'>AdminCP</Link>}
               </div>
             </div>
-          : <div className='navbarLogin'>
+            : <div className='navbarLogin'>
               <figure>
                 <img src={avatar1} alt="avatar" />
               </figure>

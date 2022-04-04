@@ -103,6 +103,7 @@ export function OrderCheckout() {
                 if (res.status === 200) setUrl(res.data.response.sandbox_init_point);
 
             }
+            localStorage.removeItem('cart')
         } catch (error) {
             swal({
                 title: 'Something went wrong',

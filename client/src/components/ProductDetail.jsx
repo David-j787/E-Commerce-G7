@@ -66,7 +66,7 @@ export function ProductDetail(props) {
                                     }
                                 <p className='description'>{details.description}</p>
                                 {details.stock ? <p className='stock'><span>In stock</span> ({details.stock} available)</p> : <p className='stock'><span>⚠️This product isn't available for shopping</span></p>}
-                                <p className='rating'><span>Rating:</span> {details.rating?.toString().slice(0, 3)}</p>
+                                <p className='rating'><span>Rating:</span> {Number(details.rating?.toFixed(1))}</p>
                                 <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
                                 {user?.roleId < 3 && <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>}
                             </div>

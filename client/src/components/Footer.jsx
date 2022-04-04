@@ -132,9 +132,9 @@ const Footer = () => {
       </ul>
 
       <div className="footer__subfooter">
-        <Link className='politics'>Politica de Privacidad</Link>
-        <Link className='book'>🕮 Libro de Reclamaciones</Link>
-        <p className="copyright">&copy; 2022 Skullcandy Todos los derechos reservados</p>
+        <Link className='politics'>Privacy Policy</Link>
+        <Link className='book'>🕮 Complaints Book</Link>
+        <p className="copyright">&copy; 2022 ElectroShop. All Rights Reserved</p>
         <Link className='payment'>
           <img src={iconMercadoPago} alt="mercado pago" />
         </Link>

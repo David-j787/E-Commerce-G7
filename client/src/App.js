@@ -29,8 +29,11 @@ import Payment from './components/Payment';
 import OrderDetail from './components/OrderDetail.jsx';
 import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
+import Sucursales from './components/Sucursales';
 import Wishlist from './components/Wishlist';
 import PaymentDetail from './components/PaymentDetail';
+import Contact from './components/Contact';
+import About from './components/About';
 import Footer from './components/Footer';
 
 export const alert2FA = () => {
@@ -123,6 +126,8 @@ function App() {
               <Shop />
             </Route>
             <Route exact path='/register' component={CreateUser}/>
+            <Route exact path='/contact' component={Contact}/>
+            <Route exact path='/about' component={About}/>
             <Route exact path='/admincp/product/add' component={CreateProduct}/>
             <Route exact path='/product/update/:id' component={UpdateProduct}/>
             <Route exact path='/product/:id' component={ProductDetail}/>
@@ -136,11 +141,11 @@ function App() {
             <Route exact path='/user/account/orders' component={Orders}/>
             <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
+            <Route exact path='/stores' component={Sucursales}/>
             <Route exact path='/user/account/order/payment/:id' component={PaymentDetail}/>
           </Switch>
-
-          <Footer />
         </Router>}
+        <Footer />
       </UserContextProvider>
     </div>
   );
