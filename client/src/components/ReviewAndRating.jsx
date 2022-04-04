@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 import swal from 'sweetalert';
-import { getReviews } from "../redux/actions";
+import { getProductDetail, getReviews } from "../redux/actions";
 
 export default function ReviewAndRating({productId}) {
   const dispatch = useDispatch();
@@ -36,6 +36,7 @@ export default function ReviewAndRating({productId}) {
       })
     }
     dispatch(getReviews(productId));
+    dispatch(getProductDetail(productId));
   }
 
 
