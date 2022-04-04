@@ -35,6 +35,7 @@ import PaymentDetail from './components/PaymentDetail';
 import Contact from './components/Contact';
 import About from './components/About';
 import Footer from './components/Footer';
+import NotFound404 from './components/NotFound404';
 
 export const alert2FA = () => {
   swal({
@@ -143,6 +144,7 @@ function App() {
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
             <Route exact path='/stores' component={Sucursales}/>
             <Route exact path='/user/account/order/payment/:id' component={PaymentDetail}/>
+            <Route><NotFound404/></Route>
           </Switch>
         </Router>}
         <Footer />

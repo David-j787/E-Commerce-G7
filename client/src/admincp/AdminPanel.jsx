@@ -16,11 +16,14 @@ import AdminCreateStore from './AdminCreateStore';
 import AdminEditStore from './AdminEditStore';
 import AdminSetDiscounts from './AdminSetDiscounts';
 import AdminDiscountsList from './AdminDiscountsList';
+import { useSelector } from 'react-redux';
+import NotFound404 from '../components/NotFound404';
 
 export default function AdminPanel() {
     const history = useHistory();
     const [show, setShow] = useState('dashboard')
     const [id, setId] = useState(null);
+    const user = useSelector(state => state.user);
 
     const showComponent = (component) => {
         setShow(component);
@@ -34,7 +37,6 @@ export default function AdminPanel() {
         if(sessionStorage.getItem('jwt')){
             axios.post('/admin/authenticate', {token: sessionStorage.getItem('jwt')})
             .then(res => {
-                console.log(res)
               if(res.data.user.roleId === 1 || res.data.user.roleId === 2) sessionStorage.setItem('session', "authenticated")
               else history.push('/')
             })
@@ -59,6 +61,8 @@ export default function AdminPanel() {
     
     return(
         <div>
+        {user?.roleId < 3 ? 
+        <div>
             <AdminSideBar showComponent={showComponent}/>
             <div className='adminContainer'>
                 {show === 'dashboard' && <AdminDashboard />}
@@ -76,6 +80,7 @@ export default function AdminPanel() {
                 {show === 'discounts' && <AdminDiscountsList showComponent={showComponent}/>}
                 {show === 'setDiscounts' && <AdminSetDiscounts showComponent={showComponent}/>}
             </div>
+        </div> : <NotFound404 />}
         </div>
     )
 }
