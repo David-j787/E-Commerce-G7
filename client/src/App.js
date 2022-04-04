@@ -143,7 +143,7 @@ function App() {
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
             <Route exact path='/stores' component={Sucursales}/>
             <Route exact path='/user/account/order/payment/:id' component={PaymentDetail}/>
-          </Switch> 
+          </Switch>
         </Router>}
         <Footer />
       </UserContextProvider>

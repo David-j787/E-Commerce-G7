@@ -1,32 +1,146 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import credit_cards from '../assets/images/credit_cards.svg';
-import MercadoPago from '../assets/images/MercadoPago.svg';
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+import iconFacebok from '../assets/images/icon-facebookl.png'
+import iconInstagram from '../assets/images/icon-instagram.png'
+import iconMercadoPago from '../assets/images/mercado-pago.jpg'
 
 const Footer = () => {
-  return (
-    <footer className="footer">
-      <div className="footer-main">
-        <section className='footer-info'> 
-        </section>
-      </div>
-      <div className="footer-base">
-        <div className='footer-container'>
-        <div className='footer-items'>
-            <p>Academic development for <a href='https://www.soyhenry.com/'>Henry Bootcamp</a></p>
-          </div>
-          <div className='footer-copyright'>
-            <p>© 2022 ElectroShop. All Rights Reserved </p>
-          </div>
-          <div className='footer-payment-icons'>
-            <img src={MercadoPago} alt="MercadoPago" />
-            <img src={credit_cards} alt="credit cards" />
-          </div>
-        </div>
+  const [showHistory, setShowHistory] = useState(false)
+  const [showSupport, setShowSupport] = useState(false)
+  const [showBuy, setShowBuy] = useState(false)
 
+  const handleHistory = () => {
+    setShowHistory(!showHistory)
+  }
+  const handleSupport = () => {
+    setShowSupport(!showSupport)
+  }
+  const handleBuy = () => {
+    setShowBuy(!showBuy)
+  }
+
+  return (
+    <footer className='footer'>
+      <ul className='footer__list'>
+        <button className='footer__btn' onClick={handleHistory}>Nuestra Historia</button>
+        {
+          showHistory && <div className='footer__history'>
+            <li className='footer__item'>
+              <Link className='footer__link'>Nuestra historia</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Contáctanos</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Mi cuenta</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Envios nacionales</Link>
+            </li>
+          </div>
+        }
+
+          <div className='footer__history desktop'>
+            <li className='footer__item'>
+              <Link className='footer__link'>Nuestra historia</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Contáctanos</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Mi cuenta</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Envios nacionales</Link>
+            </li>
+          </div>
+
+        <button className='footer__btn' onClick={handleSupport}>Soporte</button>
+        {
+          showSupport && <div className='footer__support'>
+            <li className='footer__item'>
+              <Link className='footer__link'>Preguntas frecuentes</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Garantías</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Instructivos</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Legales Promociones</Link>
+            </li>
+          </div>
+        }
+
+          <div className='footer__support desktop'>
+            <li className='footer__item'>
+              <Link className='footer__link'>Preguntas frecuentes</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Garantías</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Instructivos</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Legales Promociones</Link>
+            </li>
+          </div>
+
+        <button className='footer__btn' onClick={handleBuy}>Comprar</button>
+        {showBuy && <div className='footer__buy'>
+            <li className='footer__item'>
+              <Link className='footer__link'>Wireless Headphones</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Wireless Headphones</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Accesorios</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Laptops</Link>
+            </li>
+          </div>
+        }
+
+          <div className='footer__buy desktop'>
+            <li className='footer__item'>
+              <Link className='footer__link'>Wireless Headphones</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Wireless Headphones</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Accesorios</Link>
+            </li>
+            <li className='footer__item'>
+              <Link className='footer__link'>Laptops</Link>
+            </li>
+          </div>
+
+        <div className='footer__social'>
+          <a href="https://facebook.com" target="_blank" rel="noreferrer">
+            <img src={iconFacebok} alt="facebook" />
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noreferrer">
+            <img src={iconInstagram} alt="instagram" />
+          </a>
+        </div>
+      </ul>
+
+      <div className="footer__subfooter">
+        <Link className='politics'>Privacy Policy</Link>
+        <Link className='book'>🕮 Complaints Book</Link>
+        <p className="copyright">&copy; 2022 ElectroShop. All Rights Reserved</p>
+        <Link className='payment'>
+          <img src={iconMercadoPago} alt="mercado pago" />
+        </Link>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

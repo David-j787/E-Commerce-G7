@@ -1,69 +1,184 @@
 .footer {
-    margin-top: 4rem;
-    position: relative;
-    width: 100%;
-    bottom: 0;
-    z-index: 99;
+  background-color: $black;
+  padding: 4.2rem 0;
+  padding-bottom: 1.5rem;
+
+  @include mq(medium) {
+    padding: 4.2rem 3rem;
+    padding-bottom: 0;
+  }
+  @include mq(large) {
+    padding: 4.2rem 5rem;
+    padding-bottom: 0;
+  }
+
+  @include mq(x-large) {
+    padding: 4.2rem 9rem;
+    padding-bottom: 0;
+  }
+
+
+  &__list {
+
+    @include mq(medium) {
+      display: flex;
+      padding-bottom: 4rem;
+    }
+
+    * {
+      @include mq(medium) {
+        margin-right: .75rem;
+      }
+    }
+  }
+
+  &__history,
+  &__support,
+  &__buy {
+    display: block;
+    margin-top: 1.55rem;
+    border-bottom: thin solid #2c2c2d;
+    padding-bottom: 1.5rem;
+    padding-left: 2rem;
+
+     @include mq(medium) {
+       display: none;
+       border-bottom: none;
+     }
+  }
+
+  &__history.desktop,
+  &__support.desktop,
+  &__buy.desktop {
+    display: none;
+
+     @include mq(medium) {
+       display: block;
+       margin-top: 0;
+     }
+  }
+
+  &__history.desktop {
+    padding-left: 0;
+  }
+
+  &__link {
+    font-family: $font-kumbh-sans;
     color: $white;
-    text-align: center;
-}
-.footer-main {
-    background-color: $black;
-}
-.footer-info {
-    position: relative;
-    padding: 0;
-    overflow: hidden;
-    ::before {
-        content: "";
-        display: table;
-    }
-}
+    line-height: 1.8rem;
+    font-size: .9rem;
+    transition: color .2s ease;
 
-.footer-base {
-    padding: 1rem 0;
-    border-top: 1px solid #2c2c2d;
-    background-color: #000;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
+      &:hover {
+        color: $grayish-blue;
+      }
+  }
 
-.footer-container {
-    margin: 0 60px;
-    display: flex;
-}
-.footer-items {
-    margin: 0 60px;
+  &__btn {
+    padding: 1.25rem 1.85rem;
+    display: block;
+    background: transparent;
+    color: $white;
+    border: none;
+    outline: none;
+    border-bottom: thin solid #2c2c2d;
+    width: 100%;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: .8rem;
+    letter-spacing: 1px;
+    text-align: left;
 
-    p, a {
-        color: #969696;
-        font-size: 0.9rem;
-        line-height: 2.14286rem;
+    &:first-of-type {
+      border-top: thin solid #2c2c2d;
     }
-    a{
-        color: #e1ff00;
+
+    @include mq(medium) {
+      display: none;
     }
-}
-.footer-copyright {
-    margin: 0 60px;
-    p {
-        color: #969696;
-        font-size: 12px;
-        line-height: 2.14286rem;
-    }
-}
-.footer-payment-icons {
-    margin: 0 60px;
-    order: 3;
-    flex-direction: row;
+  }
+
+  &__social {
     display: flex;
-    img {
-        margin: 0 1rem;
+    margin: 3.74rem 0;
+    padding: 0 3rem;
+
+    @include mq(medium) {
+      margin: 0;
+      margin-left: auto;
+      margin-right: 0;
+      padding: 0;
+    }
+
+    a {
+      display: block;
+
+      &:first-child {
+        margin-right: 1.5rem;
+
+        @include mq(medium) {
+          margin-right: 0;
+        }
+      }
+
+      img {
+        width: 30px;
         height: 30px;
+        filter: invert(100%);
+      }
     }
+  }
+
+  &__subfooter {
+    border-top: thin solid #2c2c2d;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 10% 40% 40% 10%;
+    grid-template-rows: repeat(3, 30px);
+    justify-content: center;
+    padding: 1rem 0;
+
+    @include mq(medium) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    a, p {
+      color: $grayish-blue;
+      font-size: .8rem;
+      transition: color .2s ease;
+
+      &:hover {
+        color: #969696;
+      }
+    }
+
+    .politics {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+    .book {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
+    }
+    .copyright {
+      grid-column: 2 / span 2;
+      grid-row: 2 / 3;
+    }
+    .payment {
+      grid-row: 3 / 4;
+      grid-column: 2 / span 2;
+      display: flex;
+      justify-content: center;
+
+
+      img {
+        width: 150px;
+        height: 50px;
+        border-radius: 10px;
+      }
+
+    }
+  }
 }
-
-
