@@ -1,10 +1,34 @@
-
 .wishlist {
   margin: 2rem 0;
 
-  .visited__item {
+  &__item {
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $black;
+    height: 300px;
+    min-width: 250px;
+
+    * + * {
+      margin-top: .25rem;
+    }
+
     h2 {
       font-size: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 280px;
+    }
+
+    figure {
+      width: 224px;
+      height: 224px;
+      img {
+        height: 100%;
+        object-fit: contain;
+      }
     }
   }
 
@@ -18,10 +42,11 @@
     margin: auto;
     border-radius: 5px;
     margin-bottom: 1rem;
+    position: relative;
 
     span {
       display: inline-block;
-      font-size: .9rem;
+      font-size: 1rem;
 
       &:first-child {
         display: inline-block;
@@ -33,6 +58,10 @@
     }
 
     button {
+      position: absolute;
+      top: auto;
+      right: 0;
+      float: right;
       background-color: $black;
       color: $white;
       border: none;

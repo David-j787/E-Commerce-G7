@@ -4,6 +4,7 @@ import { getUserWishlist } from "../redux/actions";
 import axios from "axios";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
 export function Wishlist() {
   const dispatch = useDispatch();
@@ -61,15 +62,15 @@ export function Wishlist() {
               wishlist?.map((prod) => {
               return (
                   <div key={prod.id}>
-                      <Link to={`/product/${prod.id}`} className="visited__item">
+                      <Link to={`/product/${prod.id}`} className="wishlist__item">
                         <h2>{prod.name}</h2>
+                        {prod?.rating ? <span>{[...Array(prod?.rating)].map(star =>{return <FaStar key={Math.random().toString(16).slice(2)} color="orange" size={15}/>})}</span> :<span>No rated</span>}
                         <figure>
                           <img src={prod.images} width='250px' height='250px' alt="productpic"/>
                         </figure>
                       </Link>
                       <div className="wishlist__price">
                         <div>
-                          <span>{prod.rating}</span>
                           {prod.discount ? 
                             <> 
                                 <span className="full-price" >$ {Number(prod.price?.toFixed(2))}</span>
