@@ -27,99 +27,99 @@ const Footer = () => {
         {
           showHistory && <div className='footer__history'>
             <li className='footer__item'>
-              <Link className='footer__link'>Nuestra historia</Link>
+              <Link to="#" className='footer__link'>Nuestra historia</Link>
             </li>
             <li className='footer__item'>
-              <Link className='footer__link'>Contáctanos</Link>
+              <Link to="#" className='footer__link'>Contáctanos</Link>
             </li>
             <li className='footer__item'>
-              <Link className='footer__link'>Mi cuenta</Link>
+              <Link to="#" className='footer__link'>Mi cuenta</Link>
             </li>
             <li className='footer__item'>
-              <Link className='footer__link'>Envios nacionales</Link>
+              <Link to="#" className='footer__link'>Envios nacionales</Link>
             </li>
           </div>
         }
 
-          <div className='footer__history desktop'>
-            <li className='footer__item'>
-              <Link className='footer__link'>Nuestra historia</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Contáctanos</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Mi cuenta</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Envios nacionales</Link>
-            </li>
-          </div>
+        <div className='footer__history desktop'>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Nuestra historia</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Contáctanos</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Mi cuenta</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Envios nacionales</Link>
+          </li>
+        </div>
 
         <button className='footer__btn' onClick={handleSupport}>Soporte</button>
         {
           showSupport && <div className='footer__support'>
             <li className='footer__item'>
-              <Link className='footer__link'>Preguntas frecuentes</Link>
+              <Link to="#" className='footer__link'>Preguntas frecuentes</Link>
             </li>
             <li className='footer__item'>
-              <Link className='footer__link'>Garantías</Link>
+              <Link to="#" className='footer__link'>Garantías</Link>
             </li>
             <li className='footer__item'>
-              <Link className='footer__link'>Instructivos</Link>
+              <Link to="#" className='footer__link'>Instructivos</Link>
             </li>
             <li className='footer__item'>
-              <Link className='footer__link'>Legales Promociones</Link>
+              <Link to="#" className='footer__link'>Legales Promociones</Link>
             </li>
           </div>
         }
 
-          <div className='footer__support desktop'>
-            <li className='footer__item'>
-              <Link className='footer__link'>Preguntas frecuentes</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Garantías</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Instructivos</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Legales Promociones</Link>
-            </li>
-          </div>
+        <div className='footer__support desktop'>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Preguntas frecuentes</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Garantías</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Instructivos</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Legales Promociones</Link>
+          </li>
+        </div>
 
         <button className='footer__btn' onClick={handleBuy}>Comprar</button>
         {showBuy && <div className='footer__buy'>
-            <li className='footer__item'>
-              <Link className='footer__link'>Wireless Headphones</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Wireless Headphones</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Accesorios</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Laptops</Link>
-            </li>
-          </div>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Accesorios</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Laptops</Link>
+          </li>
+        </div>
         }
 
-          <div className='footer__buy desktop'>
-            <li className='footer__item'>
-              <Link className='footer__link'>Wireless Headphones</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Wireless Headphones</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Accesorios</Link>
-            </li>
-            <li className='footer__item'>
-              <Link className='footer__link'>Laptops</Link>
-            </li>
-          </div>
+        <div className='footer__buy desktop'>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Accesorios</Link>
+          </li>
+          <li className='footer__item'>
+            <Link to="#" className='footer__link'>Laptops</Link>
+          </li>
+        </div>
 
         <div className='footer__social'>
           <a href="https://facebook.com" target="_blank" rel="noreferrer">
@@ -132,10 +132,10 @@ const Footer = () => {
       </ul>
 
       <div className="footer__subfooter">
-        <Link className='politics'>Privacy Policy</Link>
-        <Link className='book'>🕮 Complaints Book</Link>
+        <Link to="#" className='politics'>Privacy Policy</Link>
+        <Link to="#" className='book'>🕮 Complaints Book</Link>
         <p className="copyright">&copy; 2022 ElectroShop. All Rights Reserved</p>
-        <Link className='payment'>
+        <Link to="#" className='payment'>
           <img src={iconMercadoPago} alt="mercado pago" />
         </Link>
       </div>

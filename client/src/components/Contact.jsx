@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux"
 import axios from 'axios';
 import '../styles/styles.scss'
 import swal from 'sweetalert';
 
 export function validate(form) {
+
     let errors = {};
 
     if (!form.name) {
@@ -24,13 +26,23 @@ export function validate(form) {
 
 
 export function Contact() {
+    const { user } = useSelector(s => s)
+
     const history = useHistory();
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
-        name: "",
-        email: "",
+        name: user ? user.name : "",
+        email: user ? user.email : "",
         message: "",
     })
+
+    useEffect(() => {
+        setForm({
+            name: user ? user.name : "",
+            email: user ? user.email : "",
+            message: "",
+        })
+    }, [user])
 
     const handleChange = (e) => {
         setForm({
@@ -72,29 +84,29 @@ export function Contact() {
     };
 
     return (
-            <div className="container">
-                <div className="register">
-                    <h1 className="register__title">Contact Us</h1>
-                    <form onSubmit={(e) => { handleSubmit(e) }} className="register__form">
-                        <div className="register__group">
-                            <label>Name:</label>
-                            <input name="name" value={form.name} onChange={handleChange} className="form-control" />
-                            <div className="register__error">{errors.name}</div>
-                        </div>
-                        <div className="register__group">
-                            <label>E-mail:</label>
-                            <input name="email" value={form.email} onChange={handleChange} className="form-control" />
-                            <div className="register__error">{errors.email}</div>
-                        </div>
-                        <div className="register__group">
-                            <label>Message:</label>
-                            <textarea name="message" value={form.message} onChange={handleChange} className="form-control"></textarea>
-                            <div className="register__error">{errors.message}</div>
-                        </div>
-                        <button className="register__button" type="submit" disabled={!form.name || !form.email || !form.message || Object.keys(errors).length} >Send</button>
-                    </form>
-                </div>
+        <div className="container">
+            <div className="register">
+                <h1 className="register__title">Contact Us</h1>
+                <form onSubmit={(e) => { handleSubmit(e) }} className="register__form">
+                    <div className="register__group">
+                        <label>Name:</label>
+                        <input name="name" value={form.name} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.name}</div>
+                    </div>
+                    <div className="register__group">
+                        <label>E-mail:</label>
+                        <input name="email" value={form.email} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.email}</div>
+                    </div>
+                    <div className="register__group">
+                        <label>Message:</label>
+                        <textarea name="message" value={form.message} onChange={handleChange} className="form-control"></textarea>
+                        <div className="register__error">{errors.message}</div>
+                    </div>
+                    <button className="register__button" type="submit" disabled={!form.name || !form.email || !form.message || Object.keys(errors).length} >Send</button>
+                </form>
             </div>
+        </div>
     )
 }
 
