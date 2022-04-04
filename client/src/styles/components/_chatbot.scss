@@ -1,40 +1,36 @@
-
 //botones de opcion
 .option-button{
     display: flex-inline;
-  padding: 0.5em 1.7em;
-  margin: 5px;
-    height: 70px;
-    width: 180px;
-  border:  solid rgb(198, 199, 201);
-  border-radius: 2em;
-  box-sizing: border-box;
-  background-color: white;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: hsl(0, 0%, 0%);
-  text-shadow: 0 0.04em 0.04em rgb(255, 255, 255);
-  text-align: center;
-  transition: all 0.2s;
+    padding: 0.5em 1.7em;
+    margin: 5px;
+    height: 40px;
+    width: 200px;
+    border:  solid $grayish-blue;
+    border-radius: 99px;
+    box-sizing: border-box;
+    background-color: $white;
+    text-decoration: none;
+    color: $black;
+    text-shadow: 0 0.04em 0.04em rgb(255, 255, 255);
+    text-align: center;
+    transition: all 0.2s;
     cursor: pointer;
     align-self: flex-end;
-align-content: space-around;
-align-items: flex-start;
-
+    align-content: space-around;
+    align-items: flex-start;
+    &:hover{
+      background-color: $light-grayish-blue;
+      color: $black;
+      border: solid rgb(0, 183, 255);
     }
+    &:active{
+      background-color: rgb(0, 183, 255);
+      color: white;
+      border: solid rgb(0, 183, 255);
+    }
+  }
 //cambio boton opcion al pasar por arriba
-    .option-button:hover{
-        background-color: rgb(198, 199, 201);
-        color: white;
-        border: solid rgb(0, 183, 255);
-    }
 
-    .option-button:active{
-        background-color: rgb(0, 183, 255);
-        color: white;
-        border: solid rgb(0, 183, 255);
-    }
     .react-chatbot-kit-chat-bot-avatar-letter {
     font-size: 1.5em;
     
@@ -44,16 +40,24 @@ align-items: flex-start;
     }
     ///Bot Avatar
     .Bot-Avatar{
-      height: 105px;
-      width: 105px;
+      height: 50px;
+      width: 50px;
       border-radius: 25px;
       background-color: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    
-    
+    }  
+
+    .react-chatbot-kit-chat-container {
+        height: 380px !important;
+      }
+    .react-chatbot-kit-chat-message-container {
+        height: 300px !important;
+      }
+    .react-chatbot-kit-chat-inner-container {
+        height: 380px !important;
+      }
     
     .orders{
       display: flex;
@@ -65,13 +69,25 @@ align-items: flex-start;
     }
     
     .chatIcon{
-      height: 150px;
-      width:150px;
+      height: 120px;
+      width:120px;
       border-radius: 25px;
       background-color: transparent;
       display: flex-inline;
       justify-content: center;
       align-items: flex-end;
+      position: fixed;
+      bottom: 400px;
+      left: 20px;
+    }
+    .chatbot-payments {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      img {
+        width: 200px;
+        margin: 10px 0;
+      }
     }
     
     

@@ -1,35 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { useUser } from "../Login/hooks/useUser";
-import { getVisitedProducts } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
-const Register = () => {
-
-    const dispatch = useDispatch();
-    const { user } = useSelector((state) => state);
-    const { isLogged } = useUser();
-    const history = useHistory();
-    
-    useEffect(() => {
-        if (isLogged) dispatch(getVisitedProducts(user?.id));
-    }, []); //eslint-disable-line
-    
+const Register = () => {    
     return (
-        <div className="shop">
-        {
-
-        history.push("/Register")
-        }
-        {!isLogged ? false : 
-            <div>
-           
-            
-            {history.push("/Register")}
-     
- </div>}
-        </div>
+        <span>If you cant find where Sign Up is, please click <Link to="/register">HERE</Link> to redirect</span>
         );
     }
 export default Register;

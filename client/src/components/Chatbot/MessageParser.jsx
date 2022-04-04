@@ -20,9 +20,9 @@ class MessageParser {
         else if (lowerCaseMessage.includes("bye")) {
             return this.actionProvider.createChatBotMessage("Goodbye!");
             }
-            else if (lowerCaseMessage.includes("by")) {
-                return this.actionProvider.createChatBotMessage("Goodbye!");
-                }
+        else if (lowerCaseMessage.includes("chau")) {
+            return this.actionProvider.createChatBotMessage("Goodbye!");
+            }
         else if (lowerCaseMessage.includes("goodbye")) {
             return this.actionProvider.createChatBotMessage("Goodbye!");
             }
@@ -38,15 +38,36 @@ class MessageParser {
         else if (lowerCaseMessage.includes("buy")) {
             return this.actionProvider.buyProduct();
             }
-            else if (lowerCaseMessage.includes("product")) {
-                return this.actionProvider.buyProduct();
-                }
-                else if (lowerCaseMessage.includes("products")) {
-                    return this.actionProvider.buyProduct();
-                    }
-                    else if (lowerCaseMessage.includes("by")) {
-                        return this.actionProvider.createChatBotMessage("Goodbye!");
-                        }
+        else if (lowerCaseMessage.includes("shop")) {
+            return this.actionProvider.buyProduct();
+            }
+        else if (lowerCaseMessage.includes("product")) {
+            return this.actionProvider.buyProduct();
+            }
+        else if (lowerCaseMessage.includes("products")) {
+            return this.actionProvider.buyProduct();
+            }
+        else if (lowerCaseMessage.includes("profile")) {
+            return this.actionProvider.viewProfile();
+            }
+        else if (lowerCaseMessage.includes("payments")) {
+            return this.actionProvider.payments();
+            }
+        else if (lowerCaseMessage.includes("pay")) {
+            return this.actionProvider.payments();
+            }
+        else if (lowerCaseMessage.includes("credit cards")) {
+            return this.actionProvider.payments();
+            }
+        else if (lowerCaseMessage.includes("cash")) {
+            return this.actionProvider.payments();
+            }
+        else if (lowerCaseMessage.includes("card")) {
+            return this.actionProvider.payments();
+            }
+        else if (lowerCaseMessage.includes("chao")) {
+            return this.actionProvider.createChatBotMessage("Goodbye!");
+            }
     }
   }
   

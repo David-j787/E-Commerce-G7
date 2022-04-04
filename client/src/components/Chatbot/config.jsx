@@ -8,12 +8,11 @@ import Offers from "./Offers";
 import Register from "./Register";
 import Product from "./Product";
 import OrdersBot from "./OrdersBot";
-
-
-
+import MercadoPago from "./MercadoPago";
+import ViewProfile from "./ViewProfile";
 
 const config = {
-    botName: "Sneakers Chatbot",
+    botName: "ElectroShop Chatbot",
    
    
     initialMessages: [
@@ -30,9 +29,19 @@ const config = {
             widgetFunc:(props) => <Options {...props} />,
         },
         {
-                widgetName: 'offers',
-                widgetFunc: (props) => <Offers {...props} /> ,
-                mapStateToProps: ["offers"],
+            widgetName: 'offers',
+            widgetFunc: (props) => <Offers {...props} /> ,
+            mapStateToProps: ["offers"],
+        },
+        {
+            widgetName: 'payments',
+            widgetFunc: (props) => <MercadoPago {...props} /> ,
+            mapStateToProps: ["payments"],
+        },
+        {
+            widgetName: 'profile',
+            widgetFunc: (props) => <ViewProfile {...props} /> ,
+            mapStateToProps: ["profile"],
         },
         {
             widgetName: 'register',
@@ -60,10 +69,11 @@ customStyles: {
     botMessageBox: {
         backgroundColor: "grey",
         borderRadius: "10px",
+        height: "100px",
     },
     chatButton: {
         backgroundColor: "grey",
-        borderRadius: "10px",
+        borderRadius: "5px",
     },
 
 
