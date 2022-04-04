@@ -19,7 +19,7 @@ export default function ProductFav({id, name, images, price, rating, discount, d
                     <span>$ {Number(discounted_price?.toFixed(2))}</span>
                 </>
                 : <span>$ {Number(price?.toFixed(2))}</span> }</span>
-                <span>{!rating ? <span>No rated yet</span> : [...Array(rating)].map(star =>{return <FaStar key={Math.random().toString(16).slice(2)} color="orange" size={16}/>})}</span>
+                <span>{!rating ? <span>No rated</span> : [...Array(rating)].map(star =>{return <FaStar key={Math.random().toString(16).slice(2)} color="orange" size={16}/>})}</span>
             </Link>
             ) : (
             <h2>Loading...</h2>
