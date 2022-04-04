@@ -118,14 +118,13 @@ function App() {
         <Router>
           <Navbar />
           <Route path='/user/account' component={DashboardUser}/>
-          <Route path='/admincp' component={AdminPanel}/>
-          
           <Switch>
             <Route exact path='/' component={Home}/>
             <Route exact path='/shop'>
               <SearchBar />
               <Shop />
             </Route>
+            <Route path='/admincp' component={AdminPanel}/>
             <Route exact path='/register' component={CreateUser}/>
             <Route exact path='/contact' component={Contact}/>
             <Route exact path='/about' component={About}/>

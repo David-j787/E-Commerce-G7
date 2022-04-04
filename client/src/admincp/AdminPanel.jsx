@@ -23,7 +23,7 @@ export default function AdminPanel() {
     const history = useHistory();
     const [show, setShow] = useState('dashboard')
     const [id, setId] = useState(null);
-    const user = useSelector(state => state.user);
+    const user = useSelector(state => state?.user);
 
     const showComponent = (component) => {
         setShow(component);
@@ -61,7 +61,7 @@ export default function AdminPanel() {
     
     return(
         <div>
-        {user?.roleId < 3 ? 
+        {user?.roleId < 3 && 
         <div>
             <AdminSideBar showComponent={showComponent}/>
             <div className='adminContainer'>
@@ -80,7 +80,7 @@ export default function AdminPanel() {
                 {show === 'discounts' && <AdminDiscountsList showComponent={showComponent}/>}
                 {show === 'setDiscounts' && <AdminSetDiscounts showComponent={showComponent}/>}
             </div>
-        </div> : <NotFound404 />}
+        </div>}
         </div>
     )
 }
