@@ -6,6 +6,8 @@ import FrecuentlyVisited from './FrecuentlyVisited';
 import WishlistView from './WishlistView';
 import useUser from './Login/hooks/useUser';
 import WhatsApp from './WhatsApp';
+import ChatBot from "../components/Chatbot/ChatBot";
+import 'react-chatbot-kit/build/main.css';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -25,8 +27,9 @@ const Home = () => {
         <div>
           <FrecuentlyVisited />
           <WishlistView />
-          <WhatsApp />
         </div>}
+        <WhatsApp />
+        <ChatBot />
       </div>)
 };
 
