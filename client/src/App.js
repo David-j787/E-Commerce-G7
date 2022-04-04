@@ -31,6 +31,7 @@ import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
 import Wishlist from './components/Wishlist';
 import PaymentDetail from './components/PaymentDetail';
+import Footer from './components/Footer';
 
 export const alert2FA = () => {
   swal({
@@ -136,7 +137,9 @@ function App() {
             <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
             <Route exact path='/payment/:paymentStatus' component={Payment}/>
             <Route exact path='/user/account/order/payment/:id' component={PaymentDetail}/>
-          </Switch> 
+          </Switch>
+
+          <Footer />
         </Router>}
       </UserContextProvider>
     </div>
