@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import UpdateProduct from '../components/UpdateProduct';
 import AdminDashboard from './AdminDashboard';
 import AdminEditUser from './AdminEditUser';
@@ -16,8 +17,8 @@ import AdminCreateStore from './AdminCreateStore';
 import AdminEditStore from './AdminEditStore';
 import AdminSetDiscounts from './AdminSetDiscounts';
 import AdminDiscountsList from './AdminDiscountsList';
-import { useSelector } from 'react-redux';
-import NotFound404 from '../components/NotFound404';
+import AdminPaymentsList from './AdminPaymentsList';
+import AdminPaymentDetail from './AdminPaymentDetail';
 
 export default function AdminPanel() {
     const history = useHistory();
@@ -79,6 +80,8 @@ export default function AdminPanel() {
                 {show === 'updateStore' && <AdminEditStore id={id} showComponent={showComponent}/>}
                 {show === 'discounts' && <AdminDiscountsList showComponent={showComponent}/>}
                 {show === 'setDiscounts' && <AdminSetDiscounts showComponent={showComponent}/>}
+                {show === 'payments' && <AdminPaymentsList getId={getId} showComponent={showComponent}/>}
+                {show === 'paymentDetail' && <AdminPaymentDetail meliId={id.meli_id} idOrder={id.orderId} showComponent={showComponent}/>}
             </div>
         </div>}
         </div>
