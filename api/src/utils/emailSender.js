@@ -161,5 +161,15 @@ module.exports = {
             .catch((error) => {
                 console.error(error)
             })
+    },
+    ContactUs: async (data) => {
+        const message = {
+            to: 'contact.ecommerce.g7@gmail.com',
+            from: 'noreply.ecommerce.g7@gmail.com',
+            subject: `${data.name} Contact us`,
+            text: `${data.name} Contact us. ${data.message} user: ${data.email}`,
+            html: `<h3>${data.name} Contact us.</h3> <p><strong>message:</strong> ${data.message}</p> <h4><strong>E-mail: ${data.email}</strong><h4>`
+        }
+        return await sgMail.send(message)
     }
 }

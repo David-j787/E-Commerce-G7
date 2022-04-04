@@ -31,6 +31,7 @@ const visitedProducts = require("./getProductsVisited-route");
 const discount = require("./createDiscount-route");
 const wishlist = require("./manageWishlist-route");
 const store = require('./store')
+const contactUs = require("./contactUs-route")
 
 // Middlewares
 const auth = require("./authenticate-route");
@@ -107,6 +108,8 @@ router.use("/wishlist", wishlist);
 router.use("/stores", store);
 
 router.use("/payment", payment);
+
+router.use("/contact", contactUs)
 
 
 module.exports = router;
