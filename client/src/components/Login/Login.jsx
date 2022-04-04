@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../../redux/actions';
+import { FormattedMessage } from 'react-intl'
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -62,12 +63,12 @@ export default function Login() {
 
   return (
     <div className="container">
-      {isLoginLoading && <span>Checking credentials...</span>}
+      {isLoginLoading && <span><FormattedMessage id="app.check-info" defaultMessage="Checking credentials..."/></span>}
       {!isLoginLoading && (
         <div className="resetPassword login">
           <form className="resetPassword__form" onSubmit={handleSubmit}>
-            <h2 className="resetPassword__title">Please login</h2>
-            {hasLoginError && <span>Credentials are invalid</span>}
+            <h2 className="resetPassword__title"><FormattedMessage id="app.please" defaultMessage="Please login"/></h2>
+            {hasLoginError && <span><FormattedMessage id="app.error-credentials" defaultMessage="Credentials are invalid"/></span>}
             <input
               value={input.username}
               type="text"
@@ -87,7 +88,7 @@ export default function Login() {
             <span className="error">{errors.username}</span>
             <span className="error">{errors.password}</span>
             <label className="checkbox">
-              Remember me
+              <FormattedMessage id="app.remember" defaultMessage="Remember me"/>
               <input
                 type="checkbox"
                 onChange={handleCheckbox}
@@ -95,11 +96,11 @@ export default function Login() {
                 name="rememberMe"
               />{' '}
             </label>
-            <button type="submit">Login</button>
+            <button type="submit"><FormattedMessage id="app.login" defaultMessage="Log In" /></button>
             <GoogleLogin
               className="btn-google"
               clientId="827278609523-buiubpo31u43c0snvgsjhukdtces0ijo.apps.googleusercontent.com"
-              buttonText="Login"
+              buttonText="Log in"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={'single_host_origin'}

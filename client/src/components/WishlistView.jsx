@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserWishlist } from "../redux/actions";
 import ProductFav from "./ProductFav";
+import { FormattedMessage } from 'react-intl';
 
 export default function WishlistView(){
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export default function WishlistView(){
 
     return(
         <div className="container">
-            <h2 className="visited__title">Inspired by you</h2>
+            <h2 className="visited__title"><FormattedMessage id="app.inspired" defaultMessage="Inspired by you"/></h2>
             <div className="visited">
                 {wishlist?.slice(0,6).map(product => <ProductFav key={product.id} {...product} />)}
             </div>

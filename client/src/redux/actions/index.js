@@ -29,7 +29,6 @@ export const GET_ALL_STORES = "GET_ALL_STORES";
 export const GET_STORE_DETAIL = "GET_STORE_DETAIL";
 export const GET_ALL_DISCOUNTS = "GET_ALL_DISCOUNTS";
 
-
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
@@ -327,3 +326,4 @@ export const getUserWishlist = (userId) => {
     }
   };
 };
+

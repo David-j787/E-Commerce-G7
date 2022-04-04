@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getCategories, getSearchProducts } from "../redux/actions";
+import { FormattedMessage } from 'react-intl'
 
 export default function SearchBar() {
   const [display, setDisplay] = useState(false);
@@ -94,15 +95,15 @@ export default function SearchBar() {
           </div>
         )}
         <select onChange={handleSelect} value={filter}>
-          <option value=''>All Categories</option>
+          <option value=''>All categories</option>
         {categories?.map((ca,i) => {
           return <option key={i} value={ca.name}>
             {ca.name}
           </option>
         })}
         </select>
-        <button type='submit' onClick={e => handleSubmit(e)} className="searchBar__btn">Search</button>
-        <button type='reset' onClick={e => cleanState(e)} className="searchBar__btn" >Reset Filters</button>
+        <button type='submit' onClick={e => handleSubmit(e)} className="searchBar__btn"><FormattedMessage id="app.search" defaultMessage="Search"/></button>
+        <button type='reset' onClick={e => cleanState(e)} className="searchBar__btn" ><FormattedMessage id="app.reset" defaultMessage="Reset filters"/></button>
       </div>
     </div>
   )

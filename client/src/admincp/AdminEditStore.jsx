@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStoreDetail } from '../redux/actions';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export function validate(store) {
     let errors = {};
@@ -109,39 +110,39 @@ export function AdminEditStore(props){
     return (
         <div className="adminContainer editForms">
         <div className="register">
-            <h1 className="register__title">Edit Store</h1>
+            <h1 className="register__title"><FormattedMessage id="app.edit-store" defaultMessage="Edit Store"/></h1>
             <form onSubmit={(e)=>{handleSubmit(e)}} className="register__form">
                 <div className="register__group">
-                <label>Name:</label>
+                <label><FormattedMessage id="app.name" defaultMessage="Name:"/></label>
                 <input name="name" value={store?.name} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.name}</div>
                 </div>
                 <div className="register__group">
-                <label>Country:</label>
+                <label><FormattedMessage id="app.country" defaultMessage="Country:"/></label>
                 <input name="country" value={store?.country} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.country}</div>
                 </div>
                 <div className="register__group">
-                <label>City:</label>
+                <label><FormattedMessage id="app.city" defaultMessage="City:"/></label>
                 <input name="city" value={store?.city} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.city}</div>
                 </div>
                 <div className="register__group">
-                <label>Zip code:</label>
+                <label><FormattedMessage id="app.zip" defaultMessage="Zip code:"/></label>
                 <input type="number" name="zip_code" value={store?.zip_code} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.zip_code}</div>
                 </div>
                 <div className="register__group">
-                <label>Address:</label>
+                <label><FormattedMessage id="app.address" defaultMessage="Address:"/></label>
                 <input name="address" value={store?.address} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.address}</div>
                 </div>
                 <div className="register__group">
-                <label>State:</label>
+                <label><FormattedMessage id="app.state" defaultMessage="State:"/></label>
                 <input  type='text' name="state" value={store?.state} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.state}</div>
                 </div>
-                <button className="register__button" type="submit" >Edit</button>
+                <button className="register__button" type="submit" ><FormattedMessage id="app.btn-edit" defaultMessage="Edit"/></button>
             </form>
         </div>
     </div>

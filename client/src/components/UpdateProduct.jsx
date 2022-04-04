@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getProductDetail } from '../redux/actions';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl'
 
 export function validate(input) {
     let errors = {};
@@ -108,35 +109,35 @@ export function UpdateProduct(props){
     return (
          <div className={history.location.pathname === '/admincp' ? "adminContainer editForms" : "container"}>
             <div className="updateProduct register">
-                <h1 className='updateProduct__title'>Update Product</h1>
+                <h1 className='updateProduct__title'><FormattedMessage id="app.update-product" defaultMessage="Update Product"/></h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} className="well form-horizontal">
                     <div className="register-group">
-                        <label className="col-md-4 control-label">Name:</label>
+                        <label className="col-md-4 control-label"><FormattedMessage id="app.name" defaultMessage="Name:"/></label>
                         <input name="name" value={input.name} onChange={handleChange} />
                         <div className='register__error'>{errors.name}</div>
                     </div>
                     <div className="register-group">
-                    <label className="col-md-4 control-label">Price:</label>
+                    <label className="col-md-4 control-label"><FormattedMessage id="app.price-product" defaultMessage="Price:"/></label>
                     <input name="price" value={input.price} onChange={handleChange} />
                     <div className='register__error'>{errors.price}</div>
                     </div>
                     <div className="register-group">
-                    <label className="col-md-4 control-label">Description:</label>
+                    <label className="col-md-4 control-label"><FormattedMessage id="app.description-product" defaultMessage="Description:"/></label>
                     <textarea name="description" value={input.description} onChange={handleChange} ></textarea>
                     <div className='register__error'>{errors.description}</div>
                     </div>
                     <div className="register-group">
-                    <label className="col-md-4 control-label">Image:</label>
+                    <label className="col-md-4 control-label"><FormattedMessage id="app.image-product" defaultMessage="Image:"/></label>
                     <input name="images" value={input.images} onChange={handleChange} />
                     <div className='register__error'>{errors.images}</div>
                     </div>
                     <div className="register-group">
-                    <label className="col-md-4 control-label">Stock:</label>
+                    <label className="col-md-4 control-label"><FormattedMessage id="app.stock-product" defaultMessage="Stock:"/></label>
                     <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} />
                     <div className='register__error'>{errors.stock}</div>
                     </div>
                     <div className="register-group">
-                    <label className="col-md-4 control-label">Categories:</label>
+                    <label className="col-md-4 control-label"><FormattedMessage id="app.stock-categories" defaultMessage="Categories:"/></label>
                     <div>
                     <select defaultValue='none' name="categories" onChange={handleSelect} autoComplete='off'>
                     <option value="none" disabled hidden>Choose one or more</option>
@@ -147,10 +148,10 @@ export function UpdateProduct(props){
                     <div className="formWrapper"><div className="addedCat">{input.categories?.map(category => <div key={category} className="catContainer"><div className="category">{category}</div><div className="deleteCat" id={category} onClick={handleDelete}>x</div></div>)}</div></div>
                     </div>
                     <div className="wrapper-buttons">
-                    {history.location.pathname === '/admincp' ? false : <Link to='/'><button className="register__button">Back</button></Link>}
+                    {history.location.pathname === '/admincp' ? false : <Link to='/'><button className="register__button"><FormattedMessage id="app.button-back" defaultMessage="Back"/></button></Link>}
                         <button className={history.location.pathname === '/admincp' ? 'register__button' : "register__button save" }
                      type="submit"
-                     disabled={!input.name || !input.price || !input.description || !input.stock || !input.categories.length}>Save</button>
+                     disabled={!input.name || !input.price || !input.description || !input.stock || !input.categories.length}><FormattedMessage id="app.button-save" defaultMessage="Save"/></button>
                     </div>
                 </form>
             </div>

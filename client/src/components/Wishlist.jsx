@@ -4,6 +4,7 @@ import { getUserWishlist } from "../redux/actions";
 import axios from "axios";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import { FormattedMessage } from 'react-intl'
 
 export function Wishlist() {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ export function Wishlist() {
   return (
     <div>
       <div className="container">
-        <h2 className="orders__title">MY WISHLIST</h2>
+        <h2 className="orders__title"><FormattedMessage id="app.wish" defaultMessage="MY WISHLIST"/></h2>
         {
             wishlist?.map((prod) => {
             return (

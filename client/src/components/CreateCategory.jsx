@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "../redux/actions";
 import '../styles/styles.scss';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export function CreateCategory(){
     const categories = useSelector((state)=>state.categories)
@@ -47,7 +48,7 @@ export function CreateCategory(){
     return(
         <div style={{display: "flex", alignItems: "center"}}>
             <input placeholder="Introduce the name of the new category..." onChange={handleChange} className="form-control"/>
-            <button style={{margin: 0, border: "2px solid transparent", height: "3.1rem"}} className="register__button" type="submit" onClick={handleAdd} disabled={!nameCategory}>Add category</button>
+            <button style={{margin: 0, border: "2px solid transparent", height: "3.1rem"}} className="register__button" type="submit" onClick={handleAdd} disabled={!nameCategory}><FormattedMessage id="app.btn-add-category" defaultMessage="Add category"/></button>
         </div>
     )
 }

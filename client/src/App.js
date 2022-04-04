@@ -99,44 +99,44 @@ function App() {
 
   return (
     <div className="App">
-      <UserContextProvider>
-      {userLogged?.is_two_fa && !userLogged?.two_fa_verified ? 
-      <>
-        <Navbar />
-        <TwoFaVerify /> 
-      </> : userLogged?.reset_password ? 
-      <>
-      <Navbar />
-      <ResetPassword />
-      </> :
-        <Router>
+        <UserContextProvider>
+        {userLogged?.is_two_fa && !userLogged?.two_fa_verified ? 
+        <>
           <Navbar />
-          <Route path='/user/account' component={DashboardUser}/>
-          <Route path='/admincp' component={AdminPanel}/>
-          
-          <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/shop'>
-              <SearchBar />
-              <Shop />
-            </Route>
-            <Route exact path='/register' component={CreateUser}/>
-            <Route exact path='/admincp/product/add' component={CreateProduct}/>
-            <Route exact path='/product/update/:id' component={UpdateProduct}/>
-            <Route exact path='/product/:id' component={ProductDetail}/>
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/checkout' component={OrderCheckout}/>
-            <Route exact path='/user/account/profile' component={UserAccount}/>
-            <Route exact path='/user/account/reset-password' component={ResetPassword}/>
-            <Route exact path='/user/account/wishlist' component={Wishlist}/>
-            <Route exact path='/user/account/twofa' component={TwoFaVerify}/>
-            <Route exact path='/user/account/edit' component={UpdateAccount}/>
-            <Route exact path='/user/account/orders' component={Orders}/>
-            <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
-            <Route exact path='/payment/:paymentStatus' component={Payment}/>
-          </Switch> 
-        </Router>}
-      </UserContextProvider>
+          <TwoFaVerify /> 
+        </> : userLogged?.reset_password ? 
+        <>
+        <Navbar />
+        <ResetPassword />
+        </> :
+          <Router>
+            <Navbar />
+            <Route path='/user/account' component={DashboardUser}/>
+            <Route path='/admincp' component={AdminPanel}/>
+            
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route exact path='/shop'>
+                <SearchBar />
+                <Shop />
+              </Route>
+              <Route exact path='/register' component={CreateUser}/>
+              <Route exact path='/admincp/product/add' component={CreateProduct}/>
+              <Route exact path='/product/update/:id' component={UpdateProduct}/>
+              <Route exact path='/product/:id' component={ProductDetail}/>
+              <Route exact path='/login' component={Login}/>
+              <Route exact path='/checkout' component={OrderCheckout}/>
+              <Route exact path='/user/account/profile' component={UserAccount}/>
+              <Route exact path='/user/account/reset-password' component={ResetPassword}/>
+              <Route exact path='/user/account/wishlist' component={Wishlist}/>
+              <Route exact path='/user/account/twofa' component={TwoFaVerify}/>
+              <Route exact path='/user/account/edit' component={UpdateAccount}/>
+              <Route exact path='/user/account/orders' component={Orders}/>
+              <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
+              <Route exact path='/payment/:paymentStatus' component={Payment}/>
+            </Switch> 
+          </Router>}
+        </UserContextProvider>
     </div>
   );
 }

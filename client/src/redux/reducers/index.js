@@ -25,7 +25,7 @@ import {
   GET_WISHLIST,
   GET_ALL_STORES,
   GET_STORE_DETAIL,
-  GET_ALL_DISCOUNTS
+  GET_ALL_DISCOUNTS,
 
 } from '../actions';
 
@@ -47,7 +47,7 @@ const initialState = {
   wishlist: [],
   stores: [],
   storeDetail: {},
-  discounts: []
+  discounts: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -224,6 +224,7 @@ function rootReducer(state = initialState, action) {
           ...state,
           wishlist: action.payload
         }
+
     default:
       return state;
   }

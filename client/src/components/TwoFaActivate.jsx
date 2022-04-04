@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { getUserDetail, userLogin, verifyTwoFA } from "../redux/actions";
+import { FormattedMessage } from 'react-intl'
 
 export default function TwoFaActivate(){
     const dispatch = useDispatch();
@@ -54,9 +55,9 @@ export default function TwoFaActivate(){
     return(
         <>
         {!userDetail?.is_two_fa ? 
-            <button className="userAccount__button" onClick={e => handle2FA(true)}>Activate 2FA</button>
+            <button className="userAccount__button" onClick={e => handle2FA(true)}><FormattedMessage id="app.active" defaultMessage="Activate 2FA"/></button>
         :
-            <button className="userAccount__button" onClick={e => handle2FA(false)}>Deactivate 2FA</button>}
+            <button className="userAccount__button" onClick={e => handle2FA(false)}><FormattedMessage id="app.deactive" defaultMessage="Deactivate 2FA"/></button>}
         </>
     )
 }

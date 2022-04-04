@@ -4,6 +4,7 @@ import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 import swal from 'sweetalert';
 import { getReviews } from "../redux/actions";
+import { FormattedMessage } from 'react-intl'
 
 export default function ReviewAndRating({productId}) {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ export default function ReviewAndRating({productId}) {
         />
       <span className="rating-number">{rating}</span>
       </div>
-          <button onClick={handleSubmit}>Submit Review</button>
+          <button onClick={handleSubmit}><FormattedMessage id="app.submit-review" defaultMessage="Submit Review"/></button>
     </div>
   )
 }

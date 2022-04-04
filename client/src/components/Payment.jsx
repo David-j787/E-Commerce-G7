@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export function Payment(props) {
   const url = window.location.href;
@@ -12,9 +12,9 @@ export function Payment(props) {
   console.log(query.searchParams.has('external_reference')); // TODO: COMPROBAR EN DB LA ORDEN CON EL ID DE EXTERNAL REFERENCE
   return (
     <div>
-      {paymentStatus === 'success' && <div>EL PAGO SE COMPLETÓ CON ÉXITO</div>}
-      {paymentStatus === 'failure' && <div>EL PAGO FALLÓ CON ÉXITO</div>}
-      {paymentStatus === 'pending' && <div>EL PAGO SE ENCUENTRA PENDIENTE DE APROBACIÓN</div>}
+      {paymentStatus === 'success' && <div><FormattedMessage id="app.payment-successful" defaultMessage="PAYMENT HAS BEEN SUCCESSFUL"/></div>}
+      {paymentStatus === 'failure' && <div><FormattedMessage id="app.payment-failed" defaultMessage="PAYMENT HAS FAILED"/></div>}
+      {paymentStatus === 'pending' && <div><FormattedMessage id="app.payment-pending" defaultMessage="PAYMENT IS PENDING APPROVAL"/></div>}
     </div>
   );
 }

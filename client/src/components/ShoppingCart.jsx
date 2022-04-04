@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { productAmountRest, productAmountSum, productRemove } from "../redux/actions"
+import { FormattedMessage } from 'react-intl'
 
 const ShoppingCart = ({cartShow}) => {
     const dispatch = useDispatch()
@@ -43,7 +44,7 @@ const ShoppingCart = ({cartShow}) => {
     return (
         <>
             <div ref={cartRef} className='shoppingCart'>
-                <div className='shoppingCart__header'><h3 className='shoppingCart__title'>Cart</h3><div onClick={cartShow} className='shoppingCart__close'>X</div></div>
+                <div className='shoppingCart__header'><h3 className='shoppingCart__title'><FormattedMessage id="app.cart" defaultMessage="Cart"/></h3><div onClick={cartShow} className='shoppingCart__close'>X</div></div>
                 <hr />
                 {
                     cart.length ? cart.map(product => {
@@ -62,10 +63,10 @@ const ShoppingCart = ({cartShow}) => {
                                 <button className='delete' onClick={() => handleRemove(product.id)}>🗑️</button>
                             </div>
                         )
-                    }) : <h3 className='shoppingCart__empty'>Cart is empty</h3>
+                    }) : <h3 className='shoppingCart__empty'><FormattedMessage id="app.empty-cart" defaultMessage="Cart is empty"/></h3>
                 }
                 {total ? <h3 className='shoppingCart__total'>Total: ${total}</h3> : null}
-                <Link to="/checkout" onClick={cartShow} className='shoppingCart__button'>Checkout</Link>
+                <Link to="/checkout" onClick={cartShow} className='shoppingCart__button'><FormattedMessage id="app.checkout" defaultMessage="Checkout"/></Link>
             </div>
         </>
     )
