@@ -11,8 +11,7 @@ const Map = ({ center, markers }) => {
     })
 
     const containerStyle = {
-        maxWidth: '50vw',
-        minWidth: '70vw',
+        minWidth: '75%',
         height: '70vh',
         backgroundColor: "red"
     };
@@ -36,6 +35,7 @@ const Map = ({ center, markers }) => {
                 >
 
                     {!center.location && markers?.map(l => {
+                        console.log(l)
                         const coords = { lat: l.lat, lng: l.lng }
                         return (
                             <div key={l.id + Math.random()}>
@@ -47,7 +47,7 @@ const Map = ({ center, markers }) => {
                                     }} />
                                 {show[l.id] && !center.location && <InfoWindow position={coords} onCloseClick={() => handleShow(l.id)} >
                                     <div style={infoStyle}>
-                                        <h1>{l.name}</h1>
+                                        <h3>{l.name}</h3>
                                         <p>{l.address}</p>
                                         <p>{l.city}</p>
                                     </div>
