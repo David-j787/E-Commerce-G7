@@ -11,34 +11,36 @@ export function About() {
                 <div className="about__description">
                     <h3 className="about__title first">Description</h3>
                     <p>
-                        E-commerce con diseño y desarrollo de las siguientes features:
+                        This project is an E-commerce for coding bootcamp with the following design and development features:
                         <ul>
-                            <li><span>✔️</span>Features básicas de e-commerce (CRUD de productos, auth, catálogo, checkout, etc)</li>
-                            <li><span>✔️</span>Integración pasarela de Pago (Mercado pago)</li>
-                            <li><span>✔️</span>Envio de emails transaccionales (nodemail)</li>
-                            <li><span>✔️</span>Authenticación con Google</li>
-                            <li><span>✔️</span>Administración de carrito de compras y órdenes de producto</li>
-                            <li><span>✔️</span>Administración de usuarios, gestión de claves</li>
-                            <li><span>✔️</span>Ofertas y un sistema de productos recomendados</li>
+                            <li><span>✔️</span>Basic features of e-commerce project like: (CRUD of products, authentication, shop, checkout, etc).</li>
+                            <li><span>✔️</span>Payments platform integration (Mercado Pago) for orders pays.</li>
+                            <li><span>✔️</span>Emails notifications for Orders and Payments Status (Sendgrid API).</li>
+                            <li><span>✔️</span>2FA (Two Factor Authentication) Security option for user with verification code send via Email (Sendgrid API).</li>
+                            <li><span>✔️</span>Google Authentication for register and login on website.</li>
+                            <li><span>✔️</span>Management of Orders, Physical Shop Stores, Products to sell and Products stock.</li>
+                            <li><span>✔️</span>Management of Users, posibility of granting admin permisions, force password resets, edit account data.</li>
+                            <li><span>✔️</span>Discounts deals system based on weekdays and product categories.</li>
                         </ul>
                     </p>
                 </div>
 
-                    <h3 className="about__title">Tecnologías utilizadas</h3>
+                    <h3 className="about__title">Tecnologies</h3>
 
                     <div className="about__tecnologies">
                         <div className="frontend">
                             <h5 className="about__subtitle">Frontend</h5>
                             <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
+                                <li>HTML 5</li>
+                                <li>CSS 3</li>
                                 <li>Javascript</li>
                                 <li>ReactJS</li>
                                 <li>Redux</li>
-                                <li>Sass</li>
-                                <li>MaterialUI</li>
-                                <li>React google maps</li>
-                                <li>Axios</li>
+                                <li>SASS</li>
+                                <li>UI/UX Material</li>
+                                <li>Google Maps React</li>
+                                <li>LocalStorage</li>
+                                <li>SessionStorage</li>
                             </ul>
                         </div>
 
@@ -48,14 +50,14 @@ export function About() {
                                 <li>NodeJS</li>
                                 <li>Express</li>
                                 <li>Sequelize</li>
-                                <li>Google auth library</li>
-                                <li>JWT</li>
-                                <li>Mercado Pago</li>
+                                <li>Google Auth Library</li>
+                                <li>JSON Web Token</li>
+                                <li>Mercado Pago Integration</li>
                             </ul>
                         </div>
 
                         <div className="db">
-                            <h5 className="about__subtitle">Base de datos</h5>
+                            <h5 className="about__subtitle">Data Bases</h5>
                             <ul>
                                 <li>PostgreSQL</li>
                             </ul>
