@@ -35,7 +35,7 @@ module.exports = {
                 userId: order.dataValues?.user?.dataValues?.id,
                 orderNumber: order.dataValues?.id,
                 orderStatus: order.dataValues?.status,
-                orderLink: `http://localhost:3000/user/account/order/detail/${order.dataValues?.id}`, // Change on DEPLOY
+                orderLink: `https://electroshop-ecommerce.vercel.app/user/account/order/detail/${order.dataValues?.id}`, // Change on DEPLOY
                 orderDate: order.dataValues?.createdAt,
                 orderSubtotal: order.dataValues?.total,
                 orderTotal: order.dataValues?.total,
@@ -66,7 +66,7 @@ module.exports = {
                 subject: 'Order status changed',
                 orderNumber: order.dataValues?.id,
                 orderStatus: status,
-                orderLink: `http://localhost:3000/user/account/order/detail/${order.dataValues?.id}`, // Change on DEPLOY!!!
+                orderLink: `https://electroshop-ecommerce.vercel.app/user/account/order/detail/${order.dataValues?.id}`, // Change on DEPLOY!!!
             },
             template_id: "d-1fc934cfce0d43ddba13dcdc84086414"
         }
@@ -88,7 +88,7 @@ module.exports = {
                 subject: 'Your payment was Approved',
                 orderNumber: order.dataValues?.id,
                 paymentStatus: status,
-                orderLink: `http://localhost:3000/user/account/order/detail/${order.dataValues?.id}`, // Change on DEPLOY!!!
+                orderLink: `https://electroshop-ecommerce.vercel.app/user/account/order/detail/${order.dataValues?.id}`, // Change on DEPLOY!!!
             },
             template_id: "d-a74d4c27ca9340649c8eaa782afce65d"
         }

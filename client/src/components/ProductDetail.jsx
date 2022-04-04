@@ -56,8 +56,9 @@ export function ProductDetail(props) {
                                 <img src={details.images} alt="product" width='350px' height='250px' />
                             </figure>
                             <div className='productDetail__description'>
-                                <h2 className='name'>{details.name}</h2> {isLogged && <AddToWishList userId={user?.id} productId={id}/>}
+                                <h2 className='name'>{details.name}</h2> 
                                 <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
+                                {isLogged && <AddToWishList userId={user?.id} productId={id}/>}
                                 {details.discount > 0 ? 
                                     <>
                                         <span className='price-discount'>US${Number(details.price?.toFixed(2))}</span>

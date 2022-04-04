@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import '../styles/styles.scss'
 import swal from 'sweetalert';
+const API_KEY = "AIzaSyBXDnxAg_a40ale9Hb5Hm8uejsM17qdKs4";
 
 export function validate(store) {
     let errors = {};
@@ -66,12 +67,8 @@ export function AdminCreateStore({ showComponent }) {
         })
 
         const url = `${store.address} ${store.city} ${store.country} ${store.state} ${store.zip_code}`
-        const API_KEY = "AIzaSyBXDnxAg_a40ale9Hb5Hm8uejsM17qdKs4"
-        const promise = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${url}&key=${API_KEY}`)
+        const promise = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${url}&key=${process.env.REACT_APP_MAPS_API_KEY || API_KEY}`)
         const location = promise.data.results[0].geometry.location
-
-        console.log(location)
-        console.log({ ...store, ...location })
 
         const response = await axios.post("/stores", { ...store, ...location })
         if (response.status === 200) {

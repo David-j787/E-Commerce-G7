@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from "@react-google-maps/api"
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from "@react-google-maps/api";
+const API_KEY = "AIzaSyBXDnxAg_a40ale9Hb5Hm8uejsM17qdKs4";
 
 const Map = ({ center, markers }) => {
     const [show, setShow] = useState({})
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBXDnxAg_a40ale9Hb5Hm8uejsM17qdKs4"
+        googleMapsApiKey: process.env.REACT_APP_MAPS_API_KEY || API_KEY
     })
 
     const containerStyle = {

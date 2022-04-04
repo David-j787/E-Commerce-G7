@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useUser from '../components/Login/hooks/useUser';
 
@@ -29,10 +30,6 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-bar-chart-o fa-2x"></i>
                 <span className="nav-text">Edit roles</span>
             </li>}
-            {/* <li onClick={e => showComponent('viewEmails')}>
-                <i className="fa fa-font fa-2x"></i>
-                <span className="nav-text">Email</span>
-            </li> */}
             <li onClick={e => showComponent('discounts')}>
                 <i className="fa fa-table fa-2x"></i>
                 <span className="nav-text">Discounts</span>
@@ -41,19 +38,14 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-map-marker fa-2x"></i>
                 <span className="nav-text">Physical Stores</span>
             </li>
-            {/*<li>
-                <i className="fa fa-info fa-2x"></i>
-                <span className="nav-text">Documentation</span>
-            </li> */}
         </ul>
-
         <ul className="logout">
-            <li onClick={logout}>
-                     <i className="fa fa-power-off fa-2x"></i>
-                    <span className="nav-text">
-                        Logout
-                    </span>
-            </li>  
+            <Link to='/'>
+                <li onClick={logout}>
+                    <i className="fa fa-power-off fa-2x"></i>
+                    <span className="nav-text">Logout</span>
+                </li>  
+            </Link>
         </ul>
     </nav></div>
     )
