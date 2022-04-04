@@ -23,22 +23,14 @@ const Home = () => {
   return (
     <div className="shop">
       <Slider />
-      {!isLogged ? <ChatBot /> : 
+      {!isLogged ? false : 
         <div>
-          
           <FrecuentlyVisited />
-          {wishlist?.length ? <WishlistView /> : false}
-          <WhatsApp /><ChatBot />
           <WishlistView />
-          
         </div>}
+        <WhatsApp />
+        <ChatBot />
       </div>)
 };
-
-  
-;
-
-  
-
 
 export default Home;
