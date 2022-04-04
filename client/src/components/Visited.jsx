@@ -10,7 +10,7 @@ export default function Visited({id, name, images, price, rating, discount, disc
             {id ? (
             <Link to={`/product/${id}`} className="visited__item">
                 <figure>
-                <img src={images} alt="images" />
+                    <img src={images} alt="images" />
                 </figure>
                 <h3>{name.slice(0, 30)}{name.length > 30 && "..."}</h3>
                 <span className="price">{discount ? 
