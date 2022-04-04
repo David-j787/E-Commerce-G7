@@ -70,7 +70,12 @@ export function Wishlist() {
                       <div className="wishlist__price">
                         <div>
                           <span>{prod.rating}</span>
-                          <span>{prod.price} USD</span>
+                          {prod.discount ? 
+                            <> 
+                                <span className="full-price" >$ {Number(prod.price?.toFixed(2))}</span>
+                                <span>$ {Number(prod.discounted_price?.toFixed(2))}</span>
+                            </>
+                            : <span>$ {Number(prod.price?.toFixed(2))}</span> }
                         </div>
                         <button onClick={()=>{deleteProduct(prod.id)}}>X</button>
                       </div>
