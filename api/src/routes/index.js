@@ -16,7 +16,7 @@ const createOrder = require("./createOrder-route");
 const deleteUser = require("./deleteUser-route")
 const allOrders = require("./getOrders-route");
 const orderRoute = require("./getOrder-route")
-const postReview = require("./newReview-route");
+const review = require("./review-route");
 const allUsers = require("./getUsers-route");
 const userRole = require("./userRole-route")
 const orderStatus = require("./orderStatus-route")
@@ -84,7 +84,7 @@ router.use('/notification', notificationOrder)
 
 router.use("/users", allUsers);
 
-router.use("/review", postReview);
+router.use("/review", review);
 
 router.use('/reviews', allReviews);
 
