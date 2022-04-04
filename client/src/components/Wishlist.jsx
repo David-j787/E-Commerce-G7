@@ -49,22 +49,37 @@ export function Wishlist() {
 }
 
   return (
-    <div>
+    <div className="wishlist">
       <div className="container">
-        <h2 className="orders__title">MY WISHLIST</h2>
-        {
-            wishlist?.map((prod) => {
-            return (
-                <div key={prod.id}>
-                    <Link to={`/product/${prod.id}`} ><h2>{prod.name}</h2>
-                    <img src={prod.images} width='250px' height='250px' alt="productpic"/></Link>
-                    <span>{prod.rating}</span>
-                    <br/>
-                    <span>{prod.price} USD</span>
-                    <button onClick={()=>{deleteProduct(prod.id)}}>X</button>
-                </div>
-            );
-        })}
+        {wishlist.length === 0
+          ? <h2 style={{"textAlign": "center", marginTop: "6rem", marginBottom: "4rem"}}>No hay Productos</h2>
+          : <h2 className="orders__title">MY WISHLIST</h2>
+          }
+        <div className="visited-wrapper">
+          <div className="visited">
+            {
+              wishlist?.map((prod) => {
+              return (
+                  <div key={prod.id}>
+                      <Link to={`/product/${prod.id}`} className="visited__item">
+                        <h2>{prod.name}</h2>
+                        <figure>
+                          <img src={prod.images} width='250px' height='250px' alt="productpic"/>
+                        </figure>
+                      </Link>
+                      <div className="wishlist__price">
+                        <div>
+                          <span>{prod.rating}</span>
+                          <span>{prod.price} USD</span>
+                        </div>
+                        <button onClick={()=>{deleteProduct(prod.id)}}>X</button>
+                      </div>
+                  </div>
+              );
+            })}
+          </div>
+        </div>
+        
       </div>
     </div>
   );
