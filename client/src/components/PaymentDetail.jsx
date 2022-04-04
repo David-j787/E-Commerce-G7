@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
 import { getOrderDetail, getPaymentDetail } from "../redux/actions";
-import Payments from "./Payments";
 
 export default function PaymentDetail(props, {meliId, idOrder}) {
     const dispatch = useDispatch();

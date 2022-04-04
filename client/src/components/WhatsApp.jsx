@@ -27,7 +27,7 @@ const WhatsApp = ({ numero, mensaje }) => {
     }
 
     numero = numero ? numero : "3804850845"
-    mensaje = mensaje ? format(mensaje) : "Hola!+necesito+ayuda+con+mi+compra"
+    mensaje = mensaje ? format(mensaje) : "Hi!+I+need+help+with+my+purchase"
     const link = `https://api.whatsapp.com/send?phone=${numero}&text=${mensaje}`
 
     return (

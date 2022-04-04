@@ -136,7 +136,7 @@ export function CreateUser() {
         const response = await axios.post("/user", user)
         if (response.status === 200) {
             swal({
-                title: 'User was created successfully',
+                title: 'You registered successfully',
                 text: ' ',
                 icon: 'success',
                 timer: 3000,
