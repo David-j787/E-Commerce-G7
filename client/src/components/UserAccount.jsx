@@ -31,7 +31,6 @@ export function UserAccount(){
                 <div className="userAccount__title">
                     <h3><FormattedMessage id="app.account" defaultMessage="Account data"/></h3>
                 </div>
-
                 <div className="userAccount__item">
                     <span><FormattedMessage id="app.user" defaultMessage="Username: "/></span> 
                     <span name="user" value={userData.user}>{userData.user}</span>
@@ -76,11 +75,11 @@ export function UserAccount(){
                     <span><FormattedMessage id="app.birthday" defaultMessage="Birthday: "/></span>
                     <span name="birthday" value={userData.birthday}>{userData.birthday}</span>
                 </div>
-                
-                    <div className="userAccount__buttons">
-                        <Link to='/user/account/edit' className="userAccount__button"><FormattedMessage id="app.edit" defaultMessage="EDIT ACCOUNT"/></Link>
-                        <TwoFaActivate/>
-                    </div>
+
+                 <div className="userAccount__buttons">
+                      <Link to='/user/account/edit' className="userAccount__button"><FormattedMessage id="app.edit" defaultMessage="EDIT ACCOUNT"/></Link>
+                      <TwoFaActivate/>
+                 </div>
               
             </div>
         </div>
