@@ -58,6 +58,55 @@ class ActionProvider {
     this.addMessageToState(message);
   };
 
+    saludo = () => {
+      const message = this.createChatBotMessage("Hola, Como puedo ayudarte?", {
+        widget: "optionsES",
+        delay: 1000,
+        });
+      this.addMessageToState(message);
+      };
+
+  viewProfile = () => {
+    const message = this.createChatBotMessage(
+      "You must be logged to see your profile, you can find the link clicking on your avatar on the right top of the site.", {
+      widget: "profile",
+      delay: 1000,
+      });
+    this.addMessageToState(message);
+    };
+
+    registro = () => {
+      const message = this.createChatBotMessage("Te puedes registrar aquí.", {
+        widget: "registro",
+        delay: 1000,
+        });
+      this.addMessageToState(message);
+      };
+
+    buyProduct = () => {
+        const message = this.createChatBotMessage("You can buy a product here", {
+          widget: "products",
+          delay: 1000,
+          });
+        this.addMessageToState(message);
+        };
+
+        comprarProducto = () => {
+          const message = this.createChatBotMessage("Puedes comprar nuestraos productos aquí", {
+          widget: "productos",
+            delay: 1000,
+            });
+          this.addMessageToState(message);
+          };
+  
+
+        showOrders = () => {
+            const message = this.createChatBotMessage("You can see your orders here", {
+              widget: "ordersBot",
+              delay: 1000,
+              });
+            this.addMessageToState(message);
+            };
   viewProfile = () => {
     const message = this.createChatBotMessage(
       "You must be logged to see your profile, you can find the link clicking on your avatar on the right top of the site.", {

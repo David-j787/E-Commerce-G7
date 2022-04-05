@@ -132,3 +132,18 @@
         text-align: center;
     }
 }
+
+.textEditor {
+    max-width: 900px;
+    height: 592px;
+    display: block;
+    border: 1px solid $grayish-blue;
+}
+.editorDash {
+    display: flex;
+    justify-content: center;
+}
+
+.editorBox{
+    padding: 10px 20px;
+}
