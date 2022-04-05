@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import { useDispatch, useSelector } from "react-redux";
 import { verifyTwoFA } from "../redux/actions";
 import { useHistory } from "react-router-dom";
+import { FormattedMessage } from 'react-intl'
 
 export default function TwoFaVerify() {
   const history = useHistory();
@@ -82,11 +83,11 @@ export default function TwoFaVerify() {
   return (
   <div className="resetPassword">
       <form className="resetPassword__form" onSubmit={handleSubmit}>       
-        <h2 className="resetPassword__title">2FA Verification</h2>
+        <h2 className="resetPassword__title"><FormattedMessage id="app.2FA" defaultMessage="2FA Verification"/></h2>
         <input value={code} type="text" name="2FAcode" placeholder="Introduce your 2FA code" onChange={handleCode}/>
-        <button type="submit" disabled={!code}>Verify</button>
+        <button type="submit" disabled={!code}><FormattedMessage id="app.veriry" defaultMessage="Verify"/></button>
       </form>
-      <button style={{ marginTop: "20px",}} disabled={active} onClick={resendCode}>Re Send 2FA Code {active && "("+seconds+")"}</button>
+      <button style={{ marginTop: "20px",}} disabled={active} onClick={resendCode}><FormattedMessage id="app.re-send" defaultMessage="Re Send 2FA Code "/>{active && "("+seconds+")"}</button>
     </div>
   )
 }

@@ -240,6 +240,7 @@ function rootReducer(state = initialState, action) {
           ...state,
           wishlist: action.payload
         }
+
     default:
       return state;
   }

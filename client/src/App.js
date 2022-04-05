@@ -105,18 +105,18 @@ function App() {
 
   return (
     <div className="App">
-      <UserContextProvider>
-      {userLogged?.is_two_fa && !userLogged?.two_fa_verified ? 
-      <>
-        <Navbar />
-        <TwoFaVerify /> 
-      </> : userLogged?.reset_password ? 
-      <>
-      <Navbar />
-      <ResetPassword />
-      </> :
-        <Router>
+        <UserContextProvider>
+        {userLogged?.is_two_fa && !userLogged?.two_fa_verified ? 
+        <>
           <Navbar />
+          <TwoFaVerify /> 
+        </> : userLogged?.reset_password ? 
+        <>
+        <Navbar />
+        <ResetPassword />
+        </> :
+          <Router>
+            <Navbar /> 
           <Route path='/user/account' component={DashboardUser}/>
           <Switch>
             <Route exact path='/' component={Home}/>
