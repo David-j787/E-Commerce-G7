@@ -12,7 +12,7 @@ export default function AdminSideBar({showComponent}){
         <ul>
             <li onClick={e => showComponent('dashboard')}>
                 <i className="fa fa-home fa-2x"></i>
-                <span className="nav-text"><FormattedMessage id="app.dashboard" defaultMessage="Dashboard"/></span>
+                <span className="nav-text"><FormattedMessage id="app.dashboard-side" defaultMessage="Dashboard"/></span>
             </li>
             <li onClick={e => showComponent('users')} className="has-subnav">
                 <i className="fa fa-laptop fa-2x"></i>
@@ -28,7 +28,7 @@ export default function AdminSideBar({showComponent}){
             </li>
             <li onClick={e => showComponent('payments')}>
                 <i className="fa fa-info fa-2x"></i>
-                <span className="nav-text">Payments</span>
+                <span className="nav-text"><FormattedMessage id="app.payments" defaultMessage="Payments"/></span>
             </li> 
             {user?.roleId === 1 && 
             <li onClick={e => showComponent('editRole')}>

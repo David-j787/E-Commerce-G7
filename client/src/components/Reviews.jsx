@@ -46,9 +46,9 @@ export default function Reviews({id}) {
             {reviews?.length > 0 ? reviews?.map((review) => {
                 const user = users.find(user => user?.id === review?.userId);
                 return <div className="review" key={review.id}>
-                            <div className="reviews__name"><span><FormattedMessage id="app.user-review" defaultMessage="User: " /></span> {user?.name} {user?.last_name} ({user?.username}) {review?.userId === userLogged?.id && <button className="reviews__btn" onClick={e => deleteReview(review?.userId, review?.productId)}><FormattedMessage id="app.btn-delete" defaultMessage="Delete"/>Delete</button>}</div>
+                            <div className="reviews__name"><span><FormattedMessage id="app.user-review" defaultMessage="User: " /></span> {user?.name} {user?.last_name} ({user?.username}) {review?.userId === userLogged?.id && <button className="reviews__btn" onClick={e => deleteReview(review?.userId, review?.productId)}><FormattedMessage id="app.btn-delete" defaultMessage="Delete"/></button>}</div>
                             <div><span><FormattedMessage id="app.rating" defaultMessage="Rating:"/></span> {[...Array(review?.rate)].map(star =>{return <FaStar key={Math.random().toString(16).slice(2)} color="orange" size={15}/>})}</div>
-                            <div className="reviews__comment"><span>Comment: </span><span className="comment">{review?.comment}</span></div>
+                            <div className="reviews__comment"><span><FormattedMessage id="app.comment" defaultMessage="Comment: "/></span><span className="comment">{review?.comment}</span></div>
                         </div>}) : <p><FormattedMessage id="app.no-reviews" defaultMessage="No reviews yet"/></p>}
         </div>
     )
