@@ -7,7 +7,6 @@ export default function AdminDashboard() {
     const user = useSelector(state => state.user);
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'></div>
             <div className='componentTitle'><FormattedMessage id="app.dashboard" defaultMessage="Dashboard Admin CP"/></div>
             <div className='adminTable'>
                 <div className='adminSubComp__welcome'>
