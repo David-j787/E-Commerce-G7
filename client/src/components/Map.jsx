@@ -69,8 +69,10 @@ const Map = ({ center, markers }) => {
                                         <h2>{center.name}</h2>
                                         <p>{center.address}</p>
                                         <p>{center.city}</p>
+                                        <p>{center.state}</p>
+                                        <br />
                                         <hr />
-                                        <small>Lunes a viernes de 8 a 13 y de 17 a 20 hs.</small>
+                                        <small>Monday to Friday from 8AM - 1PM and 5PM - 8PM.</small>
                                     </div>
                                 </InfoWindow>
                             }
@@ -78,7 +80,7 @@ const Map = ({ center, markers }) => {
                     }
 
                 </GoogleMap>
-            ) : <div>Cargando...</div>}
+            ) : <div>Loading...</div>}
 
         </div>
     )

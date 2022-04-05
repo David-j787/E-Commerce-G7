@@ -17,8 +17,8 @@
 
   &__buttons {
     overflow-y: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    flex-direction: column;
 
     @include mq(medium) {
       height: 70vh;
