@@ -77,6 +77,7 @@ export default function SearchBar() {
   return (
     <div className="container">
       <div ref={wrapperRef} className="searchBar">
+        <div className="autoComplete">
         <input value={search} placeholder="Search" onClick={() => setDisplay(!display)} onChange={e => setSearch(e.target.value)} className="searchBar__searching"/>
         {display && (
           <div className="autoContainer">
@@ -93,6 +94,7 @@ export default function SearchBar() {
               )}
           </div>
         )}
+        </div>
         <select onChange={handleSelect} value={filter}>
           <option value=''>All Categories</option>
         {categories?.map((ca,i) => {

@@ -36,19 +36,14 @@
     }
   }
 
-  &__searching {
-    width: 100%;
-    position: relative;
-  }
-
-  select {
-    width: 100%;
-  }
-
   &__btn {
     @include button();
   }
 
+}
+
+.autoComplete {
+  position: relative;
 }
 
 .autoContainer {
@@ -84,10 +79,11 @@
     text-overflow: ellipsis;
   }
   img{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin: 0 5px;
     filter: brightness(1.1);
     mix-blend-mode: multiply;
+    object-fit: contain;
   }
 }
