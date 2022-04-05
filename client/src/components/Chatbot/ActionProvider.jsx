@@ -22,6 +22,14 @@ greet = () => {
     this.addMessageToState(message);
     };
 
+    saludo = () => {
+      const message = this.createChatBotMessage("Hola, Como puedo ayudarte?", {
+        widget: "optionsES",
+        delay: 1000,
+        });
+      this.addMessageToState(message);
+      };
+
 register = () => {
     const message = this.createChatBotMessage("You can register here", {
       widget: "register",
@@ -30,6 +38,14 @@ register = () => {
     this.addMessageToState(message);
     };
 
+    registro = () => {
+      const message = this.createChatBotMessage("Te puedes registrar aquí.", {
+        widget: "registro",
+        delay: 1000,
+        });
+      this.addMessageToState(message);
+      };
+
     buyProduct = () => {
         const message = this.createChatBotMessage("You can buy a product here", {
           widget: "products",
@@ -37,6 +53,15 @@ register = () => {
           });
         this.addMessageToState(message);
         };
+
+        comprarProducto = () => {
+          const message = this.createChatBotMessage("Puedes comprar nuestraos productos aquí", {
+          widget: "productos",
+            delay: 1000,
+            });
+          this.addMessageToState(message);
+          };
+  
 
         showOrders = () => {
             const message = this.createChatBotMessage("You can see your orders here", {

@@ -23,12 +23,12 @@ const Home = () => {
   return (
     <div className="shop">
       <Slider />
-      {!isLogged ? <ChatBot /> : 
+      {!isLogged ? <ChatBot Lang="en" /> : 
         <div>
           
           <FrecuentlyVisited />
           {wishlist?.length ? <WishlistView /> : false}
-          <WhatsApp /><ChatBot />
+          <WhatsApp /><ChatBot Lang="en" />
           <WishlistView />
           
         </div>}
