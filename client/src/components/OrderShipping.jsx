@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import swal from 'sweetalert';
 import { FormattedMessage } from 'react-intl'
 
-export function OrderShipping ({setShipping}){
+export function OrderShipping ({confirmed,setShipping}){
 
     const { user } = useSelector(state => state)
 
@@ -57,7 +57,7 @@ export function OrderShipping ({setShipping}){
                     <label><FormattedMessage id="app.zip" defaultMessage="Zip Code: "/></label>
                     <input name='zip_code' value={field.zip_code} onChange={handleChange}/>
                 </div>
-                <button type="submit"><FormattedMessage id="app.data-confirm" defaultMessage="Confirm data"/></button>
+                <button disabled={confirmed} type="submit"><FormattedMessage id="app.data-confirm" defaultMessage="Confirm data"/></button>
             </form>
         </div>
     )

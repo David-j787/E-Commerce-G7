@@ -29,7 +29,12 @@ import Payment from './components/Payment';
 import OrderDetail from './components/OrderDetail.jsx';
 import UpdateAccount from './components/UpdateAccount';
 import TwoFaVerify from './components/TwoFaVerify';
+import Sucursales from './components/Sucursales';
 import Wishlist from './components/Wishlist';
+import PaymentDetail from './components/PaymentDetail';
+import Contact from './components/Contact';
+import About from './components/About';
+import Footer from './components/Footer';
 
 export const alert2FA = () => {
   swal({
@@ -111,32 +116,38 @@ function App() {
         </> :
           <Router>
             <Navbar />
-            <Route path='/user/account' component={DashboardUser}/>
-            <Route path='/admincp' component={AdminPanel}/>
-            
-            <Switch>
-              <Route exact path='/' component={Home}/>
-              <Route exact path='/shop'>
-                <SearchBar />
-                <Shop />
-              </Route>
-              <Route exact path='/register' component={CreateUser}/>
-              <Route exact path='/admincp/product/add' component={CreateProduct}/>
-              <Route exact path='/product/update/:id' component={UpdateProduct}/>
-              <Route exact path='/product/:id' component={ProductDetail}/>
-              <Route exact path='/login' component={Login}/>
-              <Route exact path='/checkout' component={OrderCheckout}/>
-              <Route exact path='/user/account/profile' component={UserAccount}/>
-              <Route exact path='/user/account/reset-password' component={ResetPassword}/>
-              <Route exact path='/user/account/wishlist' component={Wishlist}/>
-              <Route exact path='/user/account/twofa' component={TwoFaVerify}/>
-              <Route exact path='/user/account/edit' component={UpdateAccount}/>
-              <Route exact path='/user/account/orders' component={Orders}/>
-              <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
-              <Route exact path='/payment/:paymentStatus' component={Payment}/>
-            </Switch> 
-          </Router>}
-        </UserContextProvider>
+          
+          <Route path='/user/account' component={DashboardUser}/>
+          <Route path='/admincp' component={AdminPanel}/>
+          
+          <Switch>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/shop'>
+              <SearchBar />
+              <Shop />
+            </Route>
+            <Route exact path='/register' component={CreateUser}/>
+            <Route exact path='/contact' component={Contact}/>
+            <Route exact path='/about' component={About}/>
+            <Route exact path='/admincp/product/add' component={CreateProduct}/>
+            <Route exact path='/product/update/:id' component={UpdateProduct}/>
+            <Route exact path='/product/:id' component={ProductDetail}/>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/checkout' component={OrderCheckout}/>
+            <Route exact path='/user/account/profile' component={UserAccount}/>
+            <Route exact path='/user/account/reset-password' component={ResetPassword}/>
+            <Route exact path='/user/account/wishlist' component={Wishlist}/>
+            <Route exact path='/user/account/twofa' component={TwoFaVerify}/>
+            <Route exact path='/user/account/edit' component={UpdateAccount}/>
+            <Route exact path='/user/account/orders' component={Orders}/>
+            <Route exact path='/user/account/order/detail/:id' component={OrderDetail}/>
+            <Route exact path='/payment/:paymentStatus' component={Payment}/>
+            <Route exact path='/stores' component={Sucursales}/>
+            <Route exact path='/user/account/order/payment/:id' component={PaymentDetail}/>
+          </Switch>
+        </Router>}
+        <Footer />
+      </UserContextProvider>
     </div>
   );
 }

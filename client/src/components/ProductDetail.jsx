@@ -57,12 +57,18 @@ export function ProductDetail(props) {
                                 <img src={details.images} alt="product" width='350px' height='250px' />
                             </figure>
                             <div className='productDetail__description'>
-                                <h2 className='name'>{details.name}</h2> <AddToWishList userId={user?.id} productId={id}/>
+                                <h2 className='name'>{details.name}</h2> 
                                 <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
-                                <span className='price'>US$ {details.price}</span>
+                                {isLogged && <AddToWishList userId={user?.id} productId={id}/>}
+                                {details.discount > 0 ? 
+                                    <>
+                                        <span className='price-discount'>US${Number(details.price?.toFixed(2))}</span>
+                                        <span className='price'>US$ {Number(details.discounted_price?.toFixed(2))}</span> <span className='discount'>-{details.discount}% OFF</span>
+                                    </> : <span className='price'>US$ {Number(details.price?.toFixed(2))}</span>
+                                    }
                                 <p className='description'>{details.description}</p>
                                 {details.stock ? <p className='stock'><span><FormattedMessage id="app.stock" defaultMessage="In stock"/></span> ({details.stock} <FormattedMessage id="app.available" defaultMessage="available"/>)</p> : <p className='stock'><span>⚠️<FormattedMessage id="app.not-available" defaultMessage="This product isn't available for shopping"/></span></p>}
-                                <p className='rating'><span><FormattedMessage id="app.rating" defaultMessage="Rating:"/></span> {details.rating?.toString().slice(0, 3)}</p>
+                                <p className='rating'><span><FormattedMessage id="app.rating" defaultMessage="Rating:"/></span> {Number(details.rating?.toFixed(1))}</p>
                                 <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}><FormattedMessage id="app.add" defaultMessage="Add product"/></button>
                                 {user?.roleId < 3 && <Link className='updateBtn' to={`/product/update/${id}`}><button><FormattedMessage id="app.edit-prod" defaultMessage="Edit product"/></button></Link>}
                             </div>

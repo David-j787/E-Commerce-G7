@@ -6,6 +6,7 @@
 @import './mixins/button';
 // components
 @import './components/navbar';
+@import './components/footer';
 @import './components/menu';
 @import './components/login';
 @import './components/products';
@@ -27,6 +28,10 @@
 @import './components/frecuentlyVisited';
 @import './components/slider';
 @import './components/payments';
+@import './components/chatbot';
+@import './components/footer';
+@import './components/about';
+@import './components/wishlist';
 
 //admincp
 @import './admincp/adminPanel';

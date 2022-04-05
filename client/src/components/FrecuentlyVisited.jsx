@@ -20,7 +20,7 @@ export default function FrecuentlyVisited(){
         <div className="container">
             <div className="visited-wrapper">
                 <div className="visited">
-                    {visitedProducts?.slice(0,6).map(product => <Visited key={product.id} {...product} />)}
+                    {visitedProducts?.map(product => <Visited key={Math.random().toString(16).slice(2)} {...product} />)}
                 </div>
             </div>
         </div>

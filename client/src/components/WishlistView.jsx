@@ -16,7 +16,7 @@ export default function WishlistView(){
         <div className="container">
             <h2 className="visited__title"><FormattedMessage id="app.inspired" defaultMessage="Inspired by you"/></h2>
             <div className="visited">
-                {wishlist?.slice(0,6).map(product => <ProductFav key={product.id} {...product} />)}
+                {wishlist?.map(product => <ProductFav key={Math.random().toString(16).slice(2)} {...product} />)}
             </div>
         </div>
     )

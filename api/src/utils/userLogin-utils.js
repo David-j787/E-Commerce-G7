@@ -21,6 +21,8 @@ module.exports = {
             })
             await Two_fa.destroy({ where: {userId: findedUser.id} })
             if(findedUser.is_two_fa){
+                findedUser.two_fa_verified = false;
+                findedUser.save();
                 const new2FACode = code();
                 const savedCode = await Two_fa.create({
                     userId: findedUser.id,

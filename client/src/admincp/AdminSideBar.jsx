@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useUser from '../components/Login/hooks/useUser';
 import { FormattedMessage } from 'react-intl'
@@ -30,10 +31,6 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-bar-chart-o fa-2x"></i>
                 <span className="nav-text"><FormattedMessage id="app-edit-roles" defaultMessage="Edit roles"/></span>
             </li>}
-            <li onClick={e => showComponent('setDiscounts')}>
-                <i className="fa fa-font fa-2x"></i>
-                <span className="nav-text"><FormattedMessage id="app.email-user" defaultMessage="Email"/></span>
-            </li>
             <li onClick={e => showComponent('discounts')}>
                 <i className="fa fa-table fa-2x"></i>
                 <span className="nav-text"><FormattedMessage id="app.discounts" defaultMessage="Discounts"/></span>
@@ -42,19 +39,14 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-map-marker fa-2x"></i>
                 <span className="nav-text"><FormattedMessage id="app.physical" defaultMessage="Physical Stores"/></span>
             </li>
-            {/*<li>
-                <i className="fa fa-info fa-2x"></i>
-                <span className="nav-text">Documentation</span>
-            </li> */}
         </ul>
-
-        <ul className="logout">
-            <li onClick={logout}>
-                     <i className="fa fa-power-off fa-2x"></i>
-                    <span className="nav-text">
-                    <FormattedMessage id="app.log-out" defaultMessage="Logout"/>
-                    </span>
-            </li>  
+        <ul className="logout"> 
+            <Link to='/'>
+                <li onClick={logout}>
+                    <i className="fa fa-power-off fa-2x"></i>
+                    <span className="nav-text"><FormattedMessage id="app.log-out" defaultMessage="Logout"/></span>
+                </li>  
+            </Link>
         </ul>
     </nav></div>
     )

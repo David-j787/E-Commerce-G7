@@ -8,7 +8,7 @@ import { getUserWishlist } from "../redux/actions";
 
 export function AddToWishList({ userId, productId }) {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.user);
+  const id = useSelector((state) => state?.user?.id);
   const stateWishlist = useSelector((state) => state.wishlist);
   const stateDetail = useSelector((state) => state.details);
 
@@ -17,17 +17,18 @@ export function AddToWishList({ userId, productId }) {
   const [wishlist, setWishlist] = useState();
 
   useEffect(() => {
-    const resultSearch = stateWishlist?.map((el) => el.id).includes(stateDetail?.id);
+    dispatch(getUserWishlist(id));
+    const resultSearch = stateWishlist?.find((el) => el.id === stateDetail?.id);
     if (resultSearch) setAdding(true);
     else return setAdding(false);
-  }, [stateWishlist, stateDetail]);
+  }, [stateWishlist, stateDetail]); // eslint-disable-line
 
   useEffect(() => {
     setWishlist({
       userId: userId,
       productId: productId,
     });
-  }, [stateWishlist]); // eslint-disable-next-line
+  }, [stateWishlist]); // eslint-disable-line
 
   const handleSubmit = async () => {
     const response = await axios.post("/wishlist", wishlist);
