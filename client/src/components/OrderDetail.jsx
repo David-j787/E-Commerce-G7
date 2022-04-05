@@ -39,7 +39,9 @@ export default function OrderDetail(props) {
                                     <span>{orderDetail?.payment_status}</span>
                                     
                                 </li>
-                                {orderDetail?.payment_status === 'approved' && <Link to={`/user/account/order/payment/${orderDetail?.payment_meli_id}`}><button className="orderDetails__btn">Payment Details</button></Link>}
+                                {orderDetail?.payment_status === 'approved' && <Link to={`/user/account/order/payment/${orderDetail?.payment_meli_id}`}>
+                                    <button className="orderDetails__btn" style={{position: "absolute", top: "2rem", right: "1rem"}}>Payment Details</button>
+                                </Link>}
                                 {(history.location.pathname !== '/admincp' && orderDetail?.payment_status !== 'approved') && <Payments className="orderCheckout" url={orderDetail?.payment_link}/>}
                                 <li>
                                     <span>Notification-Email: </span>
@@ -63,7 +65,8 @@ export default function OrderDetail(props) {
                                         <ul>
                                             {orderDetail.products?.map(product=>(
                                                 <li key={product.id}>
-                                                    <span>{product.product_order.amount}</span> - <Link to={`/product/${product.id}`}><span>{product.name}</span></Link>                 
+                                                    <Link to={`/product/${product.id}`}><span>{product.name}</span></Link>
+                                                    <span>({product.product_order.amount})</span>
                                                 </li>
                                             ))}
                                         </ul>
