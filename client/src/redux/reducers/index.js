@@ -18,7 +18,7 @@ import {
   GET_ORDER,
   CLEAR_CART,
   GET_REVIEWS,
-  CLEAR_REVIEWS,
+  CLEAR_STORE,
   GET_ORDER_DETAIL,
   VERIFY_TWO_FA,
   GET_VISITED_PRODUCTS,
@@ -73,10 +73,10 @@ function rootReducer(state = initialState, action) {
           reviews: action.payload,
         };
     
-    case CLEAR_REVIEWS:
+    case CLEAR_STORE:
           return {
             ...state,
-            reviews: [],
+            [action.payload]: [],
           };
   
     case GET_ALL_PRODUCTS:

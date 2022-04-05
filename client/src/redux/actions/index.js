@@ -21,7 +21,7 @@ export const GET_ORDER = "GET_ORDER";
 export const CLEAR_CART = "CLEAR_CART";
 export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL";
 export const GET_REVIEWS = "GET_REVIEWS";
-export const CLEAR_REVIEWS = "CLEAR_REVIEWS";
+export const CLEAR_STORE = "CLEAR_STORE";
 export const VERIFY_TWO_FA = "VERIFY_TWO_FA";
 export const GET_VISITED_PRODUCTS = "GET_VISITED_PRODUCTS";
 export const GET_WISHLIST = "GET_WISHLIST";
@@ -95,9 +95,10 @@ export function getReviews(idProduct) {
   };
 };
 
-export function clearReviews() {
+export function clearStore(storeName) {
   return{
-    type: CLEAR_REVIEWS
+    type: CLEAR_STORE,
+    payload: storeName
   }
 }
 
