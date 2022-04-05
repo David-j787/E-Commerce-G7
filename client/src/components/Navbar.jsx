@@ -120,8 +120,8 @@ const Navbar = () => {
               <div className='wrapper-isLogged'>
                 <h3>Signed in as <span>{user?.name} {user?.last_name}</span></h3>
                 <Link to="/user/account/profile" className='navbarLogin__button'>Account</Link>
-                <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
                 {user?.roleId < 3 && <Link to="/admincp" className='admButton'>AdminCP</Link>}
+                <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
               </div>
             </div>
             : <div className='navbarLogin'>
