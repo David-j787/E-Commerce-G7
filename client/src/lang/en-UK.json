@@ -218,5 +218,9 @@
     "app.payments": "Payments",
     "app.dashboard-side": "Dashboard",
     "app.offers": "Offers",
-    "no-offers": "We don't have offers yet. Come back soon and check for new deals"
+    "no-offers": "We don't have offers yet. Come back soon and check for new deals",
+    "placeholderMessageId": "Introduce the name of the new category...",
+    "placeholderSearch": "Search",
+    "placeholderAllCategories": "All categories",
+    "message-added": "Added to wishlist!"
 }

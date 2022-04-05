@@ -218,5 +218,9 @@
     "app.payments": "Pagos",
     "app.dashboard-side": "Tablero",
     "app.offers": "Ofertas",
-    "no-offers": "No tenemos ofertas aún. Regresa pronto y descubre nuestras nuevas promociones"
+    "app.no-offers": "No tenemos ofertas aún. Regresa pronto y descubre nuestras nuevas promociones",
+    "placeholderMessageId": "Introduce el nombre de la nueva categoría...",
+    "placeholderSearch": "Buscar",
+    "placeholderAllCategories": "Todas las categorías",
+    "message-added": "Agregado a favoritos!"
 }

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts, getCategories, getSearchProducts } from "../redux/actions";
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 export default function SearchBar() {
   const [display, setDisplay] = useState(false);
@@ -12,6 +12,7 @@ export default function SearchBar() {
 
   const dispatch = useDispatch();
   const wrapperRef = useRef(null);
+  const intl = useIntl();
 
   const { categories, products } = useSelector(state => state);
 
@@ -79,7 +80,7 @@ export default function SearchBar() {
     <div className="container">
       <div ref={wrapperRef} className="searchBar">
         <div className="autoComplete">
-        <input value={search} placeholder="Search" onClick={() => setDisplay(!display)} onChange={e => setSearch(e.target.value)} className="searchBar__searching"/>
+        <input value={search} placeholder={intl.formatMessage({ id: 'placeholderSearch' })} onClick={() => setDisplay(!display)} onChange={e => setSearch(e.target.value)} className="searchBar__searching"/>
         {display && (
           <div className="autoContainer">
             {options.filter(({ name }) => name.toLowerCase().includes(search.toLowerCase())).slice(0,5).map((value, i) => 
@@ -97,7 +98,7 @@ export default function SearchBar() {
         )}
         </div>
         <select onChange={handleSelect} value={filter}>
-          <option value=''>All categories</option>
+          <option value=''>{intl.formatMessage({ id: 'placeholderAllCategories' })}</option>
         {categories?.map((ca,i) => {
           return <option key={i} value={ca.name}>
             {ca.name}
