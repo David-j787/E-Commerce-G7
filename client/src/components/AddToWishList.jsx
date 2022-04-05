@@ -18,6 +18,9 @@ export function AddToWishList({ userId, productId }) {
 
   useEffect(() => {
     dispatch(getUserWishlist(id));
+  }, []) // eslint-disable-line
+
+  useEffect(() => {
     const resultSearch = stateWishlist?.find((el) => el.id === stateDetail?.id);
     if (resultSearch) setAdding(true);
     else return setAdding(false);
