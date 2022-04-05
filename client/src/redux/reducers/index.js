@@ -26,10 +26,7 @@ import {
   GET_ALL_STORES,
   GET_STORE_DETAIL,
   GET_ALL_DISCOUNTS,
-<<<<<<< HEAD
-=======
   GET_PAYMENT_DETAIL
->>>>>>> development
 
 } from '../actions';
 
@@ -52,10 +49,7 @@ const initialState = {
   stores: [],
   storeDetail: {},
   discounts: [],
-<<<<<<< HEAD
-=======
   paymentDetail: {}
->>>>>>> development
 };
 
 function rootReducer(state = initialState, action) {

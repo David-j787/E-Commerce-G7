@@ -83,7 +83,10 @@ const Navbar = () => {
                 className="list__link"
                 activeClassName="active"
               >
-                Stores
+                <FormattedMessage
+                id="app.stores"
+                defaultMessage="Stores"
+                />
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>
@@ -137,7 +140,7 @@ const Navbar = () => {
               </figure>
               <div className='wrapper-isLogged'>
                 <h3><FormattedMessage id="app.sign-in" defaultMessage="Signed in as"/><span>{user?.name} {user?.last_name}</span></h3>
-                <Link to="/user/account/profile" className='navbarLogin__button'>Account</Link>
+                <Link to="/user/account/profile" className='navbarLogin__button'><FormattedMessage id="app.account-title" defaultMessage="Account"/></Link>
                 <Link to="/" className='navbarLogin__button' onClick={logout}><FormattedMessage id="app.log-out" defaultMessage="Logout"/></Link>
                 {user?.roleId < 3 && <Link to="/admincp" className='admButton'><FormattedMessage id="app.admin" defaultMessage="AdminCP"/></Link>}
               </div>

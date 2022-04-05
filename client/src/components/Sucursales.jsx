@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getAllStores } from "../redux/actions"
 import Map from './Map'
+import { FormattedMessage } from 'react-intl'
 
 const Sucursales = () => {
     const dispatch = useDispatch()
@@ -30,9 +31,9 @@ const Sucursales = () => {
 
     return (
         <div>
-            <h1>Stores</h1>
+            <h1><FormattedMessage id="app.stores" defaultMessage="Stores"/></h1>
             <button onClick={() => handleClick("all")}>
-                <h2>See all stores</h2>
+                <h2><FormattedMessage id="app.see-stores" defaultMessage="See all stores"/></h2>
             </button>
             {stores?.map(location => {
                 return (
