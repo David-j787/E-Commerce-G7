@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDiscounts } from '../redux/actions';
+import { getAllDiscounts, getAllProducts } from '../redux/actions';
 import swal from 'sweetalert';
 
 export default function AdminDiscountsList({showComponent, getId}) {
@@ -14,6 +14,41 @@ export default function AdminDiscountsList({showComponent, getId}) {
 
     const setDiscount = () => {
         showComponent('setDiscounts')
+    }
+
+    const UpdateProductDiscount = async (discount) => {
+        let token;
+        if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
+        else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
+        try {
+            swal({
+                title: 'Do you want update all product discounts with this category?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                buttons: ['No','Yes']
+            }).then(async (result) => {
+                if (result) {
+                    await axios.post('/discount/update', {...discount, token});
+                    swal({
+                        title: 'You updated the products with selected discount',
+                        text: ' ',
+                        icon: 'success',
+                        timer: 2000,
+                        button: null
+                    })
+                    dispatch(getAllProducts());
+                }
+            })
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
     }
 
     const deleteDiscount = async (categoryId) => {
@@ -63,6 +98,7 @@ export default function AdminDiscountsList({showComponent, getId}) {
                         <div>{discount?.weekday}</div>
                         <div>N/A</div>
                         <div>
+                            <button onClick={e => UpdateProductDiscount(discount)}className='adminCP__button'>Update Products</button>
                             <button onClick={e => deleteDiscount(discount.categoryId)}className='adminCP__button'>Delete</button>
                         </div>
                         
