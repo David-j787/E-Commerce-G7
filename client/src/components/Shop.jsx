@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions';
 import Products from './Products';
@@ -9,6 +9,7 @@ const Shop = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state);
   const stock = Array.isArray(products) && products?.filter(product => product.stock > 0)
+  const top = useRef(null)
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(6);
@@ -25,7 +26,7 @@ const Shop = () => {
 
   return (
     <>
-      <div className="container shop">
+      <div ref={top} className="container shop">
         <h2 className="shop__title">SHOP</h2>
 
         {!Array.isArray(stock) ? (
@@ -34,7 +35,7 @@ const Shop = () => {
           <div>
             <Products products={currentProducts} />
             <div className="pagination">
-              <Paginate productsPerPage={productsPerPage} currentPage={currentPage} productsAmount={stock.length} paginate={paginate} />
+              <Paginate productsPerPage={productsPerPage} currentPage={currentPage} productsAmount={stock.length} paginate={paginate} top={top} />
             </div>
           </div>
         )}

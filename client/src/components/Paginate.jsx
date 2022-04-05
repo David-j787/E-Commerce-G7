@@ -1,12 +1,26 @@
 import React from 'react';
 
-export function Paginate({productsAmount, productsPerPage, paginate, currentPage}) {
+export function Paginate({ productsAmount, productsPerPage, paginate, currentPage, top }) {
     const lastPage = Math.ceil(productsAmount / productsPerPage);
 
-    return(
+    const handleNext = () => {
+        paginate(currentPage + 1)
+        window.scrollTo({
+            top: top.current.offsetTop
+        })
+    }
+
+    const handlePrev = () => {
+        paginate(currentPage - 1)
+        window.scrollTo({
+            top: top.current.offsetTop
+        })
+    }
+
+    return (
         <nav className='paginate'>
-            {currentPage !== 1 &&<button className='paginate__button' onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>Prev</button>}
-            {currentPage !== lastPage &&<button className='paginate__button' onClick={() => paginate(currentPage + 1)} disabled={currentPage === lastPage}>Next</button>}
+            {currentPage !== 1 && <button className='paginate__button' onClick={handlePrev} disabled={currentPage === 1}>Prev</button>}
+            {currentPage !== lastPage && <button className='paginate__button' onClick={handleNext} disabled={currentPage === lastPage}>Next</button>}
         </nav>
     )
 }
