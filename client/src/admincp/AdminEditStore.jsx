@@ -3,40 +3,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStoreDetail } from '../redux/actions';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
+const API_KEY = "AIzaSyBXDnxAg_a40ale9Hb5Hm8uejsM17qdKs4";
 
 export function validate(store) {
     let errors = {};
-  
+
     if (!store.name) {
-      errors.name = "Write your name";
-    } 
-    else if (!store.country){
-      errors.country = "Introduce store country"
+        errors.name = "Write your name";
     }
-    else if (!store.city){
-      errors.city = "Introduce store city"
+    else if (!store.country) {
+        errors.country = "Introduce store country"
     }
-    else if (!store.address){
-      errors.address = "Write store address"
+    else if (!store.city) {
+        errors.city = "Introduce store city"
     }
-    else if(!store.state) {
+    else if (!store.address) {
+        errors.address = "Write store address"
+    }
+    else if (!store.state) {
         errors.state = "Introduce store state"
     }
-    else if(!store.zip_code) {
+    else if (!store.zip_code) {
         errors.zip_code = "Introduce the zip code"
     }
-    else if (!/^-?\d+\.?\d*$/.test(store.zip_code)){
+    else if (!/^-?\d+\.?\d*$/.test(store.zip_code)) {
         errors.zip_code = "Only numbers allowed"
     }
     return errors;
 }
 
-export function AdminEditStore(props){
+export function AdminEditStore(props) {
     const dispatch = useDispatch();
 
     const id = props.id;
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getStoreDetail(id))
     }, [id])
 
@@ -56,34 +58,37 @@ export function AdminEditStore(props){
             address: storeDetail?.address,
             state: storeDetail?.state,
         })
-    },[storeDetail])
-        
+    }, [storeDetail])
+
 
     const handleChange = (e) => {
         setStore({
-          ...store,
-          [e.target.name]: e.target.value,
+            ...store,
+            [e.target.name]: e.target.value,
         })
         setErrors(validate({
             ...store,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         }))
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         let token;
-        if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
-        else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
+        if (localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
+        else if (sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
+        const url = `${store.address} ${store.city} ${store.country} ${store.state} ${store.zip_code}`
+        const promise = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${url}&key=${process.env.REACT_APP_MAPS_API_KEY || API_KEY}`)
+        const location = promise.data.results[0].geometry.location
         try {
             swal({
                 title: 'Do you want save changes?',
                 text: " ",
                 icon: 'warning',
-                buttons: ['No','Yes']
+                buttons: ['No', 'Yes']
             }).then(async (result) => {
                 if (result) {
-                    await axios.put("/stores", {...store, token});
+                    await axios.put("/stores", { ...store, ...location, token });
                     swal({
                         title: 'Store changes saved',
                         text: ' ',
@@ -104,47 +109,47 @@ export function AdminEditStore(props){
             })
             console.log(error);
         }
-      };
+    };
 
     return (
         <div className="adminContainer editForms">
-        <div className="register">
-            <h1 className="register__title">Edit Store</h1>
-            <form onSubmit={(e)=>{handleSubmit(e)}} className="register__form">
-                <div className="register__group">
-                <label>Name:</label>
-                <input name="name" value={store?.name} onChange={handleChange} className="form-control"/>
-                <div className="register__error">{errors.name}</div>
-                </div>
-                <div className="register__group">
-                <label>Country:</label>
-                <input name="country" value={store?.country} onChange={handleChange} className="form-control"/>
-                <div className="register__error">{errors.country}</div>
-                </div>
-                <div className="register__group">
-                <label>City:</label>
-                <input name="city" value={store?.city} onChange={handleChange} className="form-control"/>
-                <div className="register__error">{errors.city}</div>
-                </div>
-                <div className="register__group">
-                <label>Zip code:</label>
-                <input type="number" name="zip_code" value={store?.zip_code} onChange={handleChange} className="form-control"/>
-                <div className="register__error">{errors.zip_code}</div>
-                </div>
-                <div className="register__group">
-                <label>Address:</label>
-                <input name="address" value={store?.address} onChange={handleChange} className="form-control"/>
-                <div className="register__error">{errors.address}</div>
-                </div>
-                <div className="register__group">
-                <label>State:</label>
-                <input  type='text' name="state" value={store?.state} onChange={handleChange} className="form-control"/>
-                <div className="register__error">{errors.state}</div>
-                </div>
-                <button className="register__button" type="submit" >Edit</button>
-            </form>
+            <div className="register">
+                <h1 className="register__title"><FormattedMessage id="app.edit-store" defaultMessage="Edit Store"/></h1>
+                <form onSubmit={(e) => { handleSubmit(e) }} className="register__form">
+                    <div className="register__group">
+                        <label><FormattedMessage id="app.name" defaultMessage="Name:"/></label>
+                        <input name="name" value={store?.name} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.name}</div>
+                    </div>
+                    <div className="register__group">
+                        <label><FormattedMessage id="app.country" defaultMessage="Country:"/></label>
+                        <input name="country" value={store?.country} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.country}</div>
+                    </div>
+                    <div className="register__group">
+                        <label><FormattedMessage id="app.city" defaultMessage="City:"/></label>
+                        <input name="city" value={store?.city} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.city}</div>
+                    </div>
+                    <div className="register__group">
+                        <label><FormattedMessage id="app.zip" defaultMessage="Zip code:"/></label>
+                        <input type="number" name="zip_code" value={store?.zip_code} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.zip_code}</div>
+                    </div>
+                    <div className="register__group">
+                        <label><FormattedMessage id="app.address" defaultMessage="Address:"/></label>
+                        <input name="address" value={store?.address} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.address}</div>
+                    </div>
+                    <div className="register__group">
+                        <label><FormattedMessage id="app.state" defaultMessage="State:"/></label>
+                        <input type='text' name="state" value={store?.state} onChange={handleChange} className="form-control" />
+                        <div className="register__error">{errors.state}</div>
+                    </div>
+                    <button className="register__button" type="submit" ><FormattedMessage id="app.btn-edit" defaultMessage="Edit"/></button>
+                </form>
+            </div>
         </div>
-    </div>
     )
 }
 

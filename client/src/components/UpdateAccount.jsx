@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import swal from 'sweetalert';
 import { getAllUsers } from '../redux/actions';
+import { FormattedMessage } from 'react-intl'
 
 export function validate(user, users) {
     const emails = users?.map(user => user.email)
@@ -127,49 +128,49 @@ export function UpdateAccount(props){
     return (
         <div className="container">
         <div className="register">
-            <h1 className="register__title">Update Personal Information</h1>
+            <h1 className="register__title"><FormattedMessage id="app.update" defaultMessage="Update Personal Information"/></h1>
             <form onSubmit={(e)=>{handleSubmit(e)}} className="register__form">
                 <div className="register__group">
-                <label>Name:</label>
+                <label><FormattedMessage id="app.name" defaultMessage="Name:"/></label>
                 <input name="name" value={user.name} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.name}</div>
                 </div>
                 <div className="register__group">
-                <label>Last name:</label>
+                <label><FormattedMessage id="app.lastname" defaultMessage="Last name:"/></label>
                 <input name="lastName" value={user.lastName} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.lastName}</div>
                 </div>
                 <div className="register__group">
-                <label>E-mail:</label>
+                <label><FormattedMessage id="app.email" defaultMessage="E-mail:"/></label>
                 <input name="email" value={user.email} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.email}</div>
                 </div>
                 <div className="register__group">
-                <label>Country:</label>
+                <label><FormattedMessage id="app.country" defaultMessage="Country:"/></label>
                 <input name="country" value={user.country} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.country}</div>
                 </div>
                 <div className="register__group">
-                <label>City:</label>
+                <label><FormattedMessage id="app.city" defaultMessage="City:"/></label>
                 <input name="city" value={user.city} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.city}</div>
                 </div>
                 <div className="register__group">
-                <label>Zip code:</label>
+                <label><FormattedMessage id="app.zip" defaultMessage="Zip code:"/></label>
                 <input type="number" name="zip_code" value={user.zip_code} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.zip_code}</div>
                 </div>
                 <div className="register__group">
-                <label>Address:</label>
+                <label><FormattedMessage id="app.address" defaultMessage="Address:"/></label>
                 <input name="address" value={user.address} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.address}</div>
                 </div>
                 <div className="register__group">
-                <label>Birthday:</label>
+                <label><FormattedMessage id="app.birthday" defaultMessage="Birthday:"/></label>
                 <input  type='date' name="dateOfBirth" value={user.dateOfBirth} onChange={handleChange} className="form-control"/>
                 <div className="register__error">{errors.dateOfBirth}</div>
                 </div>
-                <button className="register__button" type="submit" >Update</button>
+                <button className="register__button" type="submit" ><FormattedMessage id="app.button-update" defaultMessage="Update"/></button>
             </form>
         </div>
     </div>

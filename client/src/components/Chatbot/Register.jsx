@@ -1,35 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { useUser } from "../Login/hooks/useUser";
-import { getVisitedProducts } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import { FormattedMessage } from 'react-intl'
 
-const Register = () => {
-
-    const dispatch = useDispatch();
-    const { user } = useSelector((state) => state);
-    const { isLogged } = useUser();
-    const history = useHistory();
-    
-    useEffect(() => {
-        if (isLogged) dispatch(getVisitedProducts(user?.id));
-    }, []); //eslint-disable-line
-    
+const Register = () => {    
     return (
-        <div className="shop">
-        {
-
-        history.push("/Register")
-        }
-        {!isLogged ? false : 
-            <div>
-           
-            
-            {history.push("/Register")}
-     
- </div>}
-        </div>
+        <span><FormattedMessage id="app.chat-sign" defaultMessage="If you can't find where Sign Up is, please click "/><Link to="/register"><FormattedMessage id="app.chat-here-upper" defaultMessage="HERE"/></Link><FormattedMessage id="app.chat-redirect" defaultMessage="to redirect"/></span>
         );
     }
 export default Register;

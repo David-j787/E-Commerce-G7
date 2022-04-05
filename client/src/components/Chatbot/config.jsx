@@ -10,14 +10,21 @@ import Register from "./Register";
 import Product from "./Product";
 import ProductES from "./ProductES";
 import OrdersBot from "./OrdersBot";
+import MercadoPago from "./MercadoPago";
+import ViewProfile from "./ViewProfile";
 
 var config={};
-var Lang="en";
+var Lang="es";
 
 
 if (Lang==="en"){
      config = {
-    botName: "Sneakers Chatbot",
+   
+
+
+    botName: "ElectroShop Chatbot",
+   
+   
     initialMessages: [
         createChatBotMessage(`Hello, How can I help you?`,{
             withAvatar: true,
@@ -32,9 +39,19 @@ if (Lang==="en"){
             widgetFunc:(props) => <Options {...props} />,
         },
         {
-                widgetName: 'offers',
-                widgetFunc: (props) => <Offers {...props} /> ,
-                mapStateToProps: ["offers"],
+            widgetName: 'offers',
+            widgetFunc: (props) => <Offers {...props} /> ,
+            mapStateToProps: ["offers"],
+        },
+        {
+            widgetName: 'payments',
+            widgetFunc: (props) => <MercadoPago {...props} /> ,
+            mapStateToProps: ["payments"],
+        },
+        {
+            widgetName: 'profile',
+            widgetFunc: (props) => <ViewProfile {...props} /> ,
+            mapStateToProps: ["profile"],
         },
         {
             widgetName: 'register',
@@ -62,10 +79,11 @@ customStyles: {
     botMessageBox: {
         backgroundColor: "grey",
         borderRadius: "10px",
+        height: "100px",
     },
     chatButton: {
         backgroundColor: "grey",
-        borderRadius: "10px",
+        borderRadius: "5px",
     },
 
 
@@ -120,6 +138,16 @@ else if( Lang="es"){config = {
             widgetName: 'ordersBot',
             widgetFunc: (props) => <OrdersBot {...props} /> ,
             
+        },
+        {
+            widgetName: 'payments',
+            widgetFunc: (props) => <MercadoPago {...props} /> ,
+            mapStateToProps: ["payments"],
+        },
+        {
+            widgetName: 'profile',
+            widgetFunc: (props) => <ViewProfile {...props} /> ,
+            mapStateToProps: ["profile"],
         },
 
     ],

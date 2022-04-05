@@ -8,6 +8,7 @@ import useUser from './Login/hooks/useUser';
 import WhatsApp from './WhatsApp';
 import ChatBot from "../components/Chatbot/ChatBot";
 import 'react-chatbot-kit/build/main.css';
+import OffersDisplay from './OffersDisplay';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,22 +24,15 @@ const Home = () => {
   return (
     <div className="shop">
       <Slider />
-      {!isLogged ? <ChatBot Lang="en" /> : 
+      <OffersDisplay/>
+      {!isLogged ? false : 
         <div>
-          
           <FrecuentlyVisited />
-          {wishlist?.length ? <WishlistView /> : false}
-          <WhatsApp /><ChatBot Lang="en" />
           <WishlistView />
-          
         </div>}
+        <WhatsApp />
+        <ChatBot />
       </div>)
 };
-
-  
-;
-
-  
-
 
 export default Home;

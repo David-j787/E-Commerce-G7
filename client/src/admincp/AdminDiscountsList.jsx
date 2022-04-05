@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDiscounts } from '../redux/actions';
+import { getAllDiscounts, getAllProducts } from '../redux/actions';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export default function AdminDiscountsList({showComponent, getId}) {
     const dispatch = useDispatch();
@@ -14,6 +15,41 @@ export default function AdminDiscountsList({showComponent, getId}) {
 
     const setDiscount = () => {
         showComponent('setDiscounts')
+    }
+
+    const UpdateProductDiscount = async (discount) => {
+        let token;
+        if(localStorage.getItem('jwt')) token = localStorage.getItem('jwt');
+        else if(sessionStorage.getItem('jwt')) token = sessionStorage.getItem('jwt');
+        try {
+            swal({
+                title: 'Do you want update all product discounts with this category?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                buttons: ['No','Yes']
+            }).then(async (result) => {
+                if (result) {
+                    await axios.post('/discount/update', {...discount, token});
+                    swal({
+                        title: 'You updated the products with selected discount',
+                        text: ' ',
+                        icon: 'success',
+                        timer: 2000,
+                        button: null
+                    })
+                    dispatch(getAllProducts());
+                }
+            })
+        } catch (error) {
+            swal({
+                title: 'Something went wrong',
+                text: 'Check console to see more about error',
+                icon: 'error',
+                timer: 2000,
+                button: null
+            })
+            console.log(error);
+        }
     }
 
     const deleteDiscount = async (categoryId) => {
@@ -53,8 +89,8 @@ export default function AdminDiscountsList({showComponent, getId}) {
 
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Discount Management<button onClick={setDiscount} className='componentTitle__button'>Set new Discount</button></div>
-            <div className='tableHeader'><div>Category</div>|<div>Discount</div>|<div>Weekday</div>|<div>End Date</div>|<div>Action</div></div>
+            <div className='componentTitle'><FormattedMessage id="app.manage-disc" defaultMessage="Discount Management"/><button onClick={setDiscount} className='componentTitle__button'><FormattedMessage id="app.btn-set-disc" defaultMessage="Set new Discount"/></button></div>
+            <div className='tableHeader'><div><FormattedMessage id="app.category" defaultMessage="Category"/></div>|<div><FormattedMessage id="app.discount" defaultMessage="Discount"/></div>|<div><FormattedMessage id="app.weekday" defaultMessage="Weekday"/></div>|<div><FormattedMessage id="app.end" defaultMessage="End Date"/></div>|<div><FormattedMessage id="app.action" defaultMessage="Action"/></div></div>
             <div className='adminTable'>
                 <ul>
                     {Array.isArray(discounts) ? discounts?.map(discount => <li className='itemList' key={discount?.categoryId}>
@@ -63,7 +99,8 @@ export default function AdminDiscountsList({showComponent, getId}) {
                         <div>{discount?.weekday}</div>
                         <div>N/A</div>
                         <div>
-                            <button onClick={e => deleteDiscount(discount.categoryId)}className='adminCP__button'>Delete</button>
+                            <button onClick={e => UpdateProductDiscount(discount)}className='adminCP__button'>Update Products</button>
+                            <button onClick={e => deleteDiscount(discount.categoryId)}className='adminCP__button'><FormattedMessage id="app.btn-delete" defaultMessage="Delete"/></button>
                         </div>
                         
                         </li>) : <div className='noDataFound'>{discounts}</div>}

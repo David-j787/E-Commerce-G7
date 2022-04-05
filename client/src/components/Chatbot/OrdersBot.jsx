@@ -2,13 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useEffect } from "react";
-import { useUser } from "../Login/hooks/useUser";
+import useUser from "../Login/hooks/useUser";
 import { Link } from "react-router-dom";
 import Orders from "../Orders";
 import chatIcon from "../../assets/images/chatIconOK.png";
 import { getOrderByUserId } from "../../redux/actions/index";
-
-
+import { FormattedMessage } from 'react-intl'
 
 const OrdersBot = () => {
 
@@ -16,7 +15,7 @@ const OrdersBot = () => {
     const { user } = useSelector((state) => state);
     const { isLogged } = useUser();
    
-   
+
     useEffect(() => {
         if (isLogged) {
             dispatch(getOrderByUserId(user?.id));
@@ -24,14 +23,11 @@ const OrdersBot = () => {
     }, []); //eslint-disable-line
 
     return (
-        <div className="chatIcon">
-            <Link><img  src={chatIcon} alt=""  /></Link>
-            <Orders />
+        <div>
+            {!isLogged ? <span><FormattedMessage id="app.chat-login" defaultMessage="To see your orders you must be Logged. Please Login "/><Link to= "/login"><FormattedMessage id="app.here" defaultMessage="here"/></Link></span>
+            : <span><FormattedMessage id="app.chat-see-orders" defaultMessage="You can see your orders"/><Link to="/user/account/orders"><FormattedMessage id="app.chat-here" defaultMessage="here"/></Link></span>            }
         </div>
     );
 };
 
-    export default OrdersBot;
-
-
-    
+export default OrdersBot;   
