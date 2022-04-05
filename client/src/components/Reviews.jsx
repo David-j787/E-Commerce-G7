@@ -2,32 +2,32 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {FaStar} from 'react-icons/fa'
 import { FormattedMessage } from 'react-intl'
-import { clearReviews, getAllUsers, getProductDetail, getReviews } from "../redux/actions";
+import { clearStore, getAllUsers, getProductDetail, getReviews } from "../redux/actions";
 import axios from "axios";
 import swal from 'sweetalert';
 
-export default function Reviews({id}) {
+export default function Reviews({ id }) {
     const dispatch = useDispatch();
     const reviews = useSelector((state) => state.reviews);
-   
+
     const users = useSelector((state) => state.allUsers);
     const userLogged = useSelector((state) => state.user);
- 
-   
-   useEffect(() => {
-       dispatch(getAllUsers());
-       return () => {
-           dispatch(clearReviews());
-        }
-    },[])
 
-    useEffect(()=> {
+
+    useEffect(() => {
+        dispatch(getAllUsers());
+        return () => {
+            dispatch(clearStore("reviews"));
+        }
+    }, [])
+
+    useEffect(() => {
         dispatch(getReviews(id));
-    },[dispatch])
+    }, [dispatch])
 
     const deleteReview = async (userId, productId) => {
-        const response = await axios.delete('/review', { data: {userId, productId}});
-        if(response.status === 200) {
+        const response = await axios.delete('/review', { data: { userId, productId } });
+        if (response.status === 200) {
             swal({
                 title: 'Review deleted successfully!',
                 text: ' ',
@@ -39,7 +39,7 @@ export default function Reviews({id}) {
             dispatch(getProductDetail(id));
         }
     }
- 
+
     return (
         <div className='reviews'>
             <p className="reviews__title"><FormattedMessage id="app.reviews" defaultMessage="Reviews:"/></p> 
