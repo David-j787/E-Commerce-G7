@@ -5,9 +5,11 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserWishlist } from "../redux/actions";
+import { useIntl } from "react-intl";
 
 export function AddToWishList({ userId, productId }) {
   const dispatch = useDispatch();
+  const intl = useIntl();
   const id = useSelector((state) => state?.user?.id);
   const stateWishlist = useSelector((state) => state.wishlist);
   const stateDetail = useSelector((state) => state.details);
@@ -39,7 +41,7 @@ export function AddToWishList({ userId, productId }) {
       dispatch(getUserWishlist(id));
       setAdding(true);
       swal({
-        title: "Added to wishlist!",
+        title: intl.formatMessage({ id: 'message-added' }),
         text: " ",
         icon: "success",
         timer: 3000,

@@ -3,6 +3,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { useSelector } from 'react-redux';
 import useUser from './Login/hooks/useUser';
+import { FormattedMessage } from 'react-intl'
 
 export function validate(input) {
   let errors = {};
@@ -78,7 +79,7 @@ export default function ResetPassword() {
   return (
     <div className="resetPassword">
       <form className="resetPassword__form" onSubmit={handleSubmit}>
-        <h2 className="resetPassword__title">Reset Password</h2>
+        <h2 className="resetPassword__title"><FormattedMessage id="app.reset-pass" defaultMessage="Reset Password"/></h2>
         <input
           value={inputs.currentPassword}
           type="password"
@@ -103,7 +104,7 @@ export default function ResetPassword() {
           placeholder="Repeat Password..."
         />
         <span className="error">{errors.repeatPassword}</span>
-        <button type="submit">Set New Password</button>
+        <button type="submit"><FormattedMessage id="app.new-pass" defaultMessage="Set New Password"/></button>
       </form>
     </div>
   );

@@ -8,6 +8,7 @@ import Reviews from './Reviews';
 import axios from 'axios';
 import AddToWishList from './AddToWishList';
 import WhatsApp from './WhatsApp';
+import { FormattedMessage } from 'react-intl'
 
 export function ProductDetail(props) {
     const dispatch = useDispatch();
@@ -66,18 +67,18 @@ export function ProductDetail(props) {
                                     </> : <span className='price'>US$ {Number(details.price?.toFixed(2))}</span>
                                     }
                                 <p className='description'>{details.description}</p>
-                                {details.stock ? <p className='stock'><span>In stock</span> ({details.stock} available)</p> : <p className='stock'><span>⚠️This product isn't available for shopping</span></p>}
-                                <p className='rating'><span>Rating:</span> {Number(details.rating?.toFixed(1))}</p>
-                                <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}>add product</button>
-                                {user?.roleId < 3 && <Link className='updateBtn' to={`/product/update/${id}`}><button>Edit product</button></Link>}
+                                {details.stock ? <p className='stock'><span><FormattedMessage id="app.stock" defaultMessage="In stock"/></span> ({details.stock} <FormattedMessage id="app.available" defaultMessage="available"/>)</p> : <p className='stock'><span>⚠️<FormattedMessage id="app.not-available" defaultMessage="This product isn't available for shopping"/></span></p>}
+                                <p className='rating'><span><FormattedMessage id="app.rating" defaultMessage="Rating:"/></span> {Number(details.rating?.toFixed(1))}</p>
+                                <button className='addBtn' disabled={buttonDisabled} onClick={() => handleAddCart(details)}><FormattedMessage id="app.add" defaultMessage="Add product"/></button>
+                                {user?.roleId < 3 && <Link className='updateBtn' to={`/product/update/${id}`}><button><FormattedMessage id="app.edit-prod" defaultMessage="Edit product"/></button></Link>}
                             </div>
                         </div>
                         <div className='wrapper-reviews'>
                             <Reviews id={id} className='reviews' />
                             {isLogged && !alreadyCommented ?
                                 <ReviewAndRating productId={details.id} /> :
-                                isLogged ? <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You already review this product. Thanks for your feedback</p> 
-                                : <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You must be logged to add a review. </p>}
+                                isLogged ? <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}><FormattedMessage id="app.review" defaultMessage="You've already reviewed this product. Thanks for your feedback"/></p> 
+                                : <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}><FormattedMessage id="app.logged-review" defaultMessage="You must be logged to add a review. "/></p>}
                         </div>
                     </div>
                     : (<h2>Loading...</h2>)}

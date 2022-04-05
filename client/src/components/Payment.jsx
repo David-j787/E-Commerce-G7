@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export function Payment(props) {
 
@@ -25,7 +26,7 @@ export function Payment(props) {
                 </div>
                 <div className="item__description">
                   {<Link to={`/user/account/order/detail/${orderId}`}>
-                    <button className="register__button" style={{marginBottom: "0px"}}>Order Details</button>
+                    <button className="register__button" style={{marginBottom: "0px"}}><FormattedMessage id="app.order-detail" defaultMessage="Order Details"/></button>
                   </Link>}
                 </div>
               </div>

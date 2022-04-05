@@ -5,6 +5,7 @@ import axios from 'axios';
 import Select from 'react-select'
 import CreateCategory from "./CreateCategory";
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export function validate(input) {
 
@@ -120,34 +121,34 @@ export function CreateProduct(){
     return(
         <div className="adminContainer editForms">
             <div className="register createProduct">
-                <h1 className="register__title">New Product</h1>
+                <h1 className="register__title"><FormattedMessage id="app.new-product" defaultMessage="New Product"/></h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} action="" method="post"  id="contact_form">
                     <div className="register__group">
-                        <label className="col-md-4 control-label">Name</label>
+                        <label className="col-md-4 control-label"><FormattedMessage id="app.name-prod" defaultMessage="Name"/></label>
                         <input name="name" value={input.name} onChange={handleChange} className="form-control" />
                         <div className="register__error">{errors.name}</div>
                     </div>
                     <div className="register__group">
-                        <label className="col-md-4 control-label">Price</label>
+                        <label className="col-md-4 control-label"><FormattedMessage id="app.price" defaultMessage="Price"/></label>
                         <input name="price" value={input.price} onChange={handleChange} className="form-control"/>
                         <div className="register__error">{errors.price}</div>
                     </div>
                     <div className="register__group">
-                        <label className="col-md-4 control-label">Description</label>
+                        <label className="col-md-4 control-label"><FormattedMessage id="app.description" defaultMessage="Description"/></label>
                         <textarea name="description" value={input.description} onChange={handleChange} className="form-control"></textarea>
                         <div className="register__error">{errors.description}</div>
                     </div>
                     <div className="register__group">
-                        <label className="col-md-4 control-label">Image</label>
+                        <label className="col-md-4 control-label"><FormattedMessage id="app.image" defaultMessage="Image"/></label>
                         <input name="images" value={input.images} onChange={handleChange} className="form-control"/>
                     </div>
                     <div className="register__group">
-                        <label className="col-md-4 control-label">Stock</label>
+                        <label className="col-md-4 control-label"><FormattedMessage id="app.stok-prod" defaultMessage="Stock"/></label>
                         <input type='number' min='0' max='100' name="stock" value={input.stock} onChange={handleChange} className="form-control"/>
                         <div className="register__error">{errors.stock}</div>
                     </div>
                     <div className="register__group categories">
-                        <label className="col-md-4 control-label">Categories</label>
+                        <label className="col-md-4 control-label"><FormattedMessage id="app.categories" defaultMessage="Categories"/></label>
                         <div style={{width:'100%'}}>
                             <Select isMulti options={options} onChange={handleSelect}/>
                         </div>
@@ -156,7 +157,7 @@ export function CreateProduct(){
                     </div>
                     <button className="register__button"
                      type="submit"
-                     disabled={!input.name || !input.price || !input.description || !input.stock || !input.categories.length}>Create product</button>
+                     disabled={!input.name || !input.price || !input.description || !input.stock || !input.categories.length}><FormattedMessage id="app.btn-create-prod" defaultMessage="Create product"/></button>
                 </form>
             </div>
         </div>

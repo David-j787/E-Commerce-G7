@@ -5,6 +5,7 @@ import { getAllProducts } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import AdminSearchBar from './AdminSearchBar';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export default function AdminProductsList({showComponent, getId}) {
     const dispatch = useDispatch();
@@ -60,9 +61,9 @@ export default function AdminProductsList({showComponent, getId}) {
 
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Products Management <button onClick={addProduct} className='componentTitle__button'>Add new Product</button></div>
+            <div className='componentTitle'><FormattedMessage id="app.manage-prod" defaultMessage="Products Management"/> <button onClick={addProduct} className='componentTitle__button'><FormattedMessage id="app.add-new-prod" defaultMessage="Add new Product"/></button></div>
             <AdminSearchBar search='products' />
-            <div className='tableHeader'><div>Product name</div>|<div>Price</div>|<div>Stock</div>|<div>Rate</div>|<div>Action</div></div>
+            <div className='tableHeader'><div><FormattedMessage id="app.product-name" defaultMessage="Product name"/></div>|<div><FormattedMessage id="app.price" defaultMessage="Price"/></div>|<div><FormattedMessage id="app.stok-prod" defaultMessage="Stock"/></div>|<div><FormattedMessage id="app.rate" defaultMessage="Rate"/></div>|<div><FormattedMessage id="app.action" defaultMessage="Action"/></div></div>
             <div className='adminTable'>
                 <ul>
                     {Array.isArray(products) ? products?.map(prod => <li className='prodList' key={prod.id}>
@@ -76,8 +77,8 @@ export default function AdminProductsList({showComponent, getId}) {
                         <div>{prod.stock}</div>
                         <div>{prod.rating}</div>
                         <div>
-                            <button onClick={e => editProduct(prod.id)} className='adminCP__button'>Edit</button>
-                            <button onClick={e => deleteProduct(prod.id)}className='adminCP__button'>Delete</button>
+                            <button onClick={e => editProduct(prod.id)} className='adminCP__button'><FormattedMessage id="app.btn-edit" defaultMessage="Edit"/></button>
+                            <button onClick={e => deleteProduct(prod.id)}className='adminCP__button'><FormattedMessage id="app.btn-delete" defaultMessage="Delete"/></button>
                         </div>
                         
                         </li>) : <div className='noDataFound'>{products}</div>}

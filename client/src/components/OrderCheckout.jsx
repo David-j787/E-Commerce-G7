@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import { clearCart } from "../redux/actions";
 import OrderShipping from "./OrderShipping";
 import WhatsApp from "./WhatsApp";
+import { FormattedMessage } from 'react-intl'
 
 
 export function OrderCheckout() {
@@ -121,7 +122,7 @@ export function OrderCheckout() {
                 {isLogged ?
                     cart?.length ?
                         <div className="container">
-                            <h2 className="orderCheckout__title">Order summary</h2>
+                            <h2 className="orderCheckout__title"><FormattedMessage id="app.summary" defaultMessage="Order summary"/></h2>
                             {cart?.map(product =>
                                 <div key={product.id} className="orderCheckout__content">
                                     <table className="order-table">
@@ -132,7 +133,7 @@ export function OrderCheckout() {
                                                 </td>
                                                 <td>
                                                     <br /> <span className='thin'>{product.name}</span>
-                                                    <br /> Amount: {product.amount}<br />
+                                                    <br /> <FormattedMessage id="app.amount" defaultMessage="Amount: "/>{product.amount}<br />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -153,13 +154,12 @@ export function OrderCheckout() {
                                     $ {setTotal()}
                                 </span>
                             </div>
-
                             <OrderShipping confirmed={confirmed} setShipping={setShipping} />
-                            <button className="confirmOrder" onClick={(e) => handleSubmit(e)} disabled={!Object.keys(notification).length || confirmed}>CONFIRM ORDER</button>
+                            <button className="confirmOrder" onClick={(e) => handleSubmit(e)} disabled={!Object.keys(notification).length || confirmed}><FormattedMessage id="app.confirm-order" defaultMessage="CONFIRM ORDER"/></button>
                             <Payments clearCart={clearShopCart} url={url} />
-                        </div> : <><div className="message">Your cart is empty</div>
+                        </div> : <><div className="message"><FormattedMessage id="app.cart-empty" defaultMessage="Your cart is empty"/></div>
                         </>
-                    : <div className="message">Please Login to finish your Purchase</div>}
+                    : <div className="message"><FormattedMessage id="app.finish-purchase" defaultMessage="Please Login to finish your purchase"/></div>}
             </div>
             <WhatsApp />
         </>
