@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAllStores } from "../redux/actions"
 import Map from './Map'
 import { FormattedMessage } from 'react-intl'
+import pin from '../assets/images/pin.png'
 
 const Sucursales = () => {
     const dispatch = useDispatch()
@@ -30,20 +31,32 @@ const Sucursales = () => {
     }
 
     return (
-        <div>
-            <h1><FormattedMessage id="app.stores" defaultMessage="Stores"/></h1>
-            <button onClick={() => handleClick("all")}>
-                <h2><FormattedMessage id="app.see-stores" defaultMessage="See all stores"/></h2>
-            </button>
-            {stores?.map(location => {
-                return (
-                    <button key={location.id} onClick={() => handleClick(location.id)} >
-                        <h2>{location.name}</h2>
-                        <span>{location.city}</span>
-                    </button>
-                )
-            })}
-            <Map center={select} markers={stores} />
+        <div className='sucursales'>
+            <div className="container">
+                <h1 className='register__title'><FormattedMessage id="app.stores" defaultMessage="Stores"/></h1>
+                <button className='sucursales__button' onClick={() => handleClick("all")}>
+                <FormattedMessage id="app.see-stores" defaultMessage="See all stores"/>
+                </button>
+                <div className='sucursales__wrapper'>
+                    <Map center={select} markers={stores} />
+                    <div className='sucursales__buttons'>
+                        {stores?.map(location => {
+                                return (
+                                        <button type='button' key={location.id} onClick={() => handleClick(location.id)}>
+                                            <figure>
+                                                <img src={pin} alt="pin" />
+                                            </figure>
+                                            <div>
+                                                <h2>{location.name}</h2>
+                                                <p>{location.address}</p>
+                                                <span>{location.city}</span>
+                                            </div>
+                                        </button>
+                                )
+                        })}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

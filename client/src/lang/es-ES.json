@@ -99,7 +99,7 @@
     "app.state": "Estado: ",
     "app.btn-create-store": "Crear Tienda",
     "app.new-store": "Crear una nueva tienda",
-    "app.dashboard": "Tablero",
+    "app.dashboard": "Tablero de Administrador",
     "app.manage-disc": "Gestión de descuentos",
     "app.btn-set-disc": "Establecer nuevo descuento",
     "app.category": "Categoría",
@@ -192,5 +192,8 @@
     "app.chat-here-upper": "AQUI ",
     "app.chat-sign": "Si no encuentras dónde registrarte, por favor haz click ",
     "app.chat-redirect": "para redirigirte",
-    "app.chat-profile": "Si no encuentras dónde está tu perfil, por favor haz click "
+    "app.chat-profile": "Si no encuentras dónde está tu perfil, por favor haz click ",
+    "app.dashboard-hi": "Hola, ",
+    "app.dashboard-welcome": ". Bienvenido!",
+    "app.dashboard-manage": "Aquí puede administrar todas las funciones del sistema"
 }

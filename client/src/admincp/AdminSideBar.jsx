@@ -26,6 +26,10 @@ export default function AdminSideBar({showComponent}){
                 <i className="fa fa-folder-open fa-2x"></i>
                 <span className="nav-text"><FormattedMessage id="app.orders-list" defaultMessage="Orders"/></span>               
             </li>
+            <li onClick={e => showComponent('payments')}>
+                <i className="fa fa-info fa-2x"></i>
+                <span className="nav-text">Payments</span>
+            </li> 
             {user?.roleId === 1 && 
             <li onClick={e => showComponent('editRole')}>
                 <i className="fa fa-bar-chart-o fa-2x"></i>

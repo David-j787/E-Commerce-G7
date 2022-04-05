@@ -99,7 +99,7 @@
     "app.state": "State: ",
     "app.btn-create-store": "Create Store",
     "app.new-store": "Create a New Store",
-    "app.dashboard": "Dashboard",
+    "app.dashboard": "Dashboard Admin CP",
     "app.manage-disc": "Discount Management",
     "app.btn-set-disc": "Set new Discount",
     "app.category": "Category",
@@ -192,5 +192,8 @@
     "app.chat-here-upper": "HERE ",
     "app.chat-sign": "If you can't find where Sign Up is, please click ",
     "app.chat-redirect": "to redirect",
-    "app.chat-profile": "If you can't find where is your Profile, please click "
+    "app.chat-profile": "If you can't find where is your Profile, please click ",
+    "app.dashboard-hi": "Hi, ",
+    "app.dashboard-welcome": ". Welcome!",
+    "app.dashboard-manage": "Here you can manage all system function"
 }
