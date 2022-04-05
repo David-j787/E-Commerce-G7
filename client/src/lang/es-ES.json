@@ -216,5 +216,7 @@
     "app.type": "Tipo",
     "app.details": "Detalles",
     "app.payments": "Pagos",
-    "app.dashboard-side": "Tablero"
+    "app.dashboard-side": "Tablero",
+    "app.offers": "Ofertas",
+    "no-offers": "No tenemos ofertas aún. Regresa pronto y descubre nuestras nuevas promociones"
 }

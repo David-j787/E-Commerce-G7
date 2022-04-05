@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl'
 export default function FrecuentlyVisited(){
     const dispatch = useDispatch();
     const { user, visitedProducts } = useSelector(state => state);
+    visitedProducts?.sort(() => {return Math.random() - 0.5});
 
     useEffect(()=>{
         dispatch(getVisitedProducts(user?.id))

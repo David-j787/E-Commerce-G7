@@ -216,5 +216,7 @@
     "app.type": "Type",
     "app.details": "Details",
     "app.payments": "Payments",
-    "app.dashboard-side": "Dashboard"
+    "app.dashboard-side": "Dashboard",
+    "app.offers": "Offers",
+    "no-offers": "We don't have offers yet. Come back soon and check for new deals"
 }
