@@ -186,7 +186,7 @@
     "app.complaint": "Libro de sugerencias",
     "app.rights": "2022 ElectroShop. Todos los derechos reservados",
     "app.chat-login": "Debes estar registrado para ver tus órdenes. Por favor regístrate ",
-    "app.chat-see-orders": "Puedes ver tus órdenes",
+    "app.chat-see-orders": "Puedes ver tus órdenes ",
     "app.chat-here": "aquí",
     "app.chat-go": "Para ir a la tienda. Haz click ",
     "app.chat-here-upper": "AQUI ",
@@ -195,5 +195,5 @@
     "app.chat-profile": "Si no encuentras dónde está tu perfil, por favor haz click ",
     "app.dashboard-hi": "Hola, ",
     "app.dashboard-welcome": ". Bienvenido!",
-    "app.dashboard-manage": "Aquí puede administrar todas las funciones del sistema"
+    "app.dashboard-manage": "Aquí puedes administrar todas las funciones del sistema"
 }

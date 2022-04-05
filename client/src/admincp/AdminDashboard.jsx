@@ -11,7 +11,7 @@ export default function AdminDashboard() {
             <div className='componentTitle'><FormattedMessage id="app.dashboard" defaultMessage="Dashboard Admin CP"/></div>
             <div className='adminTable'>
                 <div className='adminSubComp__welcome'>
-                    <span><FormattedMessage id="app.dashboard-hi" defaultMessage="Hi, "/> {user?.name} <FormattedMessage id="app.dashboard-welcome" defaultMessage=". Welcome!"/></span>
+                    <span><FormattedMessage id="app.dashboard-hi" defaultMessage="Hi, "/> {user?.name}<FormattedMessage id="app.dashboard-welcome" defaultMessage=". Welcome!"/></span>
                     <span><FormattedMessage id="app.dashboard-manage" defaultMessage="Here you can manage all system function"/></span>
                 </div>
             </div>
