@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../redux/actions';
+import { Link } from 'react-router-dom';
 import AdminSearchBar from './AdminSearchBar';
 import swal from 'sweetalert';
 import { FormattedMessage } from 'react-intl'
@@ -66,8 +67,13 @@ export default function AdminProductsList({showComponent, getId}) {
             <div className='adminTable'>
                 <ul>
                     {Array.isArray(products) ? products?.map(prod => <li className='prodList' key={prod.id}>
-                        <div>{prod.name.slice(0, 35)}{prod.name.length > 35 && '...'}</div>
-                        <div>US$ {prod.price}</div>
+                        <div><Link className='link' to={`/product/${prod.id}`}>{prod.name.slice(0, 35)}{prod.name.length > 35 && '...'}</Link></div>
+                        <div>{prod.discount ? 
+                        <>
+                            <span className='discounted'>$ {Number(prod?.price?.toFixed(2))}</span>
+                            <span className='fullprice'>$ {Number(prod?.discounted_price?.toFixed(2))}</span>
+                        </> : <span className='fullprice'>$ {Number(prod?.price?.toFixed(2))}</span>}
+                        </div>
                         <div>{prod.stock}</div>
                         <div>{prod.rating}</div>
                         <div>

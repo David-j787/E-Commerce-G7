@@ -5,7 +5,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { FormattedMessage } from 'react-intl'
 
-export function validate(user, users) {
+export function validate(user, users, userDetail) {
     const usernames = users?.map(user => user.username);
     const emails = users?.map(user => user.email);
     let errors = {};
@@ -25,10 +25,7 @@ export function validate(user, users) {
     else if(!user.username) {
         errors.username = "Introduce a username"
     }
-    else if (!/^[^\W0-9_][a-zA-Z0-9\u00f1\u00d1\s]+$/.test(user.username)){
-        errors.username = "Invalid username";
-    }
-    else if (usernames.includes(user.username)){
+    else if (usernames.includes(user.username) && user.username !== userDetail?.username){
         errors.username = "Username already in use";
     }
     else if (!user.email){
@@ -37,7 +34,7 @@ export function validate(user, users) {
     else if(!/\S+@\S+\.\S+/.test(user.email)){
         errors.email = "Invalid e-mail";
     }
-    else if (emails.includes(user.email)){
+    else if (emails.includes(user.email) && user.email !== userDetail?.email){
         errors.email = "Email already in use";
     }
     else if (!user.country){
@@ -104,7 +101,7 @@ export function AdminEditUser(props){
         setErrors(validate({
             ...user,
             [e.target.name] : e.target.value
-        }, users))
+        }, users, userDetails))
     };
 
     const handleSubmit = async (e) => {
