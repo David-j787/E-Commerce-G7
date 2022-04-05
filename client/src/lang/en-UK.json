@@ -195,5 +195,19 @@
     "app.chat-profile": "If you can't find where is your Profile, please click ",
     "app.dashboard-hi": "Hi, ",
     "app.dashboard-welcome": ". Welcome!",
-    "app.dashboard-manage": "Here you can manage all system function"
+    "app.dashboard-manage": "Here you can manage all system function",
+    "app.not-found": "404 - Page not found",
+    "app.pay-details": "Payment Details",
+    "app.payment-number": "Payment N°: ",
+    "app.pay-status": "Order Payment status: ",
+    "app.mercado": "Mercado Pago status: ",
+    "app.pay-method": "Payment Method: ",
+    "app.pay-type": "Payment Type: ",
+    "app.expiration": "Expiration: ",
+    "app.pay-acred": "Payment Acredited: ",
+    "app.install": "Installments: ",
+    "app.install-amount": "Installments Amount: ",
+    "app.order-total": "Order Total: ",
+    "app.total-pay": "Total Paid: ",
+    "app.order-detail": "Order Details"
 }

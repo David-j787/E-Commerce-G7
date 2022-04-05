@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export function Payment(props) {
   const url = window.location.href;
@@ -17,7 +18,7 @@ export function Payment(props) {
                     `Your Payment is Pending ⏱️`}
                 </div>
                 <div className="item__description">
-                  {<Link to={`/user/account/order/detail/${orderId}`}><button className="register__button">Order Details</button></Link>}
+                  {<Link to={`/user/account/order/detail/${orderId}`}><button className="register__button"><FormattedMessage id="app.order-detail" defaultMessage="Order Details"/></button></Link>}
                 </div>
               </div>
             </div>

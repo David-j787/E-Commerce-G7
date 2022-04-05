@@ -195,5 +195,18 @@
     "app.chat-profile": "Si no encuentras dónde está tu perfil, por favor haz click ",
     "app.dashboard-hi": "Hola, ",
     "app.dashboard-welcome": ". Bienvenido!",
-    "app.dashboard-manage": "Aquí puedes administrar todas las funciones del sistema"
+    "app.dashboard-manage": "Aquí puedes administrar todas las funciones del sistema",
+    "app.not-found": "404 - No se encontró la página",
+    "app.pay-details": "Detalles de pago",
+    "app.payment-number": "Pago N°: ",
+    "app.pay-status": "Estado de pago de la orden: ",
+    "app.mercado": "Estado de Mercado Pago: ",
+    "app.pay-method": "Método de pago: ",
+    "app.pay-type": "Tipo de pago: ",
+    "app.expiration": "Vencimiento: ",
+    "app.pay-acred": "Pago Acreditado: ",
+    "app.install": "Cuotas: ",
+    "app.install-amount": "Cantidad de cuotas: ",
+    "app.order-total": "Total de la orden: ",
+    "app.total-pay": "Pago Total: "
 }
