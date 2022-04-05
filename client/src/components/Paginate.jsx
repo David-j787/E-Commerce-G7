@@ -20,8 +20,8 @@ export function Paginate({ productsAmount, productsPerPage, paginate, currentPag
 
     return (
         <nav className='paginate'>
-            {currentPage !== 1 && <button className='paginate__button' onClick={handlePrev} disabled={currentPage === 1}>Prev</button>}
-            {currentPage !== lastPage && <button className='paginate__button' onClick={handleNext} disabled={currentPage === lastPage}>Next</button>}
+            {currentPage !== 1 && <button className='paginate__button' onClick={handlePrev} disabled={currentPage === 1}><FormattedMessage id="app.button-prev" defaultMessage="Prev"/></button>}
+            {currentPage !== lastPage && <button className='paginate__button' onClick={handleNext} disabled={currentPage === lastPage}><FormattedMessage id="app.button-next" defaultMessage="Next"/></button>}
         </nav>
     )
 }
