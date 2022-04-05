@@ -116,8 +116,7 @@ function App() {
         <ResetPassword />
         </> :
           <Router>
-            <Navbar />
-          
+            <Navbar /> 
           <Route path='/user/account' component={DashboardUser}/>
           <Switch>
             <Route exact path='/' component={Home}/>
