@@ -19,6 +19,16 @@ export default function ReviewAndRating({productId}) {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    if(!input || !rating){
+      swal({
+        title: 'Oops! You forgot something',
+        text: 'You must leave a comment and rate the product',
+        icon: 'error',
+        timer: 4000,
+        button: 'Ok'
+      })
+      return
+    }
     const response = await axios.post('/review', {
       review: input,
       rate: rating,
