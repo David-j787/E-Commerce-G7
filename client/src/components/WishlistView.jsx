@@ -12,11 +12,17 @@ export default function WishlistView(){
     },[])
 
     return(
-        <div className="container">
-            <h2 className="visited__title">Inspired by you</h2>
-            <div className="visited">
-                {wishlist?.map(product => <ProductFav key={Math.random().toString(16).slice(2)} {...product} />)}
+        <>
+            <div className="container">
+                <h2 className="visited__title">Inspired by you</h2>
             </div>
-        </div>
+            <div className="container">
+                <div className="visited-wrapper">
+                    <div className="visited">
+                        {wishlist?.map(product => <ProductFav key={Math.random().toString(16).slice(2)} {...product} />)}
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
