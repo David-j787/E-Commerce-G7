@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getProductDetail, addProduct, productAmountSum, getReviews } from '../redux/actions';
+import { clearStore, getProductDetail, addProduct, productAmountSum, getReviews } from '../redux/actions';
 import useUser from './Login/hooks/useUser';
 import ReviewAndRating from './ReviewAndRating';
 import Reviews from './Reviews';
@@ -18,7 +18,11 @@ export function ProductDetail(props) {
     const { isLogged } = useUser();
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         dispatch(getProductDetail(id));
+        return () => {
+            dispatch(clearStore("details"))
+        }
     }, []); //eslint-disable-line
 
     useEffect(() => {
@@ -47,24 +51,24 @@ export function ProductDetail(props) {
     const buttonDisabled = details.stock <= 0 ? true : false
 
     return (
-        <>
+        <><a id="abajo" ></a>
             <div className='container'>
-                {details ?
+                {Object.keys(details).length ?
                     <div>
                         <div className='productDetail'>
                             <figure className='productDetail__image'>
                                 <img src={details.images} alt="product" width='350px' height='250px' />
                             </figure>
                             <div className='productDetail__description'>
-                                <h2 className='name'>{details.name}</h2> 
+                                <h2 className='name'>{details.name}</h2>
                                 <ul className='categories'>{details.categories?.map(el => <li key={el.id}>{el.name}</li>)}</ul>
-                                {isLogged && <AddToWishList userId={user?.id} productId={id}/>}
-                                {details.discount > 0 ? 
+                                {isLogged && <AddToWishList userId={user?.id} productId={id} />}
+                                {details.discount > 0 ?
                                     <>
                                         <span className='price-discount'>US${Number(details.price?.toFixed(2))}</span>
                                         <span className='price'>US$ {Number(details.discounted_price?.toFixed(2))}</span> <span className='discount'>-{details.discount}% OFF</span>
                                     </> : <span className='price'>US$ {Number(details.price?.toFixed(2))}</span>
-                                    }
+                                }
                                 <p className='description'>{details.description}</p>
                                 {details.stock ? <p className='stock'><span>In stock</span> ({details.stock} available)</p> : <p className='stock'><span>⚠️This product isn't available for shopping</span></p>}
                                 <p className='rating'><span>Rating:</span> {Number(details.rating?.toFixed(1))}</p>
@@ -76,11 +80,11 @@ export function ProductDetail(props) {
                             <Reviews id={id} className='reviews' />
                             {isLogged && !alreadyCommented ?
                                 <ReviewAndRating productId={details.id} /> :
-                                isLogged ? <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You already review this product. Thanks for your feedback</p> 
-                                : <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You must be logged to add a review. </p>}
+                                isLogged ? <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You already review this product. Thanks for your feedback</p>
+                                    : <p style={{ fontStyle: "italic", fontFamily: "roboto", fontSize: ".95rem" }}>You must be logged to add a review. </p>}
                         </div>
                     </div>
-                    : (<h2>Loading...</h2>)}
+                    : (<div style={{ height: "100vh" }} >Loading...</div>)}
             </div>
             <WhatsApp />
         </>
