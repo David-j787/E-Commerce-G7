@@ -31,7 +31,6 @@ export const GET_ALL_DISCOUNTS = "GET_ALL_DISCOUNTS";
 export const GET_PAYMENT_DETAIL = "GET_PAYMENT_DETAIL";
 export const GET_ALL_PAYMENTS = "GET_ALL_PAYMENTS";
 
-
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
@@ -352,3 +351,4 @@ export const getUserWishlist = (userId) => {
     }
   };
 };
+

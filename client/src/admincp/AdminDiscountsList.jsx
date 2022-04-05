@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllDiscounts } from '../redux/actions';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export default function AdminDiscountsList({showComponent, getId}) {
     const dispatch = useDispatch();
@@ -53,8 +54,8 @@ export default function AdminDiscountsList({showComponent, getId}) {
 
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Discount Management<button onClick={setDiscount} className='componentTitle__button'>Set new Discount</button></div>
-            <div className='tableHeader'><div>Category</div>|<div>Discount</div>|<div>Weekday</div>|<div>End Date</div>|<div>Action</div></div>
+            <div className='componentTitle'><FormattedMessage id="app.manage-disc" defaultMessage="Discount Management"/><button onClick={setDiscount} className='componentTitle__button'><FormattedMessage id="app.btn-set-disc" defaultMessage="Set new Discount"/></button></div>
+            <div className='tableHeader'><div><FormattedMessage id="app.category" defaultMessage="Category"/></div>|<div><FormattedMessage id="app.discount" defaultMessage="Discount"/></div>|<div><FormattedMessage id="app.weekday" defaultMessage="Weekday"/></div>|<div><FormattedMessage id="app.end" defaultMessage="End Date"/></div>|<div><FormattedMessage id="app.action" defaultMessage="Action"/></div></div>
             <div className='adminTable'>
                 <ul>
                     {Array.isArray(discounts) ? discounts?.map(discount => <li className='itemList' key={discount?.categoryId}>
@@ -63,7 +64,7 @@ export default function AdminDiscountsList({showComponent, getId}) {
                         <div>{discount?.weekday}</div>
                         <div>N/A</div>
                         <div>
-                            <button onClick={e => deleteDiscount(discount.categoryId)}className='adminCP__button'>Delete</button>
+                            <button onClick={e => deleteDiscount(discount.categoryId)}className='adminCP__button'><FormattedMessage id="app.btn-delete" defaultMessage="Delete"/></button>
                         </div>
                         
                         </li>) : <div className='noDataFound'>{discounts}</div>}

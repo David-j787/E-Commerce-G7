@@ -5,6 +5,7 @@ import axios from 'axios';
 import Select from 'react-select'
 import CreateCategory from "../components/CreateCategory";
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export function validate(discount) {
     let errors = {};
@@ -109,30 +110,30 @@ export function AdminSetDiscounts({showComponent}){
     return(
         <div className="adminContainer editForms">
             <div className="register createProduct">
-                <h1 className="register__title">New Discount</h1>
+                <h1 className="register__title"><FormattedMessage id="app.new-disc" defaultMessage="New Discount"/></h1>
                 <form onSubmit={(e)=>{handleSubmit(e)}} action="" method="post"  id="contact_form">
                     <div className="register__group categories">
-                        <label className="">Categories</label>
+                        <label className=""><FormattedMessage id="app.categories" defaultMessage="Categories"/></label>
                         <div style={{width:'100%'}}>
                             <Select options={options} name="category" onChange={handleSelect}/>
                         </div>
                         <div className="register__error">{errors.categoryId}</div>
                         <CreateCategory />
-                        <label className="">Weekday</label>
+                        <label className=""><FormattedMessage id="app.weekday" defaultMessage="Weekday"/></label>
                         <div style={{width:'100%'}}>
                             <Select options={weekdays} name="weekday" onChange={handleSelect}/>
                         </div>
                         <div className="register__error">{errors.weekday}</div>
                     </div>
                     <div className="register__group">
-                        <label className="">Discount Percentage</label>
+                        <label className=""><FormattedMessage id="app.disc-percent" defaultMessage="Discount Percentage"/></label>
                         <input type='number' min='0' max='100' name="discount" value={discount.discount} onChange={handleChange} className="form-control"/>
                         <div className="register__error">{errors.discount}</div>                     
                     </div>
                     
                     <button className="register__button"
                      type="submit"
-                     disabled={!discount.discount || !discount.categoryId}>Create Discount</button>
+                     disabled={!discount.discount || !discount.categoryId}><FormattedMessage id="app.crate-disc" defaultMessage="Create Discount"/></button>
                 </form>
             </div>
         </div>

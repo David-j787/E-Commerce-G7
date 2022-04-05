@@ -5,6 +5,8 @@ import iconFacebok from '../assets/images/icon-facebookl.png'
 import iconInstagram from '../assets/images/icon-instagram.png'
 import iconMercadoPago from '../assets/images/mercado-pago.jpg'
 
+import { FormattedMessage } from 'react-intl'
+
 const Footer = () => {
   const [showHistory, setShowHistory] = useState(false)
   const [showSupport, setShowSupport] = useState(false)
@@ -23,101 +25,101 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <ul className='footer__list'>
-        <button className='footer__btn' onClick={handleHistory}>Nuestra Historia</button>
+        <button className='footer__btn' onClick={handleHistory}><FormattedMessage id= "app.history" defaultMessage="Our History"/></button>
         {
           showHistory && <div className='footer__history'>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Nuestra historia</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.history" defaultMessage="Our History"/></Link>
             </li>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Contáctanos</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.contact-us" defaultMessage="Contact Us"/></Link>
             </li>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Mi cuenta</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.my-account" defaultMessage="My Account"/></Link>
             </li>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Envios nacionales</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.local-shipping" defaultMessage="Local Shipping"/></Link>
             </li>
           </div>
         }
 
         <div className='footer__history desktop'>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Nuestra historia</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.history" defaultMessage="Our History"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Contáctanos</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.contact-us" defaultMessage="Contact Us"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Mi cuenta</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.my-account" defaultMessage="My Account"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Envios nacionales</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.local-shipping" defaultMessage="Local Shipping"/></Link>
           </li>
         </div>
 
-        <button className='footer__btn' onClick={handleSupport}>Soporte</button>
+        <button className='footer__btn' onClick={handleSupport}><FormattedMessage id="app.support" defaultMessage="Support"/></button>
         {
           showSupport && <div className='footer__support'>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Preguntas frecuentes</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.frequent" defaultMessage="Frequent Questions"/></Link>
             </li>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Garantías</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.guarantee" defaultMessage="Guarantee"/></Link>
             </li>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Instructivos</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.instruction" defaultMessage="Instructions"/></Link>
             </li>
             <li className='footer__item'>
-              <Link to="#" className='footer__link'>Legales Promociones</Link>
+              <Link to="#" className='footer__link'><FormattedMessage id="app.promotions" defaultMessage="Promotions"/></Link>
             </li>
           </div>
         }
 
         <div className='footer__support desktop'>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Preguntas frecuentes</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.frequent" defaultMessage="Frequent Questions"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Garantías</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.guarantee" defaultMessage="Guarantee"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Instructivos</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.instruction" defaultMessage="Instructions"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Legales Promociones</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.promotions" defaultMessage="Promotions"/></Link>
           </li>
         </div>
 
-        <button className='footer__btn' onClick={handleBuy}>Comprar</button>
+        <button className='footer__btn' onClick={handleBuy}><FormattedMessage id="app.buy" defaultMessage="Buy"/></button>
         {showBuy && <div className='footer__buy'>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.wireless" defaultMessage="Wireless Headphones"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.wireless" defaultMessage="Wireless Headphones"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Accesorios</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.accessories" defaultMessage="Accessories"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Laptops</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.laptops" defaultMessage="Laptops"/></Link>
           </li>
         </div>
         }
 
         <div className='footer__buy desktop'>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.wireless" defaultMessage="Wireless Headphones"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Wireless Headphones</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.wireless" defaultMessage="Wireless Headphones"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Accesorios</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.accessories" defaultMessage="Accessories"/></Link>
           </li>
           <li className='footer__item'>
-            <Link to="#" className='footer__link'>Laptops</Link>
+            <Link to="#" className='footer__link'><FormattedMessage id="app.laptops" defaultMessage="Laptops"/></Link>
           </li>
         </div>
 
@@ -132,9 +134,9 @@ const Footer = () => {
       </ul>
 
       <div className="footer__subfooter">
-        <Link to="#" className='politics'>Privacy Policy</Link>
-        <Link to="#" className='book'>🕮 Complaints Book</Link>
-        <p className="copyright">&copy; 2022 ElectroShop. All Rights Reserved</p>
+        <Link to="#" className='politics'><FormattedMessage id="app.privacy" defaultMessage="Privacy Policy"/></Link>
+        <Link to="#" className='book'>🕮 <FormattedMessage id="app.complaint" defaultMessage="Complaints Book"/></Link>
+        <p className="copyright">&copy; <FormattedMessage id="app.rights" defaultMessage="2022 ElectroShop. All Rights Reserved"/></p>
         <Link to="#" className='payment'>
           <img src={iconMercadoPago} alt="mercado pago" />
         </Link>

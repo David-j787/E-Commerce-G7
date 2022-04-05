@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders, getAllProducts, getAllUsers, getCategories, getSearchProducts, getSearchUsers, } from "../redux/actions";
+import { FormattedMessage } from 'react-intl'
 
 export default function AdminSearchBar(props) {
   const dispatch = useDispatch();
@@ -84,14 +85,14 @@ export default function AdminSearchBar(props) {
         <option key='pending' value='pending'>Pending</option>
         <option key='processing' value='processing'>Processing</option>
         <option key='complete' value='complete'>Complete</option>
-        <option key='canceled' value='canceled'>Canceled</option>
+        <option key='canceled' value='canceled'>Cancelled</option>
         </select>}
         {props.search === 'products' && <select onChange={handleSelect} value={category}>
           <option value=''>All Categories</option>
           {categories?.map((ca,i) => <option key={i} value={ca.name}>{ca.name}</option>)}
         </select>}
-        <button type='submit' onClick={e => handleSubmit(e)} className="searchBar__btn">Search</button>
-        <button type='reset' onClick={e => cleanState(e)} className="searchBar__btn" >Reset Filters</button>
+        <button type='submit' onClick={e => handleSubmit(e)} className="searchBar__btn"><FormattedMessage id="app.search" defaultMessage="Search"/></button>
+        <button type='reset' onClick={e => cleanState(e)} className="searchBar__btn" ><FormattedMessage id="app.reset" defaultMessage="Reset Filters"/></button>
       </div>
     </div>
   )
