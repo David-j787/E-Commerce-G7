@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export function OrderShipping ({confirmed,setShipping}){
 
@@ -38,25 +39,25 @@ export function OrderShipping ({confirmed,setShipping}){
 
     return (
         <div className="order_shipping">
-            <h4 className="order_shipping__title">Confirm Shipping Address & Email Notification</h4>
+            <h4 className="order_shipping__title"><FormattedMessage id="app.shipping-notification" defaultMessage="Confirm Shipping Address & Email Notification"/></h4>
             <form onSubmit={handleSubmit} className="order_shipping__form">
                 <div>
-                    <label>E-mail: </label>
+                    <label><FormattedMessage id="app.email" defaultMessage="E-mail: "/></label>
                     <input name='email' value={field.email} onChange={handleChange}/>
                 </div>
                 <div>
-                    <label>City: </label>
+                    <label><FormattedMessage id="app.city" defaultMessage="City: "/></label>
                     <input name='city' value={field.city} onChange={handleChange}/>
                 </div>
                 <div>
-                    <label>Address: </label>
+                    <label><FormattedMessage id="app.address" defaultMessage="Address: "/></label>
                     <input name='address' value={field.address} onChange={handleChange}/>
                 </div>
                 <div>
-                    <label>Zip Code: </label>
+                    <label><FormattedMessage id="app.zip" defaultMessage="Zip Code: "/></label>
                     <input name='zip_code' value={field.zip_code} onChange={handleChange}/>
                 </div>
-                <button disabled={confirmed} type="submit">Confirm data</button>
+                <button disabled={confirmed} type="submit"><FormattedMessage id="app.data-confirm" defaultMessage="Confirm data"/></button>
             </form>
         </div>
     )

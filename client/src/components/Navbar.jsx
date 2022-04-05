@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import logo from '../assets/images/logo.jpg';
@@ -9,6 +9,10 @@ import close from '../assets/images/icon-close.svg';
 import avatar1 from '../assets/images/avatar.png'
 import ShoppingCart from './ShoppingCart';
 import useUser from './Login/hooks/useUser';
+import ukflag from '../assets/images/UK-flag.png'
+import spflag from '../assets/images/SPAIN-flag.png'
+import { FormattedMessage } from 'react-intl'
+import { langContext } from './../context/langContext';
 
 const Navbar = () => {
   const iconMenuRef = useRef(null);
@@ -18,6 +22,8 @@ const Navbar = () => {
   const { isLogged, logout } = useUser();
   const user = useSelector(state => state?.user);
   const shopCart = useSelector(state => state?.cart);
+  const idioma = useContext(langContext);
+
 
   const handleMenu = () => {
     iconCloseRef.current.style.display = 'block';
@@ -65,7 +71,10 @@ const Navbar = () => {
                 className="list__link"
                 activeClassName="active"
               >
-                Shop
+                <FormattedMessage
+                  id="app.shop"
+                  defaultMessage="Shop"
+                  />
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>
@@ -74,7 +83,10 @@ const Navbar = () => {
                 className="list__link"
                 activeClassName="active"
               >
-                Stores
+                <FormattedMessage
+                id="app.stores"
+                defaultMessage="Stores"
+                />
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>
@@ -83,7 +95,10 @@ const Navbar = () => {
                 className="list__link"
                 activeClassName="active"
               >
-                About
+                <FormattedMessage
+                  id="app.about"
+                  defaultMessage="About"
+                  />
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>
@@ -92,7 +107,10 @@ const Navbar = () => {
                 className="list__link"
                 activeClassName="active"
               >
-                Contact
+                <FormattedMessage
+                  id="app.contact"
+                  defaultMessage="Contact"
+                  />
               </NavLink>
             </li>
             <li className="list__item" onClick={handleClose}>
@@ -101,7 +119,10 @@ const Navbar = () => {
                 className="list__link"
                 activeClassName="active"
               >
-                Sign Up
+                <FormattedMessage
+                  id="app.sign-up"
+                  defaultMessage="Sign Up"
+                  />
               </NavLink>
             </li>
           </ul>
@@ -118,10 +139,10 @@ const Navbar = () => {
                 <Link to='/user/account/profile'><img src={avatar} alt="avatar" /></Link>
               </figure>
               <div className='wrapper-isLogged'>
-                <h3>Signed in as <span>{user?.name} {user?.last_name}</span></h3>
-                <Link to="/user/account/profile" className='navbarLogin__button'>Account</Link>
-                {user?.roleId < 3 && <Link to="/admincp" className='admButton'>AdminCP</Link>}
-                <Link to="/" className='navbarLogin__button' onClick={logout}>Logout</Link>
+                <h3><FormattedMessage id="app.sign-in" defaultMessage="Signed in as"/><span>{user?.name} {user?.last_name}</span></h3>
+                <Link to="/user/account/profile" className='navbarLogin__button'><FormattedMessage id="app.account-title" defaultMessage="Account"/></Link>
+                {user?.roleId < 3 && <Link to="/admincp" className='admButton'><FormattedMessage id="app.admin" defaultMessage="AdminCP"/></Link>}
+                <Link to="/" className='navbarLogin__button' onClick={logout}><FormattedMessage id="app.log-out" defaultMessage="Logout"/></Link>
               </div>
             </div>
             : <div className='navbarLogin'>
@@ -129,9 +150,13 @@ const Navbar = () => {
               <Link to='/login'><img src={avatar1} alt="avatar" /></Link>
               </figure>
               <div className='wrapper-isLogged login'>
-                <Link to="/login" className='navbarLogin__button'>Login</Link>
+                <Link to="/login" className='navbarLogin__button'><FormattedMessage id="app.login" defaultMessage="Login"/></Link>
               </div>
             </div>}
+            <figure>
+                <img src={ukflag} onClick={()=>idioma.setLanguage('en-UK')} alt='EN-LANG' height="20px" width="50px"/><br/>
+                <img src={spflag} onClick={()=>idioma.setLanguage('es-ES')} alt='ES-LANG' height="20px" width="50px"/>
+              </figure>
         </div>
       </div>
     </div>

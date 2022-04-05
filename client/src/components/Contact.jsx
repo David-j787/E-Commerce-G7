@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import axios from 'axios';
 import '../styles/styles.scss'
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export function validate(form) {
 
@@ -86,24 +87,24 @@ export function Contact() {
     return (
         <div className="container">
             <div className="register">
-                <h1 className="register__title">Contact Us</h1>
+                <h1 className="register__title"><FormattedMessage id="app.contact-us" defaultMessage="Contact Us"/></h1>
                 <form onSubmit={(e) => { handleSubmit(e) }} className="register__form">
                     <div className="register__group">
-                        <label>Name:</label>
+                        <label><FormattedMessage id="app.name" defaultMessage="Name:"/></label>
                         <input name="name" value={form.name} onChange={handleChange} className="form-control" />
                         <div className="register__error">{errors.name}</div>
                     </div>
                     <div className="register__group">
-                        <label>E-mail:</label>
+                        <label><FormattedMessage id="app.email" defaultMessage="E-mail:"/></label>
                         <input name="email" value={form.email} onChange={handleChange} className="form-control" />
                         <div className="register__error">{errors.email}</div>
                     </div>
                     <div className="register__group">
-                        <label>Message:</label>
+                        <label><FormattedMessage id="app.message" defaultMessage="Message:"/></label>
                         <textarea name="message" value={form.message} onChange={handleChange} className="form-control"></textarea>
                         <div className="register__error">{errors.message}</div>
                     </div>
-                    <button className="register__button" type="submit" disabled={!form.name || !form.email || !form.message || Object.keys(errors).length} >Send</button>
+                    <button className="register__button" type="submit" disabled={!form.name || !form.email || !form.message || Object.keys(errors).length}><FormattedMessage id="app.send" defaultMessage="Send"/></button>
                 </form>
             </div>
         </div>

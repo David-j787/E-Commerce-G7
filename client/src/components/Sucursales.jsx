@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getAllStores } from "../redux/actions"
 import Map from './Map'
+import { FormattedMessage } from 'react-intl'
 import pin from '../assets/images/pin.png'
 
 const Sucursales = () => {
@@ -32,11 +33,10 @@ const Sucursales = () => {
     return (
         <div className='sucursales'>
             <div className="container">
-                <h1 className='register__title'>Stores</h1>
+                <h1 className='register__title'><FormattedMessage id="app.stores" defaultMessage="Stores"/></h1>
                 <button className='sucursales__button' onClick={() => handleClick("all")}>
-                    See all stores
+                <FormattedMessage id="app.see-stores" defaultMessage="See all stores"/>
                 </button>
-
                 <div className='sucursales__wrapper'>
                     <Map center={select} markers={stores} />
                     <div className='sucursales__buttons'>

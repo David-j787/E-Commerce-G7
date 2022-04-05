@@ -4,6 +4,7 @@ import { getUserWishlist } from "../redux/actions";
 import axios from "axios";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import { FormattedMessage } from 'react-intl'
 import { FaStar } from "react-icons/fa";
 
 export function Wishlist() {
@@ -54,7 +55,7 @@ export function Wishlist() {
       <div className="container">
         {wishlist.length === 0
           ? <h2 style={{"textAlign": "center", marginTop: "6rem", marginBottom: "4rem"}}>No hay Productos</h2>
-          : <h2 className="orders__title">MY WISHLIST</h2>
+          : <h2 className="orders__title"><FormattedMessage id="app.wish" defaultMessage="MY WISHLIST"/></h2>
           }
         <div className="visited-wrapper">
           <div className="visited">

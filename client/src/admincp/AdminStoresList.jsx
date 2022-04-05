@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllStores } from '../redux/actions';
 import swal from 'sweetalert';
+import { FormattedMessage } from 'react-intl'
 
 export default function AdminStoresList({showComponent, getId}) {
     const dispatch = useDispatch();
@@ -58,8 +59,8 @@ export default function AdminStoresList({showComponent, getId}) {
 
     return(
         <div className='adminSubComp'>
-            <div className='componentTitle'>Stores Management<button onClick={addNewStore} className='componentTitle__button'>Add new Store</button></div>
-            <div className='tableHeader'><div>Store name</div>|<div>Address</div>|<div>City</div>|<div>State</div>|<div>Action</div></div>
+            <div className='componentTitle'><FormattedMessage id="app.manage-store" defaultMessage="Stores Management"/><button onClick={addNewStore} className='componentTitle__button'><FormattedMessage id="app.btn-add-store" defaultMessage="Add new Store"/></button></div>
+            <div className='tableHeader'><div><FormattedMessage id="app.store-name" defaultMessage="Store name"/></div>|<div><FormattedMessage id="app.store-address" defaultMessage="Address"/></div>|<div><FormattedMessage id="app.store-city" defaultMessage="City"/></div>|<div><FormattedMessage id="app.store-state" defaultMessage="State"/></div>|<div><FormattedMessage id="app.action" defaultMessage="Action"/></div></div>
             <div className='adminTable'>
                 <ul>
                     {Array.isArray(stores) ? stores?.map(store => <li className='itemList' key={store.id}>
@@ -68,8 +69,8 @@ export default function AdminStoresList({showComponent, getId}) {
                         <div>{store.city}</div>
                         <div>{store.state}</div>
                         <div>
-                            <button onClick={e => editStore(store.id)} className='adminCP__button'>Edit</button>
-                            <button onClick={e => deleteStore(store.id)}className='adminCP__button'>Delete</button>
+                            <button onClick={e => editStore(store.id)} className='adminCP__button'><FormattedMessage id="app.btn-edit" defaultMessage="Edit"/></button>
+                            <button onClick={e => deleteStore(store.id)}className='adminCP__button'><FormattedMessage id="app.btn-delete" defaultMessage="Delete"/></button>
                         </div>
                         
                         </li>) : <div className='noDataFound'>{stores}</div>}

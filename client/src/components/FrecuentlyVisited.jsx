@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVisitedProducts } from "../redux/actions";
 import Visited from "./Visited";
+import { FormattedMessage } from 'react-intl'
 
 export default function FrecuentlyVisited(){
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function FrecuentlyVisited(){
     return(
         <>
         <div className="container">
-            <h2 className="visited__title">Based on your last visit</h2>
+            <h2 className="visited__title"><FormattedMessage id="app.frequently" defaultMessage="Based on your last visit"/></h2>
         </div>
         <div className="container">
             <div className="visited-wrapper">

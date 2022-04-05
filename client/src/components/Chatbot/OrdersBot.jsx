@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Orders from "../Orders";
 import chatIcon from "../../assets/images/chatIconOK.png";
 import { getOrderByUserId } from "../../redux/actions/index";
+import { FormattedMessage } from 'react-intl'
 
 const OrdersBot = () => {
 
@@ -23,8 +24,8 @@ const OrdersBot = () => {
 
     return (
         <div>
-            {!isLogged ? <span>To see your orders you must be Logged. Please Login <Link to= "/login">here</Link></span>
-            : <span>You can see your orders <Link to="/user/account/orders">here</Link></span>            }
+            {!isLogged ? <span><FormattedMessage id="app.chat-login" defaultMessage="To see your orders you must be Logged. Please Login "/><Link to= "/login"><FormattedMessage id="app.here" defaultMessage="here"/></Link></span>
+            : <span><FormattedMessage id="app.chat-see-orders" defaultMessage="You can see your orders"/><Link to="/user/account/orders"><FormattedMessage id="app.chat-here" defaultMessage="here"/></Link></span>            }
         </div>
     );
 };

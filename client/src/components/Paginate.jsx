@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl'
 
 export function Paginate({ productsAmount, productsPerPage, paginate, currentPage, top }) {
     const lastPage = Math.ceil(productsAmount / productsPerPage);
