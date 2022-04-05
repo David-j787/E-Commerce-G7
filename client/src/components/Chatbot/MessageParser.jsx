@@ -92,16 +92,15 @@ class MessageParser {
         else if (lowerCaseMessage.includes("chao")) {
             return this.actionProvider.createChatBotMessage("Goodbye!");
             }
-
-            else {
-                message=this.actionProvider.createChatBotMessage("Disculpa , no entiendo,puedes reformular la pregunta o seleccionar una de las opciones",{
-                    withAvatar: true,
+        else {
+            message=this.actionProvider.createChatBotMessage("Disculpa , no entiendo,puedes reformular la pregunta o seleccionar una de las opciones",{
+                withAvatar: true,
                 widget: "optionsES",
                 delay: 1000,
             });
                 this.actionProvider.addMessageToState(message);
             }   
-    }
+        }
     }
     
   

@@ -18,10 +18,7 @@ var Lang="es";
 
 
 if (Lang==="en"){
-     config = {
-   
-
-
+    config = {
     botName: "ElectroShop Chatbot",
    
    
@@ -162,10 +159,11 @@ customStyles: {
     botMessageBox: {
         backgroundColor: "grey",
         borderRadius: "10px",
+        height: "100px",
     },
     chatButton: {
         backgroundColor: "grey",
-        borderRadius: "10px",
+        borderRadius: "5px",
     },
 
 

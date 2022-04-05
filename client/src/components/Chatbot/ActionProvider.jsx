@@ -66,9 +66,10 @@ class ActionProvider {
       this.addMessageToState(message);
       };
 
-register = () => {
-    const message = this.createChatBotMessage("You can register here", {
-      widget: "register",
+  viewProfile = () => {
+    const message = this.createChatBotMessage(
+      "You must be logged to see your profile, you can find the link clicking on your avatar on the right top of the site.", {
+      widget: "profile",
       delay: 1000,
       });
     this.addMessageToState(message);
