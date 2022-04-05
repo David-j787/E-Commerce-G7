@@ -20,7 +20,7 @@ export default function PaymentDetail(props, {meliId, idOrder}) {
                 <div className="orderDetails shadow">
                      <div className="orderDetails__item">
                         <div className="item__details">
-                        <div className="item__title">
+                        <div className="item__title" style={{textAlign: "center", marginBottom: "1.5rem"}}>
                             {paymentDetail?.status === 'approved' ? `Your Payment has been ${paymentDetail?.status} ✅` : 
                             paymentDetail?.status === 'rejected' ? `Your Payment has been ${paymentDetail?.status} ❌` : 
                             `Your Payment is ${paymentDetail?.status} ⏱️`}
