@@ -5,24 +5,15 @@ import config from "./config";
 import MessageParser from "./MessageParser";
 import ActionProvider from './ActionProvider';
 import chatIcon from "../../assets/images/chatIconOK.png";
+import { useIntl } from "react-intl";
 
-export default function ChatBot (Lang="es") {
+export default function ChatBot () {
     const [show, setShow] = useState(false);
-    if(Lang === "es"){
-        return (   
-           <div className="chatIcon">
-               <span onClick={e => setShow(!show)}><img src={chatIcon} alt="chat bot" /></span>
-                {show && <Chatbot placeholderText = "Escribe aquí tu mensaje..." config={config} actionProvider={ActionProvider} messageParser={MessageParser} />}
-            </div>
-        );
-    }
-    else{
-        return (
-           <div className="chatIcon">
-              <span onClick={e => setShow(!show)}><img src={chatIcon} alt="chat bot" /></span>
-              {show && <Chatbot config={config} actionProvider={ActionProvider} messageParser={MessageParser} />}
-           </div>
-        );
-
-    }
+    const intl = useIntl()
+    return (   
+       <div className="chatIcon">
+           <span onClick={e => setShow(!show)}><img src={chatIcon} alt="chat bot" /></span>
+            {show && <Chatbot placeholderText={intl.formatMessage({id: "chatbot-placeholder"})} config={config} actionProvider={ActionProvider} messageParser={MessageParser} />}
+        </div>
+    );
 }

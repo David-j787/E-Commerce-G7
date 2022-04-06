@@ -222,5 +222,19 @@
     "placeholderMessageId": "Introduce el nombre de la nueva categoría...",
     "placeholderSearch": "Buscar",
     "placeholderAllCategories": "Todas las categorías",
-    "message-added": "Agregado a favoritos!"
+    "message-added": "Agregado a favoritos!",
+    "chatbot-placeholder": "Escribe tu mensaje aqui",
+    "chatbot-initialmsg": "Hola, como puedo ayudarte?",
+    "chatbot-viewProfile-logged": "Si no puedes encontrar donde Iniciar Sesión, porfavor haz click ",
+    "chatbot-register-option": "Quiero registrarme.",
+    "chatbot-buy-option": "Quiero comprar un producto.",
+    "chatbot-orders-option": "Quiero ver mis órdenes.",
+    "chatbot-profile-option": "Quiero ver mi perfil.",
+    "chatbot-register": "Para registrarte en nuestro sitio, revisa el menú de navegación justo en la parte superior y clickea 'Registrarse', ése link te redireccionará a un formulario de registro, complétalo y envía tus datos para crear tu cuenta",
+    "chatbot-buy": "Para comprar un producto, visita nuestra tienda y selecciona el producto que desees, luego agregalo al carrito, ésto abrirá tu carrito para que puedas proceder a finalizar la compra",
+    "chatbot-orders": "Para poder ver tus órdenes, porfavor verifica primero que hayas iniciado sesión, luego ve a al perfil de tu cuenta y haz click en Mis Órdenes",
+    "chatbot-payments": "Puedes pagar tus órdenes en efectivo, con tarjetas de crédito o débito de VISA, MasterCard, o American Express usando la plataforma de Mercado Pago",
+    "chatbot-profile": "Debes haber iniciado sesión para poder ver tu perfil, para hacerlo puedes hacer click en tu avatar en la parte superior derecha del sitio",
+    "chatbot-greeting": "Hola! como puedo ayudarte?",
+    "chatbot-header": "Conversación con Electro"
 }
