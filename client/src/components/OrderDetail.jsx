@@ -15,7 +15,6 @@ export default function OrderDetail(props) {
         dispatch(getOrderDetail(orderId));
     }, []); //eslint-disable-line
 
-    console.log(orderDetail);
     return (
         <div className='container'>
                 <div className="orderDetails shadow">

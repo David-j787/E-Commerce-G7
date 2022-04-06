@@ -36,7 +36,6 @@ const Map = ({ center, markers }) => {
                 >
 
                     {!center.location && markers?.map(l => {
-                        console.log(l)
                         const coords = { lat: l.lat, lng: l.lng }
                         return (
                             <div key={l.id + Math.random()}>

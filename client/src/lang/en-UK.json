@@ -342,5 +342,19 @@
     "validation-birthday-user": "Select user's date of birth",
     "validation-select-category": "Select a category or create a new one",
     "validation-set-weekday": "Set a Weekday",
-    "validation-set-discount": "Set a Discount"
+    "validation-set-discount": "Set a Discount",
+    "chatbot-placeholder": "Write your message here",
+    "chatbot-initialmsg": "Hi, how can I help you?",
+    "chatbot-viewProfile-logged": "If you can't find where log in, please click ",
+    "chatbot-register-option": "I want to register.",
+    "chatbot-buy-option": "I want to buy a product.",
+    "chatbot-orders-option": "I want to see my orders.",
+    "chatbot-profile-option": "I want to see my profile.",
+    "chatbot-register": "To register in our site, check the navigation bar just on the top and visit Sign Up, it will redirect you to register form, complete and send it to create your account",
+    "chatbot-buy": "To buy a product, visit our shop and select the product you want, then add to the cart, it will open your shop cart, later proceed to checkout",
+    "chatbot-orders": "To able to see your orders, please first verify you are logged, later go to you account profile and click My Orders option.",
+    "chatbot-payments": "You can pay your orders with cash, credit or debit cards of VISA, MasterCard or American Express using Mercado Pago platform.",
+    "chatbot-profile": "You must be logged to see your profile, you can find the link clicking on your avatar on the right top of the site.",
+    "chatbot-greeting": "Hi, how can I help you?",
+    "chatbot-header": "Conversation with Electro"
 }

@@ -36,6 +36,7 @@ import Contact from './components/Contact';
 import About from './components/About';
 import Footer from './components/Footer';
 import NotFound404 from './components/NotFound404';
+import ScrollComponent from './components/ScrollComponent';
 
 export const alert2FA = () => {
   swal({
@@ -116,6 +117,7 @@ function App() {
         <ResetPassword />
         </> :
           <Router>
+            <ScrollComponent/>
             <Navbar /> 
           <Route path='/user/account' component={DashboardUser}/>
           <Switch>

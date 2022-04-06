@@ -1,16 +1,26 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 const Options = (props) => {
-    const options= [
-        {text:'I want to register.',
-        handler:props.actionProvider.register, id:1},
-        {text:'I want to buy a product.',
-        handler:props.actionProvider.buyProduct, id:2},
-        {text:'I want to see my orders.',
-        handler:props.actionProvider.showOrders, id:3},
-        {text:'I want to see my profile.',
-        handler:props.actionProvider.viewProfile, id:4},
-    ]
+    const intl = useIntl();
+    const options = [{
+                text: intl.formatMessage({id: "chatbot-register-option"}),
+                handler: props.actionProvider.register, id:1
+            },
+            {
+                text: intl.formatMessage({id: "chatbot-buy-option"}),
+                handler: props.actionProvider.buyProduct, id:2
+            },
+            {   
+                text: intl.formatMessage({id: "chatbot-orders-option"}),
+                handler: props.actionProvider.showOrders, id:3
+            },
+            {   
+                text: intl.formatMessage({id: "chatbot-profile-option"}),
+                handler: props.actionProvider.viewProfile, id:4
+            }
+        ]
+    
     const buttonsMarkUp = options.map(option => (
             <button className="option-button" key={option.id} onClick={option.handler}>{option.text}</button>
     ))

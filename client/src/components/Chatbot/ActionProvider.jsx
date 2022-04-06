@@ -1,3 +1,20 @@
+import { createIntl, createIntlCache } from 'react-intl';
+import MessageEnglish from '../../lang/en-UK.json';
+import MessageSpanish from '../../lang/es-ES.json';
+
+const cache = createIntlCache();
+let localDefault;
+let messagesDefault;
+const lang = localStorage.getItem('lang');
+
+if (lang){
+  localDefault = lang;
+  if(lang === 'es-ES') messagesDefault = MessageSpanish
+  else messagesDefault = MessageEnglish
+}
+
+const intl = createIntl({locale: localDefault, messages: messagesDefault}, cache);
+
 // ActionProvider starter code
 class ActionProvider {
     constructor(
@@ -14,8 +31,9 @@ class ActionProvider {
      this.stateRef = stateRef;
      this.createCustomMessage = createCustomMessage;
    }
+
   greet = () => {
-      const message = this.createChatBotMessage("Hi, how can I help you?", {
+      const message = this.createChatBotMessage(intl.formatMessage({id: "chatbot-greeting"}), {
         widget: "options",
         delay: 1000,
         });
@@ -24,7 +42,7 @@ class ActionProvider {
 
   register = () => {
       const message = this.createChatBotMessage(
-        "To register in our site, check the navigation bar just on the top and visit Sign Up, it will redirect you to register form, complete and send it to create your account", {
+        intl.formatMessage({id: "chatbot-register"}), {
         widget: "register",
         delay: 1000,
         });
@@ -33,7 +51,7 @@ class ActionProvider {
 
   buyProduct = () => {
       const message = this.createChatBotMessage(
-        "To buy a product, visit our shop and select the product you want, then add to the cart, it will open your shop cart, later proceed to checkout", {
+        intl.formatMessage({id: "chatbot-buy"}), {
         widget: "products",
         delay: 1000,
         });
@@ -42,8 +60,8 @@ class ActionProvider {
 
   showOrders = () => {
       const message = this.createChatBotMessage(
-        "To able to see your orders, please first verify you are logged, later go to you account profile and click My Orders option.", {
-        widget: "ordersBot",
+        intl.formatMessage({id: "chatbot-orders"}), {
+        widget: "orders",
         delay: 1000,
         });
       this.addMessageToState(message);
@@ -51,7 +69,7 @@ class ActionProvider {
 
   payments = () => {
     const message = this.createChatBotMessage(
-      "You can pay your orders with cash, credit or debit cards of VISA, MasterCard or American Express using Mercado Pago platform.", {
+      intl.formatMessage({id: "chatbot-payments"}), {
       widget: "payments",
       delay: 1000,
       });
@@ -60,15 +78,67 @@ class ActionProvider {
 
   viewProfile = () => {
     const message = this.createChatBotMessage(
-      "You must be logged to see your profile, you can find the link clicking on your avatar on the right top of the site.", {
+      intl.formatMessage({id: "chatbot-profile"}), {
       widget: "profile",
+      delay: 1000,
+      });
+    this.addMessageToState(message);
+    };
+
+    //// SPANISH
+
+  saludo = () => {
+    const message = this.createChatBotMessage("Hola! como puedo ayudarte?", {
+      widget: "opciones",
+      delay: 1000,
+      });
+    this.addMessageToState(message);
+    };
+
+  registrar = () => {
+      const message = this.createChatBotMessage(
+        "Para registrarte en nuestro sitio, revisa el menú de navegación justo en la parte superior y clickea 'Registrarse', ése link te redireccionará a un formulario de registro, complétalo y envía tus datos para crear tu cuenta", {
+        widget: "register",
+        delay: 1000,
+        });
+      this.addMessageToState(message);
+    };
+
+  comprarProducto = () => {
+      const message = this.createChatBotMessage(
+        "Para comprar un producto, visita nuestra tienda y selecciona el producto que desees, luego agregalo al carrito, ésto abrirá tu carrito para que puedas proceder a finalizar la compra", {
+        widget: "products",
+        delay: 1000,
+        });
+      this.addMessageToState(message);
+    };
+
+  verOrdenes = () => {
+      const message = this.createChatBotMessage(
+        "Para poder ver tus órdenes, porfavor verifica primero que hayas iniciado sesión, luego ve a al perfil de tu cuenta y haz click en Mis Órdenes", {
+        widget: "orders",
+        delay: 1000,
+        });
+      this.addMessageToState(message);
+    };
+
+  pagar = () => {
+    const message = this.createChatBotMessage(
+      "Puedes pagar tus órdenes en efectivo, con tarjetas de crédito o débito de VISA, MasterCard, o American Express usando la plataforma de Mercado Pago", {
+      widget: "payments",
       delay: 1000,
       });
     this.addMessageToState(message);
   };
 
-
-
+  verPerfil = () => {
+    const message = this.createChatBotMessage(
+      "Debes haber iniciado sesión para poder ver tu perfil, para hacerlo puedes hacer click en tu avatar en la parte superior derecha del sitio", {
+      widget: "profile",
+      delay: 1000,
+      });
+    this.addMessageToState(message);
+    };
 
   addMessageToState = (message) => {
     this.setState((prevState) => ({
@@ -76,8 +146,6 @@ class ActionProvider {
       messages: [...prevState.messages, message],
     }));
   }
-
-
 }
  
  export default ActionProvider;
